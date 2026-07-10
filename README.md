@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # PETKIT Website
 
 PETKIT Website is a storefront-style pet care site with a Django backend for products, cart, checkout, orders, admin management, and customer accounts.
@@ -131,3 +132,7 @@ cd backend
 4. Add tests for registration, login, product CRUD, order status updates, and customer order visibility.
 5. Decide whether the static homepage should become Django templates or remain a separate frontend.
 6. Build the missing cart and checkout flow before treating this as a working ecommerce backend.
+=======
+# Tail-s-Town
+Inspired smart pet care storefront built with Django, PostgreSQL, and a custom responsive frontend. Includes product browsing, category-based catalog management, cart, checkout, customer accounts, email verification, order tracking, and admin order/product management.
+>>>>>>> b8b68421acde18cf4634545acd8317f66d423f81
