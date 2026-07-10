@@ -1,83 +1,111 @@
-<<<<<<< HEAD
-# PETKIT Website
+# Tail-s-Town
 
-PETKIT Website is a storefront-style pet care site with a Django backend for products, cart, checkout, orders, admin management, and customer accounts.
+Tail-s-Town is a PETKIT-inspired smart pet care storefront built with Django, PostgreSQL, and a custom responsive frontend. The project includes product browsing, category-driven catalog management, cart and checkout flow, customer accounts, email verification, order tracking, and admin product/order management.
 
-## Project Structure
+## Stack
+
+- Backend: Django 6
+- Database: PostgreSQL
+- Images: Pillow
+- PostgreSQL driver: psycopg
+- Frontend: Django templates, plain HTML, CSS, and JavaScript
+
+## Current Features
+
+- Homepage served from Django at `/`
+- Category-aware product catalog at `/shop/`
+- Product detail pages at `/shop/products/<slug>/`
+- Cart add, update, and remove flow
+- Checkout and order creation
+- Customer account dashboard
+- Register, sign in, sign out
+- Email verification flow
+- Password reset flow
+- Django admin for catalog and order management
+
+## Project Layout
 
 ```text
 project_petkit/
-├── index.html              # Static storefront homepage
-├── styles.css              # Frontend styling
-├── script.js               # Hero image slider
-├── server.js               # Small local static file server
-├── assets/                 # Images and media used by the frontend
-└── backend/
-    ├── manage.py
-    ├── petkit_backend/     # Django project settings and root URLs
-    └── shop/               # Django app for catalog, orders, admin, accounts
+|-- assets/                      Shared images, fonts, and site assets used by the live Django frontend
+|-- backend/
+|   |-- manage.py
+|   |-- petkit_backend/         Django project settings and root URLs
+|   |-- postgres_test_access.sql
+|   `-- shop/
+|       |-- models.py           Catalog, customer, cart, address, order, and order item models
+|       |-- forms.py
+|       |-- urls.py
+|       |-- services/           Cart, checkout, and customer helper logic
+|       |-- views/
+|       |   |-- account.py
+|       |   |-- cart.py
+|       |   |-- checkout.py
+|       |   `-- storefront.py
+|       `-- templates/
+|           |-- account/
+|           |-- store/
+|           `-- storefront/
+|-- frontend/                   Separate static/reference frontend snapshot
+|-- .env.example
+|-- .gitignore
+|-- PRODUCT.md
+|-- README.md
+`-- requirements.txt
 ```
 
-The folder also currently contains local runtime/vendor material such as `.venv`, `pyembed`, `Python312`, and `tools/postgresql18`. Those are useful locally, but they should normally be excluded from source control.
+## Main Routes
 
-## Frontend
+- `/` - homepage
+- `/shop/` - product listing
+- `/shop/products/<slug>/` - product detail
+- `/shop/cart/` - cart
+- `/shop/checkout/` - checkout
+- `/shop/orders/<id>/success/` - order success page
+- `/account/` - customer dashboard
+- `/account/login/` - sign in
+- `/account/register/` - registration
+- `/account/password-reset/` - password reset
+- `/admin/` - Django admin
 
-The public homepage is built with plain HTML, CSS, and JavaScript:
+## Data Model
 
-- `index.html` contains the landing page sections, header, hero, category area, support section, and footer.
-- `styles.css` contains all visual styling and responsive behavior.
-- `script.js` rotates the hero background slides.
-- `server.js` can serve the static frontend locally.
+Main models in [models.py](</C:/Users/HELLO!/project_petkit/backend/shop/models.py>) include:
 
-Run the static site with:
+- `Category`
+- `Product`
+- `Customer`
+- `Address`
+- `SavedPaymentMethod`
+- `Cart`
+- `CartItem`
+- `Order`
+- `OrderItem`
 
-```bash
-node server.js
-```
+## Local Setup
 
-Then open:
-
-```text
-http://127.0.0.1:5173/
-```
-
-## Backend
-
-The backend is a Django app in `backend/`.
-
-Main models:
-
-- `Product`: catalog items with name, description, price, stock, image, and active status.
-- `Order`: customer order summary with customer name/email, shipping address, and status.
-- `OrderItem`: line items attached to an order.
-- `Customer`: customer profile linked one-to-one with Django's user model.
-- `SavedPaymentMethod`: token reference placeholders for future payment integration.
-
-Main routes:
-
-- `/admin/`: Django admin for product, category, customer, cart, address, and order management.
-- `/admin-panel/`: legacy redirect to `/admin/`.
-- `/account/`: customer login, registration, dashboard, and profile editing.
-
-Run Django checks with:
-
-```bash
-cd backend
-..\.venv\Scripts\python.exe manage.py check
-```
-
-On Windows PowerShell, use:
+### 1. Create and activate a virtual environment
 
 ```powershell
-cd backend
-& "..\.venv\Scripts\python.exe" manage.py check
+cd C:\Users\HELLO!\project_petkit
+py -3.12 -m venv .venv
+.\.venv\Scripts\Activate.ps1
 ```
 
-## Database
+If `py` is unavailable, use your Python executable instead.
 
-Django is currently configured for PostgreSQL in `backend/petkit_backend/settings.py`.
+### 2. Install dependencies
 
-Default environment values:
+```powershell
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+### 3. Configure environment variables
+
+Copy values from `.env.example` into your local environment or `.env` workflow.
+
+Important PostgreSQL defaults in the project settings are:
 
 - `POSTGRES_DB=petkit_db`
 - `POSTGRES_USER=petkit_admin`
@@ -86,53 +114,85 @@ Default environment values:
 - `POSTGRES_PORT=5433`
 - `POSTGRES_TEST_DB=test_petkit_db`
 
-There is also a `backend/db.sqlite3` file in the project, but the current settings do not use SQLite.
-
-### PostgreSQL-backed tests
-
-Django creates an isolated database while running tests. Grant the application
-role permission to create that database once, using a PostgreSQL administrator:
+### 4. Run migrations
 
 ```powershell
-& "C:\Program Files\PostgreSQL\18\bin\psql.exe" `
-  -h 127.0.0.1 -p 5433 -U postgres -d postgres `
-  -f backend\postgres_test_access.sql
+cd backend
+& "..\.venv\Scripts\python.exe" manage.py migrate
 ```
 
-Then run the normal test suite:
+### 5. Start the development server
+
+```powershell
+cd backend
+& "..\.venv\Scripts\python.exe" manage.py runserver
+```
+
+Open:
+
+- [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+
+## Admin Access
+
+The project uses Django's built-in admin panel at `/admin/`.
+
+From there you can manage:
+
+- categories
+- products
+- customers
+- addresses
+- carts and cart items
+- orders and order items
+- saved payment methods
+
+## Email Behavior
+
+Email settings are environment-driven. By default, the project uses the configured `EMAIL_BACKEND` value from settings and falls back to a local default sender:
+
+- `DEFAULT_FROM_EMAIL=PETKIT <no-reply@petkit.local>`
+
+For local development, console or local-memory backends are commonly used.
+
+## Tests
+
+### Standard test run
 
 ```powershell
 cd backend
 & "..\.venv\Scripts\python.exe" manage.py test shop
 ```
 
-The normal suite now uses PostgreSQL. For an explicit local fallback only:
+### SQLite fallback test run
 
 ```powershell
 cd backend
 & "..\.venv\Scripts\python.exe" manage.py test shop --settings=petkit_backend.sqlite_test_settings
 ```
 
-## Known Issues
+## PostgreSQL Test Database Permission
 
-- The PostgreSQL application role needs `CREATEDB` once before it can run the
-  PostgreSQL-backed Django test suite.
-- Runtime/vendor folders are inside the project directory and should be ignored or moved out before committing.
-- The frontend has placeholder links for search, cart, support, and several shop categories.
-- Orders are associated with customers by matching `customer_email`, not by a database relationship to `Customer`.
-- Admin management has been consolidated into Django's built-in `/admin/` panel.
-- Payment methods are only token placeholders; there is no real payment provider flow yet.
-- There is no public checkout/cart flow that creates `Order` and `OrderItem` records.
+Django creates a separate temporary database during the normal PostgreSQL-backed test run. The application role needs permission to create that test database once.
 
-## Recommended Next Steps
+Run this as a PostgreSQL administrator:
 
-1. Add `.gitignore` for `.venv`, `pyembed`, `Python312`, `tools/postgresql18/data`, `__pycache__`, database files, logs, and media uploads.
-2. Add `requirements.txt` or `pyproject.toml`.
-3. Fix or document the intended database path: PostgreSQL only, SQLite only, or separate dev/prod settings.
-4. Add tests for registration, login, product CRUD, order status updates, and customer order visibility.
-5. Decide whether the static homepage should become Django templates or remain a separate frontend.
-6. Build the missing cart and checkout flow before treating this as a working ecommerce backend.
-=======
-# Tail-s-Town
-Inspired smart pet care storefront built with Django, PostgreSQL, and a custom responsive frontend. Includes product browsing, category-based catalog management, cart, checkout, customer accounts, email verification, order tracking, and admin order/product management.
->>>>>>> b8b68421acde18cf4634545acd8317f66d423f81
+```powershell
+cd C:\Users\HELLO!\project_petkit
+& "C:\Program Files\PostgreSQL\18\bin\psql.exe" `
+  -h 127.0.0.1 -p 5433 -U postgres -d postgres `
+  -f backend\postgres_test_access.sql
+```
+
+## Notes
+
+- The live storefront is the Django-rendered experience under `backend/shop/templates/` plus shared assets in `assets/`.
+- The `frontend/` folder is a separate static/reference frontend copy, not the main runtime entry point.
+- Local-only folders such as `.venv`, PostgreSQL runtime bundles, agent metadata, logs, and database noise are ignored through `.gitignore`.
+
+## Dependencies
+
+Current Python dependencies from [requirements.txt](</C:/Users/HELLO!/project_petkit/requirements.txt>):
+
+- `Django==6.0.6`
+- `Pillow==12.3.0`
+- `psycopg[binary]==3.3.4`
