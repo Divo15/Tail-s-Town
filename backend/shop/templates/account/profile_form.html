@@ -1,0 +1,18 @@
+{% extends "account/base.html" %}
+{% block title %}Edit Profile{% endblock %}
+{% block heading %}Edit Profile{% endblock %}
+{% block content %}
+  <section class="card">
+    <p class="eyebrow">Profile</p>
+    <form method="post" novalidate>
+      {% csrf_token %}
+      <div class="fieldlist">
+        {{ form.as_p }}
+      </div>
+      <div class="actions">
+        <button class="button" type="submit">Save changes</button>
+        <a class="button secondary" href="{% url 'customer_account:dashboard' %}">Cancel</a>
+      </div>
+    </form>
+  </section>
+{% endblock %}

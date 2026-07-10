@@ -1,0 +1,64 @@
+{% extends "account/base.html" %}
+{% block title %}Create Account{% endblock %}
+{% block content %}
+  <div class="account-layout">
+    <section class="account-hero">
+      <div class="account-hero-copy">
+        <p class="eyebrow">Join PETKIT</p>
+        <h1>Create your customer account.</h1>
+        <p>Manage your profile, access order history, and keep support details in one place.</p>
+      </div>
+    </section>
+
+    <section class="account-panel">
+      <div class="page-head">
+        <div>
+          <h1>Create account</h1>
+          <p>Set up your customer profile and login.</p>
+        </div>
+      </div>
+
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+          <div class="messages">
+            {% for error in form.non_field_errors %}<div class="message">{{ error }}</div>{% endfor %}
+          </div>
+        {% endif %}
+
+        <div class="fieldlist">
+          <label for="{{ form.email.id_for_label }}">
+            Email
+            {{ form.email }}
+            {% for error in form.email.errors %}<span class="muted" style="color:#9d3024;">{{ error }}</span>{% endfor %}
+          </label>
+          <label for="{{ form.full_name.id_for_label }}">
+            Full name
+            {{ form.full_name }}
+            {% for error in form.full_name.errors %}<span class="muted" style="color:#9d3024;">{{ error }}</span>{% endfor %}
+          </label>
+          <label for="{{ form.phone.id_for_label }}">
+            Phone
+            {{ form.phone }}
+            {% for error in form.phone.errors %}<span class="muted" style="color:#9d3024;">{{ error }}</span>{% endfor %}
+          </label>
+          <label for="{{ form.password1.id_for_label }}">
+            Password
+            {{ form.password1 }}
+            {% for error in form.password1.errors %}<span class="muted" style="color:#9d3024;">{{ error }}</span>{% endfor %}
+          </label>
+          <label for="{{ form.password2.id_for_label }}">
+            Confirm password
+            {{ form.password2 }}
+            {% for error in form.password2.errors %}<span class="muted" style="color:#9d3024;">{{ error }}</span>{% endfor %}
+          </label>
+        </div>
+
+        <div class="actions" style="margin-top:0.2rem;">
+          <button class="button" type="submit">Create account</button>
+          <a class="button secondary" href="{% url 'customer_account:login' %}">Sign in</a>
+        </div>
+      </form>
+    </section>
+  </div>
+{% endblock %}

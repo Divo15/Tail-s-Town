@@ -1,0 +1,41 @@
+{% extends "store/base.html" %}
+{% load static %}
+{% block title %}Order Success | PETKIT{% endblock %}
+{% block content %}
+  <section class="order-success">
+    <article class="hero-card" style="min-height: 320px; background-image: linear-gradient(90deg, rgba(0,0,0,0.48) 0%, rgba(0,0,0,0.12) 35%, rgba(0,0,0,0) 60%), url('{% static 'sections/smart-home.png' %}');">
+      <div class="hero-copy">
+        <p class="eyebrow">Order confirmed</p>
+        <h1>Thanks, {{ order.customer_name }}.</h1>
+        <p>Your order has been created and the shop flow is complete.</p>
+      </div>
+    </article>
+
+    <section class="grid-2">
+      <article class="panel">
+        <p class="eyebrow">Order number</p>
+        <div class="order-number">#{{ order.pk }}</div>
+        <p class="lead">We’ll use the shipping details captured at checkout to fulfill this order.</p>
+        <div class="actions">
+          <a class="button" href="{% url 'store:product_list' %}">Continue shopping</a>
+          <a class="button secondary" href="{% url 'store:cart_detail' %}">View cart</a>
+        </div>
+      </article>
+
+      <article class="panel">
+        <p class="eyebrow">Order summary</p>
+        {% for item in order.items.all %}
+          <div class="summary-row">
+            <span>{{ item.product_name }} x {{ item.quantity }}</span>
+            <strong>Rs. {{ item.line_total }}</strong>
+          </div>
+        {% endfor %}
+        <div class="summary-row total">
+          <span>Total</span>
+          <span>Rs. {{ order.total_amount }}</span>
+        </div>
+        <p class="muted" style="margin:0.8rem 0 0;">Status: {{ order.get_status_display }}</p>
+      </article>
+    </section>
+  </section>
+{% endblock %}

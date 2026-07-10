@@ -1,0 +1,328 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PETKIT | Smart Pet Care</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@500;700;800;900&family=Rubik:wght@600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'site/styles.css' %}" />
+  </head>
+  <body>
+    <a class="skip-link" href="#products">Skip to products</a>
+
+    <div class="top-strip" aria-label="Store benefits">
+      <span>Smart pet care store</span>
+      <span>Secure checkout</span>
+      <span>Support on every order</span>
+    </div>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="/" aria-label="PETKIT home">
+          <img src="{% static 'brand/logo.png' %}" alt="PETKIT" />
+        </a>
+
+        <nav class="desktop-nav" aria-label="Primary navigation">
+          <div class="nav-item has-menu">
+            <a href="{% url 'store:product_list' %}"><span>Shop</span></a>
+            <div class="mega-menu" aria-label="Shop menu">
+              <div class="mega-menu-grid">
+                <div class="mega-menu-side">
+                  <p class="mega-heading">Shop by category</p>
+                  {% for category in categories %}
+                    <a href="{% url 'store:product_list' %}?category={{ category.slug }}">{{ category.name }}</a>
+                  {% empty %}
+                    <a href="{% url 'store:product_list' %}">All products</a>
+                  {% endfor %}
+                  <a href="{% url 'store:product_list' %}">View all products</a>
+                </div>
+
+                <div class="mega-menu-main">
+                  <div class="mega-menu-showcase">
+                    {% for product in featured_products %}
+                      <a class="mega-card" href="{% url 'store:product_detail' product.slug %}">
+                        {% if product.image %}
+                          <img src="{{ product.image.url }}" alt="{{ product.name }}" />
+                        {% elif forloop.counter == 1 %}
+                          <img src="{% static 'products/smart-water-fountain.png' %}" alt="{{ product.name }}" />
+                        {% elif forloop.counter == 2 %}
+                          <img src="{% static 'products/self-cleaning-litter-box.png' %}" alt="{{ product.name }}" />
+                        {% else %}
+                          <img src="{% static 'products/smart-feeder.png' %}" alt="{{ product.name }}" />
+                        {% endif %}
+                        <span>{{ product.name }}</span>
+                      </a>
+                    {% empty %}
+                      <a class="mega-card" href="{% url 'store:product_list' %}">
+                        <img src="{% static 'products/smart-water-fountain.png' %}" alt="Smart water fountain preview" />
+                        <span>Hydration care</span>
+                      </a>
+                      <a class="mega-card" href="{% url 'store:product_list' %}">
+                        <img src="{% static 'products/self-cleaning-litter-box.png' %}" alt="Self-cleaning litter box preview" />
+                        <span>Clean care</span>
+                      </a>
+                      <a class="mega-card" href="{% url 'store:product_list' %}">
+                        <img src="{% static 'products/smart-feeder.png' %}" alt="Smart feeder preview" />
+                        <span>Daily routines</span>
+                      </a>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a href="#products"><span>Products</span></a>
+          <a href="#routine"><span>Routine</span></a>
+          <a href="#app"><span>Smart Home</span></a>
+          <a href="#support"><span>Support</span></a>
+        </nav>
+
+        <div class="header-icons" aria-label="Quick actions">
+          <a class="header-icon" href="{% url 'store:product_list' %}" aria-label="Browse products">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.8 15.1 21 20.3l-.7.7-5.2-5.2a7 7 0 1 1 .7-.7ZM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z"/></svg>
+          </a>
+          <a class="header-icon" href="{% url 'customer_account:dashboard' %}" aria-label="Account">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4.2 4.2 0 1 0-4.2-4.2A4.2 4.2 0 0 0 12 12Zm0 1.4c-3.5 0-6.8 1.8-6.8 4.2V20h13.6v-2.4c0-2.4-3.3-4.2-6.8-4.2Z"/></svg>
+          </a>
+          <a class="header-icon" href="{% url 'store:cart_detail' %}" aria-label="Cart">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.3 7h14.9l-1.5 8.7H8.1L6.3 7Zm0 0-.5-2.5H3.5M9.3 19.5a1.3 1.3 0 1 0 0 .1Zm8.4 0a1.3 1.3 0 1 0 0 .1Z"/></svg>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="hero" aria-labelledby="hero-title">
+        <div class="hero-media">
+          <div class="hero-bg is-active" style="background-image: url('{% static 'hero/cat-window-poster.png' %}');" aria-hidden="true"></div>
+          <div class="hero-bg" style="background-image: url('{% static 'hero/dog-sunlight-poster.png' %}'); background-position: center 34%;" aria-hidden="true"></div>
+          <div class="hero-overlay"></div>
+          <div class="container hero-inner">
+            <div class="hero-copy">
+              <p class="hero-kicker">Smart care for calmer homes</p>
+              <h1 id="hero-title"><span>PETKIT</span><span>Smart Pet Care</span></h1>
+              <p class="hero-lede">Connected essentials for hydration, feeding, and a cleaner everyday routine.</p>
+              <div class="hero-actions">
+                <a class="button primary" href="{% url 'store:product_list' %}">Shop products</a>
+                <a class="button secondary" href="#products">See what is new</a>
+              </div>
+            </div>
+
+            <div class="hero-proof" aria-label="Store highlights">
+              <span>Filtered water</span>
+              <span>Connected cart</span>
+              <span>Order tracking</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="product-section" id="products" aria-labelledby="products-title">
+        <div class="container section-heading">
+          <div>
+            <p class="section-label">Shop PETKIT</p>
+            <h2 id="products-title">Three smart essentials for an easier pet-care rhythm.</h2>
+          </div>
+          <a class="text-link" href="{% url 'store:product_list' %}">View all products</a>
+        </div>
+
+        <div class="container category-rail" aria-label="Product categories">
+          {% for category in categories %}
+            <a class="{% if forloop.first %}is-active{% endif %}" href="{% url 'store:product_list' %}?category={{ category.slug }}">{{ category.name }}</a>
+          {% empty %}
+            <a class="is-active" href="{% url 'store:product_list' %}">All products</a>
+          {% endfor %}
+          <a href="{% url 'store:product_list' %}">Shop all</a>
+        </div>
+
+        <div class="container product-showcase">
+          {% for product in featured_products %}
+            <a class="product-tile" href="{% url 'store:product_detail' product.slug %}">
+              <div class="product-image">
+                {% if product.image %}
+                  <img src="{{ product.image.url }}" alt="{{ product.name }}" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" />
+                {% elif forloop.counter == 1 %}
+                  <img src="{% static 'products/smart-water-fountain.png' %}" alt="{{ product.name }}" loading="eager" />
+                {% elif forloop.counter == 2 %}
+                  <img src="{% static 'products/self-cleaning-litter-box.png' %}" alt="{{ product.name }}" loading="lazy" />
+                {% else %}
+                  <img src="{% static 'products/smart-feeder.png' %}" alt="{{ product.name }}" loading="lazy" />
+                {% endif %}
+              </div>
+              <div class="product-copy">
+                <div>
+                  <span>{{ product.category.name|default:"PETKIT" }}</span>
+                  <h3>{{ product.name }}</h3>
+                </div>
+                <p>Rs. {{ product.price }}</p>
+              </div>
+            </a>
+          {% endfor %}
+
+          {% if featured_products|length == 0 %}
+          <a class="product-tile" href="{% url 'store:product_list' %}">
+            <div class="product-image">
+              <img src="{% static 'products/smart-water-fountain.png' %}" alt="Premium smart water fountain" loading="eager" />
+            </div>
+            <div class="product-copy">
+              <div>
+                <span>Hydration care</span>
+                <h3>Premium Smart Water Fountain</h3>
+              </div>
+              <p>Shop water care</p>
+            </div>
+          </a>
+          {% endif %}
+
+          {% if featured_products|length < 2 %}
+            <a class="product-tile" href="{% url 'store:product_list' %}">
+              <div class="product-image">
+                <img src="{% static 'products/self-cleaning-litter-box.png' %}" alt="Self-cleaning cat litter box" loading="lazy" />
+              </div>
+              <div class="product-copy">
+                <div>
+                  <span>Clean care</span>
+                  <h3>Self-cleaning Cat Litter Box</h3>
+                </div>
+                <p>Shop clean care</p>
+              </div>
+            </a>
+          {% endif %}
+
+          {% if featured_products|length < 3 %}
+            <a class="product-tile" href="{% url 'store:product_list' %}">
+              <div class="product-image">
+                <img src="{% static 'products/smart-feeder.png' %}" alt="Intelligent pet smart feeder" loading="lazy" />
+              </div>
+              <div class="product-copy">
+                <div>
+                  <span>Daily routines</span>
+                  <h3>Intelligent Pet Smart Feeder</h3>
+                </div>
+                <p>Shop smart devices</p>
+              </div>
+            </a>
+          {% endif %}
+        </div>
+      </section>
+
+      <section class="routine-section" id="routine" aria-labelledby="routine-title">
+        <div class="container routine-grid">
+          <div class="routine-photo" aria-hidden="true"></div>
+          <div class="routine-content">
+            <p class="section-label">Built for the full shop flow</p>
+            <h2 id="routine-title">The store feels simple from product discovery to order tracking.</h2>
+            <div class="routine-steps" aria-label="Shop flow">
+              <article>
+                <span>01</span>
+                <strong>Pick the product</strong>
+                <p>Product cards lead into real detail pages with catalog data.</p>
+              </article>
+              <article>
+                <span>02</span>
+                <strong>Add to cart</strong>
+                <p>The cart stays tied to the current customer session.</p>
+              </article>
+              <article>
+                <span>03</span>
+                <strong>Place the order</strong>
+                <p>Checkout creates an order that staff can fulfill in admin.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="smart-home-section" id="app" aria-labelledby="smart-home-title">
+        <div class="container smart-home-shell">
+          <div class="smart-home-copy">
+            <span class="section-label">PETKIT Smart Home</span>
+            <h2 id="smart-home-title">Care stays visible when the day gets full.</h2>
+            <p>
+              Products, account access, cart state, checkout, and order handling now live in one connected storefront.
+            </p>
+            <a class="button inverse" href="{% url 'store:product_list' %}">Build your setup</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="support-section" id="support" aria-labelledby="support-title">
+        <div class="container support-grid">
+          <div class="support-copy">
+            <span class="section-label">Support</span>
+            <h2 id="support-title">A store that feels simple before and after checkout.</h2>
+            <p>Customers can browse, sign in, verify email, manage their account, place orders, and return to order details without losing context.</p>
+          </div>
+          <img src="{% static 'sections/service-support.jpg' %}" alt="PETKIT support banner with app and service details" loading="lazy" />
+        </div>
+      </section>
+
+      <section class="policy-row" aria-label="Store capabilities">
+        <div class="container policy-grid">
+          <article>
+            <h3>Customer flow</h3>
+            <p>Product list, product detail, cart, checkout, and success pages are wired to the backend.</p>
+          </article>
+          <article>
+            <h3>Verified accounts</h3>
+            <p>Customers verify email before signing in, keeping account access cleaner.</p>
+          </article>
+          <article>
+            <h3>Admin ready</h3>
+            <p>Django admin handles products, stock, customers, orders, and order status.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" id="footer">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <img src="{% static 'brand/logo.png' %}" alt="PETKIT" class="footer-logo" />
+          <p>Smart pet care products designed for calmer, cleaner routines.</p>
+        </div>
+
+        <div>
+          <h3>Shop</h3>
+          <a href="{% url 'store:product_list' %}">All products</a>
+          <a href="{% url 'store:cart_detail' %}">Cart</a>
+          <a href="#products">Products</a>
+        </div>
+
+        <div>
+          <h3>Account</h3>
+          <a href="{% url 'customer_account:login' %}">Customer sign in</a>
+          <a href="{% url 'customer_account:register' %}">Register</a>
+          <a href="{% url 'customer_account:dashboard' %}">Dashboard</a>
+        </div>
+
+        <div>
+          <h3>Operations</h3>
+          <a href="{% url 'admin:index' %}">Admin panel</a>
+          <a href="{% url 'admin:shop_product_changelist' %}">Manage products</a>
+          <a href="#support">Support</a>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <div class="footer-contact">
+          <p>Call us: +1(888)851-2770</p>
+          <p>9am-12pm and 1pm-6pm CST Mon.-Sun.</p>
+        </div>
+        <div class="footer-payments" aria-label="Payment methods">
+          <span>Amex</span>
+          <span>Apple Pay</span>
+          <span>Google Pay</span>
+          <span>Mastercard</span>
+          <span>PayPal</span>
+          <span>Visa</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="{% static 'site/script.js' %}"></script>
+  </body>
+</html>

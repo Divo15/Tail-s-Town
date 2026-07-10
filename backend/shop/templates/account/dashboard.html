@@ -1,0 +1,41 @@
+{% extends "account/base.html" %}
+{% block title %}My Account{% endblock %}
+{% block heading %}My Account{% endblock %}
+{% block content %}
+  <div class="grid">
+    <div class="card">
+      <p class="eyebrow">Profile</p>
+      <h2 style="margin:0;">{{ customer.full_name }}</h2>
+      <p class="muted">{{ customer.email }}</p>
+      <p class="muted">{{ customer.phone|default:"No phone number saved." }}</p>
+      <div class="actions">
+        <a class="button" href="{% url 'customer_account:profile_edit' %}">Edit profile</a>
+        <a class="button secondary" href="{% url 'customer_account:logout' %}">Sign out</a>
+      </div>
+    </div>
+    <div class="card">
+      <p class="eyebrow">Saved payment methods</p>
+      <h2 style="margin:0;">{{ saved_methods.count }}</h2>
+      <p class="muted">Token-only placeholders. Payment integration comes later.</p>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:1rem;">
+    <p class="eyebrow">Recent orders</p>
+    <table>
+      <thead><tr><th>Order</th><th>Status</th><th>Placed</th><th>Total</th></tr></thead>
+      <tbody>
+        {% for order in recent_orders %}
+          <tr>
+            <td>#{{ order.pk }}</td>
+            <td>{{ order.status }}</td>
+            <td>{{ order.created_at }}</td>
+            <td>${{ order.total_amount }}</td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="4" class="muted">No orders yet.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

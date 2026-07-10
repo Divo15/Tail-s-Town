@@ -1,0 +1,168 @@
+{% extends "store/base.html" %}
+{% load static %}
+{% block title %}{{ product.name }} | PETKIT{% endblock %}
+{% block content %}
+  <section class="detail-grid">
+    <div class="detail-media-shell">
+      <article class="card detail-media" aria-label="{{ product.name }} image">
+        {% if product.image %}
+          <img src="{{ product.image.url }}" alt="{{ product.name }}" />
+        {% elif product.category and "feed" in product.category.name|lower %}
+          <img src="{% static 'products/smart-feeder.png' %}" alt="{{ product.name }}" />
+        {% elif product.category and "clean" in product.category.name|lower %}
+          <img src="{% static 'products/self-cleaning-litter-box.png' %}" alt="{{ product.name }}" />
+        {% else %}
+          <img src="{% static 'products/smart-water-fountain.png' %}" alt="{{ product.name }}" />
+        {% endif %}
+      </article>
+
+      <div class="product-thumb-row" aria-label="Product preview images">
+        <div class="product-thumb">
+          {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }} preview" />
+          {% else %}
+            <img src="{% static 'products/smart-water-fountain.png' %}" alt="{{ product.name }} preview" />
+          {% endif %}
+        </div>
+        <div class="product-thumb">
+          <img src="{% static 'hero/water-fountain.jpg' %}" alt="PETKIT product lifestyle preview" />
+        </div>
+        <div class="product-thumb">
+          <img src="{% static 'products/self-cleaning-litter-box.png' %}" alt="PETKIT smart care product preview" />
+        </div>
+      </div>
+    </div>
+
+    <article class="panel detail-panel">
+      <div class="product-heading">
+        <div class="product-category-row">
+          {% if product.category %}<span class="tag">{{ product.category.name }}</span>{% endif %}
+          {% if product.brand %}<span class="tag">{{ product.brand }}</span>{% else %}<span class="tag">PETKIT</span>{% endif %}
+        </div>
+        <h1 class="page-title">{{ product.name }}</h1>
+        <p class="lead">{{ product.description|default:"A PETKIT product designed for cleaner routines and calmer care." }}</p>
+      </div>
+
+      <div class="product-meta">
+        {% if product.sku %}<span>SKU: {{ product.sku }}</span>{% endif %}
+        {% if product.weight_grams %}<span>{{ product.weight_grams }} g</span>{% endif %}
+        <span>{{ product.stock }} item{{ product.stock|pluralize }} available</span>
+      </div>
+
+      <section class="product-purchase" aria-label="Purchase options">
+        <div class="summary-row">
+          <div class="price">Rs. {{ product.price }}</div>
+          <p class="stock-line">
+            <span class="stock-dot {% if product.stock == 0 %}empty{% elif product.stock <= 3 %}low{% endif %}" aria-hidden="true"></span>
+            {% if product.stock > 0 %}
+              In stock
+            {% else %}
+              Out of stock
+            {% endif %}
+          </p>
+        </div>
+
+        <form method="post" action="{% url 'store:cart_add' product.id %}">
+          {% csrf_token %}
+          <div class="quantity-row">
+            <label>
+              Quantity
+              <input type="number" name="quantity" min="1" max="{{ product.stock }}" value="1" {% if product.stock == 0 %}disabled{% endif %} required />
+            </label>
+            <p class="muted" style="margin:0;">Add this product to your cart and continue checkout from the cart page.</p>
+          </div>
+          <div class="purchase-actions">
+            <button class="button" type="submit" {% if product.stock == 0 %}disabled{% endif %}>Add to cart</button>
+            <a class="button secondary" href="{% url 'store:cart_detail' %}">View cart</a>
+          </div>
+        </form>
+      </section>
+
+      <section class="detail-section" aria-label="Product specifications">
+        <h2 class="section-title">Product details</h2>
+        <dl class="spec-list">
+          <div class="spec-row">
+            <dt>Category</dt>
+            <dd>{{ product.category.name|default:"Smart pet care" }}</dd>
+          </div>
+          {% if product.brand %}
+            <div class="spec-row">
+              <dt>Brand</dt>
+              <dd>{{ product.brand }}</dd>
+            </div>
+          {% endif %}
+          {% if product.sku %}
+            <div class="spec-row">
+              <dt>SKU</dt>
+              <dd>{{ product.sku }}</dd>
+            </div>
+          {% endif %}
+          {% if product.weight_grams %}
+            <div class="spec-row">
+              <dt>Weight</dt>
+              <dd>{{ product.weight_grams }} g</dd>
+            </div>
+          {% endif %}
+          <div class="spec-row">
+            <dt>Availability</dt>
+            <dd>{{ product.stock }} item{{ product.stock|pluralize }}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="detail-section" aria-label="Support information">
+        <div class="assurance-grid">
+          <div class="assurance-item">
+            <strong>Fast setup</strong>
+            <span class="muted">Designed for everyday pet-care routines.</span>
+          </div>
+          <div class="assurance-item">
+            <strong>Support ready</strong>
+            <span class="muted">Help and product guidance after purchase.</span>
+          </div>
+          <div class="assurance-item">
+            <strong>Simple checkout</strong>
+            <span class="muted">Cart and order flow are connected.</span>
+          </div>
+        </div>
+      </section>
+    </article>
+  </section>
+
+  {% if related_products %}
+    <section class="related-section" aria-label="Related products">
+      <div class="related-header">
+        <div>
+          <p class="eyebrow">Keep browsing</p>
+          <h2 class="section-title">More from this collection</h2>
+        </div>
+        <a class="button secondary" href="{% url 'store:product_list' %}">Shop all</a>
+      </div>
+      <div class="product-grid">
+        {% for related in related_products %}
+          <article class="card product-card">
+            <a class="media" href="{% url 'store:product_detail' related.slug %}">
+              {% if related.image %}
+                <img src="{{ related.image.url }}" alt="{{ related.name }}" />
+              {% elif forloop.counter|divisibleby:2 %}
+                <img src="{% static 'products/smart-feeder.png' %}" alt="{{ related.name }}" />
+              {% else %}
+                <img src="{% static 'products/smart-water-fountain.png' %}" alt="{{ related.name }}" />
+              {% endif %}
+            </a>
+            <div class="body">
+              <div class="product-meta">
+                {% if related.category %}<span class="tag">{{ related.category.name }}</span>{% endif %}
+              </div>
+              <h3><a href="{% url 'store:product_detail' related.slug %}">{{ related.name }}</a></h3>
+              <div class="summary-row">
+                <strong>Rs. {{ related.price }}</strong>
+                <span class="muted">{{ related.stock }} in stock</span>
+              </div>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+{% endblock %}

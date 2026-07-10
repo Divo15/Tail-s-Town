@@ -1,0 +1,65 @@
+{% extends "account/base.html" %}
+{% block title %}Customer Sign In{% endblock %}
+{% block content %}
+  <div class="account-layout">
+    <section class="account-hero">
+      <div class="account-hero-copy">
+        <p class="eyebrow">Customer account</p>
+        <h1>Sign in and return to your order flow without starting over.</h1>
+        <p>Use your PETKIT customer account to reopen your cart, check order progress, and move through checkout with your saved details.</p>
+        <ul class="account-hero-points" aria-label="Account benefits">
+          <li>Cart continuity across your account session</li>
+          <li>Order visibility after checkout</li>
+          <li>Saved customer details for faster repeat purchases</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="account-panel">
+      <div class="page-head">
+        <div>
+          <span class="account-section-label">Secure customer access</span>
+          <h1>Customer sign in</h1>
+          <p>Use the same email address you registered with.</p>
+        </div>
+      </div>
+
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+          <div class="messages">
+            {% for error in form.non_field_errors %}<div class="message">{{ error }}</div>{% endfor %}
+          </div>
+        {% endif %}
+
+        <div class="fieldlist">
+          <label for="{{ form.username.id_for_label }}">
+            Email
+            {{ form.username }}
+            {% for error in form.username.errors %}<span class="muted" style="color:#9d3024;">{{ error }}</span>{% endfor %}
+          </label>
+
+          <label for="{{ form.password.id_for_label }}">
+            Password
+            {{ form.password }}
+            {% for error in form.password.errors %}<span class="muted" style="color:#9d3024;">{{ error }}</span>{% endfor %}
+          </label>
+        </div>
+
+        <div class="actions" style="margin-top:-0.25rem;">
+          <a class="muted" href="{% url 'customer_account:password_reset' %}">Forgot your password?</a>
+        </div>
+
+        <div class="auth-support">
+          <strong>Before you sign in</strong>
+          <span>Your cart and order history stay attached to your customer account once you sign in. If you registered recently, verify your email first.</span>
+        </div>
+
+        <div class="actions" style="margin-top:0.2rem;">
+          <button class="button" type="submit">Sign in</button>
+          <a class="button secondary" href="{% url 'customer_account:register' %}">Create account</a>
+        </div>
+      </form>
+    </section>
+  </div>
+{% endblock %}

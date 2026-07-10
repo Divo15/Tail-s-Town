@@ -1,0 +1,42 @@
+# Python/runtime environments
+.venv/
+venv/
+env/
+pyembed/
+Python312/
+
+# Python generated files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django/local databases
+*.sqlite3
+db.sqlite3
+*.db
+
+# Local PostgreSQL runtime data
+tools/postgresql18/data/
+tools/postgresql18/postgres.log
+*.log
+
+# Uploaded/generated media
+backend/media/
+media/
+
+# Local environment and secrets
+.env
+.env.*
+*.local
+
+# Node/local server noise
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
