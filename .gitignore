@@ -15,9 +15,8 @@ __pycache__/
 db.sqlite3
 *.db
 
-# Local PostgreSQL runtime data
-tools/postgresql18/data/
-tools/postgresql18/postgres.log
+# Local PostgreSQL runtime bundle and data
+tools/postgresql18/
 *.log
 
 # Uploaded/generated media
