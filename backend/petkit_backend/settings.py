@@ -17,16 +17,34 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+def env_bool(name, default=False):
+    value = os.getenv(name)
+    if value is None:
+        return default
+    return value.strip().lower() in {"1", "true", "yes", "on"}
+
+
+def env_list(name, default=""):
+    value = os.getenv(name, default)
+    return [item.strip() for item in value.split(",") if item.strip()]
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-trhwtnml4fgslh2ir9_vx=230r2l)3ddpp%xhs9ig28w^j0un)'
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "django-insecure-local-dev-key-change-me")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env_bool("DJANGO_DEBUG", default=True)
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+ALLOWED_HOSTS = env_list("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost")
+
+if not DEBUG and SECRET_KEY == "django-insecure-local-dev-key-change-me":
+    raise ValueError("DJANGO_SECRET_KEY must be set when DJANGO_DEBUG is False.")
+
+if not DEBUG and not ALLOWED_HOSTS:
+    raise ValueError("DJANGO_ALLOWED_HOSTS must be set when DJANGO_DEBUG is False.")
 
 
 # Application definition
@@ -138,5 +156,11 @@ EMAIL_BACKEND = os.getenv(
     "django.core.mail.backends.console.EmailBackend",
 )
 DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL", "PETKIT <no-reply@petkit.local>")
+EMAIL_HOST = os.getenv("EMAIL_HOST", "localhost")
+EMAIL_PORT = int(os.getenv("EMAIL_PORT", "25"))
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER", "")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD", "")
+EMAIL_USE_TLS = env_bool("EMAIL_USE_TLS", default=False)
+EMAIL_USE_SSL = env_bool("EMAIL_USE_SSL", default=False)
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

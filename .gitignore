@@ -27,6 +27,7 @@ media/
 .env
 .env.*
 *.local
+!.env.example
 
 # Node/local server noise
 node_modules/
