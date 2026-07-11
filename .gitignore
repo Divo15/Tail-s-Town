@@ -21,6 +21,7 @@ tools/postgresql18/
 
 # Uploaded/generated media
 backend/media/
+backend/staticfiles/
 media/
 
 # Local environment and secrets

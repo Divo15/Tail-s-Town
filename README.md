@@ -154,6 +154,13 @@ Email settings are environment-driven. By default, the project uses the configur
 
 For local development, console or local-memory backends are commonly used.
 
+## Deployment
+
+Production settings are environment-driven and include static-file handling,
+HTTPS-aware cookies, CSRF origin configuration, PostgreSQL, and SMTP email
+settings. See [DEPLOYMENT.md](DEPLOYMENT.md) for build/start commands, required
+environment variables, and the media-upload persistence requirement.
+
 ## Tests
 
 ### Standard test run
