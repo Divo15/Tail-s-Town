@@ -4,13 +4,13 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>PETKIT | Smart Pet Care</title>
+    <title>Tails Town | Smart Pet Care</title>
     <link rel="stylesheet" href="{% static 'site/styles.css' %}" />
   </head>
   <body>
     <header class="site-header" aria-label="Main navigation">
-      <a class="brand" href="/" aria-label="PETKIT home">
-        <img src="{% static 'brand/logo.png' %}" alt="PETKIT" />
+      <a class="brand" href="/" aria-label="Tails Town home">
+        <img src="{% static 'brand/logo.png' %}" alt="Tails Town" />
       </a>
       <nav class="nav-links" aria-label="Product navigation">
         <a href="{% url 'store:product_list' %}">Shop</a>
@@ -31,43 +31,40 @@
           <a class="auth-link" href="{% url 'customer_account:login' %}">Sign in</a>
           <a class="auth-link auth-link-secondary" href="{% url 'customer_account:register' %}">Register</a>
         {% endif %}
-        <a class="icon-button" href="{% url 'store:cart_detail' %}" aria-label="Open cart">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.3 7h14.9l-1.5 8.7H8.1L6.3 7Zm0 0-.5-2.5H3.5M9.3 19.5a1.3 1.3 0 1 0 0 .1Zm8.4 0a1.3 1.3 0 1 0 0 .1Z"/></svg>
-        </a>
       </div>
     </header>
 
     <main>
       <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-media" aria-label="Animated scene of PETKIT smart pet products">
+        <div class="hero-media" aria-label="Animated scene of Tails Town smart pet products">
           <img
             class="hero-photo is-active"
-            src="{% static 'landing/hero-dogs-feeder-autumn.png' %}"
-            alt="Two dogs beside a smart feeder"
+            src="{% static 'landing/hero-dogs-feeder-actual.png' %}"
+            alt="Two dogs beside a Tails Town smart feeder"
             data-slide="0"
           />
           <img
             class="hero-photo"
-            src="{% static 'landing/hero-cats-water-winter.png' %}"
-            alt="Two cats beside a smart water fountain"
+            src="{% static 'landing/hero-cats-water-actual.png' %}"
+            alt="Two cats beside a Tails Town smart water fountain"
             data-slide="1"
           />
           <img
             class="hero-photo"
-            src="{% static 'landing/hero-both-mudroom-spring.png' %}"
-            alt="A cat and dog sharing a PETKIT pet corner"
+            src="{% static 'landing/hero-both-mudroom-actual.png' %}"
+            alt="A cat and dog sharing a Tails Town pet corner"
             data-slide="2"
           />
           <img
             class="hero-photo"
-            src="{% static 'landing/hero-cat-litter-winter.png' %}"
-            alt="A cat beside a self-cleaning litter box"
+            src="{% static 'landing/hero-cat-litter-actual.png' %}"
+            alt="A cat beside a Tails Town self-cleaning litter box"
             data-slide="3"
           />
           <img
             class="hero-photo"
-            src="{% static 'landing/hero-dog-water-summer.png' %}"
-            alt="A dog drinking from a PETKIT water dispenser"
+            src="{% static 'landing/hero-dog-water-actual.png' %}"
+            alt="A dog drinking from a Tails Town water dispenser"
             data-slide="4"
           />
           <div class="scene-shade" aria-hidden="true"></div>
@@ -83,7 +80,7 @@
 
       <section class="collection-intro" aria-labelledby="collection-title">
         <div class="section-heading">
-          <p class="eyebrow">PETKIT collection</p>
+          <p class="eyebrow">Tails Town collection</p>
           <h2 id="collection-title">Everything your pet uses every day, made calmer.</h2>
           <p>
             Now showing {{ active_product_count }} live product{{ active_product_count|pluralize }}
@@ -109,7 +106,7 @@
               <img src="{% static 'landing/tile-litter-product.png' %}" alt="{{ section.product.name }}" />
             {% endif %}
             <h2>
-              <span>{{ section.category.name|default:"PETKIT" }}</span>
+              <span>{{ section.category.name|default:"Tails Town" }}</span>
               <span>{{ section.product.name }}</span>
             </h2>
           </a>
@@ -145,11 +142,11 @@
               {% if section.product.image %}
                 <img src="{{ section.product.image.url }}" alt="" />
               {% elif forloop.counter == 1 %}
-                <img src="{% static 'landing/hero-dog-water-summer.png' %}" alt="" />
+                <img src="{% static 'landing/hero-dog-water-actual.png' %}" alt="" />
               {% elif forloop.counter == 2 %}
-                <img src="{% static 'landing/hero-cats-water-winter.png' %}" alt="" />
+                <img src="{% static 'landing/hero-cats-water-actual.png' %}" alt="" />
               {% else %}
-                <img src="{% static 'landing/hero-both-mudroom-spring.png' %}" alt="" />
+                <img src="{% static 'landing/hero-both-mudroom-actual.png' %}" alt="" />
               {% endif %}
             </span>
             <span class="bundle-product-dot {% if forloop.counter == 1 %}feeder-dot{% elif forloop.counter == 2 %}water-dot{% else %}litter-dot{% endif %}">
@@ -165,13 +162,13 @@
             </span>
           {% empty %}
             <span class="pet-window pet-window-dog">
-              <img src="{% static 'landing/hero-dog-water-summer.png' %}" alt="" />
+              <img src="{% static 'landing/hero-dog-water-actual.png' %}" alt="" />
             </span>
             <span class="pet-window pet-window-cat">
-              <img src="{% static 'landing/hero-cats-water-winter.png' %}" alt="" />
+              <img src="{% static 'landing/hero-cats-water-actual.png' %}" alt="" />
             </span>
             <span class="pet-window pet-window-both">
-              <img src="{% static 'landing/hero-both-mudroom-spring.png' %}" alt="" />
+              <img src="{% static 'landing/hero-both-mudroom-actual.png' %}" alt="" />
             </span>
             <span class="bundle-product-dot feeder-dot">
               <img src="{% static 'landing/tile-feeder-product.png' %}" alt="" />
