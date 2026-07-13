@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1100" role="img" aria-labelledby="title desc">
+  <title id="title">Tail's Town Vector Logo Concepts</title>
+  <desc id="desc">Eight vector logo concepts for Tail's Town, a Canadian pet product brand.</desc>
+  <defs>
+    <style>
+      .bg{fill:#fbfaf5}
+      .card{fill:#fff;stroke:#d9e1dd;stroke-width:2}
+      .ink{fill:#17211f}
+      .muted{fill:#5f6f69}
+      .teal{fill:#0f766e}
+      .teal2{fill:#0a4f4b}
+      .maple{fill:#c9343a}
+      .mint{fill:#b7f2d4}
+      .gold{fill:#ffb45c}
+      .cream{fill:#fbfaf5}
+      .line{fill:none;stroke:#17211f;stroke-width:8;stroke-linecap:round;stroke-linejoin:round}
+      .tealLine{fill:none;stroke:#0f766e;stroke-width:9;stroke-linecap:round;stroke-linejoin:round}
+      .redLine{fill:none;stroke:#c9343a;stroke-width:8;stroke-linecap:round;stroke-linejoin:round}
+      .goldLine{fill:none;stroke:#ffb45c;stroke-width:8;stroke-linecap:round;stroke-linejoin:round}
+      .word{font-family:Avenir Next, Montserrat, Arial, sans-serif;font-size:44px;font-weight:900;letter-spacing:-1px}
+      .label{font-family:Avenir Next, Montserrat, Arial, sans-serif;font-size:17px;font-weight:800;letter-spacing:2px;text-transform:uppercase}
+    </style>
+  </defs>
+  <rect width="1600" height="1100" class="bg"/>
+  <text x="80" y="94" font-family="Avenir Next, Montserrat, Arial, sans-serif" font-size="58" font-weight="900" class="ink">Tail's Town</text>
+  <text x="82" y="130" font-family="Avenir Next, Montserrat, Arial, sans-serif" font-size="22" font-weight="700" class="muted">Vector logo concept board</text>
+
+  <g transform="translate(80 175)">
+    <rect width="330" height="380" rx="22" class="card"/>
+    <text x="28" y="48" class="label teal">01 Tail Apostrophe</text>
+    <path d="M78 132c54-52 140-52 192 0" class="tealLine"/>
+    <path d="M126 138c18 22 66 22 84 0" class="line"/>
+    <path d="M204 97c39 4 54 39 29 62-23 22-62 8-60-21" class="redLine"/>
+    <text x="45" y="270" class="word ink">Tail's Town</text>
+    <path d="M84 294c48 19 112 20 164 0" class="redLine"/>
+  </g>
+
+  <g transform="translate(445 175)">
+    <rect width="330" height="380" rx="22" class="card"/>
+    <text x="28" y="48" class="label teal">02 Town Sign</text>
+    <path d="M75 118h180c18 0 32 14 32 32v48c0 18-14 32-32 32H75c-18 0-32-14-32-32v-48c0-18 14-32 32-32z" class="teal"/>
+    <path d="M78 118c2-43 38-68 72-50" class="redLine"/>
+    <path d="M252 118c-2-43-38-68-72-50" class="goldLine"/>
+    <text x="76" y="180" font-family="Avenir Next, Montserrat, Arial, sans-serif" font-size="30" font-weight="900" class="cream">TAIL'S</text>
+    <text x="92" y="212" font-family="Avenir Next, Montserrat, Arial, sans-serif" font-size="30" font-weight="900" class="cream">TOWN</text>
+    <text x="50" y="288" class="word ink">Tail's Town</text>
+  </g>
+
+  <g transform="translate(810 175)">
+    <rect width="330" height="380" rx="22" class="card"/>
+    <text x="28" y="48" class="label teal">03 Pet Roofline</text>
+    <path d="M68 174l98-78 98 78" class="tealLine"/>
+    <path d="M96 174v62h140v-62" class="line"/>
+    <path d="M124 235v-44h44v44" class="teal"/>
+    <circle cx="214" cy="153" r="23" class="gold"/>
+    <path d="M198 136l-15-20M230 136l15-20" class="line"/>
+    <path d="M240 196c44-2 50 42 16 51-24 7-44-6-48-25" class="redLine"/>
+    <text x="43" y="300" class="word ink">Tail's Town</text>
+  </g>
+
+  <g transform="translate(1175 175)">
+    <rect width="330" height="380" rx="22" class="card"/>
+    <text x="28" y="48" class="label teal">04 Maple Paw</text>
+    <circle cx="166" cy="169" r="92" class="teal2"/>
+    <circle cx="127" cy="142" r="18" class="mint"/>
+    <circle cx="153" cy="112" r="16" class="mint"/>
+    <circle cx="181" cy="112" r="16" class="mint"/>
+    <circle cx="207" cy="142" r="18" class="mint"/>
+    <path d="M136 184c0-27 60-27 60 0 0 28-60 28-60 0z" class="mint"/>
+    <path d="M166 156l12 16 20-5-12 17 12 17-20-5-12 16-12-16-20 5 12-17-12-17 20 5z" class="maple"/>
+    <text x="47" y="300" class="word ink">Tail's Town</text>
+  </g>
+
+  <g transform="translate(80 595)">
+    <rect width="330" height="380" rx="22" class="card"/>
+    <text x="28" y="48" class="label teal">05 TT Monogram</text>
+    <circle cx="166" cy="165" r="95" class="mint"/>
+    <text x="93" y="207" font-family="Georgia, serif" font-size="132" font-weight="700" class="teal2">TT</text>
+    <path d="M194 207c60 21 91-28 50-54" class="redLine"/>
+    <circle cx="244" cy="153" r="7" class="maple"/>
+    <text x="48" y="300" class="word ink">Tail's Town</text>
+  </g>
+
+  <g transform="translate(445 595)">
+    <rect width="330" height="380" rx="22" class="card"/>
+    <text x="28" y="48" class="label teal">06 Tail Wordmark</text>
+    <text x="42" y="166" font-family="Avenir Next, Montserrat, Arial, sans-serif" font-size="60" font-weight="900" letter-spacing="-2" class="ink">Tail's</text>
+    <text x="42" y="228" font-family="Avenir Next, Montserrat, Arial, sans-serif" font-size="60" font-weight="900" letter-spacing="-2" class="ink">Town</text>
+    <path d="M43 250h128c58 0 109-20 119-52 7-22-12-39-33-29-17 8-20 29-5 41" class="redLine"/>
+    <circle cx="238" cy="87" r="14" class="gold"/>
+    <circle cx="260" cy="105" r="10" class="gold"/>
+    <circle cx="218" cy="105" r="10" class="gold"/>
+  </g>
+
+  <g transform="translate(810 595)">
+    <rect width="330" height="380" rx="22" class="card"/>
+    <text x="28" y="48" class="label teal">07 Bowl Street</text>
+    <path d="M74 198h185c-14 42-48 62-92 62s-79-20-93-62z" class="teal"/>
+    <path d="M88 198c18-62 138-62 156 0" class="line"/>
+    <path d="M110 148h36v-44h42v44h36" class="goldLine"/>
+    <path d="M118 104l49-38 49 38" class="redLine"/>
+    <circle cx="166" cy="177" r="10" class="cream"/>
+    <text x="44" y="310" class="word ink">Tail's Town</text>
+  </g>
+
+  <g transform="translate(1175 595)">
+    <rect width="330" height="380" rx="22" class="card"/>
+    <text x="28" y="48" class="label teal">08 Product Badge</text>
+    <rect x="74" y="88" width="184" height="184" rx="38" class="teal"/>
+    <path d="M112 182c0-35 24-58 54-58s54 23 54 58" class="cream"/>
+    <path d="M112 182h108v50H112z" class="cream"/>
+    <path d="M132 232v-34h68v34" class="teal"/>
+    <path d="M216 130c36 2 48 34 26 54-20 19-52 8-52-18" class="redLine"/>
+    <text x="43" y="315" class="word ink">Tail's Town</text>
+  </g>
+</svg>

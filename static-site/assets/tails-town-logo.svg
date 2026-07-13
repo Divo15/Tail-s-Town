@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 300" role="img" aria-labelledby="title desc">
+  <title id="title">Tail's Town Logo</title>
+  <desc id="desc">A premium Tail's Town wordmark with a curled tail underline and small pet town mark.</desc>
+  <defs>
+    <style>
+      .ink{fill:#17211f}
+      .teal{fill:#0f766e}
+      .maple{fill:#c9343a}
+      .cream{fill:#fbfaf5}
+      .line{fill:none;stroke:#0f766e;stroke-width:16;stroke-linecap:round;stroke-linejoin:round}
+      .tail{fill:none;stroke:#c9343a;stroke-width:13;stroke-linecap:round;stroke-linejoin:round}
+      .thin{fill:none;stroke:#17211f;stroke-width:8;stroke-linecap:round;stroke-linejoin:round}
+    </style>
+  </defs>
+
+  <rect width="920" height="300" rx="34" class="cream"/>
+
+  <g transform="translate(58 55)">
+    <circle cx="92" cy="92" r="82" class="teal"/>
+    <path d="M48 92h88l-17-24h-54z" class="cream"/>
+    <path d="M60 92v48h68V92" class="cream"/>
+    <path d="M80 140V113h28v27" class="teal"/>
+    <path d="M58 72c18-28 56-28 74 0" class="thin" opacity=".28"/>
+    <path d="M137 110c28 0 39 24 22 40-14 13-39 7-42-12" class="tail"/>
+    <circle cx="64" cy="66" r="10" class="maple"/>
+    <circle cx="82" cy="48" r="8" class="maple"/>
+    <circle cx="102" cy="48" r="8" class="maple"/>
+    <circle cx="120" cy="66" r="10" class="maple"/>
+  </g>
+
+  <g transform="translate(235 72)">
+    <text x="0" y="88" font-family="Avenir Next, Montserrat, Arial, sans-serif" font-size="82" font-weight="900" letter-spacing="-2" class="ink">Tail's</text>
+    <text x="0" y="166" font-family="Avenir Next, Montserrat, Arial, sans-serif" font-size="82" font-weight="900" letter-spacing="-2" class="ink">Town</text>
+    <path d="M262 178c72 34 176 15 220-24 22-20 24-48 1-57-26-10-55 12-48 36" class="tail"/>
+    <path d="M10 192h210" class="line"/>
+  </g>
+</svg>

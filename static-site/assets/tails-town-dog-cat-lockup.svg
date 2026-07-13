@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 520" role="img" aria-labelledby="title desc">
+  <title id="title">Tail's Town Dog and Cat Lockup Logo</title>
+  <desc id="desc">Transparent vector logo for Tail's Town with a dog mark, cat mark, wordmark, and tail underline.</desc>
+  <defs>
+    <style>
+      .ink {
+        fill: #17211f;
+      }
+
+      .teal {
+        fill: none;
+        stroke: #0b3d39;
+        stroke-width: 15;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .red {
+        fill: none;
+        stroke: #b83a3f;
+        stroke-width: 13;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .gold {
+        fill: none;
+        stroke: #c78f4a;
+        stroke-width: 12;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .word {
+        fill: #17211f;
+        font-family: "Optima", "Avenir Next", "Montserrat", "Trebuchet MS", Arial, sans-serif;
+        font-size: 128px;
+        font-weight: 800;
+        letter-spacing: -3px;
+      }
+    </style>
+  </defs>
+
+  <g transform="translate(75 86)">
+    <path class="teal" d="M93 5C36 27 7 78 7 148c0 78 36 132 99 151"/>
+    <path class="teal" d="M104 79c33-40 91-35 125 0 36 36 36 89 0 124-25 25-66 35-119 48"/>
+    <path class="teal" d="M104 83v173"/>
+    <path class="gold" d="M149 199c30-8 55-19 76-36"/>
+    <path class="red" d="M240 209c45 22 51 78 9 102-34 20-82-1-91-42-6-30 14-54 44-72"/>
+    <path class="red" d="M202 165h52c18 0 31 13 31 31v10"/>
+    <path class="red" d="M176 198h-28c-15 0-24-9-24-22 0-12 9-21 22-21"/>
+  </g>
+
+  <text x="395" y="235" class="word">Tail's</text>
+  <text x="850" y="235" class="word">Town</text>
+
+  <path class="red" d="M688 86c-8 33 6 61 41 82 42 25 54 66 18 93-24 18-67 19-103 3"/>
+  <path class="gold" d="M805 112c98-16 189-36 272-72"/>
+  <path class="teal" d="M802 111v163"/>
+
+  <g transform="translate(1175 78)">
+    <path class="teal" d="M151 5c-68 1-123 55-123 132 0 83 58 138 142 138"/>
+    <path class="teal" d="M262 5c55 27 84 75 84 143 0 75-32 127-92 158"/>
+    <path class="teal" d="M127 162c0-49 39-88 88-88h35"/>
+    <path class="teal" d="M127 162c0 44 34 78 86 78h42"/>
+    <path class="gold" d="M265 143l66-24"/>
+    <path class="red" d="M273 111v67"/>
+    <path class="red" d="M239 206c22 23 61 24 78 2 12-16 4-37-17-43"/>
+  </g>
+
+  <path class="teal" d="M87 414c190 0 302 0 402 36 87 31 196 36 328 33 178-5 293 43 456 11 58-11 107-29 146-52"/>
+  <path class="red" d="M1017 391c-42 20-70 50-62 77 10 35 76 41 145 24"/>
+</svg>

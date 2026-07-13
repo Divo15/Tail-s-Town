@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1700 620" role="img" aria-labelledby="title desc">
+  <title id="title">Tail's Town Sketch Faithful Logo</title>
+  <desc id="desc">Transparent vector logo inspired by the provided sketch, with dog image on the left, cat image on the right, and Tail's Town in the center.</desc>
+  <defs>
+    <style>
+      .stroke {
+        fill: none;
+        stroke: #ff721f;
+        stroke-width: 14;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .thin {
+        fill: none;
+        stroke: #ff721f;
+        stroke-width: 10;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .word {
+        fill: none;
+        stroke: #ff721f;
+        stroke-width: 7;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .text {
+        fill: #ff721f;
+        font-family: "Bradley Hand ITC", "Segoe Print", "Comic Sans MS", cursive;
+        font-size: 64px;
+        font-weight: 700;
+      }
+
+      .brand {
+        fill: #ff721f;
+        font-family: "Bradley Hand ITC", "Segoe Print", "Comic Sans MS", cursive;
+        font-size: 118px;
+        font-weight: 700;
+      }
+    </style>
+  </defs>
+
+  <g transform="translate(26 125)">
+    <path class="stroke" d="M68 0C24 36 6 83 7 142c2 72 31 126 80 150"/>
+    <path class="stroke" d="M68 0h28"/>
+    <path class="stroke" d="M70 111c23-46 77-54 119-27 47 30 50 89 9 121-28 22-71 34-128 50"/>
+    <path class="stroke" d="M70 75c14 48 15 111 0 185"/>
+    <path class="thin" d="M206 173h53c20 38 8 74-38 108-41 30-38 88 6 114 23 14 47 9 61-9 22-28 12-78-30-132"/>
+    <path class="thin" d="M183 206h-35c-17 0-26-10-25-25 0-16 12-25 28-26"/>
+    <path class="thin" d="M229 174c10 11 12 27 5 45"/>
+    <path class="stroke" d="M16 355c45 0 86-3 124-11"/>
+    <text x="58" y="455" class="text">Image</text>
+  </g>
+
+  <text x="345" y="259" class="brand">Tail's</text>
+  <text x="910" y="259" class="brand">Town</text>
+  <path class="stroke" d="M286 90c45-6 92-3 141-5 54-3 95-9 144-5"/>
+  <path class="stroke" d="M410 102v218"/>
+  <path class="thin" d="M952 80c72-22 131-35 178-48"/>
+  <path class="thin" d="M1068 108v170"/>
+
+  <g transform="translate(1322 125)">
+    <path class="stroke" d="M88 0C34 22 7 67 7 137c0 81 37 134 106 154"/>
+    <path class="stroke" d="M312 0c56 25 85 79 86 150 0 74-27 125-82 153"/>
+    <path class="stroke" d="M190 87c-44 22-69 52-75 91-4 32 15 56 51 64 29 6 65 2 110-1"/>
+    <path class="thin" d="M286 132l82-27"/>
+    <path class="thin" d="M305 99v92"/>
+    <path class="thin" d="M261 210c25 28 60 27 74 2 11-21-3-43-31-49"/>
+    <text x="52" y="426" class="text">Image</text>
+    <text x="88" y="510" class="text">Cat</text>
+  </g>
+
+  <path class="stroke" d="M73 526c169-2 269 0 370 39 105 41 233 23 369 24 80 1 146 16 204 35"/>
+  <path class="stroke" d="M724 561c28 33 74 44 140 33"/>
+  <path class="stroke" d="M996 572c170 14 359 12 505-66"/>
+  <path class="thin" d="M1082 475c-50 27-80 62-65 91 21 40 104 35 177 7"/>
+  <text x="432" y="514" class="text">Tail</text>
+  <text x="1115" y="539" class="text">Tail</text>
+</svg>
