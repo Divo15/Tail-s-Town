@@ -1,0 +1,26 @@
+# Duplicate/source-only frontend copies. The live Django app uses backend/ and assets/.
+frontend/
+static-site/
+
+# Local/generated runtime files.
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+
+# Local Django output and user uploads are not deployment source.
+backend/staticfiles/
+backend/media/
+media/
+
+# Local tooling and editor noise.
+node_modules/
+.vscode/
+.idea/
+.agents/
+skills-lock.json
+
+# OS files.
+.DS_Store
+Thumbs.db
