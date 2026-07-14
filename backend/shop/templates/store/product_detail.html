@@ -8,11 +8,11 @@
         {% if product.image %}
           <img src="{{ product.image.url }}" alt="{{ product.name }}" />
         {% elif product.category and "feed" in product.category.name|lower %}
-          <img src="{% static 'products/smart-feeder.png' %}" alt="{{ product.name }}" />
+          <img src="{% static 'products/smart-feeder.webp' %}" alt="{{ product.name }}" />
         {% elif product.category and "clean" in product.category.name|lower %}
-          <img src="{% static 'products/self-cleaning-litter-box.png' %}" alt="{{ product.name }}" />
+          <img src="{% static 'products/self-cleaning-litter-box.webp' %}" alt="{{ product.name }}" />
         {% else %}
-          <img src="{% static 'products/smart-water-fountain.png' %}" alt="{{ product.name }}" />
+          <img src="{% static 'products/smart-water-fountain.webp' %}" alt="{{ product.name }}" />
         {% endif %}
       </article>
 
@@ -21,14 +21,14 @@
           {% if product.image %}
             <img src="{{ product.image.url }}" alt="{{ product.name }} preview" />
           {% else %}
-            <img src="{% static 'products/smart-water-fountain.png' %}" alt="{{ product.name }} preview" />
+            <img src="{% static 'products/smart-water-fountain.webp' %}" alt="{{ product.name }} preview" />
           {% endif %}
         </div>
         <div class="product-thumb">
-          <img src="{% static 'hero/water-fountain.jpg' %}" alt="PETKIT product lifestyle preview" />
+          <img src="{% static 'hero/water-fountain.webp' %}" alt="PETKIT product lifestyle preview" />
         </div>
         <div class="product-thumb">
-          <img src="{% static 'products/self-cleaning-litter-box.png' %}" alt="PETKIT smart care product preview" />
+          <img src="{% static 'products/self-cleaning-litter-box.webp' %}" alt="PETKIT smart care product preview" />
         </div>
       </div>
     </div>
@@ -136,7 +136,7 @@
           <p class="eyebrow">Keep browsing</p>
           <h2 class="section-title">More from this collection</h2>
         </div>
-        <a class="button secondary" href="{% url 'store:product_list' %}">Shop all</a>
+        <a class="button secondary" href="{% url 'store:product_list' %}">View products</a>
       </div>
       <div class="product-grid">
         {% for related in related_products %}
@@ -145,9 +145,9 @@
               {% if related.image %}
                 <img src="{{ related.image.url }}" alt="{{ related.name }}" />
               {% elif forloop.counter|divisibleby:2 %}
-                <img src="{% static 'products/smart-feeder.png' %}" alt="{{ related.name }}" />
+                <img src="{% static 'products/smart-feeder.webp' %}" alt="{{ related.name }}" />
               {% else %}
-                <img src="{% static 'products/smart-water-fountain.png' %}" alt="{{ related.name }}" />
+                <img src="{% static 'products/smart-water-fountain.webp' %}" alt="{{ related.name }}" />
               {% endif %}
             </a>
             <div class="body">

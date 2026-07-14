@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{% block title %}PETKIT Shop{% endblock %}</title>
+    <title>{% block title %}PETKIT{% endblock %}</title>
     <style>
       :root {
         --bg: #f4f8f7;
@@ -137,23 +137,11 @@
         padding: 0;
         background: transparent;
       }
-      .icon-button[aria-label="Browse products"] {
-        width: auto;
-        height: auto;
-        border: 0;
-        border-radius: 0;
-        padding: 0;
-        background: transparent;
-      }
       .icon-button[aria-label="Open cart"] svg {
         width: 24px;
         height: 24px;
       }
       .icon-button[aria-label="Search products"] svg {
-        width: 24px;
-        height: 24px;
-      }
-      .icon-button[aria-label="Browse products"] svg {
         width: 24px;
         height: 24px;
       }
@@ -179,7 +167,7 @@
         background:
           linear-gradient(180deg, rgba(10, 79, 75, 0.14) 0%, rgba(10, 79, 75, 0.58) 100%),
           linear-gradient(90deg, rgba(10, 79, 75, 0.84) 0%, rgba(10, 79, 75, 0.44) 42%, rgba(10, 79, 75, 0.08) 76%),
-          url('{% static "hero/eversweet-ultra.jpg" %}') center center / cover no-repeat;
+          url('{% static "hero/eversweet-ultra.webp" %}') center center / cover no-repeat;
       }
       .hero-card::after {
         content: "";
@@ -529,6 +517,46 @@
         margin-top: 1.15rem;
         display: grid;
         gap: 0.85rem;
+      }
+      .product-preview-hero {
+        display: grid;
+        grid-template-columns: minmax(0, 0.92fr) minmax(360px, 1.08fr);
+        gap: 1.15rem;
+        align-items: stretch;
+      }
+      .product-preview-copy {
+        display: grid;
+        align-content: center;
+        gap: 1rem;
+        background:
+          radial-gradient(circle at 18% 12%, color-mix(in srgb, var(--preview-accent), transparent 72%), transparent 28%),
+          var(--surface-strong);
+      }
+      .product-preview-copy .eyebrow {
+        color: var(--teal-dark);
+      }
+      .product-preview-copy .lead {
+        color: var(--muted);
+      }
+      .product-preview-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 0.4rem;
+      }
+      .product-preview-media {
+        min-height: 520px;
+        overflow: hidden;
+        padding: 0;
+        background: var(--text);
+      }
+      .product-preview-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .product-preview-notes {
+        margin-top: 1.15rem;
       }
       .related-header {
         display: flex;
@@ -892,6 +920,7 @@
         }
         .grid-2,
         .detail-grid,
+        .product-preview-hero,
         .cart-layout,
         .checkout-layout {
           grid-template-columns: 1fr;
@@ -948,6 +977,9 @@
         .cart-controls input {
           max-width: none;
         }
+        .product-preview-media {
+          min-height: 360px;
+        }
       }
     </style>
   </head>
@@ -956,18 +988,14 @@
     <header class="site-header">
       <div class="header-inner">
         <a class="brand" href="/" aria-label="PETKIT home">
-          <img src="{% static 'brand/logo.png' %}" alt="PETKIT" />
+          <img src="{% static 'brand/logo.webp' %}" alt="PETKIT" />
         </a>
-        <nav class="header-nav" aria-label="Shop navigation">
-          <a href="{% url 'store:product_list' %}">Shop all</a>
+        <nav class="header-nav" aria-label="Main navigation">
           <a href="{% url 'store:cart_detail' %}">Cart</a>
           <a href="{% url 'customer_account:dashboard' %}">Account</a>
           <a href="#support">Support</a>
         </nav>
         <div class="quick-actions" aria-label="Quick actions">
-          <a class="icon-button" href="{% url 'store:product_list' %}" aria-label="Browse products">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.8 15.1 21 20.3l-.7.7-5.2-5.2a7 7 0 1 1 .7-.7ZM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z"/></svg>
-          </a>
           <a class="icon-button" href="{% url 'store:cart_detail' %}" aria-label="Open cart">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.3 7h14.9l-1.5 8.7H8.1L6.3 7Zm0 0-.5-2.5H3.5M9.3 19.5a1.3 1.3 0 1 0 0 .1Zm8.4 0a1.3 1.3 0 1 0 0 .1Z"/></svg>
           </a>

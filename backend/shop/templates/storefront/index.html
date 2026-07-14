@@ -5,22 +5,18 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>PETKIT | Smart Pet Care</title>
+    <link rel="preload" as="image" href="{% static 'landing/hero-dogs-feeder-actual.webp' %}" type="image/webp" fetchpriority="high" />
     <link rel="stylesheet" href="{% static 'site/styles.css' %}" />
   </head>
   <body>
     <header class="site-header" aria-label="Main navigation">
-      <a class="brand" href="/" aria-label="PETKIT home">
-        <img src="{% static 'brand/logo.png' %}" alt="PETKIT" />
+      <a class="brand" href="{% url 'home' %}" aria-label="Tail's Town home">
+        <img src="{% static 'product-pages/assets/tails-town-header-logo.webp' %}" alt="Tail's Town" decoding="async" />
       </a>
       <nav class="nav-links" aria-label="Product navigation">
-        <a href="{% url 'store:product_list' %}">Shop</a>
-        {% for category in featured_categories %}
-          <a href="{% url 'store:product_list' %}?category={{ category.slug }}">{{ category.name }}</a>
-        {% empty %}
-          <a href="#feeders">Feeders</a>
-          <a href="#hydration">Water</a>
-          <a href="#litter">Litter</a>
-        {% endfor %}
+        <a href="{% url 'store:smart_feeder_page' %}">Feeders</a>
+        <a href="{% url 'store:water_fountain_page' %}">Water</a>
+        <a href="{% url 'store:litter_box_page' %}">Litter</a>
         <a href="#bundles">Bundles</a>
       </nav>
       <div class="header-actions">
@@ -42,32 +38,42 @@
         <div class="hero-media" aria-label="Animated scene of PETKIT smart pet products">
           <img
             class="hero-photo is-active"
-            src="{% static 'landing/hero-dogs-feeder-autumn.png' %}"
-            alt="Two dogs beside a smart feeder"
+            src="{% static 'landing/hero-dogs-feeder-actual.webp' %}"
+            alt="Two dogs beside a smart feeder in a calm home"
+            fetchpriority="high"
+            decoding="async"
             data-slide="0"
           />
           <img
             class="hero-photo"
-            src="{% static 'landing/hero-cats-water-winter.png' %}"
+            src="{% static 'landing/hero-cats-water-actual.webp' %}"
             alt="Two cats beside a smart water fountain"
+            loading="lazy"
+            decoding="async"
             data-slide="1"
           />
           <img
             class="hero-photo"
-            src="{% static 'landing/hero-both-mudroom-spring.png' %}"
-            alt="A cat and dog sharing a PETKIT pet corner"
+            src="{% static 'landing/hero-both-mudroom-actual.webp' %}"
+            alt="A cat and dog sharing a pet corner"
+            loading="lazy"
+            decoding="async"
             data-slide="2"
           />
           <img
             class="hero-photo"
-            src="{% static 'landing/hero-cat-litter-winter.png' %}"
+            src="{% static 'landing/hero-cat-litter-actual.webp' %}"
             alt="A cat beside a self-cleaning litter box"
+            loading="lazy"
+            decoding="async"
             data-slide="3"
           />
           <img
             class="hero-photo"
-            src="{% static 'landing/hero-dog-water-summer.png' %}"
-            alt="A dog drinking from a PETKIT water dispenser"
+            src="{% static 'landing/hero-dog-water-actual.webp' %}"
+            alt="A dog drinking from a smart water dispenser"
+            loading="lazy"
+            decoding="async"
             data-slide="4"
           />
           <div class="scene-shade" aria-hidden="true"></div>
@@ -92,44 +98,57 @@
         </div>
       </section>
 
-      <section class="shop-band" id="shop" aria-label="Featured product categories">
+      <section class="product-band" id="products" aria-label="Featured product categories">
         {% for section in homepage_sections %}
           <a
             class="product-tile{% if forloop.counter == 2 %} accent{% endif %}"
             id="{{ section.anchor_id }}"
-            href="{% url 'store:product_detail' section.product.slug %}"
-          >
-            {% if section.product.image %}
-              <img src="{{ section.product.image.url }}" alt="{{ section.product.name }}" />
-            {% elif forloop.counter == 1 %}
-              <img src="{% static 'landing/tile-feeder-product.png' %}" alt="{{ section.product.name }}" />
-            {% elif forloop.counter == 2 %}
-              <img src="{% static 'landing/tile-water-product.png' %}" alt="{{ section.product.name }}" />
+            {% if section.anchor_id == "feeders" %}
+              href="{% url 'store:smart_feeder_page' %}"
+            {% elif section.anchor_id == "hydration" %}
+              href="{% url 'store:water_fountain_page' %}"
             {% else %}
-              <img src="{% static 'landing/tile-litter-product.png' %}" alt="{{ section.product.name }}" />
+              href="{% url 'store:litter_box_page' %}"
+            {% endif %}
+            aria-label="Open {{ section.product.name }} product page"
+          >
+            {% if section.anchor_id == "feeders" %}
+              <img src="{% static 'landing/tile-feeder-product.webp' %}" alt="{{ section.product.name }}" loading="lazy" decoding="async" />
+            {% elif section.anchor_id == "hydration" %}
+              <img src="{% static 'landing/tile-water-product.webp' %}" alt="{{ section.product.name }}" loading="lazy" decoding="async" />
+            {% else %}
+              <img src="{% static 'landing/tile-litter-product.webp' %}" alt="{{ section.product.name }}" loading="lazy" decoding="async" />
             {% endif %}
             <h2>
-              <span>{{ section.category.name|default:"PETKIT" }}</span>
-              <span>{{ section.product.name }}</span>
+              {% if section.anchor_id == "feeders" %}
+                <span>Smart</span>
+                <span>Feeder</span>
+              {% elif section.anchor_id == "hydration" %}
+                <span>Water</span>
+                <span>Fountain</span>
+              {% else %}
+                <span>Litter</span>
+                <span>Box</span>
+              {% endif %}
             </h2>
           </a>
         {% empty %}
-          <a class="product-tile" id="feeders" href="{% url 'store:product_list' %}">
-            <img src="{% static 'landing/tile-feeder-product.png' %}" alt="Smart automatic pet feeder" />
+          <a class="product-tile" id="feeders" href="{% url 'store:smart_feeder_page' %}" aria-label="Open Smart Feeder product page">
+            <img src="{% static 'landing/tile-feeder-product.webp' %}" alt="Smart automatic pet feeder" loading="lazy" decoding="async" />
             <h2>
               <span>Smart</span>
               <span>Feeder</span>
             </h2>
           </a>
-          <a class="product-tile accent" id="hydration" href="{% url 'store:product_list' %}">
-            <img src="{% static 'landing/tile-water-product.png' %}" alt="Modern pet water fountain" />
+          <a class="product-tile accent" id="hydration" href="{% url 'store:water_fountain_page' %}" aria-label="Open Water Fountain product page">
+            <img src="{% static 'landing/tile-water-product.webp' %}" alt="Modern pet water fountain" loading="lazy" decoding="async" />
             <h2>
               <span>Water</span>
               <span>Fountain</span>
             </h2>
           </a>
-          <a class="product-tile" id="litter" href="{% url 'store:product_list' %}">
-            <img src="{% static 'landing/tile-litter-product.png' %}" alt="Rounded white enclosed litter box" />
+          <a class="product-tile" id="litter" href="{% url 'store:litter_box_page' %}" aria-label="Open Litter Box product page">
+            <img src="{% static 'landing/tile-litter-product.webp' %}" alt="Rounded white enclosed litter box" loading="lazy" decoding="async" />
             <h2>
               <span>Litter</span>
               <span>Box</span>
@@ -143,44 +162,56 @@
           {% for section in homepage_sections %}
             <span class="pet-window {% if forloop.counter == 1 %}pet-window-dog{% elif forloop.counter == 2 %}pet-window-cat{% else %}pet-window-both{% endif %}">
               {% if section.product.image %}
-                <img src="{{ section.product.image.url }}" alt="" />
+                {% if section.anchor_id == "feeders" %}
+                  <img src="{% static 'landing/hero-dogs-feeder-actual.webp' %}" alt="" />
+                {% elif section.anchor_id == "hydration" %}
+                  <img src="{% static 'landing/hero-cats-water-actual.webp' %}" alt="" />
+                {% else %}
+                  <img src="{% static 'landing/hero-cat-litter-actual.webp' %}" alt="" />
+                {% endif %}
               {% elif forloop.counter == 1 %}
-                <img src="{% static 'landing/hero-dog-water-summer.png' %}" alt="" />
+                <img src="{% static 'landing/hero-dogs-feeder-actual.webp' %}" alt="" />
               {% elif forloop.counter == 2 %}
-                <img src="{% static 'landing/hero-cats-water-winter.png' %}" alt="" />
+                <img src="{% static 'landing/hero-cats-water-actual.webp' %}" alt="" />
               {% else %}
-                <img src="{% static 'landing/hero-both-mudroom-spring.png' %}" alt="" />
+                <img src="{% static 'landing/hero-cat-litter-actual.webp' %}" alt="" />
               {% endif %}
             </span>
             <span class="bundle-product-dot {% if forloop.counter == 1 %}feeder-dot{% elif forloop.counter == 2 %}water-dot{% else %}litter-dot{% endif %}">
               {% if section.product.image %}
-                <img src="{{ section.product.image.url }}" alt="" />
+                {% if section.anchor_id == "feeders" %}
+                  <img src="{% static 'landing/tile-feeder-product.webp' %}" alt="" />
+                {% elif section.anchor_id == "hydration" %}
+                  <img src="{% static 'landing/tile-water-product.webp' %}" alt="" />
+                {% else %}
+                  <img src="{% static 'landing/tile-litter-product.webp' %}" alt="" />
+                {% endif %}
               {% elif forloop.counter == 1 %}
-                <img src="{% static 'landing/tile-feeder-product.png' %}" alt="" />
+                <img src="{% static 'landing/tile-feeder-product.webp' %}" alt="" />
               {% elif forloop.counter == 2 %}
-                <img src="{% static 'landing/tile-water-product.png' %}" alt="" />
+                <img src="{% static 'landing/tile-water-product.webp' %}" alt="" />
               {% else %}
-                <img src="{% static 'landing/tile-litter-product.png' %}" alt="" />
+                <img src="{% static 'landing/tile-litter-product.webp' %}" alt="" />
               {% endif %}
             </span>
           {% empty %}
             <span class="pet-window pet-window-dog">
-              <img src="{% static 'landing/hero-dog-water-summer.png' %}" alt="" />
+              <img src="{% static 'landing/hero-dogs-feeder-actual.webp' %}" alt="" />
             </span>
             <span class="pet-window pet-window-cat">
-              <img src="{% static 'landing/hero-cats-water-winter.png' %}" alt="" />
+              <img src="{% static 'landing/hero-cats-water-actual.webp' %}" alt="" />
             </span>
             <span class="pet-window pet-window-both">
-              <img src="{% static 'landing/hero-both-mudroom-spring.png' %}" alt="" />
+              <img src="{% static 'landing/hero-both-mudroom-actual.webp' %}" alt="" />
             </span>
             <span class="bundle-product-dot feeder-dot">
-              <img src="{% static 'landing/tile-feeder-product.png' %}" alt="" />
+              <img src="{% static 'landing/tile-feeder-product.webp' %}" alt="" />
             </span>
             <span class="bundle-product-dot water-dot">
-              <img src="{% static 'landing/tile-water-product.png' %}" alt="" />
+              <img src="{% static 'landing/tile-water-product.webp' %}" alt="" />
             </span>
             <span class="bundle-product-dot litter-dot">
-              <img src="{% static 'landing/tile-litter-product.png' %}" alt="" />
+              <img src="{% static 'landing/tile-litter-product.webp' %}" alt="" />
             </span>
           {% endfor %}
         </div>
@@ -191,7 +222,7 @@
             Featured products on this page now come straight from the admin catalog, so homepage
             content updates when you add or edit live products.
           </p>
-          <a class="primary-action" href="{% url 'store:product_list' %}">Shop products</a>
+          <a class="primary-action" href="{% url 'store:product_list' %}">View products</a>
         </div>
         <div class="bundle-panel" aria-label="Bundle value">
           <span>Store flow</span>

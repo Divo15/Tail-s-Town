@@ -136,11 +136,11 @@
             {% if item.product.image %}
               <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" />
             {% elif item.product.category and "feed" in item.product.category.name|lower %}
-              <img src="{% static 'products/smart-feeder.png' %}" alt="{{ item.product.name }}" />
+              <img src="{% static 'products/smart-feeder.webp' %}" alt="{{ item.product.name }}" />
             {% elif item.product.category and "clean" in item.product.category.name|lower %}
-              <img src="{% static 'products/self-cleaning-litter-box.png' %}" alt="{{ item.product.name }}" />
+              <img src="{% static 'products/self-cleaning-litter-box.webp' %}" alt="{{ item.product.name }}" />
             {% else %}
-              <img src="{% static 'products/smart-water-fountain.png' %}" alt="{{ item.product.name }}" />
+              <img src="{% static 'products/smart-water-fountain.webp' %}" alt="{{ item.product.name }}" />
             {% endif %}
           </a>
           <div>

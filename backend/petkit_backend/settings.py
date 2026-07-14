@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 import os
 from pathlib import Path
+from urllib.parse import unquote, urlparse
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,6 +30,32 @@ def env_list(name, default=""):
     return [item.strip() for item in value.split(",") if item.strip()]
 
 
+def env_str(name, default=""):
+    value = os.getenv(name)
+    if value is None or not value.strip():
+        return default
+    return value.strip()
+
+
+def postgres_config_from_url(database_url):
+    parsed = urlparse(database_url)
+    if parsed.scheme not in {"postgres", "postgresql"}:
+        raise ValueError("DATABASE_URL must use the postgres:// or postgresql:// scheme.")
+
+    return {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": unquote(parsed.path.lstrip("/")),
+        "USER": unquote(parsed.username or ""),
+        "PASSWORD": unquote(parsed.password or ""),
+        "HOST": parsed.hostname or "",
+        "PORT": str(parsed.port or 5432),
+        "CONN_MAX_AGE": int(env_str("POSTGRES_CONN_MAX_AGE", "60")),
+        "TEST": {
+            "NAME": env_str("POSTGRES_TEST_DB", "test_petkit_db"),
+        },
+    }
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
@@ -39,6 +66,9 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "django-insecure-local-dev-key-chang
 DEBUG = env_bool("DJANGO_DEBUG", default=True)
 
 ALLOWED_HOSTS = env_list("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost")
+RAILWAY_PUBLIC_DOMAIN = env_str("RAILWAY_PUBLIC_DOMAIN")
+if RAILWAY_PUBLIC_DOMAIN and RAILWAY_PUBLIC_DOMAIN not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append(RAILWAY_PUBLIC_DOMAIN)
 
 if not DEBUG and SECRET_KEY == "django-insecure-local-dev-key-change-me":
     raise ValueError("DJANGO_SECRET_KEY must be set when DJANGO_DEBUG is False.")
@@ -93,20 +123,47 @@ WSGI_APPLICATION = 'petkit_backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("POSTGRES_DB", "petkit_db"),
-        "USER": os.getenv("POSTGRES_USER", "petkit_admin"),
-        "PASSWORD": os.getenv("POSTGRES_PASSWORD", "petkit_admin_123!"),
-        "HOST": os.getenv("POSTGRES_HOST", "127.0.0.1"),
-        "PORT": os.getenv("POSTGRES_PORT", "5433"),
-        "CONN_MAX_AGE": int(os.getenv("POSTGRES_CONN_MAX_AGE", "60")),
-        "TEST": {
-            "NAME": os.getenv("POSTGRES_TEST_DB", "test_petkit_db"),
-        },
+DATABASE_URL = env_str("DATABASE_URL")
+if DATABASE_URL:
+    DATABASES = {"default": postgres_config_from_url(DATABASE_URL)}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": env_str("POSTGRES_DB", env_str("PGDATABASE", "petkit_db")),
+            "USER": env_str("POSTGRES_USER", env_str("PGUSER", "petkit_admin")),
+            "PASSWORD": env_str("POSTGRES_PASSWORD", env_str("PGPASSWORD", "petkit_admin_123!")),
+            "HOST": env_str("POSTGRES_HOST", env_str("PGHOST", "127.0.0.1")),
+            "PORT": env_str("POSTGRES_PORT", env_str("PGPORT", "5433")),
+            "CONN_MAX_AGE": int(env_str("POSTGRES_CONN_MAX_AGE", "60")),
+            "TEST": {
+                "NAME": env_str("POSTGRES_TEST_DB", "test_petkit_db"),
+            },
+        }
     }
-}
+
+if not DEBUG:
+    default_database = DATABASES["default"]
+    missing_database_settings = [
+        name
+        for name, value in {
+            "NAME": default_database.get("NAME"),
+            "USER": default_database.get("USER"),
+            "HOST": default_database.get("HOST"),
+            "PORT": default_database.get("PORT"),
+        }.items()
+        if not value
+    ]
+    if missing_database_settings:
+        raise ValueError(
+            "Production database settings are incomplete. Set DATABASE_URL or the "
+            f"POSTGRES_* variables. Missing: {', '.join(missing_database_settings)}."
+        )
+    if default_database.get("HOST") in {"127.0.0.1", "localhost"}:
+        raise ValueError(
+            "Production database host cannot be localhost. Set DATABASE_URL or "
+            "POSTGRES_HOST to your Railway PostgreSQL service host."
+        )
 
 
 # Password validation
@@ -157,6 +214,10 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # Production security and reverse-proxy settings. These remain opt-in for
 # local development, while production defaults protect cookies and HTTPS.
 CSRF_TRUSTED_ORIGINS = env_list("DJANGO_CSRF_TRUSTED_ORIGINS")
+if RAILWAY_PUBLIC_DOMAIN:
+    railway_origin = f"https://{RAILWAY_PUBLIC_DOMAIN}"
+    if railway_origin not in CSRF_TRUSTED_ORIGINS:
+        CSRF_TRUSTED_ORIGINS.append(railway_origin)
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 SECURE_SSL_REDIRECT = env_bool("DJANGO_SECURE_SSL_REDIRECT", default=not DEBUG)
 SESSION_COOKIE_SECURE = env_bool("DJANGO_SESSION_COOKIE_SECURE", default=not DEBUG)

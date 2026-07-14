@@ -66,10 +66,9 @@
         min-height: 88px;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-end;
         gap: 1rem;
       }
-      .brand img { width: 132px; }
       .nav {
         display: flex;
         gap: 0.7rem;
@@ -262,7 +261,7 @@
         background:
           linear-gradient(180deg, rgba(10, 79, 75, 0.16) 0%, rgba(10, 79, 75, 0.64) 100%),
           linear-gradient(90deg, rgba(10, 79, 75, 0.84) 0%, rgba(10, 79, 75, 0.44) 42%, rgba(10, 79, 75, 0.1) 76%),
-          url('{% static "landing/hero-cats-water-winter.png" %}') center center / cover no-repeat;
+          url('{% static "landing/hero-cats-water-winter.webp" %}') center center / cover no-repeat;
       }
       .account-hero::after {
         content: "";
@@ -432,9 +431,6 @@
       </div>
       <header class="header">
         <div class="header-inner">
-          <a class="brand" href="/">
-            <img src="{% static 'brand/logo.png' %}" alt="PETKIT" />
-          </a>
           <div class="account-quick-actions">
             <nav class="nav">
               <a href="/">Home</a>

@@ -49,12 +49,11 @@ a {
   left: 0;
   right: 0;
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
   gap: 28px;
   padding: 18px clamp(18px, 4vw, 56px);
-  color: rgba(255, 249, 240, 0.98);
-  text-shadow: 0 2px 18px rgba(16, 18, 18, 0.18);
+  color: #fff;
   transition:
     background 220ms ease,
     color 220ms ease,
@@ -63,22 +62,22 @@ a {
 
 .site-header.is-solid {
   color: var(--ink);
-  text-shadow: none;
   background: rgba(251, 250, 245, 0.92);
   box-shadow: 0 10px 30px rgba(23, 33, 31, 0.08);
   backdrop-filter: blur(18px);
 }
 
 .brand {
+  grid-column: 1;
+  justify-self: start;
   display: inline-flex;
   align-items: center;
 }
 
 .brand img {
-  width: 148px;
-  height: auto;
-  filter: brightness(0) invert(1);
-  filter: brightness(0) invert(1) drop-shadow(0 6px 18px rgba(12, 17, 16, 0.18));
+  width: auto;
+  height: 124px;
+  filter: none;
 }
 
 .site-header.is-solid .brand img {
@@ -86,15 +85,18 @@ a {
 }
 
 .nav-links {
+  grid-column: 2;
   justify-self: center;
   display: flex;
   gap: clamp(16px, 3vw, 34px);
   color: currentColor;
-  font-weight: 800;
-  font-size: 1.04rem;
+  font-weight: 700;
+  font-size: 0.94rem;
 }
 
 .header-actions {
+  grid-column: 3;
+  justify-self: end;
   display: inline-flex;
   align-items: center;
   gap: 12px;
@@ -105,23 +107,20 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0 2px;
-  border: 0;
+  padding: 0 6px;
+  border: 1px solid transparent;
   border-radius: 0;
   color: currentColor;
   background: transparent;
-  font-size: 0.98rem;
-  font-weight: 800;
+  font-weight: 900;
   transition:
-    background 180ms ease,
-    border-color 180ms ease,
-    transform 180ms ease;
+    transform 180ms ease,
+    opacity 180ms ease;
 }
 
 .auth-link:hover,
 .auth-link:focus-visible {
-  background: transparent;
-  border-color: transparent;
+  opacity: 1;
   transform: translateY(-1px);
 }
 
@@ -149,36 +148,22 @@ a {
 }
 
 .icon-button {
-  width: 44px;
-  height: 44px;
-  border: 1px solid currentColor;
-  border-radius: 8px;
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: currentColor;
-  background: transparent;
-  cursor: pointer;
-}
-
-.icon-button svg {
-  width: 18px;
-  height: 18px;
-  fill: currentColor;
-}
-
-.icon-button[aria-label="Open cart"] {
   width: auto;
   height: auto;
+  align-items: center;
+  justify-content: center;
   border: 0;
   border-radius: 0;
   padding: 0;
+  color: currentColor;
   background: transparent;
 }
 
-.icon-button[aria-label="Open cart"] svg {
+.icon-button svg {
   width: 24px;
   height: 24px;
+  fill: currentColor;
 }
 
 .hero {
@@ -338,7 +323,7 @@ h1 span {
   filter: blur(4px);
 }
 
-.shop-band {
+.product-band {
   position: relative;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -354,6 +339,8 @@ h1 span {
   background: var(--ink);
   display: grid;
   align-content: end;
+  cursor: pointer;
+  isolation: isolate;
 }
 
 .product-tile::before {
@@ -365,6 +352,27 @@ h1 span {
     linear-gradient(90deg, rgba(14, 30, 27, 0.82) 0%, rgba(14, 30, 27, 0.48) 42%, rgba(14, 30, 27, 0.06) 100%),
     linear-gradient(0deg, rgba(14, 30, 27, 0.56), transparent 58%);
   pointer-events: none;
+}
+
+.product-tile::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  right: 26px;
+  top: 26px;
+  width: 52px;
+  height: 52px;
+  border: 1px solid rgba(168, 237, 243, 0.42);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(168, 237, 243, 0.85) 0 5px, transparent 6px),
+    radial-gradient(circle, rgba(168, 237, 243, 0.2), transparent 62%);
+  box-shadow: 0 0 40px rgba(168, 237, 243, 0.25);
+  opacity: 0;
+  transform: scale(0.84);
+  transition:
+    opacity 360ms ease,
+    transform 360ms ease;
 }
 
 .product-tile.accent {
@@ -421,6 +429,11 @@ h1 span {
   background:
     linear-gradient(90deg, rgba(14, 30, 27, 0.9) 0%, rgba(14, 30, 27, 0.45) 40%, rgba(14, 30, 27, 0.02) 100%),
     linear-gradient(0deg, rgba(14, 30, 27, 0.38), transparent 58%);
+}
+
+.product-tile:hover::after {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .product-tile h2 {
@@ -896,6 +909,14 @@ h1 span {
     grid-template-columns: 1fr auto;
   }
 
+  .site-header .header-actions {
+    grid-column: 2;
+  }
+
+  .brand img {
+    height: 92px;
+  }
+
   .nav-links {
     display: none;
   }
@@ -936,7 +957,7 @@ h1 span {
     font-size: clamp(3.5rem, 14vw, 6rem);
   }
 
-  .shop-band,
+  .product-band,
   .section-heading,
   .bundle-section {
     grid-template-columns: 1fr;

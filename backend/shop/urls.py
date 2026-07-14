@@ -25,6 +25,9 @@ account_patterns = [
 
 store_patterns = [
     path("", views.store_product_list, name="product_list"),
+    path("smart-feeder/", views.store_product_page, {"product_type": "smart-feeder"}, name="smart_feeder_page"),
+    path("water-fountain/", views.store_product_page, {"product_type": "water-fountain"}, name="water_fountain_page"),
+    path("litter-box/", views.store_product_page, {"product_type": "litter-box"}, name="litter_box_page"),
     path("products/<slug:slug>/", views.store_product_detail, name="product_detail"),
     path("cart/", views.cart_detail, name="cart_detail"),
     path("cart/add/<int:product_id>/", views.cart_add, name="cart_add"),

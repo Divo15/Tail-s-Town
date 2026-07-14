@@ -118,7 +118,7 @@ setHeaderState();
 
 document.querySelectorAll(".product-tile").forEach((tile) => {
   tile.addEventListener("mouseenter", () => {
-    showToast("Open the shop to browse this product.");
+    showToast("Open products to browse this item.");
   });
 });
 

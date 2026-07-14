@@ -1,0 +1,131 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ page.title_lines.0 }} {{ page.title_lines.1 }} | Tail's Town</title>
+    <link rel="stylesheet" href="{% static 'product-pages/styles.css' %}" />
+  </head>
+  <body id="page-top" class="detail-body {{ page.body_class }}">
+    <header class="site-header" aria-label="Main navigation">
+      <a class="brand" href="{% url 'home' %}" aria-label="Tail's Town home">
+        <img src="{% static 'product-pages/assets/tails-town-header-logo.webp' %}" alt="Tail's Town" decoding="async" />
+      </a>
+      <nav class="nav-links" aria-label="Product navigation">
+        <a href="{% url 'store:smart_feeder_page' %}">Feeders</a>
+        <a href="{% url 'store:water_fountain_page' %}">Water</a>
+        <a href="{% url 'store:litter_box_page' %}">Litter</a>
+        <a href="{% url 'home' %}#bundles">Bundles</a>
+      </nav>
+      <div class="header-actions">
+        {% if request.user.is_authenticated %}
+          <a class="auth-link" href="{% url 'customer_account:dashboard' %}">Account</a>
+          <a class="auth-link auth-link-secondary" href="{% url 'customer_account:logout' %}">Sign out</a>
+        {% else %}
+          <a class="auth-link" href="{% url 'customer_account:login' %}">Sign in</a>
+          <a class="auth-link auth-link-secondary" href="{% url 'customer_account:register' %}">Register</a>
+        {% endif %}
+        <a class="icon-button" href="{% url 'store:cart_detail' %}" aria-label="Open cart">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.3 7h14.9l-1.5 8.7H8.1L6.3 7Zm0 0-.5-2.5H3.5M9.3 19.5a1.3 1.3 0 1 0 0 .1Zm8.4 0a1.3 1.3 0 1 0 0 .1Z"/></svg>
+        </a>
+      </div>
+    </header>
+
+    <main class="product-detail">
+      <nav class="product-rail" aria-label="Product page navigation">
+        <a href="#page-top">Overview</a>
+        <a href="#live-use">Live use</a>
+        {% if page.frame_video %}
+          <a href="#motion-sequence">Motion</a>
+        {% endif %}
+        {% if not page.hide_inside_view %}
+          <a href="#inside-view">Inside view</a>
+        {% endif %}
+      </nav>
+
+      <section class="detail-hero" aria-labelledby="product-title">
+        <div class="detail-copy">
+          <p class="eyebrow">{{ page.eyebrow }}</p>
+          <h1 id="product-title">
+            <span>{{ page.title_lines.0 }}</span>
+            <span>{{ page.title_lines.1 }}</span>
+          </h1>
+          <p>{{ page.description }}</p>
+          <div class="detail-actions">
+            {% if product and product.stock %}
+              <form class="detail-cart-form" method="post" action="{% url 'store:cart_add' product.id %}">
+                {% csrf_token %}
+                <input type="hidden" name="quantity" value="1" />
+                <button class="primary-action" type="submit">Add to cart</button>
+              </form>
+              <a class="ghost-action" href="{% url 'store:product_detail' product.slug %}">Full product details</a>
+            {% elif product %}
+              <a class="primary-action" href="{% url 'store:product_detail' product.slug %}">View product</a>
+              <a class="ghost-action" href="{% url 'store:product_list' %}">Back to products</a>
+            {% else %}
+              <span class="primary-action is-disabled" aria-disabled="true">Coming soon</span>
+              <a class="ghost-action" href="{% url 'store:product_list' %}">Back to products</a>
+            {% endif %}
+          </div>
+          {% if product %}
+            <p class="detail-admin-note">Available now: {{ product.name }}.</p>
+          {% else %}
+            <p class="detail-admin-note">This {{ page.category|lower }} product page is being prepared. Cart actions will appear when it is available.</p>
+          {% endif %}
+        </div>
+
+        <div class="detail-stage" aria-label="Animated {{ page.category }} product presentation">
+          <div class="model-card">
+            <img src="{% static page.model_image %}" alt="{{ page.model_alt }}" decoding="async" fetchpriority="high" />
+            <span class="model-glass"></span>
+            {% for chip in page.chips %}
+              <span class="floating-chip {{ chip.0 }}">{{ chip.1 }}</span>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+
+      <section class="live-product-scene" id="live-use" aria-label="{{ page.live_label }}">
+        <video data-live-video muted loop playsinline preload="none" poster="{% static page.live_poster %}" data-video-src="{% static page.live_video %}">
+        </video>
+      </section>
+
+      {% if page.frame_video %}
+        <section class="frame-sequence" id="motion-sequence" aria-label="{{ page.frame_label }}" data-frame-sequence>
+          <div class="frame-sequence-stage">
+            <video
+              data-frame-video
+              muted
+              playsinline
+              preload="none"
+              poster="{% static page.live_poster %}"
+              data-video-src="{% static page.frame_video %}"
+              data-frame-count="{{ page.frame_count }}"
+              aria-label="{{ page.frame_label }}"
+            ></video>
+          </div>
+        </section>
+      {% endif %}
+
+      {% if not page.hide_inside_view %}
+        <section class="exploded-product {{ page.explode_class }}" id="inside-view" aria-labelledby="inside-title">
+          <div class="explode-copy">
+            <p class="eyebrow">Inside the design</p>
+            <h2 id="inside-title"><span>{{ page.inside_heading }}</span></h2>
+          </div>
+          <div class="explode-stage" aria-label="{{ page.inside_label }}">
+            <img class="explode-core" src="{% static page.model_image %}" alt="{{ page.model_alt }} opening into component layers" loading="lazy" decoding="async" />
+            {% for layer in page.layers %}
+              <span class="explode-layer {{ layer.0 }}">{{ layer.1 }}</span>
+            {% endfor %}
+            <span class="explode-orbit"></span>
+          </div>
+        </section>
+      {% endif %}
+    </main>
+
+    <aside class="cart-toast" aria-live="polite" aria-atomic="true"></aside>
+    <script src="{% static 'product-pages/script.js' %}"></script>
+  </body>
+</html>
