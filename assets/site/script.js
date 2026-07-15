@@ -7,27 +7,27 @@ const toast = document.querySelector(".cart-toast");
 
 const slides = [
   {
-    accent: "Smart Care",
-    rest: "For Pet Homes",
+    accent: "BreakFast",
+    rest: "With Wagging tails",
     tone: "maple",
   },
   {
-    accent: "Fresh Water",
-    rest: "For Quiet Sips",
+    accent: "Tiny Sips",
+    rest: "Cozy Whiskers",
     tone: "ice",
   },
   {
-    accent: "Shared Corners",
-    rest: "For Calm Routines",
+    accent: "Little Pows",
+    rest: "One Corner",
     tone: "pine",
   },
   {
-    accent: "Cleaner Days",
-    rest: "For Indoor Cats",
+    accent: "Clean Steps",
+    rest: "Tidy Litter",
     tone: "mint",
   },
   {
-    accent: "Sunny Hydration",
+    accent: "Sunny Sips",
     rest: "After Long Walks",
     tone: "sun",
   },
