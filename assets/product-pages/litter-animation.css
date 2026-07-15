@@ -129,7 +129,7 @@
   margin: 0;
   color: var(--litter-ink);
   font-family: Inter, "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: clamp(2.9rem, 7vw, 5.5rem);
+  font-size: clamp(2.5rem, 5vw, 4.35rem);
   font-weight: 820;
   letter-spacing: -0.035em;
   line-height: 0.94;
@@ -137,7 +137,7 @@
 }
 
 .litter-story-center h2 {
-  max-width: 13ch;
+  max-width: 17ch;
   margin-inline: auto;
 }
 
