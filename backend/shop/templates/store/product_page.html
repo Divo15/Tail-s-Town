@@ -5,6 +5,23 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{ page.title_lines.0 }} {{ page.title_lines.1 }} | Tail's Town</title>
+    {% if page.frame_sequence %}
+      <link
+        rel="preload"
+        href="{% static 'product-pages/litter-sequence/desktop/frame-001.webp' %}"
+        as="image"
+        type="image/webp"
+        media="(min-width: 721px)"
+      />
+      <link
+        rel="preload"
+        href="{% static 'product-pages/litter-sequence/mobile/frame-001.webp' %}"
+        as="image"
+        type="image/webp"
+        media="(max-width: 720px)"
+      />
+      <link rel="stylesheet" href="{% static 'product-pages/litter-animation.css' %}" />
+    {% endif %}
     <link rel="stylesheet" href="{% static 'product-pages/styles.css' %}" />
   </head>
   <body id="page-top" class="detail-body {{ page.body_class }}">
@@ -36,7 +53,7 @@
       <nav class="product-rail" aria-label="Product page navigation">
         <a href="#page-top">Overview</a>
         <a href="#live-use">Live use</a>
-        {% if page.frame_video %}
+        {% if page.frame_sequence %}
           <a href="#motion-sequence">Motion</a>
         {% endif %}
         {% if not page.hide_inside_view %}
@@ -91,19 +108,59 @@
         </video>
       </section>
 
-      {% if page.frame_video %}
-        <section class="frame-sequence" id="motion-sequence" aria-label="{{ page.frame_label }}" data-frame-sequence>
-          <div class="frame-sequence-stage">
-            <video
-              data-frame-video
-              muted
-              playsinline
-              preload="none"
-              poster="{% static page.live_poster %}"
-              data-video-src="{% static page.frame_video %}"
-              data-frame-count="{{ page.frame_count }}"
-              aria-label="{{ page.frame_label }}"
-            ></video>
+      {% if page.frame_sequence %}
+        <section
+          class="litter-animation"
+          id="motion-sequence"
+          aria-label="{{ page.frame_label }}"
+          data-litter-animation
+          data-frame-count="{{ page.frame_count }}"
+          data-desktop-frame-template="{% static 'product-pages/litter-sequence/desktop/frame-__FRAME__.webp' %}"
+          data-mobile-frame-template="{% static 'product-pages/litter-sequence/mobile/frame-__FRAME__.webp' %}"
+        >
+          <div class="litter-animation-stage">
+            <canvas class="litter-animation-canvas" data-litter-canvas aria-hidden="true"></canvas>
+            <picture class="litter-animation-fallback">
+              <source
+                media="(max-width: 720px)"
+                srcset="{% static 'product-pages/litter-sequence/mobile/frame-001.webp' %}"
+              />
+              <img
+                src="{% static 'product-pages/litter-sequence/desktop/frame-001.webp' %}"
+                alt="Tail's Town smart litter box assembled on a dark studio background"
+                decoding="async"
+              />
+            </picture>
+            <div class="litter-animation-light" aria-hidden="true"></div>
+
+            <div class="litter-story litter-story-center is-active" data-litter-story="0" aria-hidden="false">
+              <p class="litter-story-kicker">Tail's Town</p>
+              <h2>Smart Cleaning. Designed for Modern Cat Parents.</h2>
+              <p>The intelligent litter box that keeps itself clean, quietly, safely, and beautifully.</p>
+            </div>
+
+            <div class="litter-story litter-story-left" data-litter-story="1" aria-hidden="true">
+              <p class="litter-story-kicker">Engineering</p>
+              <h2>Precision Inside Every Cycle.</h2>
+              <p>Advanced automation quietly removes waste after every use, with each component engineered for reliable daily cleaning.</p>
+            </div>
+
+            <div class="litter-story litter-story-right" data-litter-story="2" aria-hidden="true">
+              <h2>Intelligence That Protects Your Cat.</h2>
+            </div>
+
+            <div class="litter-story litter-story-left" data-litter-story="3" aria-hidden="true">
+              <h2>Fresh Home. Every Day.</h2>
+            </div>
+
+            <div class="litter-story litter-story-center" data-litter-story="4" aria-hidden="true">
+              <p class="litter-story-kicker">Reassembly</p>
+              <h2>Cleaning, Reimagined.</h2>
+            </div>
+
+            <div class="litter-animation-progress" aria-hidden="true">
+              <span data-litter-progress></span>
+            </div>
           </div>
         </section>
       {% endif %}
@@ -127,5 +184,8 @@
 
     <aside class="cart-toast" aria-live="polite" aria-atomic="true"></aside>
     <script src="{% static 'product-pages/script.js' %}"></script>
+    {% if page.frame_sequence %}
+      <script src="{% static 'product-pages/litter-animation.js' %}"></script>
+    {% endif %}
   </body>
 </html>
