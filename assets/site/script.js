@@ -7,8 +7,8 @@ const toast = document.querySelector(".cart-toast");
 
 const slides = [
   {
-    accent: "Smart Care",
-    rest: "For Pet Homes",
+    accent: "Breakfast",
+    rest: "Wagging Tail",
     tone: "maple",
   },
   {
@@ -17,13 +17,13 @@ const slides = [
     tone: "ice",
   },
   {
-    accent: "Shared Corners",
-    rest: "For Calm Routines",
+    accent: "Little Paws",
+    rest: "One Corner",
     tone: "pine",
   },
   {
-    accent: "Cleaner Days",
-    rest: "For Indoor Cats",
+    accent: "Tiny Sips",
+    rest: "Cozy Whiskers",
     tone: "mint",
   },
   {
