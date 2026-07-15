@@ -185,6 +185,21 @@ body.is-litter-animation-active .product-rail {
   pointer-events: none;
 }
 
+.detail-litter .site-header {
+  transition:
+    transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 180ms ease,
+    background 220ms ease,
+    color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+body.is-litter-animation-active .site-header {
+  transform: translateY(calc(-100% - 2px));
+  opacity: 0;
+  pointer-events: none;
+}
+
 @media (max-width: 860px) {
   .litter-animation {
     height: 760svh;
