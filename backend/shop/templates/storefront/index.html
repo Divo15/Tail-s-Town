@@ -113,9 +113,9 @@
             aria-label="Open {{ section.product.name }} product page"
           >
             {% if section.anchor_id == "feeders" %}
-              <img src="{% static 'landing/tile-feeder-product.webp' %}" alt="{{ section.product.name }}" loading="lazy" decoding="async" />
+              <img src="{% static 'landing/tile-feeder-product.png' %}" alt="{{ section.product.name }}" loading="lazy" decoding="async" />
             {% elif section.anchor_id == "hydration" %}
-              <img src="{% static 'landing/tile-water-product.webp' %}" alt="{{ section.product.name }}" loading="lazy" decoding="async" />
+              <img src="{% static 'landing/tile-water-product.png' %}" alt="{{ section.product.name }}" loading="lazy" decoding="async" />
             {% else %}
               <img src="{% static 'landing/tile-litter-product.webp' %}" alt="{{ section.product.name }}" loading="lazy" decoding="async" />
             {% endif %}
@@ -134,14 +134,14 @@
           </a>
         {% empty %}
           <a class="product-tile" id="feeders" href="{% url 'store:smart_feeder_page' %}" aria-label="Open Smart Feeder product page">
-            <img src="{% static 'landing/tile-feeder-product.webp' %}" alt="Smart automatic pet feeder" loading="lazy" decoding="async" />
+            <img src="{% static 'landing/tile-feeder-product.png' %}" alt="Smart automatic pet feeder" loading="lazy" decoding="async" />
             <h2>
               <span>Smart</span>
               <span>Feeder</span>
             </h2>
           </a>
           <a class="product-tile accent" id="hydration" href="{% url 'store:water_fountain_page' %}" aria-label="Open Water Fountain product page">
-            <img src="{% static 'landing/tile-water-product.webp' %}" alt="Modern pet water fountain" loading="lazy" decoding="async" />
+            <img src="{% static 'landing/tile-water-product.png' %}" alt="Modern pet water fountain" loading="lazy" decoding="async" />
             <h2>
               <span>Water</span>
               <span>Fountain</span>
@@ -180,16 +180,16 @@
             <span class="bundle-product-dot {% if forloop.counter == 1 %}feeder-dot{% elif forloop.counter == 2 %}water-dot{% else %}litter-dot{% endif %}">
               {% if section.product.image %}
                 {% if section.anchor_id == "feeders" %}
-                  <img src="{% static 'landing/tile-feeder-product.webp' %}" alt="" />
+                  <img src="{% static 'landing/tile-feeder-product.png' %}" alt="" />
                 {% elif section.anchor_id == "hydration" %}
-                  <img src="{% static 'landing/tile-water-product.webp' %}" alt="" />
+                  <img src="{% static 'landing/tile-water-product.png' %}" alt="" />
                 {% else %}
                   <img src="{% static 'landing/tile-litter-product.webp' %}" alt="" />
                 {% endif %}
               {% elif forloop.counter == 1 %}
-                <img src="{% static 'landing/tile-feeder-product.webp' %}" alt="" />
+                <img src="{% static 'landing/tile-feeder-product.png' %}" alt="" />
               {% elif forloop.counter == 2 %}
-                <img src="{% static 'landing/tile-water-product.webp' %}" alt="" />
+                <img src="{% static 'landing/tile-water-product.png' %}" alt="" />
               {% else %}
                 <img src="{% static 'landing/tile-litter-product.webp' %}" alt="" />
               {% endif %}
@@ -205,10 +205,10 @@
               <img src="{% static 'landing/hero-both-mudroom-actual.webp' %}" alt="" />
             </span>
             <span class="bundle-product-dot feeder-dot">
-              <img src="{% static 'landing/tile-feeder-product.webp' %}" alt="" />
+              <img src="{% static 'landing/tile-feeder-product.png' %}" alt="" />
             </span>
             <span class="bundle-product-dot water-dot">
-              <img src="{% static 'landing/tile-water-product.webp' %}" alt="" />
+              <img src="{% static 'landing/tile-water-product.png' %}" alt="" />
             </span>
             <span class="bundle-product-dot litter-dot">
               <img src="{% static 'landing/tile-litter-product.webp' %}" alt="" />
