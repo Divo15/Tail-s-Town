@@ -62,8 +62,8 @@
           />
           <img
             class="hero-photo"
-            src="{% static 'landing/litter-box-living-room.webp' %}"
-            alt="Smart litter box in a cozy living room"
+            src="{% static 'landing/hero-cat-litter-actual.webp' %}"
+            alt="A cat beside a self-cleaning litter box"
             loading="lazy"
             decoding="async"
             data-slide="3"
@@ -162,14 +162,14 @@
                 {% elif section.anchor_id == "hydration" %}
                   <img src="{% static 'landing/water-dispenser-living-room.webp' %}" alt="" />
                 {% else %}
-                  <img src="{% static 'landing/litter-box-living-room.webp' %}" alt="" />
+                  <img src="{% static 'landing/hero-cat-litter-actual.webp' %}" alt="" />
                 {% endif %}
               {% elif forloop.counter == 1 %}
                 <img src="{% static 'landing/feeder-dispenser-living-room.webp' %}" alt="" />
               {% elif forloop.counter == 2 %}
                 <img src="{% static 'landing/water-dispenser-living-room.webp' %}" alt="" />
               {% else %}
-                <img src="{% static 'landing/litter-box-living-room.webp' %}" alt="" />
+                <img src="{% static 'landing/hero-cat-litter-actual.webp' %}" alt="" />
               {% endif %}
             </span>
             <span class="bundle-product-dot {% if forloop.counter == 1 %}feeder-dot{% elif forloop.counter == 2 %}water-dot{% else %}litter-dot{% endif %}">
@@ -179,14 +179,14 @@
                 {% elif section.anchor_id == "hydration" %}
                   <img src="{% static 'landing/water-dispenser-living-room.webp' %}" alt="" />
                 {% else %}
-                  <img src="{% static 'landing/litter-box-living-room.webp' %}" alt="" />
+                  <img src="{% static 'landing/smart-cat-litter-box.jpeg' %}" alt="" />
                 {% endif %}
               {% elif forloop.counter == 1 %}
                 <img src="{% static 'landing/feeder-dispenser-living-room.webp' %}" alt="" />
               {% elif forloop.counter == 2 %}
                 <img src="{% static 'landing/water-dispenser-living-room.webp' %}" alt="" />
               {% else %}
-                <img src="{% static 'landing/litter-box-living-room.webp' %}" alt="" />
+                <img src="{% static 'landing/smart-cat-litter-box.jpeg' %}" alt="" />
               {% endif %}
             </span>
           {% empty %}
@@ -206,7 +206,7 @@
               <img src="{% static 'landing/water-dispenser-living-room.webp' %}" alt="" />
             </span>
             <span class="bundle-product-dot litter-dot">
-              <img src="{% static 'landing/litter-box-living-room.webp' %}" alt="" />
+              <img src="{% static 'landing/smart-cat-litter-box.jpeg' %}" alt="" />
             </span>
           {% endfor %}
         </div>
