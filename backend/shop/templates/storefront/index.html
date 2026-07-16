@@ -91,10 +91,6 @@
         <div class="section-heading">
           <p class="eyebrow">PETKIT collection</p>
           <h2 id="collection-title">Everything your pet uses every day, made calmer.</h2>
-          <p>
-            Now showing {{ active_product_count }} live product{{ active_product_count|pluralize }}
-            from your admin catalog, with category-driven browsing wired into the homepage.
-          </p>
         </div>
       </section>
 
@@ -222,15 +218,6 @@
             Featured products on this page now come straight from the admin catalog, so homepage
             content updates when you add or edit live products.
           </p>
-          <a class="primary-action" href="{% url 'store:product_list' %}">View products</a>
-        </div>
-        <div class="bundle-panel" aria-label="Bundle value">
-          <span>Store flow</span>
-          <strong>{{ active_product_count }} live products</strong>
-          <p>Homepage cards now open real product pages from your database-backed catalog.</p>
-          <div class="bundle-meter" aria-hidden="true">
-            <span></span>
-          </div>
         </div>
       </section>
     </main>

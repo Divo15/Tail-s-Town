@@ -1,4 +1,5 @@
 from django.urls import path
+from django.views.generic import RedirectView
 
 from . import views
 
@@ -24,7 +25,7 @@ account_patterns = [
 ]
 
 store_patterns = [
-    path("", views.store_product_list, name="product_list"),
+    path("", RedirectView.as_view(pattern_name="home", permanent=False), name="product_list"),
     path("smart-feeder/", views.store_product_page, {"product_type": "smart-feeder"}, name="smart_feeder_page"),
     path("water-fountain/", views.store_product_page, {"product_type": "water-fountain"}, name="water_fountain_page"),
     path("litter-box/", views.store_product_page, {"product_type": "litter-box"}, name="litter_box_page"),

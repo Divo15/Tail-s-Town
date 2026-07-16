@@ -147,27 +147,6 @@ def home(request):
     )
 
 
-def store_product_list(request):
-    products = Product.objects.filter(is_active=True).select_related("category")
-    categories = Category.objects.filter(products__is_active=True).distinct()
-    category_slug = request.GET.get("category")
-
-    active_category = None
-    if category_slug:
-        active_category = get_object_or_404(Category, slug=category_slug)
-        products = products.filter(category=active_category)
-
-    return render(
-        request,
-        "store/product_list.html",
-        {
-            "products": products,
-            "categories": categories,
-            "active_category": active_category,
-        },
-    )
-
-
 def store_product_detail(request, slug):
     product = get_object_or_404(Product.objects.select_related("category"), slug=slug, is_active=True)
     related_products = Product.objects.filter(is_active=True).select_related("category").exclude(pk=product.pk)

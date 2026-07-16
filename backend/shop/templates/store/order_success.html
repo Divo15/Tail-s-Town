@@ -17,7 +17,7 @@
         <div class="order-number">#{{ order.pk }}</div>
         <p class="lead">We’ll use the shipping details captured at checkout to fulfill this order.</p>
         <div class="actions">
-          <a class="button" href="{% url 'store:product_list' %}">View products</a>
+          <a class="button" href="{% url 'home' %}#products">Explore products</a>
           <a class="button secondary" href="{% url 'store:cart_detail' %}">View cart</a>
         </div>
       </article>

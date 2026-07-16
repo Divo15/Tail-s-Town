@@ -37,7 +37,7 @@ def checkout(request):
 
     if not items:
         messages.error(request, "Your cart is empty.")
-        return redirect("store:product_list")
+        return redirect("home")
 
     customer = get_customer(request.user) if request.user.is_authenticated else None
     form = CheckoutForm(request.POST or None, initial=checkout_initial_data(customer))
