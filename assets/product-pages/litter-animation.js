@@ -20,6 +20,7 @@
   const EXPLODE_END = 0.72;
   const REASSEMBLE_START = 0.78;
   const REASSEMBLE_END = 0.9;
+  const FINAL_FRAME_START = 10;
   const PRELOAD_AHEAD = 24;
   const PRELOAD_BEHIND = 8;
   const MAX_CACHED_FRAMES = 42;
@@ -46,7 +47,7 @@
   const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 
   const frameUrl = (frame) => {
-    if (frame <= 2) {
+    if (frame <= FINAL_FRAME_START) {
       const finalFrame = mobileQuery.matches ? mobileFinalFrame : desktopFinalFrame;
       if (finalFrame) return finalFrame;
     }
@@ -80,6 +81,7 @@
   const setStory = (index) => {
     if (index === activeStory && stories[index]?.classList.contains("is-active")) return;
     activeStory = index;
+    section.dataset.activeStory = String(index);
     stories.forEach((story, storyIndex) => {
       const isActive = storyIndex === index;
       story.classList.toggle("is-active", isActive);
