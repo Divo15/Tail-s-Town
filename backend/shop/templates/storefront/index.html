@@ -46,8 +46,8 @@
           />
           <img
             class="hero-photo"
-            src="{% static 'landing/hero-cats-water-actual.webp' %}"
-            alt="Two cats beside a smart water fountain"
+            src="{% static 'landing/water-dispenser-living-room.webp' %}"
+            alt="Smart water dispenser in a cozy living room"
             loading="lazy"
             decoding="async"
             data-slide="1"
@@ -70,8 +70,8 @@
           />
           <img
             class="hero-photo"
-            src="{% static 'landing/hero-dog-water-actual.webp' %}"
-            alt="A dog drinking from a smart water dispenser"
+            src="{% static 'landing/water-dispenser-living-room.webp' %}"
+            alt="Smart water dispenser in a warm living room"
             loading="lazy"
             decoding="async"
             data-slide="4"
@@ -110,7 +110,7 @@
             {% if section.anchor_id == "feeders" %}
               <img src="{% static 'landing/tile-feeder-product.png' %}" alt="{{ section.product.name }}" loading="lazy" decoding="async" />
             {% elif section.anchor_id == "hydration" %}
-              <img src="{% static 'landing/tile-water-product.png' %}" alt="{{ section.product.name }}" loading="lazy" decoding="async" />
+              <img src="{% static 'landing/water-dispenser-living-room.webp' %}" alt="{{ section.product.name }}" loading="lazy" decoding="async" />
             {% else %}
               <img src="{% static 'landing/smart-cat-litter-box.jpeg' %}" alt="{{ section.product.name }}" loading="lazy" decoding="async" />
             {% endif %}
@@ -136,7 +136,7 @@
             </h2>
           </a>
           <a class="product-tile accent" id="hydration" href="{% url 'store:water_fountain_page' %}" aria-label="Open Water Fountain product page">
-            <img src="{% static 'landing/tile-water-product.png' %}" alt="Modern pet water fountain" loading="lazy" decoding="async" />
+            <img src="{% static 'landing/water-dispenser-living-room.webp' %}" alt="Modern pet water fountain in a cozy living room" loading="lazy" decoding="async" />
             <h2>
               <span>Water</span>
               <span>Fountain</span>
@@ -160,14 +160,14 @@
                 {% if section.anchor_id == "feeders" %}
                   <img src="{% static 'landing/hero-dogs-feeder-actual.webp' %}" alt="" />
                 {% elif section.anchor_id == "hydration" %}
-                  <img src="{% static 'landing/hero-cats-water-actual.webp' %}" alt="" />
+                  <img src="{% static 'landing/water-dispenser-living-room.webp' %}" alt="" />
                 {% else %}
                   <img src="{% static 'landing/hero-cat-litter-actual.webp' %}" alt="" />
                 {% endif %}
               {% elif forloop.counter == 1 %}
                 <img src="{% static 'landing/hero-dogs-feeder-actual.webp' %}" alt="" />
               {% elif forloop.counter == 2 %}
-                <img src="{% static 'landing/hero-cats-water-actual.webp' %}" alt="" />
+                <img src="{% static 'landing/water-dispenser-living-room.webp' %}" alt="" />
               {% else %}
                 <img src="{% static 'landing/hero-cat-litter-actual.webp' %}" alt="" />
               {% endif %}
@@ -177,14 +177,14 @@
                 {% if section.anchor_id == "feeders" %}
                   <img src="{% static 'landing/tile-feeder-product.png' %}" alt="" />
                 {% elif section.anchor_id == "hydration" %}
-                  <img src="{% static 'landing/tile-water-product.png' %}" alt="" />
+                  <img src="{% static 'landing/water-dispenser-living-room.webp' %}" alt="" />
                 {% else %}
                   <img src="{% static 'landing/smart-cat-litter-box.jpeg' %}" alt="" />
                 {% endif %}
               {% elif forloop.counter == 1 %}
                 <img src="{% static 'landing/tile-feeder-product.png' %}" alt="" />
               {% elif forloop.counter == 2 %}
-                <img src="{% static 'landing/tile-water-product.png' %}" alt="" />
+                <img src="{% static 'landing/water-dispenser-living-room.webp' %}" alt="" />
               {% else %}
                 <img src="{% static 'landing/smart-cat-litter-box.jpeg' %}" alt="" />
               {% endif %}
@@ -194,7 +194,7 @@
               <img src="{% static 'landing/hero-dogs-feeder-actual.webp' %}" alt="" />
             </span>
             <span class="pet-window pet-window-cat">
-              <img src="{% static 'landing/hero-cats-water-actual.webp' %}" alt="" />
+              <img src="{% static 'landing/water-dispenser-living-room.webp' %}" alt="" />
             </span>
             <span class="pet-window pet-window-both">
               <img src="{% static 'landing/hero-both-mudroom-actual.webp' %}" alt="" />
@@ -203,7 +203,7 @@
               <img src="{% static 'landing/tile-feeder-product.png' %}" alt="" />
             </span>
             <span class="bundle-product-dot water-dot">
-              <img src="{% static 'landing/tile-water-product.png' %}" alt="" />
+              <img src="{% static 'landing/water-dispenser-living-room.webp' %}" alt="" />
             </span>
             <span class="bundle-product-dot litter-dot">
               <img src="{% static 'landing/smart-cat-litter-box.jpeg' %}" alt="" />

@@ -90,7 +90,7 @@
           </div>
           {% if product %}
             <p class="detail-admin-note">Available now: {{ product.name }}.</p>
-          {% else %}
+          {% elif not page.hide_unavailable_note %}
             <p class="detail-admin-note">This {{ page.category|lower }} product page is being prepared. Cart actions will appear when it is available.</p>
           {% endif %}
         </div>
@@ -166,9 +166,6 @@
               <h2>Cleaning, Reimagined.</h2>
             </div>
 
-            <div class="litter-animation-progress" aria-hidden="true">
-              <span data-litter-progress></span>
-            </div>
           </div>
         </section>
       {% endif %}

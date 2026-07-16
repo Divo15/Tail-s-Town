@@ -3,7 +3,6 @@
   if (!section) return;
 
   const canvas = section.querySelector("[data-litter-canvas]");
-  const progressBar = section.querySelector("[data-litter-progress]");
   const stories = [...section.querySelectorAll("[data-litter-story]")];
   const context = canvas?.getContext("2d", { alpha: false, desynchronized: true });
   const frameCount = Number(section.dataset.frameCount || 300);
@@ -20,7 +19,7 @@
   const EXPLODE_END = 0.72;
   const REASSEMBLE_START = 0.78;
   const REASSEMBLE_END = 0.9;
-  const FINAL_FRAME_START = 10;
+  const FINAL_FRAME_START = 2;
   const PRELOAD_AHEAD = 24;
   const PRELOAD_BEHIND = 8;
   const MAX_CACHED_FRAMES = 42;
@@ -238,7 +237,8 @@
 
   const updateActiveState = () => {
     const rect = section.getBoundingClientRect();
-    const isActive = rect.top <= 0 && rect.bottom >= window.innerHeight;
+    const releaseBuffer = Math.min(180, window.innerHeight * 0.16);
+    const isActive = rect.top <= 0 && rect.bottom >= window.innerHeight - releaseBuffer;
     document.body.classList.toggle("is-litter-animation-active", isActive);
   };
 
@@ -264,7 +264,6 @@
 
     drawBestAvailable(targetFrame);
     setStory(reducedMotion.matches ? 0 : storyForProgress(displayProgress));
-    if (progressBar) progressBar.style.transform = `scaleX(${Math.max(0.02, displayProgress)})`;
 
     if (Math.abs(targetProgress - displayProgress) >= 0.00005 || lastDrawnFrame !== targetFrame) {
       scheduleRender();
