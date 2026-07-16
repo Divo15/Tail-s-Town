@@ -123,16 +123,18 @@
           data-source-frame-count="{{ page.source_frame_count|default:page.frame_count }}"
           data-desktop-frame-template="{{ static_prefix }}product-pages/litter-sequence/desktop/frame-__FRAME__.webp"
           data-mobile-frame-template="{{ static_prefix }}product-pages/litter-sequence/mobile/frame-__FRAME__.webp"
+          data-desktop-final-frame="{% static 'product-pages/litter-sequence/final/frame-final-desktop.webp' %}"
+          data-mobile-final-frame="{% static 'product-pages/litter-sequence/final/frame-final-mobile.webp' %}"
         >
           <div class="litter-animation-stage">
             <canvas class="litter-animation-canvas" data-litter-canvas aria-hidden="true"></canvas>
             <picture class="litter-animation-fallback">
               <source
                 media="(max-width: 720px)"
-                srcset="{% static 'product-pages/litter-sequence/mobile/frame-001.webp' %}"
+                srcset="{% static 'product-pages/litter-sequence/final/frame-final-mobile.webp' %}"
               />
               <img
-                src="{% static 'product-pages/litter-sequence/desktop/frame-001.webp' %}"
+                src="{% static 'product-pages/litter-sequence/final/frame-final-desktop.webp' %}"
                 alt="Tail's Town smart litter box assembled on a dark studio background"
                 decoding="async"
               />

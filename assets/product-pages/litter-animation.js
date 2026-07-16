@@ -10,6 +10,8 @@
   const sourceFrameCount = Number(section.dataset.sourceFrameCount || frameCount);
   const desktopTemplate = section.dataset.desktopFrameTemplate;
   const mobileTemplate = section.dataset.mobileFrameTemplate;
+  const desktopFinalFrame = section.dataset.desktopFinalFrame;
+  const mobileFinalFrame = section.dataset.mobileFinalFrame;
   const mobileQuery = window.matchMedia("(max-width: 720px)");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
@@ -44,6 +46,11 @@
   const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 
   const frameUrl = (frame) => {
+    if (frame <= 2) {
+      const finalFrame = mobileQuery.matches ? mobileFinalFrame : desktopFinalFrame;
+      if (finalFrame) return finalFrame;
+    }
+
     const template = mobileQuery.matches ? mobileTemplate : desktopTemplate;
     const sourceFrame = Math.round(1 + ((frame - 1) / Math.max(1, frameCount - 1)) * (sourceFrameCount - 1));
     return template.replace("__FRAME__", String(sourceFrame).padStart(3, "0"));
