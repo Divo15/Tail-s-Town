@@ -5,8 +5,8 @@
   --litter-blue: oklch(0.62 0.19 260);
   --litter-cyan: oklch(0.82 0.15 210);
   position: relative;
-  height: 840svh;
-  min-height: 5200px;
+  height: 1210svh;
+  min-height: 7600px;
   overflow: clip;
   color: var(--litter-ink);
   background: var(--litter-bg);
@@ -189,8 +189,8 @@ body.is-litter-animation-active .site-header {
 
 @media (max-width: 860px) {
   .litter-animation {
-    height: 760svh;
-    min-height: 4600px;
+    height: 1090svh;
+    min-height: 6600px;
   }
 
   .litter-animation-stage {

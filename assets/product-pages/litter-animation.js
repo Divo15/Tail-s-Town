@@ -18,7 +18,8 @@
 
   const EXPLODE_END = 0.72;
   const REASSEMBLE_START = 0.78;
-  const REASSEMBLE_END = 0.9;
+  const REASSEMBLE_END = REASSEMBLE_START + EXPLODE_END;
+  const TIMELINE_END = REASSEMBLE_END;
   const FINAL_FRAME_START = 2;
   const PRELOAD_AHEAD = 24;
   const PRELOAD_BEHIND = 8;
@@ -57,7 +58,7 @@
   };
 
   const frameForProgress = (progress) => {
-    const clamped = clamp(progress, 0, 1);
+    const clamped = clamp(progress, 0, TIMELINE_END);
     if (clamped <= EXPLODE_END) {
       return Math.round(1 + (clamped / EXPLODE_END) * (frameCount - 1));
     }
@@ -232,7 +233,7 @@
   const readProgress = () => {
     const rect = section.getBoundingClientRect();
     const scrollable = Math.max(1, rect.height - window.innerHeight);
-    return clamp(-rect.top / scrollable, 0, 1);
+    return clamp(-rect.top / scrollable, 0, 1) * TIMELINE_END;
   };
 
   const updateActiveState = () => {
