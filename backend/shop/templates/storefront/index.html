@@ -108,11 +108,11 @@
             aria-label="Open {{ section.product.name }} product page"
           >
             {% if section.anchor_id == "feeders" %}
-              <img src="{% static 'landing/feeder-dispenser-living-room.webp' %}" alt="{{ section.product.name }}" loading="lazy" decoding="async" />
+              <img src="{% static 'landing/product-tile-feeder.webp' %}" alt="{{ section.product.name }}" loading="lazy" decoding="async" />
             {% elif section.anchor_id == "hydration" %}
-              <img src="{% static 'landing/water-dispenser-living-room.webp' %}" alt="{{ section.product.name }}" loading="lazy" decoding="async" />
+              <img src="{% static 'landing/product-tile-water.webp' %}" alt="{{ section.product.name }}" loading="lazy" decoding="async" />
             {% else %}
-              <img src="{% static 'landing/litter-box-living-room.webp' %}" alt="{{ section.product.name }}" loading="lazy" decoding="async" />
+              <img src="{% static 'landing/product-tile-litter.webp' %}" alt="{{ section.product.name }}" loading="lazy" decoding="async" />
             {% endif %}
             <h2>
               {% if section.anchor_id == "feeders" %}
@@ -129,21 +129,21 @@
           </a>
         {% empty %}
           <a class="product-tile" id="feeders" href="{% url 'store:smart_feeder_page' %}" aria-label="Open Smart Feeder product page">
-            <img src="{% static 'landing/feeder-dispenser-living-room.webp' %}" alt="Smart automatic pet feeder in a cozy living room" loading="lazy" decoding="async" />
+            <img src="{% static 'landing/product-tile-feeder.webp' %}" alt="Smart automatic pet feeder on a warm shelf" loading="lazy" decoding="async" />
             <h2>
               <span>Smart</span>
               <span>Feeder</span>
             </h2>
           </a>
           <a class="product-tile accent" id="hydration" href="{% url 'store:water_fountain_page' %}" aria-label="Open Water Fountain product page">
-            <img src="{% static 'landing/water-dispenser-living-room.webp' %}" alt="Modern pet water fountain in a cozy living room" loading="lazy" decoding="async" />
+            <img src="{% static 'landing/product-tile-water.webp' %}" alt="Modern pet water fountain on a warm shelf" loading="lazy" decoding="async" />
             <h2>
               <span>Water</span>
               <span>Fountain</span>
             </h2>
           </a>
           <a class="product-tile" id="litter" href="{% url 'store:litter_box_page' %}" aria-label="Open Litter Box product page">
-            <img src="{% static 'landing/litter-box-living-room.webp' %}" alt="Smart litter box in a cozy living room" loading="lazy" decoding="async" />
+            <img src="{% static 'landing/product-tile-litter.webp' %}" alt="Smart litter box on a warm shelf" loading="lazy" decoding="async" />
             <h2>
               <span>Litter</span>
               <span>Box</span>
