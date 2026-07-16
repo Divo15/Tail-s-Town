@@ -814,6 +814,10 @@ h1 span {
   overflow: clip;
 }
 
+.detail-water .product-detail {
+  overflow: visible;
+}
+
 .product-rail {
   position: fixed;
   z-index: 12;
@@ -1362,6 +1366,41 @@ body.is-frame-sequence-active .product-rail {
 .explode-orbit::after {
   right: 8%;
   bottom: 22%;
+}
+
+.water-explode-pinned {
+  min-height: calc(var(--water-stage-height, 100svh) + var(--water-scroll-distance, 1320px));
+  overflow: visible;
+}
+
+.water-explode-pinned .explode-copy,
+.water-explode-pinned .explode-stage {
+  position: sticky;
+}
+
+.water-explode-pinned .explode-copy {
+  top: calc(var(--water-header-offset, var(--site-header-height, 160px)) + 32px);
+}
+
+.water-explode-pinned .explode-stage {
+  top: calc(var(--water-header-offset, var(--site-header-height, 160px)) + 16px);
+  min-height: var(--water-stage-height, calc(100svh - var(--site-header-height, 160px) - 32px));
+}
+
+.water-explode-pinned .explode-core {
+  animation-duration: 1s;
+  animation-delay: var(--water-animation-offset, 0s);
+  animation-play-state: paused;
+  animation-timeline: auto;
+  animation-range: normal;
+}
+
+.water-explode-pinned .explode-layer {
+  animation-duration: 1s;
+  animation-delay: var(--water-animation-offset, 0s);
+  animation-play-state: paused;
+  animation-timeline: auto;
+  animation-range: normal;
 }
 
 .litter-explode {
@@ -3203,6 +3242,16 @@ body.is-frame-sequence-active .product-rail {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .water-explode-pinned {
+    min-height: 100svh;
+  }
+
+  .water-explode-pinned .explode-copy,
+  .water-explode-pinned .explode-stage {
+    position: relative;
+    top: auto;
+  }
+
   *,
   *::before,
   *::after {

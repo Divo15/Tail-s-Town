@@ -51,6 +51,11 @@ const setHeaderState = () => {
   header?.classList.toggle("is-solid", window.scrollY > 24);
 };
 
+const syncHeaderHeight = () => {
+  const headerHeight = Math.round(header?.getBoundingClientRect().height || 0);
+  document.documentElement.style.setProperty("--site-header-height", `${headerHeight}px`);
+};
+
 const updateHeroText = (slide) => {
   if (heroTitle) {
     heroTitle.dataset.tone = slide.tone;
@@ -123,7 +128,10 @@ const showToast = (message) => {
 };
 
 window.addEventListener("scroll", setHeaderState, { passive: true });
+window.addEventListener("resize", syncHeaderHeight);
+window.addEventListener("load", syncHeaderHeight, { once: true });
 setHeaderState();
+syncHeaderHeight();
 
 heroButtons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -195,8 +203,57 @@ if (hero && heroPhotos.length && heroTitle) {
 }
 
 const frameSequences = [...document.querySelectorAll("[data-frame-sequence]")];
+const waterPinnedSections = [...document.querySelectorAll(".water-explode-pinned")];
 
 const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
+const setupWaterPinnedSection = (section) => {
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const pixelsPerStep = 1320;
+  let raf = 0;
+
+  const updateWaterMetrics = () => {
+    const headerHeight = Math.round(header?.getBoundingClientRect().height || 0);
+    const stageTop = headerHeight + 16;
+    const stageHeight = Math.max(1, window.innerHeight - stageTop - 16);
+    const scrollDistance = prefersReduced.matches ? 0 : pixelsPerStep;
+
+    section.style.setProperty("--water-header-offset", `${headerHeight}px`);
+    section.style.setProperty("--water-stage-height", `${stageHeight}px`);
+    section.style.setProperty("--water-scroll-distance", `${scrollDistance}px`);
+
+    return { headerHeight, scrollDistance };
+  };
+
+  let metrics = updateWaterMetrics();
+
+  const progressFromScroll = () => {
+    const rect = section.getBoundingClientRect();
+    const total = Math.max(1, metrics.scrollDistance);
+    return clamp((metrics.headerHeight - rect.top) / total, 0, 1);
+  };
+
+  const render = () => {
+    raf = 0;
+    const progress = prefersReduced.matches ? 1 : progressFromScroll();
+    section.style.setProperty("--water-progress", progress.toFixed(4));
+    section.style.setProperty("--water-animation-offset", `${-progress.toFixed(4)}s`);
+  };
+
+  const requestRender = () => {
+    if (!raf) raf = window.requestAnimationFrame(render);
+  };
+
+  const handleWaterResize = () => {
+    metrics = updateWaterMetrics();
+    requestRender();
+  };
+
+  window.addEventListener("scroll", requestRender, { passive: true });
+  window.addEventListener("resize", handleWaterResize);
+  prefersReduced.addEventListener?.("change", handleWaterResize);
+  requestRender();
+};
 
 const setupFrameSequence = (section) => {
   const video = section.querySelector("[data-frame-video]");
@@ -278,3 +335,4 @@ const setupFrameSequence = (section) => {
 };
 
 frameSequences.forEach(setupFrameSequence);
+waterPinnedSections.forEach(setupWaterPinnedSection);

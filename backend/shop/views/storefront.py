@@ -37,7 +37,7 @@ PRODUCT_PAGE_DATA = {
     "water-fountain": {
         "category_terms": ("water", "fountain", "hydration"),
         "body_class": "detail-water",
-        "explode_class": "",
+        "explode_class": "water-explode-pinned",
         "category": "Water",
         "nav_label": "Water",
         "eyebrow": "Fresh hydration",
