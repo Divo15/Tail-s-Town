@@ -53,7 +53,9 @@
     <main class="product-detail">
       <nav class="product-rail" aria-label="Product page navigation">
         <a href="#page-top">Overview</a>
-        <a href="#live-use">Live use</a>
+        {% if not page.hide_live_use %}
+          <a href="#live-use">Live use</a>
+        {% endif %}
         {% if page.frame_sequence %}
           <a href="#motion-sequence">Motion</a>
         {% endif %}
@@ -104,10 +106,12 @@
         </div>
       </section>
 
-      <section class="live-product-scene" id="live-use" aria-label="{{ page.live_label }}">
-        <video data-live-video muted loop playsinline preload="none" poster="{% static page.live_poster %}" data-video-src="{% static page.live_video %}">
-        </video>
-      </section>
+      {% if not page.hide_live_use %}
+        <section class="live-product-scene" id="live-use" aria-label="{{ page.live_label }}">
+          <video data-live-video muted loop playsinline preload="none" poster="{% static page.live_poster %}" data-video-src="{% static page.live_video %}">
+          </video>
+        </section>
+      {% endif %}
 
       {% if page.frame_sequence %}
         <section
@@ -116,6 +120,7 @@
           aria-label="{{ page.frame_label }}"
           data-litter-animation
           data-frame-count="{{ page.frame_count }}"
+          data-source-frame-count="{{ page.source_frame_count|default:page.frame_count }}"
           data-desktop-frame-template="{{ static_prefix }}product-pages/litter-sequence/desktop/frame-__FRAME__.webp"
           data-mobile-frame-template="{{ static_prefix }}product-pages/litter-sequence/mobile/frame-__FRAME__.webp"
         >

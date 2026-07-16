@@ -89,7 +89,6 @@
 
       <section class="collection-intro" aria-labelledby="collection-title">
         <div class="section-heading">
-          <p class="eyebrow">PETKIT collection</p>
           <h2 id="collection-title">Everything your pet uses every day, made calmer.</h2>
         </div>
       </section>
@@ -113,7 +112,7 @@
             {% elif section.anchor_id == "hydration" %}
               <img src="{% static 'landing/tile-water-product.png' %}" alt="{{ section.product.name }}" loading="lazy" decoding="async" />
             {% else %}
-              <img src="{% static 'landing/tile-litter-product.webp' %}" alt="{{ section.product.name }}" loading="lazy" decoding="async" />
+              <img src="{% static 'landing/smart-cat-litter-box.jpeg' %}" alt="{{ section.product.name }}" loading="lazy" decoding="async" />
             {% endif %}
             <h2>
               {% if section.anchor_id == "feeders" %}
@@ -144,7 +143,7 @@
             </h2>
           </a>
           <a class="product-tile" id="litter" href="{% url 'store:litter_box_page' %}" aria-label="Open Litter Box product page">
-            <img src="{% static 'landing/tile-litter-product.webp' %}" alt="Rounded white enclosed litter box" loading="lazy" decoding="async" />
+            <img src="{% static 'landing/smart-cat-litter-box.jpeg' %}" alt="Rounded white enclosed litter box" loading="lazy" decoding="async" />
             <h2>
               <span>Litter</span>
               <span>Box</span>
@@ -180,14 +179,14 @@
                 {% elif section.anchor_id == "hydration" %}
                   <img src="{% static 'landing/tile-water-product.png' %}" alt="" />
                 {% else %}
-                  <img src="{% static 'landing/tile-litter-product.webp' %}" alt="" />
+                  <img src="{% static 'landing/smart-cat-litter-box.jpeg' %}" alt="" />
                 {% endif %}
               {% elif forloop.counter == 1 %}
                 <img src="{% static 'landing/tile-feeder-product.png' %}" alt="" />
               {% elif forloop.counter == 2 %}
                 <img src="{% static 'landing/tile-water-product.png' %}" alt="" />
               {% else %}
-                <img src="{% static 'landing/tile-litter-product.webp' %}" alt="" />
+                <img src="{% static 'landing/smart-cat-litter-box.jpeg' %}" alt="" />
               {% endif %}
             </span>
           {% empty %}
@@ -207,17 +206,12 @@
               <img src="{% static 'landing/tile-water-product.png' %}" alt="" />
             </span>
             <span class="bundle-product-dot litter-dot">
-              <img src="{% static 'landing/tile-litter-product.webp' %}" alt="" />
+              <img src="{% static 'landing/smart-cat-litter-box.jpeg' %}" alt="" />
             </span>
           {% endfor %}
         </div>
         <div class="bundle-copy">
-          <p class="eyebrow">Starter bundle</p>
           <h2 id="bundle-title">Build a calmer routine with feeding, water, and litter care together.</h2>
-          <p>
-            Featured products on this page now come straight from the admin catalog, so homepage
-            content updates when you add or edit live products.
-          </p>
         </div>
       </section>
     </main>

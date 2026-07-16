@@ -395,12 +395,23 @@ h1 span {
 }
 
 #feeders > img {
-  object-position: 65% 52%;
+  inset: 8%;
+  width: 84%;
+  height: 84%;
+  object-fit: contain;
+  object-position: center;
+  animation: none;
+  transform: scale(0.92);
 }
 
 #hydration > img {
-  object-position: 67% 52%;
-  animation-duration: 14s;
+  inset: 8%;
+  width: 84%;
+  height: 84%;
+  object-fit: contain;
+  object-position: center;
+  animation: none;
+  transform: scale(0.92);
 }
 
 #litter > img {
@@ -414,11 +425,11 @@ h1 span {
 }
 
 #feeders:hover > img {
-  transform: scale(1.24) translate3d(7%, -4%, 0);
+  transform: scale(0.99) translate3d(1.5%, -1.5%, 0);
 }
 
 #hydration:hover > img {
-  transform: scale(1.24) translate3d(5%, -5%, 0);
+  transform: scale(0.99) translate3d(1.5%, -1.5%, 0);
 }
 
 #litter:hover > img {
