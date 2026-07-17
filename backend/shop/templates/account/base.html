@@ -476,8 +476,6 @@
         background: linear-gradient(180deg, rgba(9, 33, 28, 0.02), rgba(9, 33, 28, 0.18)), url('{% static "landing/hero-cats-water-winter.webp" %}') center / cover no-repeat;
       }
       .account-auth .account-hero::after { background: linear-gradient(180deg, rgba(12, 37, 32, 0.02), rgba(12, 37, 32, 0.2)); }
-      .account-auth .auth-brand { display: inline-flex; width: fit-content; margin-bottom: clamp(1.3rem, 3vh, 2.35rem); }
-      .account-auth .auth-brand img { width: 118px; height: auto; }
       .account-auth .page-head { display: block; margin: 0 0 1.2rem; }
       .account-auth .page-head h1 { max-width: 10ch; margin: 0; color: #101916; font-size: clamp(2rem, 3.2vw, 3rem); line-height: 0.98; letter-spacing: -0.04em; text-wrap: balance; }
       .account-auth .page-head p { margin: 0.65rem 0 0; color: #4f5d58; font-size: 0.9rem; line-height: 1.5; }
@@ -513,7 +511,6 @@
       .auth-photo-caption { position: absolute; z-index: 2; left: 50%; bottom: 6%; transform: translateX(-50%); padding: 0.55rem 0.9rem; border-radius: 999px; background: #fff; color: #15201c; font-size: 0.75rem; font-weight: 800; white-space: nowrap; }
       .account-auth .registration-layout { min-height: min(760px, calc(100vh - clamp(2rem, 6vw, 5rem))); }
       .account-auth .registration-layout .account-panel { padding-top: 1.75rem; padding-bottom: 1.75rem; }
-      .account-auth .registration-layout .auth-brand { margin-bottom: 1rem; }
       .account-auth .registration-layout .page-head { margin-bottom: 0.8rem; }
       .account-auth .registration-layout .page-head h1 { font-size: clamp(1.85rem, 2.8vw, 2.65rem); }
       @media (max-width: 1000px) {
@@ -572,7 +569,6 @@
         .account-auth .account-layout, .account-auth .registration-layout { min-height: 100vh; display: flex; flex-direction: column; border-radius: 0; box-shadow: none; }
         .account-auth .account-panel { min-height: 100vh; padding: 2rem clamp(1.4rem, 7vw, 2.5rem); }
         .account-auth .account-hero { display: none; }
-        .account-auth .auth-brand { margin-bottom: 1.5rem; }
         .account-auth .page-head h1 { font-size: clamp(2rem, 11vw, 2.8rem); }
       }
       @media (prefers-reduced-motion: reduce) {
