@@ -2,6 +2,8 @@
 
 This is the working guide to the Tail's Town repository: what runs, where each component lives, how data moves, and how Git branches map to deployments.
 
+For a route-by-route inventory of visible UI components and their exact template, CSS, JavaScript, asset, view, service, and model paths, see `LIVE_WEBSITE_COMPONENT_MAP.md`.
+
 ## 1. Architecture
 
 Tail's Town is a Django e-commerce storefront:
