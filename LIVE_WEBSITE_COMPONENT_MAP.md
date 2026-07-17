@@ -195,7 +195,7 @@ All account pages extend `backend/shop/templates/account/base.html`. That file o
 | Password show/hide control | Inline script at bottom of `backend/shop/templates/account/base.html` | `[data-password-toggle]` buttons in login/register templates |
 | Sign-in form | `backend/shop/templates/account/login.html` | `account_login()` in `backend/shop/views/account.py`; form in `backend/shop/forms.py` |
 | Registration form | `backend/shop/templates/account/register.html` | `account_register()` in `backend/shop/views/account.py`; form in `backend/shop/forms.py` |
-| OAuth placeholders | `backend/shop/templates/account/_oauth_options.html` | Buttons are intentionally non-functional placeholders for future OAuth2 |
+| OAuth buttons | `backend/shop/templates/account/_oauth_options.html` | Forms post to `django-allauth` provider URLs under `/accounts/`; provider buttons are enabled by OAuth env vars in `backend/petkit_backend/settings.py` |
 | Auth photo panel | `.account-hero` in login/register templates | Background styling/asset in `backend/shop/templates/account/base.html` |
 | Auth switch link | `.auth-switch` in login/register templates | Django account routes |
 | Customer dashboard profile | `backend/shop/templates/account/dashboard.html` | `account_dashboard()`; `Customer` model |
@@ -244,7 +244,7 @@ All account pages extend `backend/shop/templates/account/base.html`. That file o
 | Feeder/water product-page layout or animation | `assets/product-pages/styles.css`, `assets/product-pages/script.js`, `backend/shop/templates/store/product_page.html` |
 | Litter frame animation | `assets/product-pages/litter-animation.js`, `litter-animation.css`, and `litter-sequence/` |
 | Login/register UI | `backend/shop/templates/account/login.html`, `register.html`, and `account/base.html` |
-| Future OAuth2 buttons | `backend/shop/templates/account/_oauth_options.html` plus new backend OAuth routes/views |
+| OAuth2 buttons | `backend/shop/templates/account/_oauth_options.html`, `backend/shop/adapters.py`, `backend/shop/context_processors.py`, and `backend/petkit_backend/settings.py` |
 | Generic product detail UI | `backend/shop/templates/store/product_detail.html`, `store/base.html` |
 | Cart UI or behavior | `cart_detail.html`, `backend/shop/views/cart.py`, `backend/shop/services/carts.py` |
 | Checkout UI or order creation | `checkout.html`, `backend/shop/views/checkout.py`, `backend/shop/services/checkout.py` |

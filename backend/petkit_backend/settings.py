@@ -87,6 +87,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shop',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.apple',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -97,6 +103,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
@@ -112,9 +119,15 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'shop.context_processors.oauth_providers',
             ],
         },
     },
+]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 WSGI_APPLICATION = 'petkit_backend.wsgi.application'
@@ -234,6 +247,83 @@ SECURE_HSTS_PRELOAD = env_bool("DJANGO_SECURE_HSTS_PRELOAD")
 LOGIN_URL = 'customer_account:login'
 LOGIN_REDIRECT_URL = 'customer_account:dashboard'
 LOGOUT_REDIRECT_URL = 'customer_account:login'
+
+ACCOUNT_LOGIN_METHODS = {"email"}
+ACCOUNT_SIGNUP_FIELDS = ["email*"]
+ACCOUNT_EMAIL_VERIFICATION = "none"
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
+ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
+ACCOUNT_LOGOUT_REDIRECT_URL = LOGOUT_REDIRECT_URL
+SOCIALACCOUNT_ADAPTER = "shop.adapters.CustomerSocialAccountAdapter"
+SOCIALACCOUNT_AUTO_SIGNUP = True
+SOCIALACCOUNT_EMAIL_REQUIRED = True
+SOCIALACCOUNT_EMAIL_VERIFICATION = "none"
+SOCIALACCOUNT_EMAIL_AUTHENTICATION_AUTO_CONNECT = True
+SOCIALACCOUNT_LOGIN_ON_GET = False
+SOCIALACCOUNT_STORE_TOKENS = False
+
+
+def oauth_app(client_id, secret, key="", app_settings=None):
+    app = {
+        "client_id": client_id,
+        "secret": secret,
+        "key": key,
+    }
+    if app_settings:
+        app["settings"] = app_settings
+    return app
+
+
+GOOGLE_OAUTH_CLIENT_ID = env_str("GOOGLE_OAUTH_CLIENT_ID")
+GOOGLE_OAUTH_CLIENT_SECRET = env_str("GOOGLE_OAUTH_CLIENT_SECRET")
+FACEBOOK_OAUTH_CLIENT_ID = env_str("FACEBOOK_OAUTH_CLIENT_ID")
+FACEBOOK_OAUTH_CLIENT_SECRET = env_str("FACEBOOK_OAUTH_CLIENT_SECRET")
+APPLE_OAUTH_CLIENT_ID = env_str("APPLE_OAUTH_CLIENT_ID")
+APPLE_OAUTH_KEY_ID = env_str("APPLE_OAUTH_KEY_ID")
+APPLE_OAUTH_TEAM_ID = env_str("APPLE_OAUTH_TEAM_ID")
+APPLE_OAUTH_PRIVATE_KEY = env_str("APPLE_OAUTH_PRIVATE_KEY")
+
+SOCIALACCOUNT_PROVIDERS = {}
+
+if GOOGLE_OAUTH_CLIENT_ID and GOOGLE_OAUTH_CLIENT_SECRET:
+    SOCIALACCOUNT_PROVIDERS["google"] = {
+        "APPS": [oauth_app(GOOGLE_OAUTH_CLIENT_ID, GOOGLE_OAUTH_CLIENT_SECRET)],
+        "SCOPE": ["profile", "email"],
+        "AUTH_PARAMS": {"access_type": "online"},
+        "OAUTH_PKCE_ENABLED": True,
+        "VERIFIED_EMAIL": True,
+        "EMAIL_AUTHENTICATION": True,
+    }
+
+if FACEBOOK_OAUTH_CLIENT_ID and FACEBOOK_OAUTH_CLIENT_SECRET:
+    SOCIALACCOUNT_PROVIDERS["facebook"] = {
+        "APPS": [oauth_app(FACEBOOK_OAUTH_CLIENT_ID, FACEBOOK_OAUTH_CLIENT_SECRET)],
+        "METHOD": "oauth2",
+        "SCOPE": ["email", "public_profile"],
+        "FIELDS": ["id", "email", "name", "first_name", "last_name", "picture"],
+        "VERIFIED_EMAIL": env_bool("FACEBOOK_OAUTH_VERIFIED_EMAIL", default=False),
+        "EMAIL_AUTHENTICATION": env_bool("FACEBOOK_OAUTH_VERIFIED_EMAIL", default=False),
+    }
+
+if APPLE_OAUTH_CLIENT_ID and APPLE_OAUTH_KEY_ID and APPLE_OAUTH_TEAM_ID and APPLE_OAUTH_PRIVATE_KEY:
+    SOCIALACCOUNT_PROVIDERS["apple"] = {
+        "APPS": [
+            oauth_app(
+                APPLE_OAUTH_CLIENT_ID,
+                APPLE_OAUTH_KEY_ID,
+                APPLE_OAUTH_TEAM_ID,
+                {"certificate_key": APPLE_OAUTH_PRIVATE_KEY.replace("\\n", "\n")},
+            )
+        ],
+        "VERIFIED_EMAIL": True,
+        "EMAIL_AUTHENTICATION": True,
+    }
+
+OAUTH_PROVIDER_STATUS = {
+    "apple": "apple" in SOCIALACCOUNT_PROVIDERS,
+    "facebook": "facebook" in SOCIALACCOUNT_PROVIDERS,
+    "google": "google" in SOCIALACCOUNT_PROVIDERS,
+}
 
 EMAIL_BACKEND = os.getenv(
     "EMAIL_BACKEND",

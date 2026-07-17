@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.tokens import default_token_generator
 from django.core import mail
 from django.test import TestCase
+from django.test import override_settings
 from django.urls import reverse
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
@@ -104,3 +105,32 @@ class PasswordResetSafetyTests(TestCase):
 
         self.assertRedirects(response, reverse("customer_account:password_reset_done"))
         self.assertEqual(len(mail.outbox), 0)
+
+
+class OAuthTemplateTests(TestCase):
+    @override_settings(
+        OAUTH_PROVIDER_STATUS={
+            "apple": False,
+            "facebook": False,
+            "google": True,
+        },
+        SOCIALACCOUNT_PROVIDERS={
+            "google": {
+                "APPS": [
+                    {
+                        "client_id": "test-client-id",
+                        "secret": "test-client-secret",
+                        "key": "",
+                    }
+                ],
+                "SCOPE": ["profile", "email"],
+            }
+        },
+    )
+    def test_configured_provider_button_posts_to_allauth(self):
+        response = self.client.get(reverse("customer_account:login"))
+
+        self.assertContains(response, 'action="/accounts/google/login/?process=login"')
+        self.assertContains(response, 'data-oauth-provider="google"')
+        self.assertContains(response, "Google OAuth is not configured yet", count=0)
+        self.assertContains(response, "Apple OAuth is not configured yet")

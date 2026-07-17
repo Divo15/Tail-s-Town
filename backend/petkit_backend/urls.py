@@ -27,6 +27,7 @@ urlpatterns = [
     path('', shop_views.home, name='home'),
     path('favicon.ico', RedirectView.as_view(url='/static/brand/favicon.ico', permanent=True)),
     path('admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),
     path('shop/', include((shop_urls.store_patterns, 'store'), namespace='store')),
     path('admin-panel/', RedirectView.as_view(url='/admin/', permanent=False)),
     path('admin-panel/<path:unused>', RedirectView.as_view(url='/admin/', permanent=False)),

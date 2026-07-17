@@ -104,7 +104,7 @@ def verify_email(request, uidb64, token):
         if not user.is_active:
             user.is_active = True
             user.save(update_fields=["is_active"])
-        login(request, user)
+        login(request, user, backend="django.contrib.auth.backends.ModelBackend")
         messages.success(request, "Email verified. You are signed in.")
         return redirect("customer_account:dashboard")
 

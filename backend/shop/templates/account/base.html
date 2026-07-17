@@ -480,9 +480,12 @@
       .account-auth .page-head h1 { max-width: 10ch; margin: 0; color: #101916; font-size: clamp(2rem, 3.2vw, 3rem); line-height: 0.98; letter-spacing: -0.04em; text-wrap: balance; }
       .account-auth .page-head p { margin: 0.65rem 0 0; color: #4f5d58; font-size: 0.9rem; line-height: 1.5; }
       .oauth-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+      .oauth-form { display: contents; }
       .oauth-button { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 999px; background: #f2f3f2; color: #111916; cursor: default; transition: background 180ms ease, transform 180ms ease; }
       .oauth-button svg { width: 17px; height: 17px; }
       .oauth-button:hover { background: #e8ebe9; transform: translateY(-1px); }
+      .oauth-button.is-disabled { opacity: 0.42; transform: none; }
+      .oauth-button.is-disabled:hover { background: #f2f3f2; transform: none; }
       .oauth-divider { display: flex; align-items: center; gap: 0.75rem; margin: 0.95rem 0; color: #5b6763; font-size: 0.75rem; font-weight: 700; }
       .oauth-divider::before, .oauth-divider::after { content: ""; height: 1px; flex: 1; background: #e4e8e6; }
       .account-auth .account-panel form, .account-auth .account-panel .fieldlist { gap: 0.65rem; }
