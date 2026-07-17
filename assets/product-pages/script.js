@@ -49,6 +49,9 @@ const ROTATION_INTERVAL = 9200;
 
 const setHeaderState = () => {
   header?.classList.toggle("is-solid", window.scrollY > 24);
+  const isFeederPage = document.body.classList.contains("detail-feeder");
+  const isAtPageBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 8;
+  header?.classList.toggle("is-rolled-up", isFeederPage && isAtPageBottom);
 };
 
 const syncHeaderHeight = () => {
@@ -128,7 +131,10 @@ const showToast = (message) => {
 };
 
 window.addEventListener("scroll", setHeaderState, { passive: true });
-window.addEventListener("resize", syncHeaderHeight);
+window.addEventListener("resize", () => {
+  syncHeaderHeight();
+  setHeaderState();
+});
 window.addEventListener("load", syncHeaderHeight, { once: true });
 setHeaderState();
 syncHeaderHeight();

@@ -55,9 +55,15 @@ a {
   padding: 18px clamp(18px, 4vw, 56px);
   color: #fff;
   transition:
+    transform 360ms cubic-bezier(0.25, 1, 0.5, 1),
     background 220ms ease,
     color 220ms ease,
     box-shadow 220ms ease;
+}
+
+.detail-feeder .site-header.is-rolled-up {
+  transform: translateY(calc(-100% - 8px));
+  pointer-events: none;
 }
 
 .site-header.is-solid {
