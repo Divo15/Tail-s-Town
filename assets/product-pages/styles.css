@@ -1475,7 +1475,7 @@ body.is-frame-sequence-active .product-rail {
 }
 
 .detail-water .layer-two {
-  --x: clamp(26px, 4.5vw, 69px);
+  --x: clamp(10px, 2vw, 28px);
   --y: clamp(-99px, -9.75vh, -65px);
 }
 
@@ -1485,7 +1485,7 @@ body.is-frame-sequence-active .product-rail {
 }
 
 .detail-water .layer-four {
-  --x: clamp(29px, 4.5vw, 74px);
+  --x: clamp(12px, 2.25vw, 32px);
   --y: clamp(63px, 9.75vh, 98px);
 }
 
