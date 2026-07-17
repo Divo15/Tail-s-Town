@@ -1412,6 +1412,18 @@ body.is-frame-sequence-active .product-rail {
   bottom: 22%;
 }
 
+.detail-feeder .explode-core {
+  animation: explodeCore 5.6s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+  animation-timeline: auto;
+  animation-range: normal;
+}
+
+.detail-feeder .explode-layer {
+  animation: explodeLayer 5.6s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+  animation-timeline: auto;
+  animation-range: normal;
+}
+
 @media (min-width: 901px) {
   .detail-feeder .exploded-product {
     height: calc(132svh - 160px);
