@@ -25,6 +25,7 @@ account_patterns = [
 
 store_patterns = [
     path("", views.store_product_list, name="product_list"),
+    path("bundles/", views.bundle_page, name="bundle_page"),
     path("products/<slug:slug>/", views.store_product_detail, name="product_detail"),
     path("cart/", views.cart_detail, name="cart_detail"),
     path("cart/add/<int:product_id>/", views.cart_add, name="cart_add"),

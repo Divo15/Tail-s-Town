@@ -21,7 +21,7 @@
           <a href="#hydration">Water</a>
           <a href="#litter">Litter</a>
         {% endfor %}
-        <a href="#bundles">Bundles</a>
+        <a href="/shop/bundles/">Bundles</a>
       </nav>
       <div class="header-actions">
         {% if request.user.is_authenticated %}
@@ -188,7 +188,7 @@
             Featured products on this page now come straight from the admin catalog, so homepage
             content updates when you add or edit live products.
           </p>
-          <a class="primary-action" href="{% url 'store:product_list' %}">Shop products</a>
+          <a class="primary-action" href="/shop/bundles/">Explore the collection</a>
         </div>
         <div class="bundle-panel" aria-label="Bundle value">
           <span>Store flow</span>

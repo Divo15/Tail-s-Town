@@ -39,6 +39,10 @@ def home(request):
     )
 
 
+def bundle_page(request):
+    return render(request, "storefront/bundles.html")
+
+
 def store_product_list(request):
     products = Product.objects.filter(is_active=True).select_related("category")
     categories = Category.objects.filter(products__is_active=True).distinct()
