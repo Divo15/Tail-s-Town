@@ -99,6 +99,36 @@
         color: var(--ink);
         transform: translateY(-1px);
       }
+      .nav .auth-prompt {
+        max-width: 22ch;
+        padding: 0;
+        border-radius: 0;
+        color: var(--ink-soft);
+        line-height: 1.2;
+        text-align: right;
+        text-wrap: balance;
+      }
+      .nav .auth-prompt:hover,
+      .nav .auth-prompt:focus-visible {
+        border-color: transparent;
+        background: transparent;
+        color: var(--maple);
+      }
+      .nav .nav-signup {
+        min-height: 34px;
+        padding: 0 1rem;
+        border-radius: 9px;
+        background: var(--maple);
+        color: #fff;
+        box-shadow: 0 10px 22px rgba(201, 52, 58, 0.34);
+      }
+      .nav .nav-signup:hover,
+      .nav .nav-signup:focus-visible {
+        border-color: transparent;
+        background: var(--maple);
+        color: #fff;
+        box-shadow: 0 12px 26px rgba(201, 52, 58, 0.38);
+      }
       .account-quick-actions {
         display: flex;
         align-items: center;
@@ -233,9 +263,9 @@
         justify-content: center;
         padding: 0 0.95rem;
         border-radius: 9px;
-        background: #7357e6;
+        background: var(--maple);
         color: #fff;
-        box-shadow: 0 6px 8px rgba(115, 87, 230, 0.28);
+        box-shadow: 0 6px 8px rgba(201, 52, 58, 0.28);
         font-size: 0.78rem;
         font-weight: 800;
         text-decoration: none;
@@ -243,9 +273,9 @@
       }
       .auth-switch a:hover,
       .auth-switch a:focus-visible {
-        background: #6247d2;
+        background: #b62d33;
         color: #fff;
-        box-shadow: 0 7px 8px rgba(98, 71, 210, 0.32);
+        box-shadow: 0 7px 8px rgba(182, 45, 51, 0.32);
         transform: translateY(-1px);
       }
       label {
@@ -453,6 +483,15 @@
           padding: 0 0.8rem;
           font-size: 0.8rem;
         }
+        .nav .auth-prompt {
+          max-width: 17ch;
+          padding: 0;
+          font-size: 0.75rem;
+        }
+        .nav .nav-signup {
+          min-height: 32px;
+          padding: 0 0.8rem;
+        }
         .top-strip {
           gap: 0.8rem;
           font-size: 0.68rem;
@@ -480,8 +519,8 @@
                 <a href="{% url 'customer_account:dashboard' %}">Account</a>
                 <a href="{% url 'customer_account:logout' %}">Sign out</a>
               {% else %}
-                <a href="{% url 'customer_account:login' %}">Sign in</a>
-                <a href="{% url 'customer_account:register' %}">Register</a>
+                <a class="auth-prompt" href="{% url 'customer_account:login' %}">Do you already have an account?</a>
+                <a class="nav-signup" href="{% url 'customer_account:register' %}">Sign Up</a>
               {% endif %}
             </nav>
             <a class="icon-button" href="{% url 'store:cart_detail' %}" aria-label="Open cart">
