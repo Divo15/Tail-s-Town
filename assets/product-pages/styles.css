@@ -1412,6 +1412,31 @@ body.is-frame-sequence-active .product-rail {
   bottom: 22%;
 }
 
+@media (min-width: 901px) {
+  .detail-feeder .exploded-product {
+    height: calc(100svh - 160px);
+    min-height: calc(100svh - 160px);
+    align-items: center;
+    padding-top: clamp(28px, 5vh, 48px);
+    padding-bottom: clamp(28px, 5vh, 48px);
+  }
+
+  .detail-feeder .explode-copy,
+  .detail-feeder .explode-stage {
+    position: relative;
+    top: auto;
+  }
+
+  .detail-feeder .explode-copy {
+    padding-top: 0;
+  }
+
+  .detail-feeder .explode-stage {
+    height: 100%;
+    min-height: 100%;
+  }
+}
+
 .water-explode-pinned {
   min-height: calc(var(--water-stage-height, 100svh) + var(--water-scroll-distance, 1320px));
   overflow: visible;
