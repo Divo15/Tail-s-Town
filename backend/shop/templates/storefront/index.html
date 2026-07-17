@@ -27,7 +27,7 @@
           <a class="auth-link" href="{% url 'customer_account:dashboard' %}">Account</a>
           <a class="auth-link auth-link-secondary" href="{% url 'customer_account:logout' %}">Sign out</a>
         {% else %}
-          <a class="auth-prompt" href="{% url 'customer_account:login' %}">Do you already have an account?</a>
+          <a class="auth-prompt" href="{% url 'customer_account:login' %}">Don't have an account?</a>
           <a class="auth-link auth-link-secondary" href="{% url 'customer_account:register' %}">Sign Up</a>
         {% endif %}
         <a class="icon-button" href="{% url 'store:cart_detail' %}" aria-label="Open cart">
