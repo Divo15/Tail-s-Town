@@ -218,6 +218,23 @@
         gap: 0.65rem;
         flex-wrap: wrap;
       }
+      .auth-switch {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        color: color-mix(in srgb, var(--ink), transparent 28%);
+        font-size: 0.86rem;
+        font-weight: 800;
+      }
+      .auth-switch a {
+        color: var(--ink);
+        text-decoration: underline;
+        text-underline-offset: 0.18em;
+      }
+      .auth-switch a:hover,
+      .auth-switch a:focus-visible {
+        color: var(--teal-dark);
+      }
       label {
         display: grid;
         gap: 0.35rem;

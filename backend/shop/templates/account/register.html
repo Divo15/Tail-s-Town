@@ -56,7 +56,7 @@
 
         <div class="actions" style="margin-top:0.2rem;">
           <button class="button" type="submit">Create account</button>
-          <a class="button secondary" href="{% url 'customer_account:login' %}">Sign in</a>
+          <span class="auth-switch">Already have an account? <a href="{% url 'customer_account:login' %}">Sign in</a></span>
         </div>
       </form>
     </section>
