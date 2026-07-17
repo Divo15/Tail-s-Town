@@ -866,7 +866,8 @@ h1 span {
 }
 
 .detail-water .product-detail {
-  overflow: visible;
+  overflow-x: clip;
+  overflow-y: visible;
 }
 
 .product-rail {
@@ -1468,7 +1469,7 @@ body.is-frame-sequence-active .product-rail {
 }
 
 .detail-water .layer-two {
-  --x: clamp(190px, 24vw, 335px);
+  --x: clamp(120px, 15vw, 220px);
   --y: clamp(-168px, -16vh, -104px);
 }
 
@@ -1478,7 +1479,7 @@ body.is-frame-sequence-active .product-rail {
 }
 
 .detail-water .layer-four {
-  --x: clamp(190px, 24vw, 340px);
+  --x: clamp(125px, 15vw, 225px);
   --y: clamp(112px, 16vh, 166px);
 }
 
