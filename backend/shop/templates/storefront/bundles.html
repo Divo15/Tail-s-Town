@@ -1,0 +1,162 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Explore the Tail's Town collection of smart feeding, fresh water, and cleaner litter care."
+    />
+    <title>The Tail's Town Collection | Smart Pet Care Bundles</title>
+    <link rel="icon" href="{% static 'brand/favicon.ico' %}" sizes="any" />
+    <link rel="icon" type="image/png" sizes="512x512" href="{% static 'brand/favicon.png' %}" />
+    <link rel="apple-touch-icon" href="{% static 'brand/apple-touch-icon.png' %}" />
+    <link rel="preload" as="image" href="{% static 'bundles/collection.jpeg' %}" fetchpriority="high" />
+    <link rel="stylesheet" href="{% static 'site/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'site/bundles.css' %}" />
+  </head>
+  <body class="bundle-page">
+    <header class="site-header" aria-label="Main navigation">
+      <a class="brand" href="{% url 'home' %}" aria-label="Tail's Town home">
+        <img src="{% static 'product-pages/assets/tails-town-header-logo.webp' %}" alt="Tail's Town" decoding="async" />
+      </a>
+      <nav class="nav-links" aria-label="Product navigation">
+        <a href="{% url 'store:smart_feeder_page' %}">Feeders</a>
+        <a href="{% url 'store:water_fountain_page' %}">Water</a>
+        <a href="{% url 'store:litter_box_page' %}">Litter</a>
+        <a href="{% url 'store:bundle_page' %}" aria-current="page">Bundles</a>
+      </nav>
+      <div class="header-actions">
+        {% if request.user.is_authenticated %}
+          <a class="auth-link" href="{% url 'customer_account:dashboard' %}">Account</a>
+          <a class="auth-link auth-link-secondary" href="{% url 'customer_account:logout' %}">Sign out</a>
+        {% else %}
+          <a class="auth-prompt" href="{% url 'customer_account:login' %}">Don't have an account?</a>
+          <a class="auth-link auth-link-secondary" href="{% url 'customer_account:register' %}">Sign Up</a>
+        {% endif %}
+        <a class="icon-button" href="{% url 'store:cart_detail' %}" aria-label="Open cart">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.3 7h14.9l-1.5 8.7H8.1L6.3 7Zm0 0-.5-2.5H3.5M9.3 19.5a1.3 1.3 0 1 0 0 .1Zm8.4 0a1.3 1.3 0 1 0 0 .1Z"/></svg>
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="bundle-hero" aria-label="The Tail's Town Collection">
+        <div
+          class="bundle-hero-backdrop"
+          style="background-image: url('{% static 'bundles/collection.jpeg' %}')"
+          aria-hidden="true"
+        ></div>
+        <div class="bundle-hero-shade" aria-hidden="true"></div>
+        <img
+          class="bundle-hero-poster"
+          src="{% static 'bundles/collection.jpeg' %}"
+          alt="The Tail's Town Collection with smart feeder, water fountain, and litter box in a cozy winter home"
+          width="1122"
+          height="1402"
+          fetchpriority="high"
+          decoding="async"
+        />
+        <a class="bundle-scroll-cue" href="#collection">Explore the collection</a>
+      </section>
+
+      <section class="bundle-intro" id="collection" aria-labelledby="bundle-intro-title">
+        <div>
+          <p class="bundle-intro-mark">The complete Tail's Town routine</p>
+          <h1 id="bundle-intro-title">One home.<br />Three calmer rituals.</h1>
+        </div>
+        <div class="bundle-intro-copy">
+          <p>
+            Bring feeding, hydration, and litter care into one thoughtful collection—designed to feel at home with pets and people.
+          </p>
+          <nav class="bundle-jump-links" aria-label="Collection products">
+            <a href="#smart-feeding">Smart feeding</a>
+            <a href="#fresh-water">Fresh water</a>
+            <a href="#cleaner-litter">Cleaner litter</a>
+          </nav>
+        </div>
+      </section>
+
+      <section class="bundle-story bundle-story-dark" id="smart-feeding" aria-labelledby="feeding-title">
+        <div class="bundle-story-inner">
+          <div class="bundle-story-copy">
+            <p class="bundle-story-label">For dependable mealtimes</p>
+            <h2 id="feeding-title">Feed them.<br />Watch them.<br /><span>Love them.</span></h2>
+            <p>
+              Schedule portions with confidence and check in through the built-in camera, whether you are in the next room or away from home.
+            </p>
+            <a class="bundle-product-link" href="{% url 'store:smart_feeder_page' %}">Explore the Smart Feeder</a>
+          </div>
+          <a class="bundle-story-image" href="{% url 'store:smart_feeder_page' %}" aria-label="Explore the Tail's Town Smart Feeder">
+            <img
+              src="{% static 'bundles/smart-feeder.jpeg' %}"
+              alt="Tail's Town smart feeder with a dog, scheduled meal, portion control, and built-in camera details"
+              width="1122"
+              height="1402"
+              loading="lazy"
+              decoding="async"
+            />
+          </a>
+        </div>
+      </section>
+
+      <section class="bundle-story bundle-story-light bundle-story-reversed" id="fresh-water" aria-labelledby="water-title">
+        <div class="bundle-story-inner">
+          <div class="bundle-story-copy">
+            <p class="bundle-story-label">For everyday hydration</p>
+            <h2 id="water-title">Fresh water.<br /><span>Happy pets.</span></h2>
+            <p>
+              A quiet, generous fountain keeps fresh water ready throughout the day, with a simple shape made for easy filling and cleaning.
+            </p>
+            <a class="bundle-product-link" href="{% url 'store:water_fountain_page' %}">Explore the Water Fountain</a>
+          </div>
+          <a class="bundle-story-image" href="{% url 'store:water_fountain_page' %}" aria-label="Explore the Tail's Town Water Fountain">
+            <img
+              src="{% static 'bundles/water-fountain.jpeg' %}"
+              alt="Tail's Town water fountain with a cat and quiet-flow, capacity, and daily-use details"
+              width="1122"
+              height="1402"
+              loading="lazy"
+              decoding="async"
+            />
+          </a>
+        </div>
+      </section>
+
+      <section class="bundle-story bundle-story-dark" id="cleaner-litter" aria-labelledby="litter-title">
+        <div class="bundle-story-inner">
+          <div class="bundle-story-copy">
+            <p class="bundle-story-label">For fresher shared spaces</p>
+            <h2 id="litter-title">Cleaner litter.<br /><span>Less mess.</span></h2>
+            <p>
+              Automatic cleaning and odor-conscious care help the litter corner feel calmer, fresher, and more comfortable every day.
+            </p>
+            <a class="bundle-product-link" href="{% url 'store:litter_box_page' %}">Explore the Litter Box</a>
+          </div>
+          <a class="bundle-story-image" href="{% url 'store:litter_box_page' %}" aria-label="Explore the Tail's Town Litter Box">
+            <img
+              src="{% static 'bundles/litter-box.jpeg' %}"
+              alt="Tail's Town smart litter box with a cat and automatic cleaning, odor control, and safer-space details"
+              width="1122"
+              height="1402"
+              loading="lazy"
+              decoding="async"
+            />
+          </a>
+        </div>
+      </section>
+
+      <section class="bundle-closing" aria-labelledby="bundle-closing-title">
+        <p>Made to work beautifully together</p>
+        <h2 id="bundle-closing-title">A calmer routine starts with the whole home in mind.</h2>
+        <div class="bundle-closing-actions">
+          <a class="bundle-product-link" href="{% url 'store:smart_feeder_page' %}">Start with feeding</a>
+          <a class="bundle-home-link" href="{% url 'home' %}">Return home</a>
+        </div>
+      </section>
+    </main>
+
+    <script src="{% static 'site/script.js' %}"></script>
+  </body>
+</html>

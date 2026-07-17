@@ -150,6 +150,10 @@ def home(request):
     )
 
 
+def bundle_page(request):
+    return render(request, "storefront/bundles.html")
+
+
 def store_product_detail(request, slug):
     product = get_object_or_404(Product.objects.select_related("category"), slug=slug, is_active=True)
     related_products = Product.objects.filter(is_active=True).select_related("category").exclude(pk=product.pk)

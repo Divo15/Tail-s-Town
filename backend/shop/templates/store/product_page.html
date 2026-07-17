@@ -37,7 +37,7 @@
         <a href="{% url 'store:smart_feeder_page' %}">Feeders</a>
         <a href="{% url 'store:water_fountain_page' %}">Water</a>
         <a href="{% url 'store:litter_box_page' %}">Litter</a>
-        <a href="{% url 'home' %}#bundles">Bundles</a>
+        <a href="{% url 'store:bundle_page' %}">Bundles</a>
       </nav>
       <div class="header-actions">
         {% if request.user.is_authenticated %}

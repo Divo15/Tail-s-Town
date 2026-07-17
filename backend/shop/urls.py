@@ -26,6 +26,7 @@ account_patterns = [
 
 store_patterns = [
     path("", RedirectView.as_view(pattern_name="home", permanent=False), name="product_list"),
+    path("bundles/", views.bundle_page, name="bundle_page"),
     path("smart-feeder/", views.store_product_page, {"product_type": "smart-feeder"}, name="smart_feeder_page"),
     path("water-fountain/", views.store_product_page, {"product_type": "water-fountain"}, name="water_fountain_page"),
     path("litter-box/", views.store_product_page, {"product_type": "litter-box"}, name="litter_box_page"),

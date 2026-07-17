@@ -34,6 +34,7 @@ Browser URL
 |---|---|---|---|---|
 | `/` | Homepage/storefront | `backend/shop/views/storefront.py` → `home` | `backend/shop/templates/storefront/index.html` | `assets/site/styles.css`, `assets/site/script.js` |
 | `/shop/` | Redirect to homepage | `backend/shop/urls.py` | None | None |
+| `/shop/bundles/` | Tail's Town bundle collection | `backend/shop/views/storefront.py` → `bundle_page` | `backend/shop/templates/storefront/bundles.html` | `assets/site/styles.css`, `assets/site/bundles.css`, `assets/site/script.js` |
 | `/shop/smart-feeder/` | Designed Smart Feeder page | `backend/shop/views/storefront.py` → `store_product_page` | `backend/shop/templates/store/product_page.html` | `assets/product-pages/styles.css`, `assets/product-pages/script.js` |
 | `/shop/water-fountain/` | Designed Water Fountain page | `backend/shop/views/storefront.py` → `store_product_page` | `backend/shop/templates/store/product_page.html` | `assets/product-pages/styles.css`, `assets/product-pages/script.js` |
 | `/shop/litter-box/` | Designed Litter Box page | `backend/shop/views/storefront.py` → `store_product_page` | `backend/shop/templates/store/product_page.html` | Product-page files plus `assets/product-pages/litter-animation.css` and `assets/product-pages/litter-animation.js` |
@@ -83,6 +84,23 @@ Category + Product rows
   -> homepage_sections
   -> product/category tiles in storefront/index.html
 ```
+
+## Bundle collection page component map
+
+Main markup: `backend/shop/templates/storefront/bundles.html`
+
+Page-specific styles: `assets/site/bundles.css`
+
+Shared landing-page styles and header behavior: `assets/site/styles.css`, `assets/site/script.js`
+
+| Visible component | Template location / selector | Asset owner |
+|---|---|---|
+| Collection poster hero | `.bundle-hero`, `.bundle-hero-poster` | `assets/bundles/collection.jpeg` |
+| Collection introduction and jump links | `.bundle-intro`, `.bundle-jump-links` | Bundle template copy |
+| Smart Feeder story | `#smart-feeding` | `assets/bundles/smart-feeder.jpeg` |
+| Water Fountain story | `#fresh-water` | `assets/bundles/water-fountain.jpeg` |
+| Litter Box story | `#cleaner-litter` | `assets/bundles/litter-box.jpeg` |
+| Closing collection CTA | `.bundle-closing` | Links to the designed product pages and homepage |
 
 ## Designed product-page component map
 
@@ -230,6 +248,7 @@ All account pages extend `backend/shop/templates/account/base.html`. That file o
 | `assets/brand/` | Global logo/favicon/app icons |
 | `assets/hero/` | Homepage/store-base hero imagery |
 | `assets/landing/` | Homepage product tiles, bundles, and lifestyle scenes |
+| `assets/bundles/` | Dedicated bundle collection poster and product campaign images |
 | `assets/products/` | General product imagery |
 | `assets/sections/` | Store/order-success supporting imagery |
 | `assets/product-pages/` | Designed product-page CSS, JavaScript, videos, product renders, and animation frames |
@@ -240,6 +259,7 @@ All account pages extend `backend/shop/templates/account/base.html`. That file o
 | Requested change | Start here |
 |---|---|
 | Homepage navigation, hero, product tiles, bundles | `backend/shop/templates/storefront/index.html`, then `assets/site/styles.css` and `assets/site/script.js` |
+| Dedicated bundle collection page | `backend/shop/templates/storefront/bundles.html`, `assets/site/bundles.css`, `assets/bundles/`, and the `bundle_page` route/view |
 | Feeder/water/litter page copy or component labels | `PRODUCT_PAGE_DATA` in `backend/shop/views/storefront.py` |
 | Feeder/water product-page layout or animation | `assets/product-pages/styles.css`, `assets/product-pages/script.js`, `backend/shop/templates/store/product_page.html` |
 | Litter frame animation | `assets/product-pages/litter-animation.js`, `litter-animation.css`, and `litter-sequence/` |
