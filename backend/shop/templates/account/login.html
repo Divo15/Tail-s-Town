@@ -1,65 +1,59 @@
 {% extends "account/base.html" %}
+{% load static %}
 {% block title %}Customer Sign In{% endblock %}
+{% block body_class %}account-auth{% endblock %}
 {% block content %}
   <div class="account-layout">
-    <section class="account-hero">
-      <div class="account-hero-copy">
-        <p class="eyebrow">Customer account</p>
-        <h1>Sign in and return to your order flow without starting over.</h1>
-        <span class="account-copy-spacer" aria-hidden="true"></span>
-        <ul class="account-hero-points" aria-label="Account benefits">
-          <li>Cart continuity across your account session</li>
-          <li>Order visibility after checkout</li>
-          <li>Saved customer details for faster repeat purchases</li>
-        </ul>
-      </div>
-    </section>
-
     <section class="account-panel">
+      <a class="auth-brand" href="/" aria-label="Tails Town home">
+        <img src="{% static 'brand/logo.webp' %}" alt="Tails Town">
+      </a>
       <div class="page-head">
         <div>
-          <span class="account-section-label">Secure customer access</span>
-          <h1>Customer sign in</h1>
-          <p>Use the same email address you registered with.</p>
+          <h1>Welcome back</h1>
+          <p>Sign in to continue caring for your pets.</p>
         </div>
       </div>
+
+      {% include "account/_oauth_options.html" %}
 
       <form method="post" novalidate>
         {% csrf_token %}
         {% if form.non_field_errors %}
-          <div class="messages">
-            {% for error in form.non_field_errors %}<div class="message">{{ error }}</div>{% endfor %}
+          <div class="form-error" role="alert">
+            {% for error in form.non_field_errors %}<div>{{ error }}</div>{% endfor %}
           </div>
         {% endif %}
 
         <div class="fieldlist">
           <label for="{{ form.username.id_for_label }}">
-            Email
+            <span class="visually-hidden">Email</span>
             {{ form.username }}
-            {% for error in form.username.errors %}<span class="muted" style="color:#9d3024;">{{ error }}</span>{% endfor %}
+            {% for error in form.username.errors %}<span class="field-error">{{ error }}</span>{% endfor %}
           </label>
 
           <label for="{{ form.password.id_for_label }}">
-            Password
-            {{ form.password }}
-            {% for error in form.password.errors %}<span class="muted" style="color:#9d3024;">{{ error }}</span>{% endfor %}
+            <span class="visually-hidden">Password</span>
+            <span class="password-control">
+              {{ form.password }}
+              <button class="password-toggle" type="button" data-password-toggle aria-label="Show password" aria-pressed="false">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M2.5 12s3.4-5 9.5-5 9.5 5 9.5 5-3.4 5-9.5 5-9.5-5-9.5-5Z"/><circle cx="12" cy="12" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+              </button>
+            </span>
+            {% for error in form.password.errors %}<span class="field-error">{{ error }}</span>{% endfor %}
           </label>
         </div>
 
-        <div class="actions" style="margin-top:-0.25rem;">
-          <a class="muted" href="{% url 'customer_account:password_reset' %}">Forgot your password?</a>
-        </div>
-
-        <div class="auth-support">
-          <strong>Before you sign in</strong>
-          <span>Your cart and order history stay attached to your customer account once you sign in. If you registered recently, verify your email first.</span>
-        </div>
-
-        <div class="actions" style="margin-top:0.2rem;">
-          <button class="button" type="submit">Sign in</button>
-          <span class="auth-switch">Don't have an account? <a href="{% url 'customer_account:register' %}">Sign up</a></span>
-        </div>
+        <a class="forgot-link" href="{% url 'customer_account:password_reset' %}">Forgot password?</a>
+        <button class="button auth-submit" type="submit">Sign in</button>
       </form>
+      <span class="auth-switch">Don't have an account? <a href="{% url 'customer_account:register' %}">Sign up</a></span>
+    </section>
+
+    <section class="account-hero" aria-label="Tails Town smart pet care">
+      <div class="auth-photo-note note-one"><span><strong>Smart hydration</strong>Fresh water, always ready</span></div>
+      <div class="auth-photo-note note-two"><span><strong>Made for pets</strong>Thoughtful care at home</span></div>
+      <span class="auth-photo-caption">Happier pets start here</span>
     </section>
   </div>
 {% endblock %}

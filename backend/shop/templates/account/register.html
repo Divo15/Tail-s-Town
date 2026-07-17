@@ -1,64 +1,77 @@
 {% extends "account/base.html" %}
+{% load static %}
 {% block title %}Create Account{% endblock %}
+{% block body_class %}account-auth{% endblock %}
 {% block content %}
-  <div class="account-layout">
-    <section class="account-hero">
-      <div class="account-hero-copy">
-        <p class="eyebrow">Join PETKIT</p>
-        <h1>Create your customer account.</h1>
-        <p>Manage your profile, access order history, and keep support details in one place.</p>
-      </div>
-    </section>
-
+  <div class="account-layout registration-layout">
     <section class="account-panel">
+      <a class="auth-brand" href="/" aria-label="Tails Town home">
+        <img src="{% static 'brand/logo.webp' %}" alt="Tails Town">
+      </a>
       <div class="page-head">
         <div>
-          <h1>Create account</h1>
-          <p>Set up your customer profile and login.</p>
+          <h1>Create your account</h1>
+          <p>Join Tails Town and make everyday pet care easier.</p>
         </div>
       </div>
+
+      {% include "account/_oauth_options.html" %}
 
       <form method="post" novalidate>
         {% csrf_token %}
         {% if form.non_field_errors %}
-          <div class="messages">
-            {% for error in form.non_field_errors %}<div class="message">{{ error }}</div>{% endfor %}
+          <div class="form-error" role="alert">
+            {% for error in form.non_field_errors %}<div>{{ error }}</div>{% endfor %}
           </div>
         {% endif %}
 
         <div class="fieldlist">
-          <label for="{{ form.email.id_for_label }}">
-            Email
-            {{ form.email }}
-            {% for error in form.email.errors %}<span class="muted" style="color:#9d3024;">{{ error }}</span>{% endfor %}
-          </label>
           <label for="{{ form.full_name.id_for_label }}">
-            Full name
+            <span class="visually-hidden">Full name</span>
             {{ form.full_name }}
-            {% for error in form.full_name.errors %}<span class="muted" style="color:#9d3024;">{{ error }}</span>{% endfor %}
+            {% for error in form.full_name.errors %}<span class="field-error">{{ error }}</span>{% endfor %}
+          </label>
+          <label for="{{ form.email.id_for_label }}">
+            <span class="visually-hidden">Email</span>
+            {{ form.email }}
+            {% for error in form.email.errors %}<span class="field-error">{{ error }}</span>{% endfor %}
           </label>
           <label for="{{ form.phone.id_for_label }}">
-            Phone
+            <span class="visually-hidden">Phone</span>
             {{ form.phone }}
-            {% for error in form.phone.errors %}<span class="muted" style="color:#9d3024;">{{ error }}</span>{% endfor %}
+            {% for error in form.phone.errors %}<span class="field-error">{{ error }}</span>{% endfor %}
           </label>
           <label for="{{ form.password1.id_for_label }}">
-            Password
-            {{ form.password1 }}
-            {% for error in form.password1.errors %}<span class="muted" style="color:#9d3024;">{{ error }}</span>{% endfor %}
+            <span class="visually-hidden">Password</span>
+            <span class="password-control">
+              {{ form.password1 }}
+              <button class="password-toggle" type="button" data-password-toggle aria-label="Show password" aria-pressed="false">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M2.5 12s3.4-5 9.5-5 9.5 5 9.5 5-3.4 5-9.5 5-9.5-5-9.5-5Z"/><circle cx="12" cy="12" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+              </button>
+            </span>
+            {% for error in form.password1.errors %}<span class="field-error">{{ error }}</span>{% endfor %}
           </label>
           <label for="{{ form.password2.id_for_label }}">
-            Confirm password
-            {{ form.password2 }}
-            {% for error in form.password2.errors %}<span class="muted" style="color:#9d3024;">{{ error }}</span>{% endfor %}
+            <span class="visually-hidden">Confirm password</span>
+            <span class="password-control">
+              {{ form.password2 }}
+              <button class="password-toggle" type="button" data-password-toggle aria-label="Show password" aria-pressed="false">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M2.5 12s3.4-5 9.5-5 9.5 5 9.5 5-3.4 5-9.5 5-9.5-5-9.5-5Z"/><circle cx="12" cy="12" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+              </button>
+            </span>
+            {% for error in form.password2.errors %}<span class="field-error">{{ error }}</span>{% endfor %}
           </label>
         </div>
 
-        <div class="actions" style="margin-top:0.2rem;">
-          <button class="button" type="submit">Create account</button>
-          <span class="auth-switch">Already have an account? <a href="{% url 'customer_account:login' %}">Sign in</a></span>
-        </div>
+        <button class="button auth-submit" type="submit">Create account</button>
       </form>
+      <span class="auth-switch">Already have an account? <a href="{% url 'customer_account:login' %}">Sign in</a></span>
+    </section>
+
+    <section class="account-hero" aria-label="Tails Town smart pet care">
+      <div class="auth-photo-note note-one"><span><strong>Smart hydration</strong>Fresh water, always ready</span></div>
+      <div class="auth-photo-note note-two"><span><strong>Made for pets</strong>Thoughtful care at home</span></div>
+      <span class="auth-photo-caption">Happier pets start here</span>
     </section>
   </div>
 {% endblock %}

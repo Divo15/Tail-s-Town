@@ -35,6 +35,18 @@ class CustomerRegistrationForm(forms.Form):
     password1 = forms.CharField(widget=forms.PasswordInput)
     password2 = forms.CharField(widget=forms.PasswordInput)
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        field_attributes = {
+            "email": {"placeholder": "Email", "autocomplete": "email"},
+            "full_name": {"placeholder": "Full name", "autocomplete": "name"},
+            "phone": {"placeholder": "Phone (optional)", "autocomplete": "tel"},
+            "password1": {"placeholder": "Password", "autocomplete": "new-password"},
+            "password2": {"placeholder": "Confirm password", "autocomplete": "new-password"},
+        }
+        for field_name, attributes in field_attributes.items():
+            self.fields[field_name].widget.attrs.update(attributes)
+
     def clean_email(self):
         email = self.cleaned_data["email"].strip().lower()
         if User.objects.filter(username=email).exists() or User.objects.filter(email=email).exists():
@@ -77,6 +89,12 @@ class CustomerAuthenticationForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["username"].label = "Email"
+        self.fields["username"].widget.attrs.update(
+            {"placeholder": "Email", "autocomplete": "email"}
+        )
+        self.fields["password"].widget.attrs.update(
+            {"placeholder": "Password", "autocomplete": "current-password"}
+        )
 
     def clean(self):
         username = self.cleaned_data.get("username")

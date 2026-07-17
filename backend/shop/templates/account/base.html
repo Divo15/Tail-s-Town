@@ -451,6 +451,71 @@
         color: var(--ink);
         font-size: 0.96rem;
       }
+      /* Reference-inspired split authentication surface. */
+      .visually-hidden { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important; }
+      body.account-auth {
+        min-height: 100vh;
+        background: linear-gradient(rgba(9, 22, 20, 0.46), rgba(9, 22, 20, 0.46)), url('{% static "landing/hero-cats-water-winter.webp" %}') center / cover fixed no-repeat;
+      }
+      .account-auth .top-strip, .account-auth .header { display: none; }
+      .account-auth .shell { min-height: 100vh; display: grid; place-items: center; padding: clamp(0.75rem, 2.5vh, 1.5rem) clamp(1rem, 4vw, 3.25rem); }
+      .account-auth .content { width: min(1120px, 100%); margin: 0; padding: 0; }
+      .account-auth .content > .messages { position: fixed; z-index: 40; top: 1rem; left: 50%; width: min(560px, calc(100% - 2rem)); transform: translateX(-50%); }
+      .account-auth .account-layout {
+        min-height: min(720px, calc(100vh - clamp(2rem, 8vw, 6.5rem)));
+        display: grid; grid-template-columns: minmax(360px, 0.78fr) minmax(0, 1.22fr); gap: 0; overflow: hidden;
+        border-radius: 16px; background: #fff; box-shadow: 0 24px 64px rgba(4, 18, 16, 0.28);
+      }
+      .account-auth .account-panel, .account-auth .account-hero { min-width: 0; min-height: 100%; border: 0; border-radius: 0; box-shadow: none; }
+      .account-auth .account-panel {
+        grid-column: 1; grid-row: 1; display: flex; flex-direction: column; justify-content: center;
+        padding: clamp(2rem, 4vw, 4.25rem); background: #fff;
+      }
+      .account-auth .account-hero {
+        grid-column: 2; grid-row: 1; position: relative; margin: 8px 8px 8px 0; overflow: hidden; border-radius: 14px;
+        background: linear-gradient(180deg, rgba(9, 33, 28, 0.02), rgba(9, 33, 28, 0.18)), url('{% static "landing/hero-cats-water-winter.webp" %}') center / cover no-repeat;
+      }
+      .account-auth .account-hero::after { background: linear-gradient(180deg, rgba(12, 37, 32, 0.02), rgba(12, 37, 32, 0.2)); }
+      .account-auth .auth-brand { display: inline-flex; width: fit-content; margin-bottom: clamp(1.3rem, 3vh, 2.35rem); }
+      .account-auth .auth-brand img { width: 118px; height: auto; }
+      .account-auth .page-head { display: block; margin: 0 0 1.2rem; }
+      .account-auth .page-head h1 { max-width: 10ch; margin: 0; color: #101916; font-size: clamp(2rem, 3.2vw, 3rem); line-height: 0.98; letter-spacing: -0.04em; text-wrap: balance; }
+      .account-auth .page-head p { margin: 0.65rem 0 0; color: #4f5d58; font-size: 0.9rem; line-height: 1.5; }
+      .oauth-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+      .oauth-button { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 999px; background: #f2f3f2; color: #111916; cursor: default; transition: background 180ms ease, transform 180ms ease; }
+      .oauth-button svg { width: 17px; height: 17px; }
+      .oauth-button:hover { background: #e8ebe9; transform: translateY(-1px); }
+      .oauth-divider { display: flex; align-items: center; gap: 0.75rem; margin: 0.95rem 0; color: #5b6763; font-size: 0.75rem; font-weight: 700; }
+      .oauth-divider::before, .oauth-divider::after { content: ""; height: 1px; flex: 1; background: #e4e8e6; }
+      .account-auth .account-panel form, .account-auth .account-panel .fieldlist { gap: 0.65rem; }
+      .account-auth .account-panel .fieldlist > label { position: relative; }
+      .account-auth input { min-height: 46px; padding: 0.75rem 1rem; border: 0; border-radius: 999px; background: #f1f2f1; color: #17211f; font-size: 0.86rem; }
+      .account-auth input::placeholder { color: #58635f; opacity: 1; }
+      .account-auth input:focus { border-color: transparent; background: #fff; box-shadow: 0 0 0 3px rgba(201, 52, 58, 0.2), inset 0 0 0 1px #c9343a; }
+      .password-control { position: relative; display: block; }
+      .password-control input { padding-right: 3rem; }
+      .password-toggle { position: absolute; top: 50%; right: 0.95rem; width: 30px; height: 30px; display: grid; place-items: center; padding: 0; transform: translateY(-50%); border: 0; border-radius: 999px; background: transparent; color: #47534f; cursor: pointer; }
+      .password-toggle svg { width: 17px; height: 17px; }
+      .account-auth .field-error { display: block; padding: 0 0.75rem; color: #a3262d; font-size: 0.75rem; line-height: 1.35; }
+      .account-auth .form-error { padding: 0.75rem 0.9rem; border-radius: 10px; background: #fff0f0; color: #8e2027; font-size: 0.8rem; }
+      .account-auth .forgot-link { width: fit-content; margin-left: auto; color: #4c5a55; font-size: 0.78rem; font-weight: 700; }
+      .account-auth .forgot-link:hover, .account-auth .forgot-link:focus-visible { color: var(--maple); text-decoration: underline; }
+      .account-auth .auth-submit { width: 100%; min-height: 46px; margin-top: 0.2rem; border-radius: 999px; background: var(--maple); box-shadow: none; }
+      .account-auth .auth-submit:hover, .account-auth .auth-submit:focus-visible { background: #ae292f; }
+      .account-auth .auth-switch { display: block; margin-top: 0.95rem; color: #414c48; font-size: 0.78rem; font-weight: 600; text-align: center; }
+      .account-auth .auth-switch a { min-height: auto; display: inline; padding: 0; border-radius: 0; background: transparent; color: #111916; box-shadow: none; font-size: inherit; font-weight: 850; }
+      .account-auth .auth-switch a:hover, .account-auth .auth-switch a:focus-visible { background: transparent; color: var(--maple); box-shadow: none; text-decoration: underline; transform: none; }
+      .auth-photo-note { position: absolute; z-index: 2; display: flex; align-items: center; gap: 0.65rem; max-width: 190px; padding: 0.75rem 0.9rem; border-radius: 12px; background: rgba(248, 249, 246, 0.88); color: #19221f; box-shadow: 0 6px 18px rgba(8, 25, 22, 0.15); font-size: 0.72rem; line-height: 1.3; }
+      .auth-photo-note strong { display: block; font-size: 0.77rem; }
+      .auth-photo-note::before { content: ""; width: 9px; height: 9px; flex: 0 0 auto; border: 3px solid rgba(255,255,255,0.72); border-radius: 50%; background: var(--maple); }
+      .auth-photo-note.note-one { top: 24%; left: 8%; }
+      .auth-photo-note.note-two { right: 7%; bottom: 22%; }
+      .auth-photo-caption { position: absolute; z-index: 2; left: 50%; bottom: 6%; transform: translateX(-50%); padding: 0.55rem 0.9rem; border-radius: 999px; background: #fff; color: #15201c; font-size: 0.75rem; font-weight: 800; white-space: nowrap; }
+      .account-auth .registration-layout { min-height: min(760px, calc(100vh - clamp(2rem, 6vw, 5rem))); }
+      .account-auth .registration-layout .account-panel { padding-top: 1.75rem; padding-bottom: 1.75rem; }
+      .account-auth .registration-layout .auth-brand { margin-bottom: 1rem; }
+      .account-auth .registration-layout .page-head { margin-bottom: 0.8rem; }
+      .account-auth .registration-layout .page-head h1 { font-size: clamp(1.85rem, 2.8vw, 2.65rem); }
       @media (max-width: 1000px) {
         .account-layout { grid-template-columns: 1fr; }
         .account-hero { min-height: 440px; }
@@ -497,13 +562,26 @@
           font-size: 0.68rem;
         }
       }
+      @media (max-width: 1000px) {
+        .account-auth .account-layout { grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1.1fr); }
+      }
+      @media (max-width: 760px) {
+        body.account-auth { background-position: 68% center; }
+        .account-auth .shell { display: block; padding: 0; }
+        .account-auth .content { width: 100%; }
+        .account-auth .account-layout, .account-auth .registration-layout { min-height: 100vh; display: flex; flex-direction: column; border-radius: 0; box-shadow: none; }
+        .account-auth .account-panel { min-height: 100vh; padding: 2rem clamp(1.4rem, 7vw, 2.5rem); }
+        .account-auth .account-hero { display: none; }
+        .account-auth .auth-brand { margin-bottom: 1.5rem; }
+        .account-auth .page-head h1 { font-size: clamp(2rem, 11vw, 2.8rem); }
+      }
       @media (prefers-reduced-motion: reduce) {
         html { scroll-behavior: auto; }
-        .auth-switch a { transition: none; }
+        .auth-switch a, .oauth-button, .button { transition: none; }
       }
     </style>
   </head>
-  <body>
+  <body class="{% block body_class %}{% endblock %}">
     <div class="shell">
       <div class="top-strip">
         <span>Secure sign-in</span>
@@ -538,5 +616,17 @@
         {% block content %}{% endblock %}
       </main>
     </div>
+    <script>
+      document.querySelectorAll('[data-password-toggle]').forEach(function (button) {
+        button.addEventListener('click', function () {
+          var input = button.parentElement.querySelector('input');
+          if (!input) return;
+          var isVisible = input.type === 'text';
+          input.type = isVisible ? 'password' : 'text';
+          button.setAttribute('aria-label', isVisible ? 'Show password' : 'Hide password');
+          button.setAttribute('aria-pressed', String(!isVisible));
+        });
+      });
+    </script>
   </body>
 </html>
