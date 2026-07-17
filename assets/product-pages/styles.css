@@ -1414,8 +1414,8 @@ body.is-frame-sequence-active .product-rail {
 
 @media (min-width: 901px) {
   .detail-feeder .exploded-product {
-    height: calc(100svh - 160px);
-    min-height: calc(100svh - 160px);
+    height: calc(132svh - 160px);
+    min-height: calc(132svh - 160px);
     align-items: center;
     padding-top: clamp(28px, 5vh, 48px);
     padding-bottom: clamp(28px, 5vh, 48px);
