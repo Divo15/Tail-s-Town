@@ -49,9 +49,9 @@ const ROTATION_INTERVAL = 9200;
 
 const setHeaderState = () => {
   header?.classList.toggle("is-solid", window.scrollY > 24);
-  const isFeederPage = document.body.classList.contains("detail-feeder");
+  const isRollupProductPage = document.body.matches(".detail-feeder, .detail-water");
   const isAtPageBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 8;
-  header?.classList.toggle("is-rolled-up", isFeederPage && isAtPageBottom);
+  header?.classList.toggle("is-rolled-up", isRollupProductPage && isAtPageBottom);
 };
 
 const syncHeaderHeight = () => {
@@ -209,71 +209,26 @@ if (hero && heroPhotos.length && heroTitle) {
 }
 
 const frameSequences = [...document.querySelectorAll("[data-frame-sequence]")];
-const waterPinnedSections = [...document.querySelectorAll(".water-explode-pinned")];
-const feederExplodedSection = document.querySelector(".detail-feeder .exploded-product");
+const singleCycleExplodedSections = [
+  ...document.querySelectorAll(".detail-feeder .exploded-product, .detail-water .exploded-product"),
+];
 
-if (feederExplodedSection) {
-  const feederExplosionObserver = new IntersectionObserver(
+if (singleCycleExplodedSections.length) {
+  const explosionObserver = new IntersectionObserver(
     (entries, observer) => {
-      if (!entries.some((entry) => entry.isIntersecting)) return;
-      feederExplodedSection.classList.add("is-exploding");
-      observer.disconnect();
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-exploding");
+        observer.unobserve(entry.target);
+      });
     },
     { threshold: 0.28 },
   );
 
-  feederExplosionObserver.observe(feederExplodedSection);
+  singleCycleExplodedSections.forEach((section) => explosionObserver.observe(section));
 }
 
 const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
-
-const setupWaterPinnedSection = (section) => {
-  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const pixelsPerStep = 1320;
-  let raf = 0;
-
-  const updateWaterMetrics = () => {
-    const headerHeight = Math.round(header?.getBoundingClientRect().height || 0);
-    const stageTop = headerHeight + 16;
-    const stageHeight = Math.max(1, window.innerHeight - stageTop - 16);
-    const scrollDistance = prefersReduced.matches ? 0 : pixelsPerStep;
-
-    section.style.setProperty("--water-header-offset", `${headerHeight}px`);
-    section.style.setProperty("--water-stage-height", `${stageHeight}px`);
-    section.style.setProperty("--water-scroll-distance", `${scrollDistance}px`);
-
-    return { headerHeight, scrollDistance };
-  };
-
-  let metrics = updateWaterMetrics();
-
-  const progressFromScroll = () => {
-    const rect = section.getBoundingClientRect();
-    const total = Math.max(1, metrics.scrollDistance);
-    return clamp((metrics.headerHeight - rect.top) / total, 0, 1);
-  };
-
-  const render = () => {
-    raf = 0;
-    const progress = prefersReduced.matches ? 1 : progressFromScroll();
-    section.style.setProperty("--water-progress", progress.toFixed(4));
-    section.style.setProperty("--water-animation-offset", `${-progress.toFixed(4)}s`);
-  };
-
-  const requestRender = () => {
-    if (!raf) raf = window.requestAnimationFrame(render);
-  };
-
-  const handleWaterResize = () => {
-    metrics = updateWaterMetrics();
-    requestRender();
-  };
-
-  window.addEventListener("scroll", requestRender, { passive: true });
-  window.addEventListener("resize", handleWaterResize);
-  prefersReduced.addEventListener?.("change", handleWaterResize);
-  requestRender();
-};
 
 const setupFrameSequence = (section) => {
   const video = section.querySelector("[data-frame-video]");
@@ -355,4 +310,3 @@ const setupFrameSequence = (section) => {
 };
 
 frameSequences.forEach(setupFrameSequence);
-waterPinnedSections.forEach(setupWaterPinnedSection);

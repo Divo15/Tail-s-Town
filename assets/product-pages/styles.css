@@ -61,7 +61,8 @@ a {
     box-shadow 220ms ease;
 }
 
-.detail-feeder .site-header.is-rolled-up {
+.detail-feeder .site-header.is-rolled-up,
+.detail-water .site-header.is-rolled-up {
   transform: translateY(calc(-100% - 8px));
   pointer-events: none;
 }
@@ -1418,14 +1419,16 @@ body.is-frame-sequence-active .product-rail {
   bottom: 22%;
 }
 
-.detail-feeder .explode-core {
+.detail-feeder .explode-core,
+.detail-water .explode-core {
   animation: explodeCore 4.2s cubic-bezier(0.25, 1, 0.5, 1) both;
   animation-play-state: paused;
   animation-timeline: auto;
   animation-range: normal;
 }
 
-.detail-feeder .explode-layer {
+.detail-feeder .explode-layer,
+.detail-water .explode-layer {
   animation: explodeLayer 4.2s cubic-bezier(0.25, 1, 0.5, 1) both;
   animation-play-state: paused;
   animation-timeline: auto;
@@ -1433,73 +1436,45 @@ body.is-frame-sequence-active .product-rail {
 }
 
 .detail-feeder .exploded-product.is-exploding .explode-core,
-.detail-feeder .exploded-product.is-exploding .explode-layer {
+.detail-feeder .exploded-product.is-exploding .explode-layer,
+.detail-water .exploded-product.is-exploding .explode-core,
+.detail-water .exploded-product.is-exploding .explode-layer {
   animation-play-state: running;
 }
 
-.detail-feeder .layer-one {
+.detail-feeder .layer-one,
+.detail-water .layer-one {
   --x: clamp(-280px, -20vw, -150px);
   --y: clamp(-150px, -15vh, -96px);
 }
 
-.detail-feeder .layer-two {
+.detail-feeder .layer-two,
+.detail-water .layer-two {
   --x: clamp(150px, 19vw, 270px);
   --y: clamp(-142px, -14vh, -92px);
 }
 
-.detail-feeder .layer-three {
+.detail-feeder .layer-three,
+.detail-water .layer-three {
   --x: clamp(-255px, -18vw, -138px);
   --y: clamp(94px, 15vh, 148px);
 }
 
-.detail-feeder .layer-four {
+.detail-feeder .layer-four,
+.detail-water .layer-four {
   --x: clamp(138px, 17vw, 245px);
   --y: clamp(90px, 14vh, 140px);
 }
 
 @media (min-width: 901px) {
-  .detail-feeder .exploded-product {
+  .detail-feeder .exploded-product,
+  .detail-water .exploded-product {
     height: calc(120svh - 160px);
     min-height: calc(120svh - 160px);
     align-items: center;
     padding-top: clamp(28px, 5vh, 48px);
     padding-bottom: clamp(28px, 5vh, 48px);
   }
-}
-
-.water-explode-pinned {
-  min-height: calc(var(--water-stage-height, 100svh) + var(--water-scroll-distance, 1320px));
-  overflow: visible;
-}
-
-.water-explode-pinned .explode-copy,
-.water-explode-pinned .explode-stage {
-  position: sticky;
-}
-
-.water-explode-pinned .explode-copy {
-  top: calc(var(--water-header-offset, var(--site-header-height, 160px)) + 32px);
-}
-
-.water-explode-pinned .explode-stage {
-  top: calc(var(--water-header-offset, var(--site-header-height, 160px)) + 16px);
-  min-height: var(--water-stage-height, calc(100svh - var(--site-header-height, 160px) - 32px));
-}
-
-.water-explode-pinned .explode-core {
-  animation-duration: 1s;
-  animation-delay: var(--water-animation-offset, 0s);
-  animation-play-state: paused;
-  animation-timeline: auto;
-  animation-range: normal;
-}
-
-.water-explode-pinned .explode-layer {
-  animation-duration: 1s;
-  animation-delay: var(--water-animation-offset, 0s);
-  animation-play-state: paused;
-  animation-timeline: auto;
-  animation-range: normal;
 }
 
 .litter-explode {
@@ -3350,16 +3325,6 @@ body.is-frame-sequence-active .product-rail {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .water-explode-pinned {
-    min-height: 100svh;
-  }
-
-  .water-explode-pinned .explode-copy,
-  .water-explode-pinned .explode-stage {
-    position: relative;
-    top: auto;
-  }
-
   *,
   *::before,
   *::after {
