@@ -116,29 +116,55 @@ a {
   justify-self: end;
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
 
 .auth-link {
-  min-height: 40px;
+  min-height: 34px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border: 1px solid transparent;
-  border-radius: 0;
-  padding: 0 6px;
+  border-radius: 9px;
+  padding: 0;
   background: transparent;
   color: currentColor;
-  font-weight: 900;
+  font-size: 0.84rem;
+  font-weight: 800;
   transition:
     transform 180ms ease,
-    opacity 180ms ease;
+    color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease;
 }
 
 .auth-link:hover,
 .auth-link:focus-visible {
-  opacity: 1;
+  color: #fff;
   transform: translateY(-1px);
+}
+
+.auth-link-secondary {
+  min-width: 84px;
+  padding: 0 18px;
+  color: #fff;
+  background: #7357e6;
+  box-shadow: 0 10px 22px rgba(115, 87, 230, 0.34);
+}
+
+.site-header.is-solid .auth-link:hover,
+.site-header.is-solid .auth-link:focus-visible {
+  color: #7357e6;
+}
+
+.auth-link-secondary:hover,
+.auth-link-secondary:focus-visible,
+.site-header.is-solid .auth-link-secondary,
+.site-header.is-solid .auth-link-secondary:hover,
+.site-header.is-solid .auth-link-secondary:focus-visible {
+  color: #fff;
+  background: #7357e6;
+  box-shadow: 0 12px 26px rgba(115, 87, 230, 0.38);
 }
 
 .icon-button {
@@ -2985,9 +3011,13 @@ body.is-frame-sequence-active .product-rail {
   }
 
   .auth-link {
-    min-height: 36px;
-    padding: 0 11px;
-    font-size: 0.9rem;
+    min-height: 32px;
+    font-size: 0.8rem;
+  }
+
+  .auth-link-secondary {
+    min-width: 74px;
+    padding: 0 13px;
   }
 
   .hero {
