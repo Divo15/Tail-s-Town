@@ -5,6 +5,10 @@ const heroContent = document.querySelector(".hero-content");
 const heroTitle = document.querySelector("#hero-title");
 const toast = document.querySelector(".cart-toast");
 
+if (window.location.hash === "#bundles") {
+  window.location.replace("/shop/bundles/");
+}
+
 const slides = [
   {
     accent: "Breakfast",

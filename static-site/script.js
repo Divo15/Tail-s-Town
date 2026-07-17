@@ -10,6 +10,10 @@ const liveVideos = [...document.querySelectorAll("[data-live-video]")];
 const toast = document.querySelector(".cart-toast");
 const signupForm = document.querySelector(".signup-form");
 
+if (window.location.hash === "#bundles") {
+  window.location.replace("/shop/bundles/");
+}
+
 const slides = [
   {
     accent: "Breakfast",
