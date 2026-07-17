@@ -89,6 +89,7 @@ INSTALLED_APPS = [
     'shop',
     'allauth',
     'allauth.account',
+    'allauth.mfa',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.apple',
     'allauth.socialaccount.providers.facebook',
@@ -261,6 +262,9 @@ SOCIALACCOUNT_EMAIL_VERIFICATION = "none"
 SOCIALACCOUNT_EMAIL_AUTHENTICATION_AUTO_CONNECT = True
 SOCIALACCOUNT_LOGIN_ON_GET = False
 SOCIALACCOUNT_STORE_TOKENS = False
+MFA_SUPPORTED_TYPES = ["totp", "recovery_codes"]
+MFA_TOTP_ISSUER = "Tails Town"
+MFA_RECOVERY_CODE_COUNT = 10
 
 
 def oauth_app(client_id, secret, key="", app_settings=None):

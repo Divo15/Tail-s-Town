@@ -18,6 +18,15 @@
       <h2 style="margin:0;">{{ saved_methods.count }}</h2>
       <p class="muted">Token-only placeholders. Payment integration comes later.</p>
     </div>
+    <div class="card">
+      <p class="eyebrow">Account security</p>
+      <h2 style="margin:0;">Multi-factor authentication</h2>
+      <p class="muted">Protect your account with an authenticator app and recovery codes.</p>
+      <div class="actions">
+        <a class="button" href="{% url 'mfa_index' %}">Manage MFA</a>
+        <a class="button secondary" href="{% url 'mfa_activate_totp' %}">Set up authenticator</a>
+      </div>
+    </div>
   </div>
 
   <div class="card" style="margin-top:1rem;">

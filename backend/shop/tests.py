@@ -52,6 +52,8 @@ class AccountFlowTests(TestCase):
 
         dashboard_response = self.client.get(reverse("customer_account:dashboard"))
         self.assertEqual(dashboard_response.status_code, 200)
+        self.assertContains(dashboard_response, reverse("mfa_index"))
+        self.assertContains(dashboard_response, reverse("mfa_activate_totp"))
 
         logout_response = self.client.get(reverse("customer_account:logout"), follow=True)
         self.assertRedirects(logout_response, reverse("customer_account:login"))
