@@ -1470,23 +1470,23 @@ body.is-frame-sequence-active .product-rail {
 }
 
 .detail-water .layer-one {
-  --x: clamp(-300px, -22vw, -165px);
-  --y: clamp(-140px, -14vh, -92px);
+  --x: clamp(-225px, -16.5vw, -124px);
+  --y: clamp(-105px, -10.5vh, -69px);
 }
 
 .detail-water .layer-two {
-  --x: clamp(34px, 6vw, 92px);
-  --y: clamp(-132px, -13vh, -86px);
+  --x: clamp(26px, 4.5vw, 69px);
+  --y: clamp(-99px, -9.75vh, -65px);
 }
 
 .detail-water .layer-three {
-  --x: clamp(-290px, -21vw, -158px);
-  --y: clamp(88px, 13vh, 134px);
+  --x: clamp(-218px, -15.75vw, -119px);
+  --y: clamp(66px, 9.75vh, 101px);
 }
 
 .detail-water .layer-four {
-  --x: clamp(38px, 6vw, 98px);
-  --y: clamp(84px, 13vh, 130px);
+  --x: clamp(29px, 4.5vw, 74px);
+  --y: clamp(63px, 9.75vh, 98px);
 }
 
 @media (min-width: 901px) {
