@@ -204,6 +204,20 @@ if (hero && heroPhotos.length && heroTitle) {
 
 const frameSequences = [...document.querySelectorAll("[data-frame-sequence]")];
 const waterPinnedSections = [...document.querySelectorAll(".water-explode-pinned")];
+const feederExplodedSection = document.querySelector(".detail-feeder .exploded-product");
+
+if (feederExplodedSection) {
+  const feederExplosionObserver = new IntersectionObserver(
+    (entries, observer) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      feederExplodedSection.classList.add("is-exploding");
+      observer.disconnect();
+    },
+    { threshold: 0.28 },
+  );
+
+  feederExplosionObserver.observe(feederExplodedSection);
+}
 
 const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 

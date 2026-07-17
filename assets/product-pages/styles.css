@@ -1413,21 +1413,48 @@ body.is-frame-sequence-active .product-rail {
 }
 
 .detail-feeder .explode-core {
-  animation: explodeCore 5.6s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+  animation: explodeCore 4.2s cubic-bezier(0.25, 1, 0.5, 1) both;
+  animation-play-state: paused;
   animation-timeline: auto;
   animation-range: normal;
 }
 
 .detail-feeder .explode-layer {
-  animation: explodeLayer 5.6s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+  animation: explodeLayer 4.2s cubic-bezier(0.25, 1, 0.5, 1) both;
+  animation-play-state: paused;
   animation-timeline: auto;
   animation-range: normal;
 }
 
+.detail-feeder .exploded-product.is-exploding .explode-core,
+.detail-feeder .exploded-product.is-exploding .explode-layer {
+  animation-play-state: running;
+}
+
+.detail-feeder .layer-one {
+  --x: clamp(-230px, -17vw, -130px);
+  --y: clamp(-130px, -13vh, -84px);
+}
+
+.detail-feeder .layer-two {
+  --x: clamp(130px, 16vw, 220px);
+  --y: clamp(-120px, -12vh, -78px);
+}
+
+.detail-feeder .layer-three {
+  --x: clamp(-210px, -15vw, -118px);
+  --y: clamp(82px, 13vh, 126px);
+}
+
+.detail-feeder .layer-four {
+  --x: clamp(118px, 14vw, 200px);
+  --y: clamp(78px, 12vh, 118px);
+}
+
 @media (min-width: 901px) {
   .detail-feeder .exploded-product {
-    height: calc(132svh - 160px);
-    min-height: calc(132svh - 160px);
+    height: calc(120svh - 160px);
+    min-height: calc(120svh - 160px);
     align-items: center;
     padding-top: clamp(28px, 5vh, 48px);
     padding-bottom: clamp(28px, 5vh, 48px);
