@@ -1438,23 +1438,23 @@ body.is-frame-sequence-active .product-rail {
 }
 
 .detail-feeder .layer-one {
-  --x: clamp(-230px, -17vw, -130px);
-  --y: clamp(-130px, -13vh, -84px);
+  --x: clamp(-280px, -20vw, -150px);
+  --y: clamp(-150px, -15vh, -96px);
 }
 
 .detail-feeder .layer-two {
-  --x: clamp(130px, 16vw, 220px);
-  --y: clamp(-120px, -12vh, -78px);
+  --x: clamp(150px, 19vw, 270px);
+  --y: clamp(-142px, -14vh, -92px);
 }
 
 .detail-feeder .layer-three {
-  --x: clamp(-210px, -15vw, -118px);
-  --y: clamp(82px, 13vh, 126px);
+  --x: clamp(-255px, -18vw, -138px);
+  --y: clamp(94px, 15vh, 148px);
 }
 
 .detail-feeder .layer-four {
-  --x: clamp(118px, 14vw, 200px);
-  --y: clamp(78px, 12vh, 118px);
+  --x: clamp(138px, 17vw, 245px);
+  --y: clamp(90px, 14vh, 140px);
 }
 
 @media (min-width: 901px) {
