@@ -20,7 +20,7 @@
         <a href="{% url 'store:smart_feeder_page' %}">Feeders</a>
         <a href="{% url 'store:water_fountain_page' %}">Water</a>
         <a href="{% url 'store:litter_box_page' %}">Litter</a>
-        <a href="{% url 'store:bundle_page' %}">Bundles</a>
+        <a href="/shop/bundles/">Bundles</a>
       </nav>
       <div class="header-actions">
         {% if request.user.is_authenticated %}
@@ -215,7 +215,7 @@
         </div>
         <div class="bundle-copy">
           <h2 id="bundle-title">Build a calmer routine with feeding, water, and litter care together.</h2>
-          <a class="primary-action" href="{% url 'store:bundle_page' %}">Explore the collection</a>
+          <a class="primary-action" href="/shop/bundles/">Explore the collection</a>
         </div>
       </section>
     </main>
