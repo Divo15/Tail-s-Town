@@ -949,19 +949,53 @@ h1 span {
 
 @media (max-width: 900px) {
   .site-header {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: auto 1fr;
+    gap: 12px;
+    padding: 10px 14px 8px;
+    color: var(--ink);
+    text-shadow: none;
+    background: rgba(251, 250, 245, 0.94);
+    box-shadow: 0 10px 30px rgba(23, 33, 31, 0.08);
+    backdrop-filter: blur(18px);
   }
 
   .site-header .header-actions {
     grid-column: 2;
+    justify-self: end;
   }
 
   .brand img {
-    height: 92px;
+    height: auto;
+    width: 104px;
   }
 
   .nav-links {
+    grid-column: 1 / -1;
+    justify-self: stretch;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 2px 0 4px;
+    color: var(--ink);
+    font-size: 0.82rem;
+    scrollbar-width: none;
+    scroll-padding-inline: 14px;
+  }
+
+  .nav-links::-webkit-scrollbar {
     display: none;
+  }
+
+  .nav-links a {
+    flex: 0 0 auto;
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 0 13px;
+    background: rgba(255, 255, 255, 0.78);
+    opacity: 1;
   }
 
   .header-actions {
@@ -969,8 +1003,12 @@ h1 span {
   }
 
   .auth-link {
-    min-height: 32px;
-    font-size: 0.8rem;
+    min-height: 40px;
+    border-radius: 999px;
+    padding: 0 10px;
+    background: rgba(255, 255, 255, 0.78);
+    color: var(--ink);
+    font-size: 0.84rem;
   }
 
   .auth-prompt {
@@ -979,14 +1017,14 @@ h1 span {
   }
 
   .auth-link-secondary {
-    min-width: 74px;
-    padding: 0 13px;
+    min-width: auto;
+    padding: 0 12px;
   }
 
   .hero {
     min-height: 100svh;
     height: 100svh;
-    padding-top: 82px;
+    padding-top: 126px;
     padding-bottom: 18px;
   }
 
@@ -1015,6 +1053,20 @@ h1 span {
     grid-template-columns: 1fr;
   }
 
+  .product-tile {
+    min-height: 300px;
+  }
+
+  .product-tile > img {
+    animation: none;
+    transform: scale(1.02);
+  }
+
+  .product-tile h2 {
+    max-width: 9ch;
+    font-size: clamp(2.7rem, 15vw, 4.7rem);
+  }
+
   .pet-window {
     opacity: 0.28;
     width: 128px;
@@ -1031,7 +1083,27 @@ h1 span {
 @media (max-width: 560px) {
   .hero {
     align-items: end;
-    padding: 72px 16px 14px;
+    min-height: 92svh;
+    height: 92svh;
+    padding: 124px 16px 14px;
+  }
+
+  .site-header {
+    padding-inline: 12px;
+  }
+
+  .brand img {
+    width: 86px;
+  }
+
+  .auth-link {
+    min-height: 38px;
+    padding: 0 9px;
+    font-size: 0.78rem;
+  }
+
+  .nav-links {
+    margin-inline: -2px;
   }
 
   .hero-content {
@@ -1047,8 +1119,45 @@ h1 span {
   h1 {
     max-width: 9ch;
     margin-bottom: 0;
-    font-size: clamp(3.2rem, 17vw, 5.1rem);
+    font-size: clamp(2.85rem, 16vw, 4.4rem);
     line-height: 0.9;
   }
 
+  .collection-intro {
+    padding-block: 34px 24px;
+  }
+
+  .section-heading h2,
+  .bundle-copy h2 {
+    font-size: clamp(2rem, 12vw, 3.2rem);
+  }
+
+  .section-heading p,
+  .bundle-copy p {
+    font-size: 1rem;
+  }
+
+  .product-tile {
+    min-height: 260px;
+    padding: 24px 18px;
+  }
+
+  .bundle-section {
+    padding-block: 38px;
+  }
+
+}
+
+@media (hover: none) {
+  .product-tile:hover > img,
+  #feeders:hover > img,
+  #hydration:hover > img,
+  #litter:hover > img {
+    filter: none;
+    transform: scale(1.02);
+  }
+
+  .product-tile:hover h2 {
+    transform: none;
+  }
 }

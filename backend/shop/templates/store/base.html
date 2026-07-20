@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>{% block title %}PETKIT{% endblock %}</title>
     <link rel="icon" href="{% static 'brand/favicon.ico' %}" sizes="any" />
     <link rel="icon" type="image/png" sizes="512x512" href="{% static 'brand/favicon.png' %}" />
@@ -939,17 +939,91 @@
         }
       }
       @media (max-width: 760px) {
+        body {
+          background-size: 56px 56px;
+        }
+        .shell,
+        .page,
+        .footer,
         .header-inner {
-          flex-direction: column;
-          align-items: flex-start;
-          padding: 1rem 0;
+          width: min(100%, calc(100% - 24px));
+        }
+        .header-inner {
+          min-height: auto;
+          flex-wrap: wrap;
+          padding: 0.65rem 0;
+          gap: 0.65rem;
+        }
+        .brand img {
+          width: 96px;
+        }
+        .header-nav {
+          order: 3;
+          width: 100%;
+          justify-content: flex-start;
+          flex-wrap: nowrap;
+          gap: 0.5rem;
+          overflow-x: auto;
+          padding-bottom: 0.15rem;
+          scrollbar-width: none;
+        }
+        .header-nav::-webkit-scrollbar {
+          display: none;
+        }
+        .header-nav a {
+          flex: 0 0 auto;
+          min-height: 42px;
+          border: 1px solid var(--line);
+          border-radius: 999px;
+          padding: 0 0.85rem;
+          background: rgba(255,255,255,0.76);
+          font-size: 0.8rem;
         }
         .top-strip {
-          gap: 0.8rem;
-          font-size: 0.68rem;
+          display: none;
         }
         .quick-actions {
           align-self: flex-end;
+          margin-left: auto;
+        }
+        .page {
+          padding: 0.85rem 0 1.5rem;
+        }
+        .hero-card {
+          min-height: auto;
+        }
+        .hero-copy {
+          max-width: 100%;
+          padding: 1rem;
+        }
+        .hero-copy h1,
+        .page-title {
+          font-size: clamp(2rem, 10vw, 2.85rem);
+          line-height: 1;
+        }
+        .toolbar,
+        .cart-hero,
+        .related-header,
+        .checkout-section-header {
+          align-items: stretch;
+        }
+        .toolbar .actions,
+        .cart-hero .cart-steps,
+        .related-header .button,
+        .checkout-section-header {
+          width: 100%;
+        }
+        .toolbar .actions,
+        .cart-item-actions,
+        .purchase-actions {
+          display: grid;
+          grid-template-columns: 1fr;
+        }
+        .button,
+        .chip,
+        .cart-step,
+        .icon-button {
+          min-height: 44px;
         }
         .product-grid,
         .grid-3,
@@ -961,13 +1035,16 @@
           grid-template-columns: 1fr;
         }
         .cart-item {
-          grid-template-columns: 1fr;
+          grid-template-columns: 96px minmax(0, 1fr);
+          gap: 0.85rem;
         }
         .cart-item .thumb {
-          width: 100%;
-          max-width: 220px;
+          width: 96px;
+          max-width: none;
+          grid-row: span 2;
         }
         .cart-item-total {
+          grid-column: 1 / -1;
           justify-items: stretch;
           text-align: left;
         }
@@ -976,12 +1053,42 @@
         }
         .cart-controls {
           display: grid;
+          grid-template-columns: 1fr;
         }
         .cart-controls input {
           max-width: none;
         }
+        .cart-summary,
+        .checkout-summary {
+          position: sticky;
+          bottom: 0;
+          z-index: 10;
+          margin-inline: -12px;
+          border-radius: 18px 18px 0 0;
+          box-shadow: 0 -18px 48px rgba(21, 43, 40, 0.16);
+        }
+        .summary-note,
+        .checkout-assurance {
+          display: none;
+        }
+        .detail-media {
+          aspect-ratio: 4 / 3;
+        }
+        .detail-media img {
+          padding: 1rem;
+        }
+        .spec-row {
+          display: grid;
+          gap: 0.25rem;
+        }
+        .spec-row dd {
+          text-align: left;
+        }
         .product-preview-media {
           min-height: 360px;
+        }
+        .footer {
+          padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
         }
       }
     </style>
