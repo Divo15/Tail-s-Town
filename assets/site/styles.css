@@ -985,6 +985,7 @@ h1 span {
     grid-row: 2;
     justify-self: stretch;
     display: flex;
+    align-items: center;
     gap: 8px;
     overflow-x: auto;
     padding: 2px 0 4px;
@@ -1000,14 +1001,17 @@ h1 span {
 
   .nav-links a {
     flex: 0 0 auto;
-    min-height: 40px;
+    height: 40px;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     border: 1px solid rgba(255, 255, 255, 0.32);
     border-radius: 999px;
     padding: 0 13px;
     background: rgba(255, 255, 255, 0.16);
     backdrop-filter: blur(12px);
+    line-height: 1;
+    white-space: nowrap;
     opacity: 1;
   }
 
