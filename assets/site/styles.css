@@ -950,6 +950,7 @@ h1 span {
 @media (max-width: 900px) {
   .site-header {
     grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
     gap: 12px;
     padding: max(10px, env(safe-area-inset-top)) 14px 8px;
     color: #fff;
@@ -969,7 +970,9 @@ h1 span {
 
   .site-header .header-actions {
     grid-column: 2;
+    grid-row: 1;
     justify-self: end;
+    flex-wrap: nowrap;
   }
 
   .brand img {
@@ -979,6 +982,7 @@ h1 span {
 
   .nav-links {
     grid-column: 1 / -1;
+    grid-row: 2;
     justify-self: stretch;
     display: flex;
     gap: 8px;
@@ -1017,17 +1021,26 @@ h1 span {
   }
 
   .header-actions {
+    min-height: 40px;
     gap: 8px;
   }
 
   .auth-link {
-    min-height: 40px;
+    height: 40px;
+    flex: 0 0 auto;
     border-radius: 999px;
     padding: 0 10px;
     background: rgba(255, 255, 255, 0.16);
     color: #fff;
     backdrop-filter: blur(12px);
     font-size: 0.84rem;
+    line-height: 1;
+  }
+
+  .site-header .icon-button {
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
   }
 
   .site-header.is-solid .auth-link {
@@ -1121,9 +1134,15 @@ h1 span {
   }
 
   .auth-link {
-    min-height: 38px;
+    height: 38px;
     padding: 0 9px;
     font-size: 0.78rem;
+  }
+
+  .site-header .icon-button {
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
   }
 
   .auth-prompt {
