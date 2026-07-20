@@ -1442,6 +1442,11 @@ body.is-frame-sequence-active .product-rail {
   animation-range: normal;
 }
 
+.detail-water .explode-layer {
+  z-index: 4;
+  animation-name: waterExplodeLayer;
+}
+
 .detail-feeder .exploded-product.is-exploding .explode-core,
 .detail-feeder .exploded-product.is-exploding .explode-layer,
 .detail-water .exploded-product.is-exploding .explode-core,
@@ -2995,6 +3000,21 @@ body.is-frame-sequence-active .product-rail {
   100% {
     opacity: 1;
     transform: translate3d(var(--x), var(--y), 130px) scale(1);
+  }
+}
+
+@keyframes waterExplodeLayer {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 40px) scale(0.72);
+  }
+  34% {
+    opacity: 0;
+    transform: translate3d(0, 0, 90px) scale(0.82);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(var(--x), var(--y), 260px) scale(1);
   }
 }
 
