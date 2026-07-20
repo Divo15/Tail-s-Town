@@ -6,6 +6,7 @@
   const stories = [...section.querySelectorAll("[data-litter-story]")];
   const context = canvas?.getContext("2d", { alpha: false, desynchronized: true });
   const frameCount = Number(section.dataset.frameCount || 300);
+  const availableFrameCount = Number(section.dataset.availableFrameCount || frameCount);
   const sourceFrameCount = Number(section.dataset.sourceFrameCount || frameCount);
   const desktopTemplate = section.dataset.desktopFrameTemplate;
   const mobileTemplate = section.dataset.mobileFrameTemplate;
@@ -53,7 +54,12 @@
     }
 
     const template = mobileQuery.matches ? mobileTemplate : desktopTemplate;
-    const sourceFrame = Math.round(1 + ((frame - 1) / Math.max(1, frameCount - 1)) * (sourceFrameCount - 1));
+    const availableFrame = Math.round(
+      1 + ((frame - 1) / Math.max(1, frameCount - 1)) * (availableFrameCount - 1),
+    );
+    const sourceFrame = Math.round(
+      1 + ((availableFrame - 1) / Math.max(1, availableFrameCount - 1)) * (sourceFrameCount - 1),
+    );
     return template.replace("__FRAME__", String(sourceFrame).padStart(3, "0"));
   };
 

@@ -123,6 +123,7 @@
           aria-label="{{ page.frame_label }}"
           data-litter-animation
           data-frame-count="{{ page.frame_count }}"
+          data-available-frame-count="{{ page.available_frame_count|default:page.frame_count }}"
           data-source-frame-count="{{ page.source_frame_count|default:page.frame_count }}"
           data-desktop-frame-template="{{ static_prefix }}product-pages/litter-sequence/desktop/frame-__FRAME__.webp"
           data-mobile-frame-template="{{ static_prefix }}product-pages/litter-sequence/mobile/frame-__FRAME__.webp"
