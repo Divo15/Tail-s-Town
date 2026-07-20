@@ -1475,23 +1475,23 @@ body.is-frame-sequence-active .product-rail {
 }
 
 .detail-water .layer-one {
-  --x: clamp(-225px, -16.5vw, -124px);
-  --y: clamp(-105px, -10.5vh, -69px);
+  --x: clamp(-360px, -22vw, -210px);
+  --y: clamp(-150px, -13.5vh, -92px);
 }
 
 .detail-water .layer-two {
-  --x: clamp(10px, 2vw, 28px);
-  --y: clamp(-99px, -9.75vh, -65px);
+  --x: clamp(88px, 9vw, 156px);
+  --y: clamp(-145px, -13vh, -88px);
 }
 
 .detail-water .layer-three {
-  --x: clamp(-218px, -15.75vw, -119px);
-  --y: clamp(66px, 9.75vh, 101px);
+  --x: clamp(-345px, -21vw, -200px);
+  --y: clamp(112px, 14vh, 168px);
 }
 
 .detail-water .layer-four {
-  --x: clamp(12px, 2.25vw, 32px);
-  --y: clamp(63px, 9.75vh, 98px);
+  --x: clamp(104px, 10vw, 176px);
+  --y: clamp(104px, 13.5vh, 160px);
 }
 
 @media (min-width: 901px) {
@@ -3238,6 +3238,26 @@ body.is-frame-sequence-active .product-rail {
   .layer-four {
     --x: 22vw;
     --y: 160px;
+  }
+
+  .detail-water .layer-one {
+    --x: clamp(-132px, -27vw, -92px);
+    --y: -168px;
+  }
+
+  .detail-water .layer-two {
+    --x: clamp(78px, 24vw, 118px);
+    --y: -136px;
+  }
+
+  .detail-water .layer-three {
+    --x: clamp(-128px, -26vw, -90px);
+    --y: 154px;
+  }
+
+  .detail-water .layer-four {
+    --x: clamp(82px, 25vw, 122px);
+    --y: 130px;
   }
 
   .system-copy h2,
