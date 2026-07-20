@@ -951,9 +951,17 @@ h1 span {
   .site-header {
     grid-template-columns: auto 1fr;
     gap: 12px;
-    padding: 10px 14px 8px;
-    color: var(--ink);
+    padding: max(10px, env(safe-area-inset-top)) 14px 8px;
+    color: #fff;
     text-shadow: none;
+    background:
+      linear-gradient(180deg, rgba(9, 22, 20, 0.38), rgba(9, 22, 20, 0.16) 72%, rgba(9, 22, 20, 0));
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+
+  .site-header.is-solid {
+    color: var(--ink);
     background: rgba(251, 250, 245, 0.94);
     box-shadow: 0 10px 30px rgba(23, 33, 31, 0.08);
     backdrop-filter: blur(18px);
@@ -976,7 +984,7 @@ h1 span {
     gap: 8px;
     overflow-x: auto;
     padding: 2px 0 4px;
-    color: var(--ink);
+    color: #fff;
     font-size: 0.82rem;
     scrollbar-width: none;
     scroll-padding-inline: 14px;
@@ -991,11 +999,21 @@ h1 span {
     min-height: 40px;
     display: inline-flex;
     align-items: center;
-    border: 1px solid var(--line);
+    border: 1px solid rgba(255, 255, 255, 0.32);
     border-radius: 999px;
     padding: 0 13px;
-    background: rgba(255, 255, 255, 0.78);
+    background: rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(12px);
     opacity: 1;
+  }
+
+  .site-header.is-solid .nav-links {
+    color: var(--ink);
+  }
+
+  .site-header.is-solid .nav-links a {
+    border-color: var(--line);
+    background: rgba(255, 255, 255, 0.78);
   }
 
   .header-actions {
@@ -1006,9 +1024,15 @@ h1 span {
     min-height: 40px;
     border-radius: 999px;
     padding: 0 10px;
+    background: rgba(255, 255, 255, 0.16);
+    color: #fff;
+    backdrop-filter: blur(12px);
+    font-size: 0.84rem;
+  }
+
+  .site-header.is-solid .auth-link {
     background: rgba(255, 255, 255, 0.78);
     color: var(--ink);
-    font-size: 0.84rem;
   }
 
   .auth-prompt {
@@ -1024,7 +1048,7 @@ h1 span {
   .hero {
     min-height: 100svh;
     height: 100svh;
-    padding-top: 126px;
+    padding-top: 132px;
     padding-bottom: 18px;
   }
 
@@ -1083,9 +1107,9 @@ h1 span {
 @media (max-width: 560px) {
   .hero {
     align-items: end;
-    min-height: 92svh;
-    height: 92svh;
-    padding: 124px 16px 14px;
+    min-height: 100svh;
+    height: 100svh;
+    padding: 128px 16px 14px;
   }
 
   .site-header {
@@ -1100,6 +1124,10 @@ h1 span {
     min-height: 38px;
     padding: 0 9px;
     font-size: 0.78rem;
+  }
+
+  .auth-prompt {
+    display: none;
   }
 
   .nav-links {
