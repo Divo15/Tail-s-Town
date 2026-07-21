@@ -83,10 +83,10 @@ a {
 }
 
 .site-header.is-solid {
-  color: #fff;
-  background: transparent;
-  box-shadow: none;
-  backdrop-filter: none;
+  color: var(--ink);
+  background: rgba(251, 250, 245, 0.92);
+  box-shadow: 0 10px 30px rgba(23, 33, 31, 0.08);
+  backdrop-filter: blur(18px);
 }
 
 .brand {
@@ -1039,11 +1039,10 @@ h1 span {
   }
 
   .site-header.is-solid {
-    color: #fff;
-    background:
-      linear-gradient(180deg, rgba(9, 22, 20, 0.38), rgba(9, 22, 20, 0.16) 72%, rgba(9, 22, 20, 0));
-    box-shadow: none;
-    backdrop-filter: none;
+    color: var(--ink);
+    background: rgba(251, 250, 245, 0.94);
+    box-shadow: 0 10px 30px rgba(23, 33, 31, 0.08);
+    backdrop-filter: blur(18px);
   }
 
   .header-controls {
@@ -1108,12 +1107,12 @@ h1 span {
   }
 
   .site-header.is-solid .nav-links {
-    color: #fff;
+    color: var(--ink);
   }
 
   .site-header.is-solid .nav-links a {
-    border-color: rgba(255, 255, 255, 0.32);
-    background: rgba(255, 255, 255, 0.16);
+    border-color: var(--line);
+    background: rgba(255, 255, 255, 0.78);
   }
 
   .header-actions {
@@ -1318,10 +1317,8 @@ h1 span {
 
   .site-header.is-solid {
     min-height: 60px;
-    color: #fff;
-    background: linear-gradient(180deg, rgba(9, 22, 20, 0.62), rgba(9, 22, 20, 0));
-    box-shadow: none;
-    backdrop-filter: none;
+    background: rgba(251, 250, 245, 0.96);
+    backdrop-filter: blur(12px);
   }
 
   .brand {
@@ -1365,7 +1362,7 @@ h1 span {
   }
 
   .site-header.is-solid .icon-button {
-    background: rgba(255, 255, 255, 0.16);
+    background: rgba(15, 118, 110, 0.08);
   }
 
   .mobile-shop-action {
