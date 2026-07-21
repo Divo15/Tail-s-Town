@@ -536,10 +536,14 @@ h1 span {
 
 @media (max-width: 900px) {
   .site-header {
-    min-height: 64px;
+    min-height: 60px;
     grid-template-columns: auto 1fr auto;
     gap: 12px;
     padding: max(8px, env(safe-area-inset-top)) 16px 8px;
+    color: var(--ink);
+    background: rgba(251, 250, 245, 0.96);
+    box-shadow: 0 10px 30px rgba(23, 33, 31, 0.08);
+    backdrop-filter: blur(12px);
   }
 
   .brand-logo img {
@@ -2744,7 +2748,7 @@ h1 span {
 
 @media (max-width: 900px) {
   .site-header {
-    min-height: 64px;
+    min-height: 60px;
     grid-template-columns: auto 1fr auto;
     gap: 12px;
     padding: max(8px, env(safe-area-inset-top)) 16px 8px;
