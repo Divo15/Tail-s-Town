@@ -3048,3 +3048,18 @@ h1 span {
     transition-duration: 1ms !important;
   }
 }
+
+/* Final navbar reset: transparent wins over earlier responsive header rules. */
+.site-header,
+.site-header.is-solid {
+  color: #fff;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.site-header.is-solid .nav-links {
+  color: #fff;
+}
