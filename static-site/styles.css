@@ -779,38 +779,6 @@ h1 span {
   overflow: hidden;
 }
 
-.product-rail {
-  position: fixed;
-  z-index: 12;
-  left: 50%;
-  bottom: 22px;
-  display: flex;
-  gap: 6px;
-  padding: 7px;
-  border: 1px solid rgba(31, 36, 35, 0.12);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.72);
-  box-shadow: 0 22px 70px rgba(47, 59, 57, 0.16);
-  backdrop-filter: blur(20px);
-  transform: translateX(-50%);
-}
-
-.product-rail a {
-  min-height: 36px;
-  display: inline-flex;
-  align-items: center;
-  border-radius: 999px;
-  padding: 0 14px;
-  color: rgba(31, 36, 35, 0.68);
-  font-size: 0.78rem;
-  font-weight: 900;
-}
-
-.product-rail a:hover {
-  color: var(--detail-ink);
-  background: color-mix(in srgb, var(--detail-accent), white 58%);
-}
-
 .detail-hero {
   position: relative;
   min-height: 100svh;
@@ -2913,12 +2881,6 @@ h1 span {
   .system-copy h2,
   .smart-specs h2 {
     max-width: 11ch;
-  }
-
-  .product-rail {
-    bottom: 12px;
-    max-width: calc(100vw - 20px);
-    overflow-x: auto;
   }
 
   .care-grid div {
