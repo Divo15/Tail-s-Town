@@ -51,23 +51,23 @@ a {
 .site-header {
   position: fixed;
   z-index: 20;
-  top: 12px;
-  left: clamp(10px, 2vw, 24px);
-  right: clamp(10px, 2vw, 24px);
+  top: 0;
+  left: 0;
+  right: 0;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
   gap: 28px;
   border: 0;
   border-radius: 0;
-  padding: 12px clamp(18px, 3.5vw, 44px);
+  padding: 6px clamp(14px, 3vw, 34px);
   color: var(--ink);
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.16)),
-    rgba(251, 250, 245, 0.24);
+    linear-gradient(135deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.08)),
+    rgba(251, 250, 245, 0.14);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.36),
-    0 14px 38px rgba(23, 33, 31, 0.1);
+    inset 0 1px 0 rgba(255, 255, 255, 0.26),
+    0 10px 26px rgba(23, 33, 31, 0.07);
   -webkit-backdrop-filter: blur(22px) saturate(1.28);
   backdrop-filter: blur(22px) saturate(1.28);
   transition:
@@ -86,11 +86,11 @@ a {
 .site-header.is-solid {
   color: var(--ink);
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.48), rgba(255, 255, 255, 0.18)),
-    rgba(251, 250, 245, 0.3);
+    linear-gradient(135deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.1)),
+    rgba(251, 250, 245, 0.18);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.4),
-    0 14px 38px rgba(23, 33, 31, 0.1);
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 10px 26px rgba(23, 33, 31, 0.08);
   -webkit-backdrop-filter: blur(24px) saturate(1.32);
   backdrop-filter: blur(24px) saturate(1.32);
 }
@@ -106,7 +106,7 @@ a {
 .brand img {
   display: block;
   width: auto;
-  height: 124px;
+  height: clamp(58px, 7vw, 90px);
 }
 
 .brand picture {
@@ -123,8 +123,8 @@ a {
 
 .site-header.is-solid {
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.48), rgba(255, 255, 255, 0.18)),
-    rgba(251, 250, 245, 0.3);
+    linear-gradient(135deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.1)),
+    rgba(251, 250, 245, 0.18);
 }
 
 .nav-links {
@@ -134,7 +134,7 @@ a {
   gap: clamp(16px, 3vw, 34px);
   color: currentColor;
   font-weight: 700;
-  font-size: 0.94rem;
+  font-size: 1.08rem;
 }
 
 .nav-links a {
@@ -156,7 +156,7 @@ a {
 .auth-prompt {
   max-width: 22ch;
   color: currentColor;
-  font-size: 0.82rem;
+  font-size: 0.94rem;
   font-weight: 800;
   line-height: 1.2;
   text-align: right;
@@ -172,7 +172,7 @@ a {
 }
 
 .auth-link {
-  min-height: 34px;
+  min-height: 32px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -181,7 +181,7 @@ a {
   padding: 0;
   background: rgba(255, 255, 255, 0.2);
   color: currentColor;
-  font-size: 0.84rem;
+  font-size: 0.96rem;
   font-weight: 800;
   transition:
     transform 180ms ease,
@@ -236,7 +236,7 @@ a {
   justify-content: center;
   border: 1px solid rgba(255, 255, 255, 0.44);
   border-radius: 999px;
-  padding: 8px;
+  padding: 7px;
   background: rgba(255, 255, 255, 0.22);
   color: currentColor;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.42);
@@ -3045,34 +3045,34 @@ h1 span {
 
 @media (max-width: 900px) {
   .site-header {
-    min-height: 60px;
+    min-height: 52px;
     grid-template-columns: auto 1fr;
     gap: 12px;
-    top: 10px;
-    left: 10px;
-    right: 10px;
-    padding: max(8px, env(safe-area-inset-top)) 16px 8px;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: max(4px, env(safe-area-inset-top)) 12px 4px;
     border-radius: 0;
     color: var(--ink);
     background:
-      linear-gradient(135deg, rgba(255, 255, 255, 0.44), rgba(255, 255, 255, 0.18)),
-      rgba(251, 250, 245, 0.26);
+      linear-gradient(135deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.08)),
+      rgba(251, 250, 245, 0.14);
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.38),
-      0 12px 30px rgba(23, 33, 31, 0.1);
+      inset 0 1px 0 rgba(255, 255, 255, 0.26),
+      0 8px 22px rgba(23, 33, 31, 0.07);
     -webkit-backdrop-filter: blur(20px) saturate(1.24);
     backdrop-filter: blur(20px) saturate(1.24);
   }
 
   .site-header.is-solid {
-    min-height: 60px;
+    min-height: 52px;
     color: var(--ink);
     background:
-      linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.2)),
-      rgba(251, 250, 245, 0.32);
+      linear-gradient(135deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.1)),
+      rgba(251, 250, 245, 0.18);
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.4),
-      0 12px 30px rgba(23, 33, 31, 0.1);
+      inset 0 1px 0 rgba(255, 255, 255, 0.3),
+      0 8px 22px rgba(23, 33, 31, 0.08);
     -webkit-backdrop-filter: blur(22px) saturate(1.28);
     backdrop-filter: blur(22px) saturate(1.28);
   }
@@ -3083,8 +3083,8 @@ h1 span {
   }
 
   .brand img {
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
     object-fit: contain;
   }
 
@@ -3097,10 +3097,10 @@ h1 span {
   }
 
   .auth-link {
-    min-height: 44px;
+    min-height: 40px;
     border-radius: 999px;
     padding-inline: 14px;
-    font-size: 0.8rem;
+    font-size: 0.98rem;
   }
 
   .auth-prompt {
