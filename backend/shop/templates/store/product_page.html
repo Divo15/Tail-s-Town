@@ -31,7 +31,10 @@
   <body id="page-top" class="detail-body {{ page.body_class }}">
     <header class="site-header" aria-label="Main navigation">
       <a class="brand" href="{% url 'home' %}" aria-label="Tail's Town home">
-        <img src="{% static 'product-pages/assets/tails-town-header-logo.webp' %}" alt="Tail's Town" decoding="async" />
+        <picture>
+          <source media="(max-width: 900px)" srcset="{% static 'product-pages/assets/tails-town-header-mark-mobile.webp' %}" />
+          <img src="{% static 'product-pages/assets/tails-town-header-logo.webp' %}" width="1408" height="1429" alt="Tail's Town" decoding="async" />
+        </picture>
       </a>
       <nav class="nav-links" aria-label="Product navigation">
         <a href="{% url 'store:smart_feeder_page' %}">Feeders</a>
