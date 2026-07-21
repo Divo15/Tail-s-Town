@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 260" role="img" aria-labelledby="title desc">
+  <title id="title">Tail's Town Primary Transparent Logo</title>
+  <desc id="desc">A refined transparent-background Tail's Town logo with a sculptural tail underline.</desc>
+  <defs>
+    <style>
+      .ink{fill:#17211f}
+      .deepLine{fill:none;stroke:#0b3d39;stroke-width:12;stroke-linecap:round;stroke-linejoin:round}
+      .tail{fill:none;stroke:#b83a3f;stroke-width:10;stroke-linecap:round;stroke-linejoin:round}
+    </style>
+  </defs>
+  <g transform="translate(36 62)">
+    <path d="M12 105h192v-83h86v83h192" class="deepLine"/>
+    <path d="M57 22L247 106 437 22" class="deepLine" opacity=".22"/>
+    <path d="M462 72c80-18 108 68 42 94-42 16-87-7-92-48" class="tail"/>
+    <text x="548" y="87" font-family="Optima, Avenir Next, Montserrat, Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="-1.6" class="ink">Tail's</text>
+    <text x="548" y="158" font-family="Optima, Avenir Next, Montserrat, Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="-1.6" class="ink">Town</text>
+    <path d="M550 181h184c72 0 129-25 144-66 9-25-11-47-39-39-20 6-29 29-14 48" class="tail"/>
+  </g>
+</svg>

@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Tail's Town Artist Vector Logos</title>
+  <desc id="desc">Background-free, art-directed vector logo concepts for Tail's Town.</desc>
+  <defs>
+    <style>
+      .ink{fill:#17211f}
+      .deep{fill:#0b3d39}
+      .red{fill:#b83a3f}
+      .gold{fill:#c78f4a}
+      .sage{fill:#7aa89b}
+      .cream{fill:#fbfaf5}
+      .line{fill:none;stroke:#17211f;stroke-width:9;stroke-linecap:round;stroke-linejoin:round}
+      .deepLine{fill:none;stroke:#0b3d39;stroke-width:10;stroke-linecap:round;stroke-linejoin:round}
+      .redLine{fill:none;stroke:#b83a3f;stroke-width:8;stroke-linecap:round;stroke-linejoin:round}
+      .goldLine{fill:none;stroke:#c78f4a;stroke-width:8;stroke-linecap:round;stroke-linejoin:round}
+      .word{font-family:Optima, Avenir Next, Montserrat, Arial, sans-serif;font-size:58px;font-weight:700;letter-spacing:-1px}
+      .small{font-family:Avenir Next, Montserrat, Arial, sans-serif;font-size:15px;font-weight:800;letter-spacing:3px}
+    </style>
+  </defs>
+
+  <g transform="translate(90 90)">
+    <text x="0" y="0" class="small deep">01 SCULPTURAL WORDMARK</text>
+    <text x="0" y="112" class="word ink">Tail's Town</text>
+    <path d="M310 126c58 28 144 14 184-25 22-22 18-53-12-58-29-5-51 22-39 47" class="redLine"/>
+    <path d="M11 138h236" class="deepLine"/>
+  </g>
+
+  <g transform="translate(790 88)">
+    <text x="0" y="0" class="small deep">02 QUIET MONOGRAM</text>
+    <path d="M20 52h205M91 52v156M154 52v156" class="deepLine"/>
+    <path d="M154 204c78 32 156-22 110-84-31-42-95-11-72 35" class="redLine"/>
+    <text x="0" y="292" class="word ink">Tail's Town</text>
+  </g>
+
+  <g transform="translate(92 405)">
+    <text x="0" y="0" class="small deep">03 ARCHITECTURAL TAIL</text>
+    <path d="M4 158h120v-86h86v86h120" class="line"/>
+    <path d="M43 72L167 8l124 64" class="deepLine"/>
+    <path d="M294 105c88-16 110 86 28 101-52 10-92-16-101-61" class="redLine"/>
+    <text x="0" y="284" class="word ink">Tail's Town</text>
+  </g>
+
+  <g transform="translate(790 405)">
+    <text x="0" y="0" class="small deep">04 ORGANIC SEAL</text>
+    <path d="M148 22c78 0 134 54 134 128 0 78-61 132-137 132C69 282 10 230 10 153 10 76 70 22 148 22z" fill="none" stroke="#0b3d39" stroke-width="11"/>
+    <path d="M81 154c28-34 101-34 129 0" class="goldLine"/>
+    <path d="M103 169c20 28 65 28 85 0" class="line"/>
+    <path d="M201 104c51 1 72 53 38 85-30 29-82 8-78-32" class="redLine"/>
+    <text x="0" y="370" class="word ink">Tail's Town</text>
+  </g>
+
+  <g transform="translate(90 735)">
+    <text x="0" y="0" class="small deep">05 PRODUCT ETCH</text>
+    <path d="M4 100h230c-16 55-55 83-115 83S20 155 4 100z" class="deep"/>
+    <path d="M27 100c18-72 172-72 190 0" class="line"/>
+    <path d="M121 100V34" class="goldLine"/>
+    <path d="M104 34h34" class="goldLine"/>
+    <path d="M214 62c62-10 82 54 33 78-33 16-69-1-75-33" class="redLine"/>
+    <text x="310" y="126" class="word ink">Tail's Town</text>
+  </g>
+</svg>

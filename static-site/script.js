@@ -1,9 +1,14 @@
 const header = document.querySelector(".site-header");
 const hero = document.querySelector(".hero");
 const heroPhotos = [...document.querySelectorAll(".hero-photo")];
+const heroButtons = [...document.querySelectorAll("[data-slide-target]")];
 const heroContent = document.querySelector(".hero-content");
 const heroTitle = document.querySelector("#hero-title");
+const scrollPet = document.querySelector(".scroll-pet");
+const addButtons = [...document.querySelectorAll("[data-product]")];
+const liveVideos = [...document.querySelectorAll("[data-live-video]")];
 const toast = document.querySelector(".cart-toast");
+const signupForm = document.querySelector(".signup-form");
 
 if (window.location.hash === "#bundles") {
   window.location.replace("/shop/bundles/");
@@ -11,8 +16,8 @@ if (window.location.hash === "#bundles") {
 
 const slides = [
   {
-    accent: "BreakFast",
-    rest: "With Wagging tails",
+    accent: "Breakfast",
+    rest: "With Wagging Tails",
     tone: "maple",
   },
   {
@@ -21,7 +26,7 @@ const slides = [
     tone: "ice",
   },
   {
-    accent: "Little Pows",
+    accent: "Little Paws",
     rest: "One Corner",
     tone: "pine",
   },
@@ -32,7 +37,7 @@ const slides = [
   },
   {
     accent: "Sunny Sips",
-    rest: "After Long Walks",
+    rest: "After Walkies",
     tone: "sun",
   },
 ];
@@ -86,6 +91,10 @@ const showSlide = (index, options = {}) => {
     heroPhotos.forEach((photo) => photo.classList.remove("is-leaving"));
   }, IMAGE_FADE_MS);
 
+  heroButtons.forEach((button, buttonIndex) => {
+    button.classList.toggle("is-active", buttonIndex === activeSlide);
+  });
+
   window.clearTimeout(textTimer);
 
   if (!syncText || !heroContent) {
@@ -120,16 +129,53 @@ const showToast = (message) => {
 window.addEventListener("scroll", setHeaderState, { passive: true });
 setHeaderState();
 
-document.querySelectorAll(".product-tile").forEach((tile) => {
-  tile.addEventListener("mouseenter", () => {
-    showToast("Open products to browse this item.");
+heroButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    showSlide(Number(button.dataset.slideTarget));
+    startHeroRotation();
   });
 });
 
-showSlide(0, { syncText: false });
-startHeroRotation();
+addButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    showToast(`${button.dataset.product} added to your launch cart.`);
+  });
+});
 
-if (hero) {
+signupForm?.addEventListener("submit", (event) => {
+  event.preventDefault();
+  showToast("You are on the Tail's Town Canada launch list.");
+});
+
+scrollPet?.addEventListener("click", () => {
+  document.querySelector("#shop")?.scrollIntoView({ behavior: "smooth" });
+});
+
+const startLiveVideos = () => {
+  liveVideos.forEach((video) => {
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+    const playAttempt = video.play();
+    if (playAttempt) {
+      playAttempt.catch(() => {
+        video.classList.add("needs-user-start");
+      });
+    }
+  });
+};
+
+if (liveVideos.length) {
+  startLiveVideos();
+  window.addEventListener("pageshow", startLiveVideos);
+  document.addEventListener("click", startLiveVideos);
+  document.addEventListener("touchstart", startLiveVideos, { passive: true });
+}
+
+if (hero && heroPhotos.length && heroTitle) {
+  showSlide(0, { syncText: false });
+  startHeroRotation();
+
   window.addEventListener(
     "load",
     () => {

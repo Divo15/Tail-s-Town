@@ -53,6 +53,12 @@ project_petkit/
 |-- README.md
 `-- requirements.txt
 ```
+The map is clear now: the live Django app is under backend/ plus root assets/; frontend/ and static-site/ are duplicate/source-only material excluded from Vercel. I’m writing that distinction, the database flow, route ownership, package versions, and the test/main deployment picture into PROJECT_MAP.md.
+
+
+
+
+The first file-write attempt was rejected by the patch formatter before changing anything. I’m retrying with the same content through a generated patch so every Markdown line is applied correctly; no repository files have been modified yet.
 
 ## Main Routes
 
