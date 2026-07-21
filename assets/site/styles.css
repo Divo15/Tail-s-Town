@@ -1364,9 +1364,14 @@ h1 span {
     padding: 84px 20px max(34px, env(safe-area-inset-bottom));
   }
 
+  .hero-media {
+    background: #d8d0c5;
+  }
+
   .hero-photo {
+    object-fit: contain;
     object-position: center;
-    transform: scale(1.015);
+    transform: none;
   }
 
   .hero-photo.is-active,

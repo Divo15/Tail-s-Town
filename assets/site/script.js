@@ -4,7 +4,6 @@ const heroPhotos = [...document.querySelectorAll(".hero-photo")];
 const heroContent = document.querySelector(".hero-content");
 const heroTitle = document.querySelector("#hero-title");
 const toast = document.querySelector(".cart-toast");
-const compactViewport = window.matchMedia("(max-width: 600px)");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const saveData = navigator.connection?.saveData === true;
 
@@ -123,7 +122,7 @@ const showSlide = (index, options = {}) => {
 
 const startHeroRotation = () => {
   window.clearInterval(slideTimer);
-  if (compactViewport.matches || reducedMotion.matches || saveData) return;
+  if (reducedMotion.matches || saveData) return;
 
   const nextPhoto = heroPhotos[(activeSlide + 1) % heroPhotos.length];
   const prepareNext = () => hydratePhoto(nextPhoto);
