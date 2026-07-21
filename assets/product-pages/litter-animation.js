@@ -248,7 +248,9 @@
 
   const updateActiveState = () => {
     const rect = section.getBoundingClientRect();
-    const isActive = rect.top <= window.innerHeight && rect.bottom >= 0;
+    const hasReachedSection = rect.top <= 0;
+    const hasNotPassedSection = rect.bottom >= 0;
+    const isActive = hasReachedSection && hasNotPassedSection;
     document.body.classList.toggle("is-litter-animation-active", isActive);
     return isActive;
   };
@@ -333,7 +335,8 @@
 
   const proximityObserver = new IntersectionObserver(
     (entries) => {
-      if (!entries.some((entry) => entry.isIntersecting)) return;
+      const sectionReached = entries.some((entry) => entry.boundingClientRect.top <= 0);
+      if (!sectionReached) return;
       fullyActivated = true;
       targetProgress = 0;
       targetFrame = 1;
@@ -343,7 +346,7 @@
       else scheduleRender();
       proximityObserver.disconnect();
     },
-    { rootMargin: "0px", threshold: 0 },
+    { rootMargin: "0px 0px -100% 0px", threshold: 0 },
   );
 
   activeStory = -1;
