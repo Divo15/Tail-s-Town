@@ -27,6 +27,7 @@
   const MAX_CACHED_FRAMES = 42;
   const MAX_PARALLEL_LOADS = 6;
   const STORY_STARTS = [0, 0.16, 0.42, 0.66, REASSEMBLE_START];
+  const LOOP_DURATION = 11000;
 
   const records = new Map();
   const queued = new Set();
@@ -41,6 +42,8 @@
   let lastTick = performance.now();
   let disposed = false;
   let fullyActivated = false;
+  let isPlaying = false;
+  let loopStartedAt = 0;
   let prefetchStarted = false;
   let prefetchCursor = 1;
   const prefetchController = new AbortController();
@@ -236,17 +239,12 @@
     }
   };
 
-  const readProgress = () => {
-    const rect = section.getBoundingClientRect();
-    const scrollable = Math.max(1, rect.height - window.innerHeight);
-    return clamp(-rect.top / scrollable, 0, 1) * TIMELINE_END;
-  };
-
   const updateActiveState = () => {
     const rect = section.getBoundingClientRect();
     const releaseBuffer = Math.min(180, window.innerHeight * 0.16);
-    const isActive = rect.top <= 0 && rect.bottom >= window.innerHeight - releaseBuffer;
+    const isActive = rect.top <= window.innerHeight - releaseBuffer && rect.bottom >= releaseBuffer;
     document.body.classList.toggle("is-litter-animation-active", isActive);
+    return isActive;
   };
 
   function render(time) {
@@ -254,15 +252,14 @@
     const elapsed = Math.min(64, Math.max(1, time - lastTick));
     lastTick = time;
 
-    if (reducedMotion.matches) {
+    if (reducedMotion.matches || !isPlaying) {
       displayProgress = 0;
     } else {
-      const smoothing = 1 - Math.exp(-elapsed / 52);
-      displayProgress += (targetProgress - displayProgress) * smoothing;
-      if (Math.abs(targetProgress - displayProgress) < 0.00005) displayProgress = targetProgress;
+      const loopElapsed = (time - loopStartedAt) % LOOP_DURATION;
+      displayProgress = (loopElapsed / LOOP_DURATION) * TIMELINE_END;
     }
 
-    const nextFrame = reducedMotion.matches ? 1 : frameForProgress(displayProgress);
+    const nextFrame = reducedMotion.matches || !isPlaying ? 1 : frameForProgress(displayProgress);
     if (nextFrame !== targetFrame) {
       const direction = Math.sign(nextFrame - targetFrame) || 1;
       targetFrame = nextFrame;
@@ -272,15 +269,29 @@
     drawBestAvailable(targetFrame);
     setStory(reducedMotion.matches ? 0 : storyForProgress(displayProgress));
 
-    if (Math.abs(targetProgress - displayProgress) >= 0.00005 || lastDrawnFrame !== targetFrame) {
+    if (isPlaying && !reducedMotion.matches) {
       scheduleRender();
     }
   }
 
-  const updateTarget = () => {
-    targetProgress = readProgress();
+  const startLoop = () => {
+    if (reducedMotion.matches) return;
+    if (!isPlaying) {
+      loopStartedAt = performance.now() - (displayProgress / TIMELINE_END) * LOOP_DURATION;
+      isPlaying = true;
+    }
     updateActiveState();
-    if (fullyActivated || targetProgress > 0) scheduleRender();
+    scheduleRender();
+  };
+
+  const stopLoop = () => {
+    isPlaying = false;
+    updateActiveState();
+  };
+
+  const updateTarget = () => {
+    if (updateActiveState()) startLoop();
+    else stopLoop();
   };
 
   const handleResize = () => {
@@ -318,11 +329,12 @@
     (entries) => {
       if (!entries.some((entry) => entry.isIntersecting)) return;
       fullyActivated = true;
-      targetProgress = readProgress();
-      targetFrame = frameForProgress(targetProgress);
+      targetProgress = 0;
+      targetFrame = 1;
       primeFrames(targetFrame, 1);
       startPrefetch();
-      scheduleRender();
+      if (updateActiveState()) startLoop();
+      else scheduleRender();
       proximityObserver.disconnect();
     },
     { rootMargin: "180% 0px", threshold: 0 },
