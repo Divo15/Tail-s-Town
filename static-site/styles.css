@@ -45,15 +45,26 @@ a {
 .site-header {
   position: fixed;
   z-index: 20;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 12px;
+  left: clamp(10px, 2vw, 24px);
+  right: clamp(10px, 2vw, 24px);
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 28px;
-  padding: 18px clamp(18px, 4vw, 56px);
-  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.62);
+  border-radius: 22px;
+  padding: 12px clamp(18px, 3.5vw, 44px);
+  color: var(--ink);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.74), rgba(255, 255, 255, 0.42)),
+    rgba(251, 250, 245, 0.62);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.74),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.26),
+    0 18px 52px rgba(23, 33, 31, 0.14);
+  -webkit-backdrop-filter: blur(22px) saturate(1.28);
+  backdrop-filter: blur(22px) saturate(1.28);
   transition:
     background 220ms ease,
     color 220ms ease,
@@ -62,9 +73,15 @@ a {
 
 .site-header.is-solid {
   color: var(--ink);
-  background: rgba(251, 250, 245, 0.92);
-  box-shadow: 0 10px 30px rgba(23, 33, 31, 0.08);
-  backdrop-filter: blur(18px);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.48)),
+    rgba(251, 250, 245, 0.72);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.82),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.32),
+    0 16px 44px rgba(23, 33, 31, 0.13);
+  -webkit-backdrop-filter: blur(24px) saturate(1.32);
+  backdrop-filter: blur(24px) saturate(1.32);
 }
 
 .brand {
@@ -103,11 +120,13 @@ a {
 }
 
 .site-header {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom-color: rgba(255, 255, 255, 0.62);
 }
 
 .site-header.is-solid {
-  background: rgba(251, 250, 245, 0.76);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.48)),
+    rgba(251, 250, 245, 0.72);
   border-bottom-color: rgba(23, 33, 31, 0.08);
 }
 
@@ -539,11 +558,21 @@ h1 span {
     min-height: 60px;
     grid-template-columns: auto 1fr auto;
     gap: 12px;
+    top: 10px;
+    left: 10px;
+    right: 10px;
     padding: max(8px, env(safe-area-inset-top)) 16px 8px;
+    border-radius: 18px;
     color: var(--ink);
-    background: rgba(251, 250, 245, 0.96);
-    box-shadow: 0 10px 30px rgba(23, 33, 31, 0.08);
-    backdrop-filter: blur(12px);
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5)),
+      rgba(251, 250, 245, 0.68);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.8),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.28),
+      0 14px 34px rgba(23, 33, 31, 0.14);
+    -webkit-backdrop-filter: blur(20px) saturate(1.24);
+    backdrop-filter: blur(20px) saturate(1.24);
   }
 
   .brand-logo img {
@@ -555,9 +584,15 @@ h1 span {
 
   .site-header.is-solid {
     min-height: 60px;
-    background: rgba(251, 250, 245, 0.96);
-    box-shadow: 0 10px 30px rgba(23, 33, 31, 0.08);
-    backdrop-filter: blur(12px);
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.52)),
+      rgba(251, 250, 245, 0.72);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.82),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.3),
+      0 14px 34px rgba(23, 33, 31, 0.14);
+    -webkit-backdrop-filter: blur(22px) saturate(1.28);
+    backdrop-filter: blur(22px) saturate(1.28);
   }
 }
 
@@ -2751,7 +2786,11 @@ h1 span {
     min-height: 60px;
     grid-template-columns: auto 1fr auto;
     gap: 12px;
+    top: 10px;
+    left: 10px;
+    right: 10px;
     padding: max(8px, env(safe-area-inset-top)) 16px 8px;
+    border-radius: 18px;
   }
 
   .nav-links {
