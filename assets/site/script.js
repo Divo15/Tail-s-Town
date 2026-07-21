@@ -4,6 +4,9 @@ const heroPhotos = [...document.querySelectorAll(".hero-photo")];
 const heroContent = document.querySelector(".hero-content");
 const heroTitle = document.querySelector("#hero-title");
 const toast = document.querySelector(".cart-toast");
+const compactViewport = window.matchMedia("(max-width: 600px)");
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const saveData = navigator.connection?.saveData === true;
 
 if (window.location.hash === "#bundles") {
   window.location.replace("/shop/bundles/");
@@ -46,6 +49,23 @@ const IMAGE_FADE_MS = 850;
 const TEXT_SWAP_DELAY = 425;
 const ROTATION_INTERVAL = 9200;
 
+const hydratePhoto = (photo) => {
+  if (!photo || photo.dataset.hydrated === "true") return;
+
+  const source = photo.closest("picture")?.querySelector("source[data-srcset]");
+  if (source?.dataset.srcset) {
+    source.srcset = source.dataset.srcset;
+    delete source.dataset.srcset;
+  }
+
+  if (photo.dataset.src) {
+    photo.src = photo.dataset.src;
+    delete photo.dataset.src;
+  }
+
+  photo.dataset.hydrated = "true";
+};
+
 const setHeaderState = () => {
   header?.classList.toggle("is-solid", window.scrollY > 24);
 };
@@ -62,6 +82,7 @@ const showSlide = (index, options = {}) => {
   const previousSlide = activeSlide;
   activeSlide = (index + slides.length) % slides.length;
   const slide = slides[activeSlide];
+  hydratePhoto(heroPhotos[activeSlide]);
 
   if (previousSlide === activeSlide && syncText) {
     return;
@@ -102,6 +123,16 @@ const showSlide = (index, options = {}) => {
 
 const startHeroRotation = () => {
   window.clearInterval(slideTimer);
+  if (compactViewport.matches || reducedMotion.matches || saveData) return;
+
+  const nextPhoto = heroPhotos[(activeSlide + 1) % heroPhotos.length];
+  const prepareNext = () => hydratePhoto(nextPhoto);
+  if ("requestIdleCallback" in window) {
+    window.requestIdleCallback(prepareNext, { timeout: 2500 });
+  } else {
+    window.setTimeout(prepareNext, 1200);
+  }
+
   slideTimer = window.setInterval(() => {
     showSlide(activeSlide + 1);
   }, ROTATION_INTERVAL);
@@ -117,17 +148,38 @@ const showToast = (message) => {
   }, 2200);
 };
 
-window.addEventListener("scroll", setHeaderState, { passive: true });
+let scrollFrame;
+window.addEventListener(
+  "scroll",
+  () => {
+    if (scrollFrame) return;
+    scrollFrame = window.requestAnimationFrame(() => {
+      setHeaderState();
+      scrollFrame = undefined;
+    });
+  },
+  { passive: true },
+);
 setHeaderState();
 
-document.querySelectorAll(".product-tile").forEach((tile) => {
-  tile.addEventListener("mouseenter", () => {
-    showToast("Open products to browse this item.");
+if (window.matchMedia("(hover: hover)").matches) {
+  document.querySelectorAll(".product-tile").forEach((tile) => {
+    tile.addEventListener("mouseenter", () => {
+      showToast("Open products to browse this item.");
+    });
   });
-});
+}
 
 showSlide(0, { syncText: false });
 startHeroRotation();
+
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    window.clearInterval(slideTimer);
+  } else {
+    startHeroRotation();
+  }
+});
 
 if (hero) {
   window.addEventListener(

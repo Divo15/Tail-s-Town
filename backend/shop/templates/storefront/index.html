@@ -12,9 +12,13 @@
     <link rel="stylesheet" href="{% static 'site/styles.css' %}" />
   </head>
   <body>
+    <a class="skip-link" href="#products">Skip to products</a>
     <header class="site-header" aria-label="Main navigation">
       <a class="brand" href="{% url 'home' %}" aria-label="Tail's Town home">
-        <img src="{% static 'product-pages/assets/tails-town-header-logo.webp' %}" alt="Tail's Town" decoding="async" />
+        <picture>
+          <source media="(max-width: 900px)" srcset="{% static 'product-pages/assets/tails-town-header-mark-mobile.webp' %}" />
+          <img src="{% static 'product-pages/assets/tails-town-header-logo.webp' %}" width="1408" height="1429" alt="Tail's Town" decoding="async" />
+        </picture>
       </a>
       <div class="header-controls">
         <nav class="nav-links" aria-label="Product navigation">
@@ -35,52 +39,33 @@
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.3 7h14.9l-1.5 8.7H8.1L6.3 7Zm0 0-.5-2.5H3.5M9.3 19.5a1.3 1.3 0 1 0 0 .1Zm8.4 0a1.3 1.3 0 1 0 0 .1Z"/></svg>
           </a>
         </div>
+        <a class="mobile-shop-action" href="#products">Shop</a>
       </div>
     </header>
 
     <main>
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-media" aria-label="Animated scene of Tail's Town smart pet products">
-          <img
-            class="hero-photo is-active"
-            src="{% static 'landing/hero-dogs-feeder-actual.webp' %}"
-            alt="Two dogs beside a smart feeder in a calm home"
-            fetchpriority="high"
-            decoding="async"
-            data-slide="0"
-          />
-          <img
-            class="hero-photo"
-            src="{% static 'landing/hero-cats-water-actual.webp' %}"
-            alt="Two cats beside a smart water fountain"
-            loading="lazy"
-            decoding="async"
-            data-slide="1"
-          />
-          <img
-            class="hero-photo"
-            src="{% static 'landing/hero-both-mudroom-actual.webp' %}"
-            alt="A cat and dog sharing a pet corner"
-            loading="lazy"
-            decoding="async"
-            data-slide="2"
-          />
-          <img
-            class="hero-photo"
-            src="{% static 'landing/hero-cat-litter-actual.webp' %}"
-            alt="A cat beside a self-cleaning litter box"
-            loading="lazy"
-            decoding="async"
-            data-slide="3"
-          />
-          <img
-            class="hero-photo"
-            src="{% static 'landing/hero-dog-water-actual.webp' %}"
-            alt="A dog drinking from a smart water dispenser"
-            loading="lazy"
-            decoding="async"
-            data-slide="4"
-          />
+          <picture>
+            <source media="(max-width: 600px)" srcset="{% static 'landing/hero-dogs-feeder-actual-mobile.webp' %}" />
+            <img class="hero-photo is-active" src="{% static 'landing/hero-dogs-feeder-actual.webp' %}" width="1717" height="916" alt="Two dogs beside a smart feeder in a calm home" fetchpriority="high" decoding="async" data-slide="0" />
+          </picture>
+          <picture>
+            <source media="(max-width: 600px)" data-srcset="{% static 'landing/hero-cats-water-actual-mobile.webp' %}" />
+            <img class="hero-photo" data-src="{% static 'landing/hero-cats-water-actual.webp' %}" width="1717" height="916" alt="Two cats beside a smart water fountain" decoding="async" data-slide="1" />
+          </picture>
+          <picture>
+            <source media="(max-width: 600px)" data-srcset="{% static 'landing/hero-both-mudroom-actual-mobile.webp' %}" />
+            <img class="hero-photo" data-src="{% static 'landing/hero-both-mudroom-actual.webp' %}" width="1691" height="930" alt="A cat and dog sharing a pet corner" decoding="async" data-slide="2" />
+          </picture>
+          <picture>
+            <source media="(max-width: 600px)" data-srcset="{% static 'landing/hero-cat-litter-actual-mobile.webp' %}" />
+            <img class="hero-photo" data-src="{% static 'landing/hero-cat-litter-actual.webp' %}" width="1934" height="813" alt="A cat beside a self-cleaning litter box" decoding="async" data-slide="3" />
+          </picture>
+          <picture>
+            <source media="(max-width: 600px)" data-srcset="{% static 'landing/hero-dog-water-actual-mobile.webp' %}" />
+            <img class="hero-photo" data-src="{% static 'landing/hero-dog-water-actual.webp' %}" width="1718" height="916" alt="A dog drinking from a smart water dispenser" decoding="async" data-slide="4" />
+          </picture>
           <div class="scene-shade" aria-hidden="true"></div>
         </div>
 
@@ -89,6 +74,10 @@
             <span class="hero-accent">Smart Care</span>
             <span>For Pet Homes</span>
           </h1>
+          <div class="hero-actions" aria-label="Start shopping">
+            <a class="hero-primary-action" href="#products">Shop smart care</a>
+            <a class="hero-secondary-action" href="/shop/bundles/">View bundles</a>
+          </div>
         </div>
       </section>
 
@@ -113,11 +102,11 @@
             aria-label="Open {{ section.product.name }} product page"
           >
             {% if section.anchor_id == "feeders" %}
-              <img src="{% static 'landing/product-tile-feeder.webp' %}" alt="{{ section.product.name }}" loading="lazy" decoding="async" />
+              <img src="{% static 'landing/product-tile-feeder.webp' %}" width="1448" height="1086" alt="{{ section.product.name }}" loading="lazy" decoding="async" />
             {% elif section.anchor_id == "hydration" %}
-              <img src="{% static 'landing/product-tile-water.webp' %}" alt="{{ section.product.name }}" loading="lazy" decoding="async" />
+              <img src="{% static 'landing/product-tile-water.webp' %}" width="1448" height="1086" alt="{{ section.product.name }}" loading="lazy" decoding="async" />
             {% else %}
-              <img src="{% static 'landing/product-tile-litter.webp' %}" alt="{{ section.product.name }}" loading="lazy" decoding="async" />
+              <img src="{% static 'landing/product-tile-litter.webp' %}" width="1448" height="1086" alt="{{ section.product.name }}" loading="lazy" decoding="async" />
             {% endif %}
             <h2>
               {% if section.anchor_id == "feeders" %}
