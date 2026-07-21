@@ -49,6 +49,15 @@
   const prefetchController = new AbortController();
 
   const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+  const sourceFrameForAvailable = (availableFrame) => {
+    if (availableFrameCount === 75 && sourceFrameCount === 300) {
+      return availableFrame <= 37 ? 1 + (availableFrame - 1) * 4 : 152 + (availableFrame - 38) * 4;
+    }
+
+    return Math.round(
+      1 + ((availableFrame - 1) / Math.max(1, availableFrameCount - 1)) * (sourceFrameCount - 1),
+    );
+  };
 
   const frameUrl = (frame) => {
     if (frame <= FINAL_FRAME_START) {
@@ -60,9 +69,7 @@
     const availableFrame = Math.round(
       1 + ((frame - 1) / Math.max(1, frameCount - 1)) * (availableFrameCount - 1),
     );
-    const sourceFrame = Math.round(
-      1 + ((availableFrame - 1) / Math.max(1, availableFrameCount - 1)) * (sourceFrameCount - 1),
-    );
+    const sourceFrame = sourceFrameForAvailable(availableFrame);
     return template.replace("__FRAME__", String(sourceFrame).padStart(3, "0"));
   };
 
@@ -241,8 +248,7 @@
 
   const updateActiveState = () => {
     const rect = section.getBoundingClientRect();
-    const releaseBuffer = Math.min(180, window.innerHeight * 0.16);
-    const isActive = rect.top <= window.innerHeight - releaseBuffer && rect.bottom >= releaseBuffer;
+    const isActive = rect.top <= window.innerHeight && rect.bottom >= 0;
     document.body.classList.toggle("is-litter-animation-active", isActive);
     return isActive;
   };
@@ -337,14 +343,13 @@
       else scheduleRender();
       proximityObserver.disconnect();
     },
-    { rootMargin: "180% 0px", threshold: 0 },
+    { rootMargin: "0px", threshold: 0 },
   );
 
   activeStory = -1;
   setStory(0);
   queueFrame(1, true);
   resizeCanvas();
-  updateTarget();
   proximityObserver.observe(section);
   window.addEventListener("scroll", updateTarget, { passive: true });
   window.addEventListener("resize", handleResize);
