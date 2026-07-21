@@ -130,7 +130,18 @@ const showToast = (message) => {
   }, 2200);
 };
 
-window.addEventListener("scroll", setHeaderState, { passive: true });
+let headerScrollFrame;
+window.addEventListener(
+  "scroll",
+  () => {
+    if (headerScrollFrame) return;
+    headerScrollFrame = window.requestAnimationFrame(() => {
+      setHeaderState();
+      headerScrollFrame = undefined;
+    });
+  },
+  { passive: true },
+);
 window.addEventListener("resize", () => {
   syncHeaderHeight();
   setHeaderState();
