@@ -1,10 +1,21 @@
 from django.contrib import admin
 from django.utils.html import format_html_join
 
-from .models import Address, Cart, CartItem, Category, Customer, Order, OrderItem, Product, SavedPaymentMethod
+from .models import (
+    Address,
+    BundleEnquiry,
+    Cart,
+    CartItem,
+    Category,
+    Customer,
+    Order,
+    OrderItem,
+    Product,
+    SavedPaymentMethod,
+)
 
-admin.site.site_header = "PETKIT Admin"
-admin.site.site_title = "PETKIT Admin"
+admin.site.site_header = "Tail's Town Admin"
+admin.site.site_title = "Tail's Town Admin"
 admin.site.index_title = "Store management"
 
 
@@ -44,6 +55,16 @@ class CustomerAdmin(admin.ModelAdmin):
     list_display = ("full_name", "email", "phone", "updated_at")
     search_fields = ("full_name", "email", "phone")
     inlines = [AddressInline, SavedPaymentMethodInline]
+
+
+@admin.register(BundleEnquiry)
+class BundleEnquiryAdmin(admin.ModelAdmin):
+    list_display = ("full_name", "bundle_type", "phone", "email", "created_at")
+    list_filter = ("bundle_type", "created_at")
+    search_fields = ("full_name", "phone", "email")
+    readonly_fields = ("bundle_type", "full_name", "phone", "email", "created_at")
+    date_hierarchy = "created_at"
+    ordering = ("-created_at",)
 
 
 class OrderItemInline(admin.TabularInline):

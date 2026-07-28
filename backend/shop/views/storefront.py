@@ -1,8 +1,10 @@
+from django.core.exceptions import ValidationError
+from django.core.validators import validate_email
 from django.http import Http404
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 
 from ..forms import CartAddForm
-from ..models import Category, Product
+from ..models import BundleEnquiry, Category, Product
 
 
 PRODUCT_PAGE_DATA = {
@@ -108,8 +110,30 @@ AD_BUNDLE_DATA = {
         "meta_description": "A focused Tail's Town cat bundle landing page for smart feeding, fresh hydration, and cleaner litter care.",
         "hero_image": "landing/hero-cats-water-winter.webp",
         "hero_alt": "Two cats using the Tail's Town water fountain in a bright winter home",
-        "detail_image": "bundles/litter-box.jpeg",
-        "detail_alt": "Tail's Town smart litter box in a styled home product scene",
+        "detail_image": "landing/hero-cat-litter-actual.webp",
+        "detail_alt": "A cat beside the Tail's Town smart litter box in a bright home",
+        "slides": (
+            {
+                "scene_src": "landing/hero-cats-water-winter.webp",
+                "scene_alt": "Two cats using the Tail's Town water fountain in a bright winter home",
+                "product_src": "product-pages/assets/tailstown-water-product-transparent.webp",
+                "product_alt": "Tail's Town water fountain product closeup",
+            },
+            {
+                "scene_src": "landing/feeder-dispenser-living-room.webp",
+                "scene_alt": "Tail's Town smart feeder styled for daily cat feeding",
+                "product_src": "product-pages/assets/tailstown-feeder-product-transparent.webp",
+                "product_alt": "Tail's Town smart feeder product closeup",
+            },
+            {
+                "scene_src": "landing/hero-cat-litter-actual.webp",
+                "scene_alt": "A cat beside the Tail's Town smart litter box in a bright home",
+                "scene_position": "78% center",
+                "scene_position_mobile": "72% center",
+                "product_src": "product-pages/assets/tailstown-litter-product-floating.webp",
+                "product_alt": "Tail's Town litter box product closeup",
+            },
+        ),
         "accent": "cat",
         "includes": (
             {
@@ -128,6 +152,15 @@ AD_BUNDLE_DATA = {
                 "url": "/shop/smart-feeder/",
             },
         ),
+        "price_offer": {
+            "label": "Bundle-only price",
+            "headline": "All 3 essentials for less.",
+            "items": ("$500", "$400", "$200"),
+            "separate_total": "$1,100",
+            "bundle_price": "$900",
+            "saving": "Get the full cat care set for $900 instead of $1,100.",
+            "badge": "Save $200",
+        },
         "details": (
             "Built around cat routines: drinking, eating, and litter care.",
             "Uses the existing Tail's Town smart-care collection.",
@@ -143,6 +176,24 @@ AD_BUNDLE_DATA = {
         "hero_alt": "Two dogs eating beside the Tail's Town smart feeder",
         "detail_image": "landing/hero-dog-water-actual.webp",
         "detail_alt": "A dog drinking from the Tail's Town water fountain",
+        "slides": (
+            {
+                "scene_src": "landing/hero-dogs-feeder-actual.webp",
+                "scene_alt": "Two dogs eating beside the Tail's Town smart feeder",
+                "scene_position": "78% center",
+                "scene_position_mobile": "82% center",
+                "product_src": "product-pages/assets/tailstown-feeder-product-transparent.webp",
+                "product_alt": "Tail's Town smart feeder product closeup",
+            },
+            {
+                "scene_src": "landing/hero-dog-water-actual.webp",
+                "scene_alt": "A dog drinking from the Tail's Town water fountain",
+                "scene_position": "64% center",
+                "scene_position_mobile": "70% center",
+                "product_src": "product-pages/assets/tailstown-water-product-transparent.webp",
+                "product_alt": "Tail's Town water fountain product closeup",
+            },
+        ),
         "accent": "dog",
         "includes": (
             {
@@ -156,6 +207,15 @@ AD_BUNDLE_DATA = {
                 "url": "/shop/water-fountain/",
             },
         ),
+        "price_offer": {
+            "label": "Bundle-only price",
+            "headline": "Both dog essentials for less.",
+            "items": ("$500", "$400"),
+            "separate_total": "$900",
+            "bundle_price": "$630",
+            "saving": "Get the dog care pair for $630 instead of $900.",
+            "badge": "Save $270",
+        },
         "details": (
             "Built around daily dog care: feeding and hydration.",
             "Keeps the kitchen routine calmer without extra visual clutter.",
@@ -224,7 +284,48 @@ def ad_bundle_page(request, bundle_type):
     if not bundle:
         raise Http404("Ad bundle page not found")
 
-    return render(request, "storefront/ad_bundle.html", {"bundle": bundle})
+    lead_values = {"full_name": "", "phone": "", "email": ""}
+    lead_errors = {}
+    lead_submitted = request.GET.get("submitted") == "1"
+
+    if request.method == "POST":
+        lead_values = {
+            "full_name": request.POST.get("full_name", "").strip(),
+            "phone": request.POST.get("phone", "").strip(),
+            "email": request.POST.get("email", "").strip(),
+        }
+
+        if not lead_values["full_name"]:
+            lead_errors["full_name"] = "Enter your name."
+        if not lead_values["phone"]:
+            lead_errors["phone"] = "Enter your phone number."
+        if not lead_values["email"]:
+            lead_errors["email"] = "Enter your email ID."
+        else:
+            try:
+                validate_email(lead_values["email"])
+            except ValidationError:
+                lead_errors["email"] = "Enter a valid email ID."
+
+        if not lead_errors:
+            BundleEnquiry.objects.create(
+                bundle_type=bundle_type,
+                full_name=lead_values["full_name"],
+                phone=lead_values["phone"],
+                email=lead_values["email"],
+            )
+            return redirect(f"{request.path}?submitted=1")
+
+    return render(
+        request,
+        "storefront/ad_bundle.html",
+        {
+            "bundle": bundle,
+            "lead_errors": lead_errors,
+            "lead_submitted": lead_submitted,
+            "lead_values": lead_values,
+        },
+    )
 
 
 def store_product_detail(request, slug):

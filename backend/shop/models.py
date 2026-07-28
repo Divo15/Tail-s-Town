@@ -92,6 +92,25 @@ class Customer(models.Model):
         return self.full_name
 
 
+class BundleEnquiry(models.Model):
+    class BundleType(models.TextChoices):
+        CAT = "cat-bundle", "Cat bundle"
+        DOG = "dog-bundle", "Dog bundle"
+
+    bundle_type = models.CharField(max_length=20, choices=BundleType.choices)
+    full_name = models.CharField(max_length=200)
+    phone = models.CharField(max_length=30)
+    email = models.EmailField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+        verbose_name_plural = "bundle enquiries"
+
+    def __str__(self) -> str:
+        return f"{self.full_name} - {self.get_bundle_type_display()}"
+
+
 class Address(models.Model):
     customer = models.ForeignKey(Customer, related_name="addresses", on_delete=models.CASCADE)
     label = models.CharField(max_length=50, blank=True)
