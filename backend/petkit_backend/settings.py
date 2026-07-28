@@ -37,6 +37,19 @@ def env_str(name, default=""):
     return value.strip()
 
 
+def include_www_variants(hosts):
+    expanded = []
+    for host in hosts:
+        if host not in expanded:
+            expanded.append(host)
+        if host in {"127.0.0.1", "localhost"} or host.startswith("."):
+            continue
+        variant = host[4:] if host.startswith("www.") else f"www.{host}"
+        if variant not in expanded:
+            expanded.append(variant)
+    return expanded
+
+
 def postgres_config_from_url(database_url):
     parsed = urlparse(database_url)
     if parsed.scheme not in {"postgres", "postgresql"}:
@@ -65,10 +78,10 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "django-insecure-local-dev-key-chang
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env_bool("DJANGO_DEBUG", default=True)
 
-ALLOWED_HOSTS = env_list("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost")
+ALLOWED_HOSTS = include_www_variants(env_list("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost"))
 RAILWAY_PUBLIC_DOMAIN = env_str("RAILWAY_PUBLIC_DOMAIN")
-if RAILWAY_PUBLIC_DOMAIN and RAILWAY_PUBLIC_DOMAIN not in ALLOWED_HOSTS:
-    ALLOWED_HOSTS.append(RAILWAY_PUBLIC_DOMAIN)
+if RAILWAY_PUBLIC_DOMAIN:
+    ALLOWED_HOSTS = include_www_variants([*ALLOWED_HOSTS, RAILWAY_PUBLIC_DOMAIN])
 
 if not DEBUG and SECRET_KEY == "django-insecure-local-dev-key-change-me":
     raise ValueError("DJANGO_SECRET_KEY must be set when DJANGO_DEBUG is False.")
@@ -228,10 +241,17 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # Production security and reverse-proxy settings. These remain opt-in for
 # local development, while production defaults protect cookies and HTTPS.
 CSRF_TRUSTED_ORIGINS = env_list("DJANGO_CSRF_TRUSTED_ORIGINS")
+csrf_hosts = []
+for origin in CSRF_TRUSTED_ORIGINS:
+    parsed_origin = urlparse(origin)
+    if parsed_origin.scheme and parsed_origin.netloc:
+        csrf_hosts.append(parsed_origin.netloc)
 if RAILWAY_PUBLIC_DOMAIN:
-    railway_origin = f"https://{RAILWAY_PUBLIC_DOMAIN}"
-    if railway_origin not in CSRF_TRUSTED_ORIGINS:
-        CSRF_TRUSTED_ORIGINS.append(railway_origin)
+    csrf_hosts.append(RAILWAY_PUBLIC_DOMAIN)
+for host in include_www_variants(csrf_hosts):
+    origin = f"https://{host}"
+    if origin not in CSRF_TRUSTED_ORIGINS:
+        CSRF_TRUSTED_ORIGINS.append(origin)
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 SECURE_SSL_REDIRECT = env_bool("DJANGO_SECURE_SSL_REDIRECT", default=not DEBUG)
 SESSION_COOKIE_SECURE = env_bool("DJANGO_SESSION_COOKIE_SECURE", default=not DEBUG)
