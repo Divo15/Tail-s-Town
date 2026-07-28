@@ -100,6 +100,70 @@ PRODUCT_PAGE_DATA = {
     },
 }
 
+AD_BUNDLE_DATA = {
+    "cat-bundle": {
+        "kind": "cat",
+        "title": "Cat care bundle",
+        "subtitle": "Fresh water, calmer feeding, and a cleaner litter corner in one focused routine.",
+        "meta_description": "A focused Tail's Town cat bundle landing page for smart feeding, fresh hydration, and cleaner litter care.",
+        "hero_image": "landing/hero-cats-water-winter.webp",
+        "hero_alt": "Two cats using the Tail's Town water fountain in a bright winter home",
+        "detail_image": "bundles/litter-box.jpeg",
+        "detail_alt": "Tail's Town smart litter box in a styled home product scene",
+        "accent": "cat",
+        "includes": (
+            {
+                "name": "Water Fountain",
+                "copy": "Clean daily hydration for curious cats.",
+                "url": "/shop/water-fountain/",
+            },
+            {
+                "name": "Litter Box",
+                "copy": "A calmer enclosed corner for shared homes.",
+                "url": "/shop/litter-box/",
+            },
+            {
+                "name": "Smart Feeder",
+                "copy": "Quiet portions when the day gets busy.",
+                "url": "/shop/smart-feeder/",
+            },
+        ),
+        "details": (
+            "Built around cat routines: drinking, eating, and litter care.",
+            "Uses the existing Tail's Town smart-care collection.",
+            "Best for apartments, family rooms, and multi-cat corners.",
+        ),
+    },
+    "dog-bundle": {
+        "kind": "dog",
+        "title": "Dog care bundle",
+        "subtitle": "Meal timing and cleaner hydration for everyday dog routines.",
+        "meta_description": "A focused Tail's Town dog bundle landing page for smart feeding and fresh hydration.",
+        "hero_image": "landing/hero-dogs-feeder-actual.webp",
+        "hero_alt": "Two dogs eating beside the Tail's Town smart feeder",
+        "detail_image": "landing/hero-dog-water-actual.webp",
+        "detail_alt": "A dog drinking from the Tail's Town water fountain",
+        "accent": "dog",
+        "includes": (
+            {
+                "name": "Smart Feeder",
+                "copy": "Timed portions for early starts and late meetings.",
+                "url": "/shop/smart-feeder/",
+            },
+            {
+                "name": "Water Fountain",
+                "copy": "Fresh water kept ready through the day.",
+                "url": "/shop/water-fountain/",
+            },
+        ),
+        "details": (
+            "Built around daily dog care: feeding and hydration.",
+            "Keeps the kitchen routine calmer without extra visual clutter.",
+            "A focused route for dog-owner ad traffic.",
+        ),
+    },
+}
+
 
 def home(request):
     categories = list(Category.objects.filter(products__is_active=True).distinct().order_by("name")[:8])
@@ -153,6 +217,14 @@ def home(request):
 
 def bundle_page(request):
     return render(request, "storefront/bundles.html")
+
+
+def ad_bundle_page(request, bundle_type):
+    bundle = AD_BUNDLE_DATA.get(bundle_type)
+    if not bundle:
+        raise Http404("Ad bundle page not found")
+
+    return render(request, "storefront/ad_bundle.html", {"bundle": bundle})
 
 
 def store_product_detail(request, slug):
