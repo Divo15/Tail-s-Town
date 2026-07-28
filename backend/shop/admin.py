@@ -1,5 +1,9 @@
 from django.contrib import admin
+from django.contrib.admin.forms import AdminAuthenticationForm
+from django.contrib.auth.backends import ModelBackend
+from django.utils.decorators import method_decorator
 from django.utils.html import format_html_join
+from django.views.decorators.debug import sensitive_variables
 
 from .models import (
     Address,
@@ -17,6 +21,29 @@ from .models import (
 admin.site.site_header = "Tail's Town Admin"
 admin.site.site_title = "Tail's Town Admin"
 admin.site.index_title = "Store management"
+
+
+class StaffModelBackendAdminAuthenticationForm(AdminAuthenticationForm):
+    @method_decorator(sensitive_variables("password"))
+    def clean(self):
+        username = self.cleaned_data.get("username")
+        password = self.cleaned_data.get("password")
+
+        if username is not None and password:
+            self.user_cache = ModelBackend().authenticate(
+                self.request,
+                username=username,
+                password=password,
+            )
+            if self.user_cache is None:
+                raise self.get_invalid_login_error()
+            self.user_cache.backend = "django.contrib.auth.backends.ModelBackend"
+            self.confirm_login_allowed(self.user_cache)
+
+        return self.cleaned_data
+
+
+admin.site.login_form = StaffModelBackendAdminAuthenticationForm
 
 
 @admin.register(Category)
