@@ -28,11 +28,11 @@
 
       <section class="ad-product-layout" aria-labelledby="ad-title">
         <div class="ad-gallery" aria-label="{{ bundle.title }} product scenes">
-          <figure class="ad-gallery-panel ad-gallery-panel-large{% if bundle.lhs_slides|length > 1 %} ad-rotator{% endif %}" style="--image-count: {{ bundle.lhs_slides|length }}; --image-duration: 4.5s;">
+          <figure class="ad-gallery-panel ad-gallery-panel-large{% if bundle.lhs_slides|length > 1 %} ad-rotator{% endif %}" {% if bundle.lhs_slides|length > 1 %}data-ad-rotator data-rotator-interval="4500"{% endif %} style="--image-count: {{ bundle.lhs_slides|length }}; --image-duration: 4.5s;">
             {% for slide in bundle.lhs_slides %}
               {% if bundle.lhs_slides|length > 1 %}
                 <span
-                  class="ad-rotator-item"
+                  class="ad-rotator-item{% if forloop.first %} is-active{% endif %}"
                   style="--image-index: {{ forloop.counter0 }};{% if slide.position %} --image-position: {{ slide.position }};{% endif %}{% if slide.position_mobile %} --image-position-mobile: {{ slide.position_mobile }};{% endif %}"
                 >
               {% endif %}
@@ -61,10 +61,10 @@
             </figcaption>
           </figure>
           {% if bundle.dog_rhs_slides %}
-            <figure class="ad-gallery-panel ad-rhs-rotator ad-rotator" aria-label="{{ bundle.title }} product-use images" style="--image-count: {{ bundle.dog_rhs_slides|length }}; --image-duration: 2.5s;">
+            <figure class="ad-gallery-panel ad-rhs-rotator ad-rotator" aria-label="{{ bundle.title }} product-use images" data-ad-rotator data-rotator-interval="2500" style="--image-count: {{ bundle.dog_rhs_slides|length }}; --image-duration: 2.5s;">
               {% for slide in bundle.dog_rhs_slides %}
                 <span
-                  class="ad-rotator-item"
+                  class="ad-rotator-item{% if forloop.first %} is-active{% endif %}"
                   style="--image-index: {{ forloop.counter0 }};{% if slide.position %} --image-position: {{ slide.position }};{% endif %}{% if slide.position_mobile %} --image-position-mobile: {{ slide.position_mobile }};{% endif %}"
                 >
                   <img
@@ -233,6 +233,22 @@
     </main>
     <script>
       (() => {
+        document.querySelectorAll("[data-ad-rotator]").forEach((rotator) => {
+          const items = Array.from(rotator.querySelectorAll(".ad-rotator-item"));
+          if (items.length < 2) return;
+
+          let activeIndex = Math.max(0, items.findIndex((item) => item.classList.contains("is-active")));
+          const interval = Number(rotator.dataset.rotatorInterval) || 3500;
+
+          items.forEach((item, index) => item.classList.toggle("is-active", index === activeIndex));
+
+          window.setInterval(() => {
+            items[activeIndex].classList.remove("is-active");
+            activeIndex = (activeIndex + 1) % items.length;
+            items[activeIndex].classList.add("is-active");
+          }, interval);
+        });
+
         const modal = document.querySelector("[data-lead-modal]");
         const openButton = document.querySelector("[data-open-lead-form]");
         const closeButton = document.querySelector("[data-close-lead-form]");

@@ -227,16 +227,12 @@
 .ad-rotator-item {
   display: block;
   opacity: 0;
-  animation: adImageCycle calc(var(--image-count) * var(--image-duration, 5s)) ease-in-out infinite;
-  animation-delay: calc(var(--image-index) * var(--image-duration, 5s) * -1);
+  z-index: 0;
+  transition: opacity 420ms ease;
 }
 
-.ad-rotator-item:first-child {
+.ad-rotator-item.is-active {
   opacity: 1;
-  animation: none;
-}
-
-.ad-rotator-item:not(:first-child) {
   z-index: 1;
 }
 
@@ -325,13 +321,11 @@
 }
 
 .ad-rhs-rotator .ad-rotator-item {
-  opacity: 1;
-  animation: none;
+  opacity: 0;
 }
 
-.ad-rhs-rotator .ad-rotator-item + .ad-rotator-item {
-  opacity: 0;
-  animation: adSimpleCrossfade calc(var(--image-duration, 2.5s) * 2) ease-in-out infinite;
+.ad-rhs-rotator .ad-rotator-item.is-active {
+  opacity: 1;
 }
 
 .ad-product-group:hover img {
@@ -1022,48 +1016,12 @@
     transition: none;
   }
 
-  .ad-rotator img {
-    animation: none;
-  }
-
   .ad-rotator .ad-rotator-item {
-    animation: none;
+    transition: none;
   }
 
-  .ad-rotator .ad-rotator-item:not(:first-child) {
+  .ad-rotator .ad-rotator-item:not(.is-active) {
     opacity: 0;
   }
 
-}
-
-@keyframes adImageCycle {
-  0% {
-    opacity: 0;
-  }
-
-  8%,
-  42% {
-    opacity: 1;
-  }
-
-  50%,
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes adSimpleCrossfade {
-  0%,
-  38% {
-    opacity: 0;
-  }
-
-  50%,
-  88% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-  }
 }
