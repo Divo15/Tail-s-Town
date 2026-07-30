@@ -11,14 +11,6 @@ from django.utils import timezone
 logger = logging.getLogger(__name__)
 
 
-def _bundle_label(bundle_type):
-    labels = {
-        "cat-bundle": "Cat bundle",
-        "dog-bundle": "Dog bundle",
-    }
-    return labels.get(bundle_type, bundle_type.replace("-", " ").title())
-
-
 def send_bundle_enquiry_to_sheet(enquiry):
     webhook_url = getattr(settings, "BUNDLE_ENQUIRY_SHEET_WEBHOOK_URL", "")
     if not webhook_url:
@@ -30,12 +22,10 @@ def send_bundle_enquiry_to_sheet(enquiry):
         "date": submitted_at.strftime("%Y-%m-%d"),
         "time": submitted_at.strftime("%H:%M:%S"),
         "bundle": enquiry.get_bundle_type_display(),
-        "bundle_type": enquiry.bundle_type,
         "full_name": enquiry.full_name,
         "phone": enquiry.phone,
         "email": enquiry.email,
         "city": enquiry.city,
-        "pet_type": enquiry.pet_type,
     }
 
     request = Request(
@@ -57,12 +47,10 @@ def send_bundle_enquiry_values_to_sheet(bundle_type, values):
     enquiry = SimpleNamespace(
         pk="no-db",
         created_at=timezone.now(),
-        bundle_type=bundle_type,
-        get_bundle_type_display=lambda: _bundle_label(bundle_type),
+        get_bundle_type_display=lambda: "Cat bundle" if bundle_type == "cat-bundle" else "Dog bundle",
         full_name=values.get("full_name", ""),
         phone=values.get("phone", ""),
         email=values.get("email", ""),
         city=values.get("city", ""),
-        pet_type=values.get("pet_type", ""),
     )
     send_bundle_enquiry_to_sheet(enquiry)

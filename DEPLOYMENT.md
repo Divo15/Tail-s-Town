@@ -79,12 +79,10 @@ submitted_at
 date
 time
 bundle
-bundle_type
 full_name
 phone
 email
 city
-pet_type
 ```
 
 ## Final checks
