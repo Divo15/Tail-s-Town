@@ -80,18 +80,12 @@ date
 time
 bundle
 bundle_type
-campaign_id
 full_name
 phone
 email
 city
 pet_type
-preferred_contact
-notes
 ```
-
-The campaign id is captured from `?campaign_id=...`, `?campaign=...`, or
-`?utm_campaign=...` and stored with the enquiry.
 
 ## Final checks
 

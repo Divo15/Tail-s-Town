@@ -19,7 +19,7 @@ def _bundle_label(bundle_type):
     return labels.get(bundle_type, bundle_type.replace("-", " ").title())
 
 
-def send_bundle_enquiry_to_sheet(enquiry, campaign_id=""):
+def send_bundle_enquiry_to_sheet(enquiry):
     webhook_url = getattr(settings, "BUNDLE_ENQUIRY_SHEET_WEBHOOK_URL", "")
     if not webhook_url:
         return
@@ -31,14 +31,11 @@ def send_bundle_enquiry_to_sheet(enquiry, campaign_id=""):
         "time": submitted_at.strftime("%H:%M:%S"),
         "bundle": enquiry.get_bundle_type_display(),
         "bundle_type": enquiry.bundle_type,
-        "campaign_id": campaign_id,
         "full_name": enquiry.full_name,
         "phone": enquiry.phone,
         "email": enquiry.email,
         "city": enquiry.city,
         "pet_type": enquiry.pet_type,
-        "preferred_contact": enquiry.preferred_contact,
-        "notes": enquiry.notes,
     }
 
     request = Request(
@@ -56,7 +53,7 @@ def send_bundle_enquiry_to_sheet(enquiry, campaign_id=""):
         logger.warning("Could not send bundle enquiry %s to Google Sheets: %s", enquiry.pk, exc)
 
 
-def send_bundle_enquiry_values_to_sheet(bundle_type, values, campaign_id=""):
+def send_bundle_enquiry_values_to_sheet(bundle_type, values):
     enquiry = SimpleNamespace(
         pk="no-db",
         created_at=timezone.now(),
@@ -67,7 +64,5 @@ def send_bundle_enquiry_values_to_sheet(bundle_type, values, campaign_id=""):
         email=values.get("email", ""),
         city=values.get("city", ""),
         pet_type=values.get("pet_type", ""),
-        preferred_contact=values.get("preferred_contact", ""),
-        notes=values.get("notes", ""),
     )
-    send_bundle_enquiry_to_sheet(enquiry, campaign_id=campaign_id)
+    send_bundle_enquiry_to_sheet(enquiry)

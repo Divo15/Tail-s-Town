@@ -22,8 +22,8 @@
 
     <main class="ad-main">
       <nav class="ad-campaign-switcher" aria-label="Choose ad bundle">
-        <a href="{% url 'cat_ads_bundle' %}{% if lead_values.campaign_id %}?campaign_id={{ lead_values.campaign_id|urlencode }}{% endif %}" {% if bundle.kind == "cat" %}aria-current="page"{% endif %}>Cat Bundle</a>
-        <a href="{% url 'dog_ads_bundle' %}{% if lead_values.campaign_id %}?campaign_id={{ lead_values.campaign_id|urlencode }}{% endif %}" {% if bundle.kind == "dog" %}aria-current="page"{% endif %}>Dog Bundle</a>
+        <a href="{% url 'cat_ads_bundle' %}" {% if bundle.kind == "cat" %}aria-current="page"{% endif %}>Cat Bundle</a>
+        <a href="{% url 'dog_ads_bundle' %}" {% if bundle.kind == "dog" %}aria-current="page"{% endif %}>Dog Bundle</a>
       </nav>
 
       <section class="ad-product-layout" aria-labelledby="ad-title">
@@ -194,7 +194,6 @@
               <form class="ad-lead-form" method="post" novalidate>
                 {% csrf_token %}
                 <input type="hidden" name="bundle" value="{{ bundle.kind }}" />
-                <input type="hidden" name="campaign_id" value="{{ lead_values.campaign_id }}" />
                 <div class="ad-form-heading">
                   <span class="ad-form-kicker">Tail's Town early access</span>
                 </div>

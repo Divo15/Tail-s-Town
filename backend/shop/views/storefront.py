@@ -349,21 +349,12 @@ def ad_bundle_page(request, bundle_type):
     if not bundle:
         raise Http404("Ad bundle page not found")
 
-    campaign_id = (
-        request.GET.get("campaign_id")
-        or request.GET.get("campaign")
-        or request.GET.get("utm_campaign")
-        or ""
-    ).strip()
     lead_values = {
         "full_name": "",
         "phone": "",
         "email": "",
         "city": "",
-        "campaign_id": campaign_id,
         "pet_type": bundle["kind"],
-        "preferred_contact": "phone",
-        "notes": "",
     }
     lead_errors = {}
     lead_submitted = request.GET.get("submitted") == "1"
@@ -374,10 +365,7 @@ def ad_bundle_page(request, bundle_type):
             "phone": request.POST.get("phone", "").strip(),
             "email": request.POST.get("email", "").strip(),
             "city": request.POST.get("city", "").strip(),
-            "campaign_id": request.POST.get("campaign_id", "").strip(),
             "pet_type": bundle["kind"],
-            "preferred_contact": "phone",
-            "notes": "",
         }
 
         if not lead_values["full_name"]:
@@ -400,17 +388,11 @@ def ad_bundle_page(request, bundle_type):
                     email=lead_values["email"],
                     city=lead_values["city"],
                     pet_type=lead_values["pet_type"],
-                    preferred_contact=lead_values["preferred_contact"],
-                    notes=lead_values["notes"],
                 )
             except ProgrammingError:
-                send_bundle_enquiry_values_to_sheet(
-                    bundle_type,
-                    lead_values,
-                    campaign_id=lead_values["campaign_id"],
-                )
+                send_bundle_enquiry_values_to_sheet(bundle_type, lead_values)
             else:
-                send_bundle_enquiry_to_sheet(enquiry, campaign_id=lead_values["campaign_id"])
+                send_bundle_enquiry_to_sheet(enquiry)
             return redirect(f"{request.path}?submitted=1")
 
     return render(
