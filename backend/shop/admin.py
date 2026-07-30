@@ -86,10 +86,20 @@ class CustomerAdmin(admin.ModelAdmin):
 
 @admin.register(BundleEnquiry)
 class BundleEnquiryAdmin(admin.ModelAdmin):
-    list_display = ("full_name", "bundle_type", "phone", "email", "created_at")
-    list_filter = ("bundle_type", "created_at")
-    search_fields = ("full_name", "phone", "email")
-    readonly_fields = ("bundle_type", "full_name", "phone", "email", "created_at")
+    list_display = ("full_name", "bundle_type", "phone", "email", "city", "pet_type", "created_at")
+    list_filter = ("bundle_type", "pet_type", "preferred_contact", "created_at")
+    search_fields = ("full_name", "phone", "email", "city", "notes")
+    readonly_fields = (
+        "bundle_type",
+        "full_name",
+        "phone",
+        "email",
+        "city",
+        "pet_type",
+        "preferred_contact",
+        "notes",
+        "created_at",
+    )
     date_hierarchy = "created_at"
     ordering = ("-created_at",)
 

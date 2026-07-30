@@ -134,22 +134,49 @@ AD_BUNDLE_DATA = {
                 "product_alt": "Tail's Town litter box product closeup",
             },
         ),
+        "lhs_slides": (
+            {
+                "src": "landing/cat-living-room-bundle.png",
+                "alt": "Cat care bundle products in a warm living room with two cats",
+                "position": "center",
+                "position_mobile": "52% center",
+            },
+        ),
+        "image_quote": {
+            "lead": "Because comfort has a rhythm.",
+            "lead_parts": ("Because comfort", "has a rhythm."),
+            "support": "Fresh water, calm meals, and a cleaner corner for the little rituals they count on.",
+        },
+        "rhs_video": {
+            "src": "landing/cat-litter-box-use-bundle.mp4",
+            "alt": "Cat using the Tail's Town automatic litter box",
+            "position": "58% center",
+            "position_mobile": "58% 48%",
+        },
+        "rhs_quote": "A quieter corner for the rituals they keep private.",
+        "rhs_quote_parts": ("A quieter corner", "for private rituals."),
         "accent": "cat",
         "includes": (
             {
                 "name": "Water Fountain",
                 "copy": "Clean daily hydration for curious cats.",
                 "url": "/shop/water-fountain/",
+                "image": "landing/cat-bundle-water-fountain-sticker.png",
+                "image_alt": "Tail's Town water fountain",
             },
             {
                 "name": "Litter Box",
                 "copy": "A calmer enclosed corner for shared homes.",
                 "url": "/shop/litter-box/",
+                "image": "landing/cat-bundle-litter-box-sticker.png",
+                "image_alt": "Tail's Town litter box",
             },
             {
                 "name": "Smart Feeder",
                 "copy": "Quiet portions when the day gets busy.",
                 "url": "/shop/smart-feeder/",
+                "image": "product-pages/assets/tailstown-feeder-product-transparent.webp",
+                "image_alt": "Tail's Town smart feeder",
             },
         ),
         "price_offer": {
@@ -194,17 +221,50 @@ AD_BUNDLE_DATA = {
                 "product_alt": "Tail's Town water fountain product closeup",
             },
         ),
+        "lhs_slides": (
+            {
+                "src": "landing/dog-living-room-main.png",
+                "alt": "Dog care bundle feeder and water fountain in a sunlit living room",
+                "position": "center",
+                "position_mobile": "48% center",
+            },
+        ),
+        "image_quote": {
+            "lead": "Care that keeps pace with devotion.",
+            "lead_parts": ("Care that keeps pace", "with devotion."),
+            "support": "Steady meals and fresh water, ready before they need to ask.",
+        },
+        "rhs_quote": "Fresh water. Warm mornings. No missed moments.",
+        "rhs_quote_parts": ("Fresh water.", "Warm mornings.", "No missed moments."),
+        "dog_rhs_slides": (
+            {
+                "src": "landing/dog-water-rhs-first.png",
+                "alt": "Dog drinking from the Tail's Town water fountain in a warm living room",
+                "position": "center",
+                "position_mobile": "50% center",
+            },
+            {
+                "src": "landing/dog-water-use-bundle.png",
+                "alt": "Golden retriever drinking from the Tail's Town water fountain in a warm living room",
+                "position": "center",
+                "position_mobile": "50% center",
+            },
+        ),
         "accent": "dog",
         "includes": (
             {
                 "name": "Smart Feeder",
                 "copy": "Timed portions for early starts and late meetings.",
                 "url": "/shop/smart-feeder/",
+                "image": "product-pages/assets/tailstown-feeder-product-transparent.webp",
+                "image_alt": "Tail's Town smart feeder",
             },
             {
                 "name": "Water Fountain",
                 "copy": "Fresh water kept ready through the day.",
                 "url": "/shop/water-fountain/",
+                "image": "product-pages/assets/tailstown-water-product-transparent.webp",
+                "image_alt": "Tail's Town water fountain",
             },
         ),
         "price_offer": {
@@ -284,7 +344,15 @@ def ad_bundle_page(request, bundle_type):
     if not bundle:
         raise Http404("Ad bundle page not found")
 
-    lead_values = {"full_name": "", "phone": "", "email": ""}
+    lead_values = {
+        "full_name": "",
+        "phone": "",
+        "email": "",
+        "city": "",
+        "pet_type": bundle["kind"],
+        "preferred_contact": "phone",
+        "notes": "",
+    }
     lead_errors = {}
     lead_submitted = request.GET.get("submitted") == "1"
 
@@ -293,6 +361,10 @@ def ad_bundle_page(request, bundle_type):
             "full_name": request.POST.get("full_name", "").strip(),
             "phone": request.POST.get("phone", "").strip(),
             "email": request.POST.get("email", "").strip(),
+            "city": request.POST.get("city", "").strip(),
+            "pet_type": bundle["kind"],
+            "preferred_contact": "phone",
+            "notes": "",
         }
 
         if not lead_values["full_name"]:
@@ -306,13 +378,16 @@ def ad_bundle_page(request, bundle_type):
                 validate_email(lead_values["email"])
             except ValidationError:
                 lead_errors["email"] = "Enter a valid email ID."
-
         if not lead_errors:
             BundleEnquiry.objects.create(
                 bundle_type=bundle_type,
                 full_name=lead_values["full_name"],
                 phone=lead_values["phone"],
                 email=lead_values["email"],
+                city=lead_values["city"],
+                pet_type=lead_values["pet_type"],
+                preferred_contact=lead_values["preferred_contact"],
+                notes=lead_values["notes"],
             )
             return redirect(f"{request.path}?submitted=1")
 

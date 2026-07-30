@@ -28,86 +28,238 @@
 
       <section class="ad-product-layout" aria-labelledby="ad-title">
         <div class="ad-gallery" aria-label="{{ bundle.title }} product scenes">
-          <figure class="ad-gallery-panel ad-gallery-panel-large ad-rotator" style="--image-count: {{ bundle.slides|length }};">
-            {% for slide in bundle.slides %}
-              <span
-                class="ad-rotator-item"
-                style="--image-index: {{ forloop.counter0 }};{% if slide.scene_position %} --image-position: {{ slide.scene_position }};{% endif %}{% if slide.scene_position_mobile %} --image-position-mobile: {{ slide.scene_position_mobile }};{% endif %}"
-              >
+          <figure class="ad-gallery-panel ad-gallery-panel-large{% if bundle.lhs_slides|length > 1 %} ad-rotator{% endif %}" style="--image-count: {{ bundle.lhs_slides|length }}; --image-duration: 4.5s;">
+            {% for slide in bundle.lhs_slides %}
+              {% if bundle.lhs_slides|length > 1 %}
+                <span
+                  class="ad-rotator-item"
+                  style="--image-index: {{ forloop.counter0 }};{% if slide.position %} --image-position: {{ slide.position }};{% endif %}{% if slide.position_mobile %} --image-position-mobile: {{ slide.position_mobile }};{% endif %}"
+                >
+              {% endif %}
                 <img
-                  src="{% static slide.scene_src %}"
-                  alt="{{ slide.scene_alt }}"
-                  width="1717"
-                  height="916"
+                  src="{% static slide.src %}"
+                  alt="{{ slide.alt }}"
+                  width="1138"
+                  height="1422"
                   {% if forloop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %}
                   decoding="async"
                 />
-              </span>
+              {% if bundle.lhs_slides|length > 1 %}
+                </span>
+              {% endif %}
             {% endfor %}
+            <figcaption class="ad-image-caption">
+              <strong>
+                {% if bundle.image_quote.lead_parts %}
+                  {% for part in bundle.image_quote.lead_parts %}
+                    <span>{{ part }}</span>
+                  {% endfor %}
+                {% else %}
+                  {{ bundle.image_quote.lead|default:bundle.title }}
+                {% endif %}
+              </strong>
+            </figcaption>
           </figure>
-          <figure class="ad-gallery-panel ad-product-group" aria-label="{{ bundle.title }} included products">
-            {% for slide in bundle.slides %}
-              <span class="ad-product-figure">
-                <img
-                  src="{% static slide.product_src %}"
-                  alt="{{ slide.product_alt }}"
-                  width="1448"
-                  height="1086"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </span>
-            {% endfor %}
-          </figure>
-
-          <section class="ad-details" aria-label="{{ bundle.title }} information">
-            <div class="ad-detail-tabs" role="list" aria-label="Bundle details">
-              <span role="listitem">Details</span>
-            </div>
-            <div class="ad-detail-copy">
-              <h2>Built for the routine people actually come home to.</h2>
-              <ul>
-                {% for detail in bundle.details %}
-                  <li>{{ detail }}</li>
-                {% endfor %}
-              </ul>
-            </div>
-          </section>
+          {% if bundle.dog_rhs_slides %}
+            <figure class="ad-gallery-panel ad-rhs-rotator ad-rotator" aria-label="{{ bundle.title }} product-use images" style="--image-count: {{ bundle.dog_rhs_slides|length }}; --image-duration: 2.5s;">
+              {% for slide in bundle.dog_rhs_slides %}
+                <span
+                  class="ad-rotator-item"
+                  style="--image-index: {{ forloop.counter0 }};{% if slide.position %} --image-position: {{ slide.position }};{% endif %}{% if slide.position_mobile %} --image-position-mobile: {{ slide.position_mobile }};{% endif %}"
+                >
+                  <img
+                    src="{% static slide.src %}"
+                    alt="{{ slide.alt }}"
+                    width="1138"
+                    height="1422"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </span>
+              {% endfor %}
+              {% if bundle.rhs_quote %}
+                <figcaption class="ad-image-caption ad-image-caption-secondary">
+                  <strong>
+                    {% if bundle.rhs_quote_parts %}
+                      {% for part in bundle.rhs_quote_parts %}
+                        <span>{{ part }}</span>
+                      {% endfor %}
+                    {% else %}
+                      {{ bundle.rhs_quote }}
+                    {% endif %}
+                  </strong>
+                </figcaption>
+              {% endif %}
+            </figure>
+          {% elif bundle.rhs_video %}
+            <figure class="ad-gallery-panel ad-static-rhs ad-video-rhs" aria-label="{{ bundle.title }} product-use video">
+              <video
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                aria-label="{{ bundle.rhs_video.alt }}"
+                style="{% if bundle.rhs_video.position %}--image-position: {{ bundle.rhs_video.position }};{% endif %}{% if bundle.rhs_video.position_mobile %} --image-position-mobile: {{ bundle.rhs_video.position_mobile }};{% endif %}"
+              >
+                <source src="{% static bundle.rhs_video.src %}" type="video/mp4" />
+              </video>
+              {% if bundle.rhs_quote %}
+                <figcaption class="ad-image-caption ad-image-caption-secondary">
+                  <strong>
+                    {% if bundle.rhs_quote_parts %}
+                      {% for part in bundle.rhs_quote_parts %}
+                        <span>{{ part }}</span>
+                      {% endfor %}
+                    {% else %}
+                      {{ bundle.rhs_quote }}
+                    {% endif %}
+                  </strong>
+                </figcaption>
+              {% endif %}
+            </figure>
+          {% elif bundle.rhs_static %}
+            <figure class="ad-gallery-panel ad-static-rhs" aria-label="{{ bundle.title }} product-use image">
+              <img
+                src="{% static bundle.rhs_static.src %}"
+                alt="{{ bundle.rhs_static.alt }}"
+                width="1138"
+                height="1422"
+                loading="lazy"
+                decoding="async"
+                style="{% if bundle.rhs_static.position %}--image-position: {{ bundle.rhs_static.position }};{% endif %}{% if bundle.rhs_static.position_mobile %} --image-position-mobile: {{ bundle.rhs_static.position_mobile }};{% endif %}"
+              />
+              {% if bundle.rhs_quote %}
+                <figcaption class="ad-image-caption ad-image-caption-secondary">
+                  <strong>
+                    {% if bundle.rhs_quote_parts %}
+                      {% for part in bundle.rhs_quote_parts %}
+                        <span>{{ part }}</span>
+                      {% endfor %}
+                    {% else %}
+                      {{ bundle.rhs_quote }}
+                    {% endif %}
+                  </strong>
+                </figcaption>
+              {% endif %}
+            </figure>
+          {% else %}
+            <figure class="ad-gallery-panel ad-product-group" aria-label="{{ bundle.title }} included products">
+              {% for slide in bundle.slides %}
+                <span class="ad-product-figure">
+                  <img
+                    src="{% static slide.product_src %}"
+                    alt="{{ slide.product_alt }}"
+                    width="1448"
+                    height="1086"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </span>
+              {% endfor %}
+            </figure>
+          {% endif %}
         </div>
 
         <aside class="ad-buy-panel" aria-label="{{ bundle.title }} details">
-          <p class="ad-kicker">Tail's Town bundle offer</p>
-          <h1 class="ad-title" id="ad-title">{{ bundle.title }}</h1>
-          <p class="ad-subtitle">{{ bundle.subtitle }}</p>
-
-          <form class="ad-lead-form" method="post" novalidate>
-            {% csrf_token %}
-            <input type="hidden" name="bundle" value="{{ bundle.kind }}" />
-            <p class="ad-lead-intro">Share your details and we will contact you about this bundle.</p>
-            {% if lead_submitted %}
-              <p class="ad-form-success" role="status">Thanks. We received your details.</p>
-            {% endif %}
-            <div class="ad-field-grid">
-              <label class="ad-field" for="ad-lead-name">
-                <span>Name</span>
-                <input id="ad-lead-name" name="full_name" type="text" autocomplete="name" value="{{ lead_values.full_name }}" required />
-                {% if lead_errors.full_name %}<small>{{ lead_errors.full_name }}</small>{% endif %}
-              </label>
-              <label class="ad-field" for="ad-lead-phone">
-                <span>Phone number</span>
-                <input id="ad-lead-phone" name="phone" type="tel" autocomplete="tel" value="{{ lead_values.phone }}" required />
-                {% if lead_errors.phone %}<small>{{ lead_errors.phone }}</small>{% endif %}
-              </label>
-              <label class="ad-field" for="ad-lead-email">
-                <span>Email ID</span>
-                <input id="ad-lead-email" name="email" type="email" autocomplete="email" value="{{ lead_values.email }}" required />
-                {% if lead_errors.email %}<small>{{ lead_errors.email }}</small>{% endif %}
-              </label>
+          <section class="ad-includes" aria-labelledby="ad-title">
+            <h1 class="ad-title" id="ad-title">Inside the {{ bundle.title }}</h1>
+            <div class="ad-include-list">
+              {% for item in bundle.includes %}
+                <article class="ad-include-item">
+                  <figure class="ad-include-media" aria-hidden="true">
+                    <img
+                      src="{% static item.image %}"
+                      alt=""
+                      width="180"
+                      height="140"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </figure>
+                  <div class="ad-include-copy">
+                    <h2>{{ item.name }}</h2>
+                    <p>{{ item.copy }}</p>
+                  </div>
+                </article>
+              {% endfor %}
             </div>
-            <button class="ad-primary-action" type="submit">Submit</button>
-          </form>
+          </section>
+
+          <button class="ad-early-access" type="button" data-open-lead-form>Get early access</button>
+
+          <dialog class="ad-lead-modal" data-lead-modal {% if lead_errors or lead_submitted %}data-auto-open{% endif %}>
+            <div class="ad-modal-shell">
+              <button class="ad-modal-close" type="button" aria-label="Close enquiry form" data-close-lead-form>&times;</button>
+              <form class="ad-lead-form" method="post" novalidate>
+                {% csrf_token %}
+                <input type="hidden" name="bundle" value="{{ bundle.kind }}" />
+                <div class="ad-form-heading">
+                  <span class="ad-form-kicker">Tail's Town early access</span>
+                </div>
+                {% if lead_submitted %}
+                  <p class="ad-form-success" role="status">Thanks. We received your details.</p>
+                {% endif %}
+                <div class="ad-field-grid">
+                  <label class="ad-field" for="ad-lead-name">
+                    <span>Full name <em>Required</em></span>
+                    <input id="ad-lead-name" name="full_name" type="text" autocomplete="name" placeholder="Your full name" value="{{ lead_values.full_name }}" required />
+                    {% if lead_errors.full_name %}<small>{{ lead_errors.full_name }}</small>{% endif %}
+                  </label>
+                  <label class="ad-field" for="ad-lead-phone">
+                    <span>Phone number <em>Required</em></span>
+                    <input id="ad-lead-phone" name="phone" type="tel" autocomplete="tel" value="{{ lead_values.phone }}" required />
+                    {% if lead_errors.phone %}<small>{{ lead_errors.phone }}</small>{% endif %}
+                  </label>
+                  <label class="ad-field" for="ad-lead-email">
+                    <span>Email ID <em>Required</em></span>
+                    <input id="ad-lead-email" name="email" type="email" autocomplete="email" value="{{ lead_values.email }}" required />
+                    {% if lead_errors.email %}<small>{{ lead_errors.email }}</small>{% endif %}
+                  </label>
+                  <label class="ad-field" for="ad-lead-city">
+                    <span>City</span>
+                    <input id="ad-lead-city" name="city" type="text" autocomplete="address-level2" placeholder="Delivery city" value="{{ lead_values.city }}" />
+                  </label>
+                </div>
+                <div class="ad-form-footer">
+                  <p>We use this only to contact you about this bundle.</p>
+                  <button class="ad-primary-action" type="submit">Request early access</button>
+                </div>
+              </form>
+            </div>
+          </dialog>
         </aside>
       </section>
     </main>
+    <script>
+      (() => {
+        const modal = document.querySelector("[data-lead-modal]");
+        const openButton = document.querySelector("[data-open-lead-form]");
+        const closeButton = document.querySelector("[data-close-lead-form]");
+
+        if (!modal || !openButton || !closeButton) return;
+
+        openButton.addEventListener("click", () => {
+          if (typeof modal.showModal === "function") {
+            modal.showModal();
+          } else {
+            modal.setAttribute("open", "");
+          }
+        });
+
+        closeButton.addEventListener("click", () => modal.close());
+        modal.addEventListener("click", (event) => {
+          if (event.target === modal) modal.close();
+        });
+
+        if (modal.hasAttribute("data-auto-open")) {
+          if (typeof modal.showModal === "function") {
+            modal.showModal();
+          } else {
+            modal.setAttribute("open", "");
+          }
+        }
+      })();
+    </script>
   </body>
 </html>
