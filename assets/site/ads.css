@@ -233,6 +233,11 @@
 
 .ad-rotator-item:first-child {
   opacity: 1;
+  animation: none;
+}
+
+.ad-rotator-item:not(:first-child) {
+  z-index: 1;
 }
 
 .ad-gallery-panel img {
