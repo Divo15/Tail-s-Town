@@ -1,5 +1,6 @@
 import json
 import logging
+from types import SimpleNamespace
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
@@ -8,6 +9,14 @@ from django.utils import timezone
 
 
 logger = logging.getLogger(__name__)
+
+
+def _bundle_label(bundle_type):
+    labels = {
+        "cat-bundle": "Cat bundle",
+        "dog-bundle": "Dog bundle",
+    }
+    return labels.get(bundle_type, bundle_type.replace("-", " ").title())
 
 
 def send_bundle_enquiry_to_sheet(enquiry, campaign_id=""):
@@ -45,3 +54,20 @@ def send_bundle_enquiry_to_sheet(enquiry, campaign_id=""):
                 logger.warning("Google Sheets webhook returned status %s", response.status)
     except (HTTPError, URLError, TimeoutError, OSError) as exc:
         logger.warning("Could not send bundle enquiry %s to Google Sheets: %s", enquiry.pk, exc)
+
+
+def send_bundle_enquiry_values_to_sheet(bundle_type, values, campaign_id=""):
+    enquiry = SimpleNamespace(
+        pk="no-db",
+        created_at=timezone.now(),
+        bundle_type=bundle_type,
+        get_bundle_type_display=lambda: _bundle_label(bundle_type),
+        full_name=values.get("full_name", ""),
+        phone=values.get("phone", ""),
+        email=values.get("email", ""),
+        city=values.get("city", ""),
+        pet_type=values.get("pet_type", ""),
+        preferred_contact=values.get("preferred_contact", ""),
+        notes=values.get("notes", ""),
+    )
+    send_bundle_enquiry_to_sheet(enquiry, campaign_id=campaign_id)

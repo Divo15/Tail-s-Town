@@ -1,11 +1,15 @@
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
+from django.db import ProgrammingError
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 
 from ..forms import CartAddForm
 from ..models import BundleEnquiry, Category, Product
-from ..services.bundle_sheets import send_bundle_enquiry_to_sheet
+from ..services.bundle_sheets import (
+    send_bundle_enquiry_to_sheet,
+    send_bundle_enquiry_values_to_sheet,
+)
 
 
 PRODUCT_PAGE_DATA = {
@@ -388,17 +392,25 @@ def ad_bundle_page(request, bundle_type):
             except ValidationError:
                 lead_errors["email"] = "Enter a valid email ID."
         if not lead_errors:
-            enquiry = BundleEnquiry.objects.create(
-                bundle_type=bundle_type,
-                full_name=lead_values["full_name"],
-                phone=lead_values["phone"],
-                email=lead_values["email"],
-                city=lead_values["city"],
-                pet_type=lead_values["pet_type"],
-                preferred_contact=lead_values["preferred_contact"],
-                notes=lead_values["notes"],
-            )
-            send_bundle_enquiry_to_sheet(enquiry, campaign_id=lead_values["campaign_id"])
+            try:
+                enquiry = BundleEnquiry.objects.create(
+                    bundle_type=bundle_type,
+                    full_name=lead_values["full_name"],
+                    phone=lead_values["phone"],
+                    email=lead_values["email"],
+                    city=lead_values["city"],
+                    pet_type=lead_values["pet_type"],
+                    preferred_contact=lead_values["preferred_contact"],
+                    notes=lead_values["notes"],
+                )
+            except ProgrammingError:
+                send_bundle_enquiry_values_to_sheet(
+                    bundle_type,
+                    lead_values,
+                    campaign_id=lead_values["campaign_id"],
+                )
+            else:
+                send_bundle_enquiry_to_sheet(enquiry, campaign_id=lead_values["campaign_id"])
             return redirect(f"{request.path}?submitted=1")
 
     return render(
