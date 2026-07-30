@@ -198,33 +198,43 @@
                   <span class="ad-form-kicker">Tail's Town early access</span>
                 </div>
                 {% if lead_submitted %}
-                  <p class="ad-form-success" role="status">Thanks. We received your details.</p>
+                  <section class="ad-form-success-card" role="status" aria-live="polite">
+                    <span class="ad-form-success-badge">Submission received</span>
+                    <h2>Thank you for the submission.</h2>
+                    <p>We have your details and our team will reach out soon with the next steps.</p>
+                    <div class="ad-form-success-meta">
+                      <span>{{ bundle.title }}</span>
+                      <span>We will contact you shortly</span>
+                    </div>
+                    <button class="ad-primary-action ad-primary-action-success" type="button" data-close-lead-form>Close</button>
+                  </section>
+                {% else %}
+                  <div class="ad-field-grid">
+                    <label class="ad-field" for="ad-lead-name">
+                      <span>Full name <em>Required</em></span>
+                      <input id="ad-lead-name" name="full_name" type="text" autocomplete="name" placeholder="Your full name" value="{{ lead_values.full_name }}" required />
+                      {% if lead_errors.full_name %}<small>{{ lead_errors.full_name }}</small>{% endif %}
+                    </label>
+                    <label class="ad-field" for="ad-lead-phone">
+                      <span>Phone number <em>Required</em></span>
+                      <input id="ad-lead-phone" name="phone" type="tel" autocomplete="tel" value="{{ lead_values.phone }}" required />
+                      {% if lead_errors.phone %}<small>{{ lead_errors.phone }}</small>{% endif %}
+                    </label>
+                    <label class="ad-field" for="ad-lead-email">
+                      <span>Email ID <em>Required</em></span>
+                      <input id="ad-lead-email" name="email" type="email" autocomplete="email" value="{{ lead_values.email }}" required />
+                      {% if lead_errors.email %}<small>{{ lead_errors.email }}</small>{% endif %}
+                    </label>
+                    <label class="ad-field" for="ad-lead-city">
+                      <span>City</span>
+                      <input id="ad-lead-city" name="city" type="text" autocomplete="address-level2" placeholder="Delivery city" value="{{ lead_values.city }}" />
+                    </label>
+                  </div>
+                  <div class="ad-form-footer">
+                    <p>We use this only to contact you about this bundle.</p>
+                    <button class="ad-primary-action" type="submit">Request early access</button>
+                  </div>
                 {% endif %}
-                <div class="ad-field-grid">
-                  <label class="ad-field" for="ad-lead-name">
-                    <span>Full name <em>Required</em></span>
-                    <input id="ad-lead-name" name="full_name" type="text" autocomplete="name" placeholder="Your full name" value="{{ lead_values.full_name }}" required />
-                    {% if lead_errors.full_name %}<small>{{ lead_errors.full_name }}</small>{% endif %}
-                  </label>
-                  <label class="ad-field" for="ad-lead-phone">
-                    <span>Phone number <em>Required</em></span>
-                    <input id="ad-lead-phone" name="phone" type="tel" autocomplete="tel" value="{{ lead_values.phone }}" required />
-                    {% if lead_errors.phone %}<small>{{ lead_errors.phone }}</small>{% endif %}
-                  </label>
-                  <label class="ad-field" for="ad-lead-email">
-                    <span>Email ID <em>Required</em></span>
-                    <input id="ad-lead-email" name="email" type="email" autocomplete="email" value="{{ lead_values.email }}" required />
-                    {% if lead_errors.email %}<small>{{ lead_errors.email }}</small>{% endif %}
-                  </label>
-                  <label class="ad-field" for="ad-lead-city">
-                    <span>City</span>
-                    <input id="ad-lead-city" name="city" type="text" autocomplete="address-level2" placeholder="Delivery city" value="{{ lead_values.city }}" />
-                  </label>
-                </div>
-                <div class="ad-form-footer">
-                  <p>We use this only to contact you about this bundle.</p>
-                  <button class="ad-primary-action" type="submit">Request early access</button>
-                </div>
               </form>
             </div>
           </dialog>
