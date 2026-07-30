@@ -25,6 +25,7 @@ from shop import urls as shop_urls
 
 urlpatterns = [
     path('', shop_views.home, name='home'),
+    path('ads', RedirectView.as_view(url='/ads/cat-bundle/', permanent=False), name='ads_landing_no_slash'),
     path('ads/', RedirectView.as_view(url='/ads/cat-bundle/', permanent=False), name='ads_landing'),
     path('ads/cat-bundle/', shop_views.ad_bundle_page, {'bundle_type': 'cat-bundle'}, name='cat_ads_bundle'),
     path('ads/dog-bundle/', shop_views.ad_bundle_page, {'bundle_type': 'dog-bundle'}, name='dog_ads_bundle'),
