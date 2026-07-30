@@ -136,7 +136,7 @@ AD_BUNDLE_DATA = {
         ),
         "lhs_slides": (
             {
-                "src": "landing/cat-living-room-bundle.png",
+                "src": "landing/cat-living-room-bundle.webp",
                 "alt": "Cat care bundle products in a warm living room with two cats",
                 "position": "center",
                 "position_mobile": "52% center",
@@ -161,14 +161,14 @@ AD_BUNDLE_DATA = {
                 "name": "Water Fountain",
                 "copy": "Clean daily hydration for curious cats.",
                 "url": "/shop/water-fountain/",
-                "image": "landing/cat-bundle-water-fountain-sticker.png",
+                "image": "landing/cat-bundle-water-fountain-sticker.webp",
                 "image_alt": "Tail's Town water fountain",
             },
             {
                 "name": "Litter Box",
                 "copy": "A calmer enclosed corner for shared homes.",
                 "url": "/shop/litter-box/",
-                "image": "landing/cat-bundle-litter-box-sticker.png",
+                "image": "landing/cat-bundle-litter-box-sticker.webp",
                 "image_alt": "Tail's Town litter box",
             },
             {
@@ -223,7 +223,7 @@ AD_BUNDLE_DATA = {
         ),
         "lhs_slides": (
             {
-                "src": "landing/dog-living-room-main.png",
+                "src": "landing/dog-living-room-main.webp",
                 "alt": "Dog care bundle feeder and water fountain in a sunlit living room",
                 "position": "center",
                 "position_mobile": "48% center",
@@ -238,13 +238,13 @@ AD_BUNDLE_DATA = {
         "rhs_quote_parts": ("Fresh water.", "Warm mornings.", "No missed moments."),
         "dog_rhs_slides": (
             {
-                "src": "landing/dog-water-rhs-first.png",
+                "src": "landing/dog-water-rhs-first.webp",
                 "alt": "Dog drinking from the Tail's Town water fountain in a warm living room",
                 "position": "center",
                 "position_mobile": "50% center",
             },
             {
-                "src": "landing/dog-water-use-bundle.png",
+                "src": "landing/dog-water-use-bundle.webp",
                 "alt": "Golden retriever drinking from the Tail's Town water fountain in a warm living room",
                 "position": "center",
                 "position_mobile": "50% center",
