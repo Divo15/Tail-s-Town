@@ -43,6 +43,7 @@ EMAIL_HOST_PASSWORD=<SMTP password>
 EMAIL_USE_TLS=True
 EMAIL_USE_SSL=False
 DEFAULT_FROM_EMAIL=PETKIT <no-reply@your-domain.com>
+BUNDLE_ENQUIRY_SHEET_WEBHOOK_URL=<Google Apps Script web app URL, optional>
 
 DJANGO_SECURE_SSL_REDIRECT=True
 DJANGO_SESSION_COOKIE_SECURE=True
@@ -66,6 +67,31 @@ Static files are handled by WhiteNoise. Uploaded product images live under
 the host provides a persistent disk mounted to that path. For stateless hosts,
 configure object storage (for example S3-compatible storage) before relying on
 admin image uploads in production.
+
+## Bundle enquiry Google Sheet
+
+Set `BUNDLE_ENQUIRY_SHEET_WEBHOOK_URL` to a deployed Google Apps Script web app
+URL to copy every cat/dog bundle enquiry into a Google Sheet. The Django app
+posts JSON with these keys:
+
+```text
+submitted_at
+date
+time
+bundle
+bundle_type
+campaign_id
+full_name
+phone
+email
+city
+pet_type
+preferred_contact
+notes
+```
+
+The campaign id is captured from `?campaign_id=...`, `?campaign=...`, or
+`?utm_campaign=...` and stored with the enquiry.
 
 ## Final checks
 

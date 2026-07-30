@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 
 from ..forms import CartAddForm
 from ..models import BundleEnquiry, Category, Product
+from ..services.bundle_sheets import send_bundle_enquiry_to_sheet
 
 
 PRODUCT_PAGE_DATA = {
@@ -344,11 +345,18 @@ def ad_bundle_page(request, bundle_type):
     if not bundle:
         raise Http404("Ad bundle page not found")
 
+    campaign_id = (
+        request.GET.get("campaign_id")
+        or request.GET.get("campaign")
+        or request.GET.get("utm_campaign")
+        or ""
+    ).strip()
     lead_values = {
         "full_name": "",
         "phone": "",
         "email": "",
         "city": "",
+        "campaign_id": campaign_id,
         "pet_type": bundle["kind"],
         "preferred_contact": "phone",
         "notes": "",
@@ -362,6 +370,7 @@ def ad_bundle_page(request, bundle_type):
             "phone": request.POST.get("phone", "").strip(),
             "email": request.POST.get("email", "").strip(),
             "city": request.POST.get("city", "").strip(),
+            "campaign_id": request.POST.get("campaign_id", "").strip(),
             "pet_type": bundle["kind"],
             "preferred_contact": "phone",
             "notes": "",
@@ -379,7 +388,7 @@ def ad_bundle_page(request, bundle_type):
             except ValidationError:
                 lead_errors["email"] = "Enter a valid email ID."
         if not lead_errors:
-            BundleEnquiry.objects.create(
+            enquiry = BundleEnquiry.objects.create(
                 bundle_type=bundle_type,
                 full_name=lead_values["full_name"],
                 phone=lead_values["phone"],
@@ -389,6 +398,7 @@ def ad_bundle_page(request, bundle_type):
                 preferred_contact=lead_values["preferred_contact"],
                 notes=lead_values["notes"],
             )
+            send_bundle_enquiry_to_sheet(enquiry, campaign_id=lead_values["campaign_id"])
             return redirect(f"{request.path}?submitted=1")
 
     return render(
