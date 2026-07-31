@@ -351,16 +351,23 @@ OAUTH_PROVIDER_STATUS = {
     "google": "google" in SOCIALACCOUNT_PROVIDERS,
 }
 
+RESEND_API_KEY = env_str("RESEND_API_KEY")
+RESEND_SMTP_HOST = env_str("RESEND_SMTP_HOST", "smtp.resend.com")
+RESEND_SMTP_PORT = int(env_str("RESEND_SMTP_PORT", "465"))
+RESEND_SMTP_USERNAME = env_str("RESEND_SMTP_USERNAME", "resend")
+RESEND_SMTP_USE_SSL = env_bool("RESEND_SMTP_USE_SSL", default=True)
+RESEND_SMTP_USE_TLS = env_bool("RESEND_SMTP_USE_TLS", default=False)
+
 EMAIL_BACKEND = os.getenv(
     "EMAIL_BACKEND",
-    "django.core.mail.backends.console.EmailBackend",
+    "django.core.mail.backends.smtp.EmailBackend" if RESEND_API_KEY else "django.core.mail.backends.console.EmailBackend",
 )
 DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL", "PETKIT <no-reply@petkit.local>")
-EMAIL_HOST = os.getenv("EMAIL_HOST", "localhost")
-EMAIL_PORT = int(os.getenv("EMAIL_PORT", "25"))
-EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER", "")
-EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD", "")
-EMAIL_USE_TLS = env_bool("EMAIL_USE_TLS", default=False)
-EMAIL_USE_SSL = env_bool("EMAIL_USE_SSL", default=False)
+EMAIL_HOST = os.getenv("EMAIL_HOST", RESEND_SMTP_HOST if RESEND_API_KEY else "localhost")
+EMAIL_PORT = int(os.getenv("EMAIL_PORT", str(RESEND_SMTP_PORT if RESEND_API_KEY else 25)))
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER", RESEND_SMTP_USERNAME if RESEND_API_KEY else "")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD", RESEND_API_KEY)
+EMAIL_USE_TLS = env_bool("EMAIL_USE_TLS", default=RESEND_SMTP_USE_TLS if RESEND_API_KEY else False)
+EMAIL_USE_SSL = env_bool("EMAIL_USE_SSL", default=RESEND_SMTP_USE_SSL if RESEND_API_KEY else False)
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

@@ -35,14 +35,8 @@ POSTGRES_HOST=<database host>
 POSTGRES_PORT=5432
 POSTGRES_CONN_MAX_AGE=60
 
-EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend
-EMAIL_HOST=<SMTP host>
-EMAIL_PORT=587
-EMAIL_HOST_USER=<SMTP user>
-EMAIL_HOST_PASSWORD=<SMTP password>
-EMAIL_USE_TLS=True
-EMAIL_USE_SSL=False
-DEFAULT_FROM_EMAIL=PETKIT <no-reply@your-domain.com>
+RESEND_API_KEY=<Resend API key>
+DEFAULT_FROM_EMAIL=Tail's Town <onboarding@resend.dev>
 BUNDLE_ENQUIRY_SHEET_WEBHOOK_URL=<Google Apps Script web app URL, optional>
 
 DJANGO_SECURE_SSL_REDIRECT=True
@@ -88,19 +82,30 @@ city
 ## Bundle enquiry confirmation email
 
 Every successful bundle enquiry also sends a confirmation email to the user who
-submitted the form. This uses Django's configured mail backend and these
-production variables:
+submitted the form. The app is now Resend-ready out of the box. For the
+smoothest setup on Vercel, add these variables:
 
 ```text
-EMAIL_BACKEND
+RESEND_API_KEY
 DEFAULT_FROM_EMAIL
-EMAIL_HOST
-EMAIL_PORT
-EMAIL_HOST_USER
-EMAIL_HOST_PASSWORD
-EMAIL_USE_TLS
-EMAIL_USE_SSL
 ```
+
+By default, if `RESEND_API_KEY` is present, Django will send through Resend's
+SMTP settings automatically:
+
+```text
+EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend
+EMAIL_HOST=smtp.resend.com
+EMAIL_PORT=465
+EMAIL_HOST_USER=resend
+EMAIL_HOST_PASSWORD=<same as RESEND_API_KEY>
+EMAIL_USE_SSL=True
+EMAIL_USE_TLS=False
+```
+
+You only need to set the manual `EMAIL_*` variables if you want to override
+those defaults or use another provider. Also make sure `DEFAULT_FROM_EMAIL`
+uses a sender/domain that is verified inside your Resend account.
 
 ## Final checks
 

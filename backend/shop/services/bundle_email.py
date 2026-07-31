@@ -16,7 +16,7 @@ def send_bundle_enquiry_confirmation(bundle_type, values):
     if not recipient:
         return
 
-    subject = f"We received your { _bundle_title(bundle_type) } request"
+    subject = f"We received your {_bundle_title(bundle_type)} request"
     full_name = values.get("full_name", "").strip() or "there"
     city = values.get("city", "").strip()
     city_line = f"\nCity: {city}" if city else ""
