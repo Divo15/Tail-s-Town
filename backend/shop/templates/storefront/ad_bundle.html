@@ -262,8 +262,28 @@
         const modal = document.querySelector("[data-lead-modal]");
         const openButton = document.querySelector("[data-open-lead-form]");
         const closeButton = document.querySelector("[data-close-lead-form]");
+        const switcher = document.querySelector(".ad-campaign-switcher");
 
         if (!modal || !openButton || !closeButton) return;
+
+        if (switcher) {
+          const mediaQuery = window.matchMedia("(max-width: 760px)");
+          const syncSwitcherVisibility = () => {
+            if (!mediaQuery.matches) {
+              switcher.classList.remove("is-hidden-on-scroll");
+              return;
+            }
+            switcher.classList.toggle("is-hidden-on-scroll", window.scrollY > 72);
+          };
+
+          syncSwitcherVisibility();
+          window.addEventListener("scroll", syncSwitcherVisibility, { passive: true });
+          if (typeof mediaQuery.addEventListener === "function") {
+            mediaQuery.addEventListener("change", syncSwitcherVisibility);
+          } else if (typeof mediaQuery.addListener === "function") {
+            mediaQuery.addListener(syncSwitcherVisibility);
+          }
+        }
 
         openButton.addEventListener("click", () => {
           if (typeof modal.showModal === "function") {
