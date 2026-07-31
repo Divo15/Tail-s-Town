@@ -85,6 +85,23 @@ email
 city
 ```
 
+## Bundle enquiry confirmation email
+
+Every successful bundle enquiry also sends a confirmation email to the user who
+submitted the form. This uses Django's configured mail backend and these
+production variables:
+
+```text
+EMAIL_BACKEND
+DEFAULT_FROM_EMAIL
+EMAIL_HOST
+EMAIL_PORT
+EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD
+EMAIL_USE_TLS
+EMAIL_USE_SSL
+```
+
 ## Final checks
 
 Run locally with production-style variables before deploying:

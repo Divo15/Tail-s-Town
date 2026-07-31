@@ -6,6 +6,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 
 from ..forms import CartAddForm
 from ..models import BundleEnquiry, Category, Product
+from ..services.bundle_email import send_bundle_enquiry_confirmation
 from ..services.bundle_sheets import (
     send_bundle_enquiry_to_sheet,
     send_bundle_enquiry_values_to_sheet,
@@ -393,6 +394,7 @@ def ad_bundle_page(request, bundle_type):
                 send_bundle_enquiry_values_to_sheet(bundle_type, lead_values)
             else:
                 send_bundle_enquiry_to_sheet(enquiry)
+            send_bundle_enquiry_confirmation(bundle_type, lead_values)
             return redirect(f"{request.path}?submitted=1")
 
     return render(
