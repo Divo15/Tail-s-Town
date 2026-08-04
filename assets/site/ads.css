@@ -859,10 +859,10 @@
     inset: 0 0 auto;
     grid-template-columns: 1fr;
     gap: 10px;
-    min-height: 112px;
-    padding: 10px 14px 40px;
+    min-height: 82px;
+    padding: 10px 14px;
     border-bottom: 0;
-    background: linear-gradient(180deg, rgba(248, 244, 238, 0.92) 0%, rgba(248, 244, 238, 0.76) 38%, rgba(248, 244, 238, 0.32) 72%, rgba(248, 244, 238, 0) 100%);
+    background: linear-gradient(180deg, rgba(248, 244, 238, 0.9), rgba(248, 244, 238, 0.36) 72%, rgba(248, 244, 238, 0));
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
     pointer-events: none;
