@@ -309,6 +309,7 @@ a {
 
 .hero-photo[data-slide="0"].is-active,
 .hero-photo[data-slide="0"].is-leaving {
+  object-position: 68% 52%;
   transform-origin: 70% 58%;
   animation-name: petDriftDogFeeder;
 }
@@ -1705,6 +1706,10 @@ h1 span {
   .hero-photo {
     object-fit: cover;
     object-position: 60% center;
+  }
+
+  .hero-photo[data-slide="0"] {
+    object-position: 72% 52%;
   }
 
   .scene-shade {
