@@ -861,10 +861,10 @@
     gap: 10px;
     min-height: 82px;
     padding: 10px 14px;
-    border-bottom: 0;
-    background: linear-gradient(180deg, rgba(248, 244, 238, 0.9), rgba(248, 244, 238, 0.36) 72%, rgba(248, 244, 238, 0));
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(59, 41, 32, 0.14);
+    background: rgba(248, 244, 238, 0.96);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     pointer-events: none;
   }
 
