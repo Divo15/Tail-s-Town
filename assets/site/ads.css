@@ -860,7 +860,7 @@
     grid-template-columns: 1fr;
     gap: 10px;
     min-height: 98px;
-    padding: 10px 14px;
+    padding: 4px 14px 16px;
     border-bottom: 0;
     background: linear-gradient(180deg, rgba(248, 244, 238, 0.72) 0%, rgba(248, 244, 238, 0.62) 76%, rgba(248, 244, 238, 0) 100%);
     -webkit-backdrop-filter: none;
