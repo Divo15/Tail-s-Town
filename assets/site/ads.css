@@ -62,7 +62,7 @@
 .ad-brand img {
   display: block;
   width: auto;
-  height: clamp(99px, 7.5vw, 123px);
+  height: clamp(66px, 5vw, 82px);
 }
 
 .ad-main {
@@ -874,7 +874,7 @@
   }
 
   .ad-brand img {
-    height: 78px;
+    height: 52px;
   }
 
   .ad-main {
