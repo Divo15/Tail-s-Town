@@ -14,12 +14,6 @@
     <link rel="stylesheet" href="{% static 'site/ads.css' %}" />
   </head>
   <body class="ads-bundle-page ads-bundle-{{ bundle.accent }}">
-    <header class="ad-header" aria-label="Ad landing navigation">
-      <a class="ad-brand" href="{% url 'home' %}" aria-label="Tail's Town home">
-        <img src="{% static 'product-pages/assets/tails-town-header-logo.webp' %}" alt="Tail's Town" decoding="async" />
-      </a>
-    </header>
-
     <main class="ad-main">
       <nav class="ad-campaign-switcher" aria-label="Choose ad bundle">
         <a href="{% url 'cat_ads_bundle' %}" {% if bundle.kind == "cat" %}aria-current="page"{% endif %}>Cat Bundle</a>
