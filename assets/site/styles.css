@@ -1935,3 +1935,46 @@ h1 span {
     font-size: 0.8rem;
   }
 }
+
+/* Final mobile landing override: keep only brand + auth actions on phone. */
+@media (max-width: 760px) {
+  .site-header,
+  .site-header.is-solid {
+    min-height: 72px;
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-rows: auto;
+    align-items: center;
+    padding: max(10px, env(safe-area-inset-top)) 14px 10px;
+  }
+
+  .header-controls {
+    display: contents;
+  }
+
+  .nav-links,
+  .mobile-shop-action {
+    display: none;
+  }
+
+  .header-actions {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+    align-self: center;
+  }
+
+  .hero {
+    padding-top: 82px;
+  }
+}
+
+@media (max-width: 420px) {
+  .site-header,
+  .site-header.is-solid {
+    min-height: 68px;
+  }
+
+  .hero {
+    padding-top: 78px;
+  }
+}
