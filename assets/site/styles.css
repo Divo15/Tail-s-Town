@@ -1594,3 +1594,243 @@ h1 span {
 .site-header.is-solid .icon-button {
   background: transparent;
 }
+
+/* Mobile landing polish: keep the brand/navigation usable without covering the hero. */
+@media (max-width: 760px) {
+  .site-header,
+  .site-header.is-solid {
+    min-height: 74px;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 10px;
+    padding: max(8px, env(safe-area-inset-top)) 12px 8px;
+    color: #fff;
+  }
+
+  .brand {
+    grid-column: 1;
+  }
+
+  .brand img {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+  }
+
+  .header-controls {
+    grid-column: 2;
+    min-width: 0;
+    display: grid;
+    justify-items: end;
+    gap: 4px;
+    margin-left: 0;
+  }
+
+  .nav-links {
+    display: flex;
+    max-width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 4px 12px;
+    color: currentColor;
+    font-size: clamp(0.78rem, 2.9vw, 0.92rem);
+    line-height: 1;
+  }
+
+  .nav-links a {
+    min-height: 28px;
+    display: inline-flex;
+    align-items: center;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    background: transparent;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    white-space: nowrap;
+  }
+
+  .header-actions {
+    min-height: 0;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  .header-actions .auth-prompt {
+    max-width: none;
+    min-height: 28px;
+    display: inline-flex;
+    align-items: center;
+    color: currentColor;
+    font-size: 0;
+    line-height: 1;
+    text-align: right;
+  }
+
+  .header-actions .auth-prompt::after {
+    content: "Sign in";
+    font-size: clamp(0.78rem, 2.9vw, 0.92rem);
+    font-weight: 850;
+  }
+
+  .header-actions .auth-link,
+  .site-header.is-solid .auth-link {
+    min-width: 0;
+    min-height: 28px;
+    height: auto;
+    display: inline-flex;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    color: currentColor;
+    background: transparent;
+    box-shadow: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    font-size: clamp(0.78rem, 2.9vw, 0.92rem);
+  }
+
+  .mobile-shop-action {
+    display: none;
+  }
+
+  .hero {
+    min-height: 100svh;
+    height: 100svh;
+    padding: 88px 16px max(18px, env(safe-area-inset-bottom));
+  }
+
+  .hero-photo {
+    object-fit: cover;
+    object-position: 60% center;
+  }
+
+  .scene-shade {
+    background:
+      linear-gradient(0deg, rgba(14, 30, 27, 0.78) 0%, rgba(14, 30, 27, 0.25) 48%, rgba(14, 30, 27, 0.02) 100%),
+      linear-gradient(90deg, rgba(14, 30, 27, 0.16), rgba(14, 30, 27, 0.02));
+  }
+
+  .hero-content {
+    width: min(100%, 430px);
+  }
+
+  h1 {
+    max-width: 8.5ch;
+    font-size: clamp(3.25rem, 17vw, 5rem);
+    line-height: 0.9;
+  }
+
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .hero-primary-action,
+  .hero-secondary-action {
+    min-height: 46px;
+    padding: 0 12px;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .collection-intro {
+    padding: 34px 18px 22px;
+  }
+
+  .section-heading h2 {
+    max-width: 11ch;
+    font-size: clamp(2.25rem, 11vw, 3.4rem);
+    line-height: 0.98;
+  }
+
+  .product-band {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 0 8px 8px;
+  }
+
+  .product-tile {
+    min-height: 78vw;
+    max-height: 390px;
+    padding: 22px;
+  }
+
+  .product-tile h2 {
+    max-width: 8ch;
+    font-size: clamp(2.8rem, 15vw, 4.4rem);
+    line-height: 0.92;
+  }
+
+  .bundle-section {
+    min-height: auto;
+    padding: 48px 18px 54px;
+  }
+}
+
+@media (max-width: 420px) {
+  .site-header,
+  .site-header.is-solid {
+    min-height: 66px;
+    padding-inline: 10px;
+  }
+
+  .brand img {
+    width: 56px;
+    height: 56px;
+  }
+
+  .nav-links {
+    gap: 2px 9px;
+    font-size: 0.78rem;
+  }
+
+  .header-actions .auth-link,
+  .site-header.is-solid .auth-link {
+    font-size: 0.78rem;
+  }
+
+  .hero {
+    padding-top: 76px;
+    padding-inline: 14px;
+  }
+
+  h1 {
+    font-size: clamp(2.9rem, 16vw, 4rem);
+  }
+
+  .hero-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .product-tile {
+    min-height: 86vw;
+  }
+}
+
+@media (max-height: 520px) and (orientation: landscape) {
+  .site-header,
+  .site-header.is-solid {
+    min-height: 52px;
+  }
+
+  .brand img {
+    width: 44px;
+    height: 44px;
+  }
+
+  .hero {
+    min-height: 560px;
+    height: 560px;
+    padding-top: 66px;
+  }
+
+  h1 {
+    font-size: clamp(2.8rem, 10vw, 4.6rem);
+  }
+}
