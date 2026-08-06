@@ -1,6 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
-from django.db import ProgrammingError
+from django.db import DatabaseError, ProgrammingError
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 
@@ -292,40 +292,48 @@ AD_BUNDLE_DATA = {
 
 
 def home(request):
-    categories = list(Category.objects.filter(products__is_active=True).distinct().order_by("name")[:8])
     homepage_sections = []
+    categories = []
+    active_product_count = 0
     preferred_categories = (
         ("feeders", ("feed", "feeder")),
         ("hydration", ("water", "fountain", "hydration")),
         ("litter", ("litter", "clean")),
     )
 
-    for anchor_id, matches in preferred_categories:
-        category = next(
-            (
-                category
-                for category in categories
-                if any(match in category.slug.lower() or match in category.name.lower() for match in matches)
-            ),
-            None,
-        )
-        if not category:
-            continue
-        product = (
-            Product.objects.filter(is_active=True, category=category)
-            .select_related("category")
-            .order_by("-created_at")
-            .first()
-        )
-        if not product:
-            continue
-        homepage_sections.append(
-            {
-                "category": category,
-                "product": product,
-                "anchor_id": anchor_id,
-            }
-        )
+    try:
+        categories = list(Category.objects.filter(products__is_active=True).distinct().order_by("name")[:8])
+
+        for anchor_id, matches in preferred_categories:
+            category = next(
+                (
+                    category
+                    for category in categories
+                    if any(match in category.slug.lower() or match in category.name.lower() for match in matches)
+                ),
+                None,
+            )
+            if not category:
+                continue
+            product = (
+                Product.objects.filter(is_active=True, category=category)
+                .select_related("category")
+                .order_by("-created_at")
+                .first()
+            )
+            if not product:
+                continue
+            homepage_sections.append(
+                {
+                    "category": category,
+                    "product": product,
+                    "anchor_id": anchor_id,
+                }
+            )
+
+        active_product_count = Product.objects.filter(is_active=True).count()
+    except DatabaseError:
+        pass
 
     featured_categories = [section["category"] for section in homepage_sections]
 
@@ -336,7 +344,7 @@ def home(request):
             "homepage_sections": homepage_sections,
             "categories": categories,
             "featured_categories": featured_categories,
-            "active_product_count": Product.objects.filter(is_active=True).count(),
+            "active_product_count": active_product_count,
         },
     )
 
