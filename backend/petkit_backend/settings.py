@@ -232,7 +232,7 @@ STATICFILES_DIRS = [BASE_DIR.parent / 'assets']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STORAGES = {
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
     },
 }
 MEDIA_URL = 'media/'
