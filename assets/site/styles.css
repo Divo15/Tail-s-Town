@@ -1705,11 +1705,27 @@ h1 span {
 
   .hero-photo {
     object-fit: cover;
-    object-position: 60% center;
+    object-position: center;
   }
 
   .hero-photo[data-slide="0"] {
-    object-position: 78% 50%;
+    object-position: 66% 50%;
+  }
+
+  .hero-photo[data-slide="1"] {
+    object-position: 52% 50%;
+  }
+
+  .hero-photo[data-slide="2"] {
+    object-position: 55% 50%;
+  }
+
+  .hero-photo[data-slide="3"] {
+    object-position: 58% 50%;
+  }
+
+  .hero-photo[data-slide="4"] {
+    object-position: 58% 50%;
   }
 
   .scene-shade {
