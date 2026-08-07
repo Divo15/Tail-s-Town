@@ -58,11 +58,13 @@
           </picture>
           <picture>
             <source media="(max-width: 600px)" data-srcset="{% static 'landing/winter_cat_litter_box_wreath.png' %}" />
-            <img class="hero-photo" data-src="{% static 'landing/winter_cat_litter_box_wreath.png' %}" width="944" height="1728" alt="A cat beside a self-cleaning litter box" decoding="async" data-slide="3" />
+            <source media="(min-width: 601px)" data-srcset="{% static 'landing/hero-cat-litter-actual.webp' %}" />
+            <img class="hero-photo" data-src="{% static 'landing/hero-cat-litter-actual.webp' %}" width="1717" height="916" alt="A cat beside a self-cleaning litter box" decoding="async" data-slide="3" />
           </picture>
           <picture>
             <source media="(max-width: 600px)" data-srcset="{% static 'landing/outdoor_dog_water_fountain_mobile.jpg' %}" />
-            <img class="hero-photo" data-src="{% static 'landing/outdoor_dog_water_fountain_mobile.jpg' %}" width="516" height="916" alt="A dog drinking from a smart water dispenser" decoding="async" data-slide="4" />
+            <source media="(min-width: 601px)" data-srcset="{% static 'landing/hero-dog-water-actual.webp' %}" />
+            <img class="hero-photo" data-src="{% static 'landing/hero-dog-water-actual.webp' %}" width="1717" height="916" alt="A dog drinking from a smart water dispenser" decoding="async" data-slide="4" />
           </picture>
           <div class="scene-shade" aria-hidden="true"></div>
         </div>
