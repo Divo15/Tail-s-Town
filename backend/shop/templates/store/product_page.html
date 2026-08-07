@@ -72,10 +72,6 @@
               <a class="ghost-action" href="{% url 'store:product_detail' product.slug %}">Full product details</a>
             {% elif product %}
               <a class="primary-action" href="{% url 'store:product_detail' product.slug %}">View product</a>
-              <a class="ghost-action" href="{% url 'home' %}#products">Back to products</a>
-            {% else %}
-              <span class="primary-action is-disabled" aria-disabled="true">Coming soon</span>
-              <a class="ghost-action" href="{% url 'home' %}#products">Back to products</a>
             {% endif %}
           </div>
           {% if product %}
