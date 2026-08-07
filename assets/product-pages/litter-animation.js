@@ -2,6 +2,7 @@
   const section = document.querySelector("[data-litter-animation]");
   if (!section) return;
 
+  const header = document.querySelector(".site-header");
   const canvas = section.querySelector("[data-litter-canvas]");
   const stories = [...section.querySelectorAll("[data-litter-story]")];
   const context = canvas?.getContext("2d", { alpha: false, desynchronized: true });
@@ -248,9 +249,20 @@
 
   const updateActiveState = () => {
     const rect = section.getBoundingClientRect();
-    const hasReachedSection = rect.top <= 0;
-    const hasNotPassedSection = rect.bottom >= 0;
-    const isActive = hasReachedSection && hasNotPassedSection;
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const headerHeight = header?.getBoundingClientRect().height || 0;
+    let isActive = rect.top <= 0 && rect.bottom >= 0;
+
+    if (mobileQuery.matches) {
+      const activationTop = headerHeight + 12;
+      const sectionVisibleEnough =
+        rect.top <= activationTop && rect.bottom >= viewportHeight * 0.55;
+      const sectionFullyPresented =
+        rect.top <= activationTop && rect.bottom >= viewportHeight - 12;
+
+      isActive = sectionFullyPresented || sectionVisibleEnough;
+    }
+
     document.body.classList.toggle("is-litter-animation-active", isActive);
     return isActive;
   };
