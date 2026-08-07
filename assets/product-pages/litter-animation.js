@@ -266,13 +266,13 @@
   };
 
   const updateActiveState = () => {
-    const { rect, headerHeight, ratio } = visibleRatioForViewport();
-    let isActive = rect.top <= 0 && rect.bottom >= 0;
+    const { rect, headerHeight, ratio, viewportHeight } = visibleRatioForViewport();
+    let isActive = rect.top <= viewportHeight * 0.3 && rect.bottom >= viewportHeight * 0.4 && ratio >= 0.28;
 
     if (mobileQuery.matches) {
-      const activationTop = headerHeight + 8;
-      const sectionAnchored = rect.top <= activationTop;
-      isActive = sectionAnchored && ratio >= 0.72;
+      const activationTop = headerHeight + viewportHeight * 0.18;
+      const sectionEntered = rect.top <= activationTop;
+      isActive = sectionEntered && ratio >= 0.34;
     }
 
     document.body.classList.toggle("is-litter-animation-active", isActive);
