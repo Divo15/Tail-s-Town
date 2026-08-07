@@ -267,12 +267,12 @@
 
   const updateActiveState = () => {
     const { rect, headerHeight, ratio, viewportHeight } = visibleRatioForViewport();
-    let isActive = rect.top <= viewportHeight * 0.3 && rect.bottom >= viewportHeight * 0.4 && ratio >= 0.28;
+    let isActive = rect.top <= viewportHeight * 0.85 && rect.bottom >= viewportHeight * 0.2 && ratio >= 0.08;
 
     if (mobileQuery.matches) {
-      const activationTop = headerHeight + viewportHeight * 0.18;
+      const activationTop = headerHeight + viewportHeight * 0.7;
       const sectionEntered = rect.top <= activationTop;
-      isActive = sectionEntered && ratio >= 0.34;
+      isActive = sectionEntered && rect.bottom >= viewportHeight * 0.18 && ratio >= 0.06;
     }
 
     document.body.classList.toggle("is-litter-animation-active", isActive);
@@ -360,7 +360,7 @@
   const proximityObserver = new IntersectionObserver(
     (entries) => {
       const sectionReached = entries.some(
-        (entry) => entry.isIntersecting && entry.intersectionRatio >= (mobileQuery.matches ? 0.55 : 0.2),
+        (entry) => entry.isIntersecting && entry.intersectionRatio >= (mobileQuery.matches ? 0.06 : 0.08),
       );
       if (!sectionReached) return;
       fullyActivated = true;
@@ -372,7 +372,7 @@
       else scheduleRender();
       proximityObserver.disconnect();
     },
-    { rootMargin: "0px", threshold: [0.2, 0.55] },
+    { rootMargin: "0px 0px 10% 0px", threshold: [0, 0.06, 0.08] },
   );
 
   activeStory = -1;
