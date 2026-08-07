@@ -247,20 +247,32 @@
     }
   };
 
-  const updateActiveState = () => {
+  const visibleRatioForViewport = () => {
     const rect = section.getBoundingClientRect();
     const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
     const headerHeight = header?.getBoundingClientRect().height || 0;
+    const topEdge = mobileQuery.matches ? headerHeight : 0;
+    const visibleTop = Math.max(rect.top, topEdge);
+    const visibleBottom = Math.min(rect.bottom, viewportHeight);
+    const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+    const measurableHeight = Math.max(1, Math.min(rect.height, viewportHeight - topEdge));
+
+    return {
+      rect,
+      viewportHeight,
+      headerHeight,
+      ratio: clamp(visibleHeight / measurableHeight, 0, 1),
+    };
+  };
+
+  const updateActiveState = () => {
+    const { rect, headerHeight, ratio } = visibleRatioForViewport();
     let isActive = rect.top <= 0 && rect.bottom >= 0;
 
     if (mobileQuery.matches) {
-      const activationTop = headerHeight + 12;
-      const sectionVisibleEnough =
-        rect.top <= activationTop && rect.bottom >= viewportHeight * 0.55;
-      const sectionFullyPresented =
-        rect.top <= activationTop && rect.bottom >= viewportHeight - 12;
-
-      isActive = sectionFullyPresented || sectionVisibleEnough;
+      const activationTop = headerHeight + 8;
+      const sectionAnchored = rect.top <= activationTop;
+      isActive = sectionAnchored && ratio >= 0.72;
     }
 
     document.body.classList.toggle("is-litter-animation-active", isActive);
@@ -347,7 +359,9 @@
 
   const proximityObserver = new IntersectionObserver(
     (entries) => {
-      const sectionReached = entries.some((entry) => entry.boundingClientRect.top <= 0);
+      const sectionReached = entries.some(
+        (entry) => entry.isIntersecting && entry.intersectionRatio >= (mobileQuery.matches ? 0.55 : 0.2),
+      );
       if (!sectionReached) return;
       fullyActivated = true;
       targetProgress = 0;
@@ -358,7 +372,7 @@
       else scheduleRender();
       proximityObserver.disconnect();
     },
-    { rootMargin: "0px 0px -100% 0px", threshold: 0 },
+    { rootMargin: "0px", threshold: [0.2, 0.55] },
   );
 
   activeStory = -1;
