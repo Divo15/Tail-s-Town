@@ -992,9 +992,7 @@ h1 span {
   overflow: visible;
   border: 0;
   border-radius: 0;
-  background:
-    radial-gradient(ellipse at 50% 88%, rgba(47, 59, 57, 0.18), transparent 36%),
-    radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.78), transparent 42%);
+  background: transparent;
   box-shadow: none;
   transform-style: preserve-3d;
   animation: modelFloat 7s ease-in-out infinite;
@@ -1002,6 +1000,7 @@ h1 span {
 
 .model-card::before,
 .model-card::after {
+  display: none;
   content: "";
   position: absolute;
   z-index: 0;
@@ -1053,6 +1052,7 @@ h1 span {
 }
 
 .model-card .model-glass {
+  display: none;
   position: absolute;
   inset: 12% 2% 10%;
   z-index: 0;
@@ -3473,8 +3473,8 @@ h1 span {
   }
 
   .model-card > img {
-    width: clamp(168px, 52vw, 210px);
-    max-height: 186px;
+    width: clamp(248px, 75vw, 310px);
+    max-height: 300px;
   }
 
   .explode-stage {
