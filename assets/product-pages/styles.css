@@ -3270,11 +3270,13 @@ h1 span {
   }
 
   .model-card img {
-    width: min(86vw, 560px);
-    max-height: 480px;
+    inset: 50% auto auto 50%;
+    width: min(68vw, 420px);
+    height: auto;
+    max-height: 360px;
     object-fit: contain;
     z-index: 2;
-    transform: scale(1.04);
+    transform: translate(-50%, -50%) scale(1);
   }
 
   .floating-chip {
@@ -3286,6 +3288,26 @@ h1 span {
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     will-change: transform;
+  }
+
+  .chip-a {
+    top: 16%;
+    left: 10%;
+  }
+
+  .chip-b {
+    right: 9%;
+    bottom: 27%;
+  }
+
+  .chip-c {
+    left: 15%;
+    bottom: 12%;
+  }
+
+  .chip-d {
+    right: 16%;
+    top: 15%;
   }
 
   .exploded-product {
@@ -3440,7 +3462,8 @@ h1 span {
   }
 
   .model-card img {
-    max-height: 330px;
+    width: min(68vw, 280px);
+    max-height: 248px;
   }
 
   .explode-stage {
@@ -3498,6 +3521,28 @@ h1 span {
 
   .floating-chip {
     font-size: 0.66rem;
+  }
+
+  .chip-a {
+    top: 13%;
+    left: 6%;
+  }
+
+  .chip-b {
+    top: 30%;
+    right: 5%;
+    bottom: auto;
+  }
+
+  .chip-c {
+    left: 7%;
+    bottom: 17%;
+  }
+
+  .chip-d {
+    top: auto;
+    right: 6%;
+    bottom: 11%;
   }
 
   .detail-actions {
