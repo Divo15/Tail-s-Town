@@ -2981,6 +2981,16 @@ h1 span {
   }
 }
 
+@keyframes modelImageBreatheMobile {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, calc(-50% - 8px)) scale(1.025);
+  }
+}
+
 @keyframes explodeLayerMobile {
   0% {
     opacity: 0;
@@ -3269,7 +3279,7 @@ h1 span {
     transform-style: flat;
   }
 
-  .model-card img {
+  .model-card > img {
     inset: 50% auto auto 50%;
     width: min(68vw, 420px);
     height: auto;
@@ -3277,6 +3287,7 @@ h1 span {
     object-fit: contain;
     z-index: 2;
     transform: translate(-50%, -50%) scale(1);
+    animation-name: modelImageBreatheMobile;
   }
 
   .floating-chip {
@@ -3461,9 +3472,9 @@ h1 span {
     min-height: 332px;
   }
 
-  .model-card img {
-    width: min(68vw, 280px);
-    max-height: 248px;
+  .model-card > img {
+    width: clamp(168px, 52vw, 210px);
+    max-height: 186px;
   }
 
   .explode-stage {
@@ -3524,25 +3535,25 @@ h1 span {
   }
 
   .chip-a {
-    top: 13%;
-    left: 6%;
+    top: 14%;
+    left: 5%;
   }
 
   .chip-b {
-    top: 30%;
-    right: 5%;
+    top: 29%;
+    right: 4%;
     bottom: auto;
   }
 
   .chip-c {
-    left: 7%;
-    bottom: 17%;
+    left: 5%;
+    bottom: 19%;
   }
 
   .chip-d {
     top: auto;
-    right: 6%;
-    bottom: 11%;
+    right: 4%;
+    bottom: 14%;
   }
 
   .detail-actions {
