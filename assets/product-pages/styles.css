@@ -1000,34 +1000,8 @@ h1 span {
 
 .model-card::before,
 .model-card::after {
+  content: none;
   display: none;
-  content: "";
-  position: absolute;
-  z-index: 0;
-  border: 2px solid color-mix(in srgb, var(--detail-accent), white 20%);
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 17% 50%, #fff 0 3px, color-mix(in srgb, var(--detail-accent), white 8%) 4px, transparent 7px),
-    radial-gradient(circle at 83% 50%, #fff 0 2px, color-mix(in srgb, var(--detail-accent), white 8%) 3px, transparent 6px),
-    radial-gradient(circle at 50% 5%, #fff 0 2px, color-mix(in srgb, var(--detail-accent), white 8%) 3px, transparent 6px),
-    radial-gradient(circle at 50% 95%, #fff 0 2px, color-mix(in srgb, var(--detail-accent), white 8%) 3px, transparent 6px);
-  box-shadow:
-    0 0 28px color-mix(in srgb, var(--detail-accent), transparent 58%),
-    inset 0 0 28px color-mix(in srgb, var(--detail-accent), transparent 72%);
-  transform: rotateX(72deg) translateZ(-20px);
-  opacity: 0.82;
-}
-
-.model-card::before {
-  inset: 19% 8% 19%;
-  animation: ringSpin 9s linear infinite;
-}
-
-.model-card::after {
-  inset: 29% 18% 29%;
-  border-style: dashed;
-  opacity: 0.72;
-  animation: ringSpin 7s linear infinite reverse;
 }
 
 .model-card > img {
@@ -1053,19 +1027,6 @@ h1 span {
 
 .model-card .model-glass {
   display: none;
-  position: absolute;
-  inset: 12% 2% 10%;
-  z-index: 0;
-  pointer-events: none;
-  transform: rotateX(66deg) rotateZ(-14deg);
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 14% 45%, #fff 0 2px, color-mix(in srgb, var(--detail-accent), white 10%) 3px, transparent 6px),
-    radial-gradient(circle at 32% 7%, #fff 0 1px, color-mix(in srgb, var(--detail-accent), white 10%) 2px, transparent 5px),
-    radial-gradient(circle at 68% 91%, #fff 0 2px, color-mix(in srgb, var(--detail-accent), white 10%) 3px, transparent 6px),
-    radial-gradient(circle at 88% 54%, #fff 0 2px, color-mix(in srgb, var(--detail-accent), white 10%) 3px, transparent 6px);
-  filter: drop-shadow(0 0 10px color-mix(in srgb, var(--detail-accent), transparent 40%));
-  animation: ringSpin 13s linear infinite;
 }
 
 .floating-chip {
@@ -3273,7 +3234,7 @@ h1 span {
   }
 
   .model-card {
-    min-height: clamp(320px, 72vw, 500px);
+    min-height: clamp(340px, 78vw, 520px);
     animation-duration: 9s;
     isolation: isolate;
     transform-style: flat;
@@ -3281,9 +3242,9 @@ h1 span {
 
   .model-card > img {
     inset: 50% auto auto 50%;
-    width: min(68vw, 420px);
+    width: min(78vw, 460px);
     height: auto;
-    max-height: 360px;
+    max-height: 410px;
     object-fit: contain;
     z-index: 2;
     transform: translate(-50%, -50%) scale(1);
@@ -3469,12 +3430,12 @@ h1 span {
   }
 
   .model-card {
-    min-height: 332px;
+    min-height: 360px;
   }
 
   .model-card > img {
-    width: clamp(248px, 75vw, 310px);
-    max-height: 300px;
+    width: clamp(280px, 86vw, 350px);
+    max-height: 340px;
   }
 
   .explode-stage {
