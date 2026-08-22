@@ -2952,21 +2952,6 @@ h1 span {
   }
 }
 
-@keyframes explodeLayerMobile {
-  0% {
-    opacity: 0;
-    transform: translate3d(0, 0, 220px) scale(0.74);
-  }
-  34% {
-    opacity: 0;
-    transform: translate3d(0, 0, 220px) scale(0.84);
-  }
-  100% {
-    opacity: 1;
-    transform: translate3d(var(--x), var(--y), 220px) scale(0.94);
-  }
-}
-
 @keyframes chipFloat {
   0%,
   100% {
@@ -3452,45 +3437,6 @@ h1 span {
     min-height: 34px;
     padding: 0 12px;
     font-size: 0.62rem;
-  }
-
-  .detail-feeder .explode-layer,
-  .detail-water .explode-layer {
-    animation-name: explodeLayerMobile;
-    z-index: 12;
-    transform-style: preserve-3d;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    will-change: transform, opacity;
-  }
-
-  .detail-feeder .explode-core,
-  .detail-water .explode-core {
-    z-index: 2;
-  }
-
-  .detail-feeder .layer-one,
-  .detail-water .layer-one {
-    --x: -18vw;
-    --y: -112px;
-  }
-
-  .detail-feeder .layer-two,
-  .detail-water .layer-two {
-    --x: 16vw;
-    --y: -98px;
-  }
-
-  .detail-feeder .layer-three,
-  .detail-water .layer-three {
-    --x: -16vw;
-    --y: 108px;
-  }
-
-  .detail-feeder .layer-four,
-  .detail-water .layer-four {
-    --x: 15vw;
-    --y: 98px;
   }
 
   .floating-chip {

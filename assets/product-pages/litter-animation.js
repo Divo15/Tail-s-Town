@@ -2,7 +2,6 @@
   const section = document.querySelector("[data-litter-animation]");
   if (!section) return;
 
-  const header = document.querySelector(".site-header");
   const canvas = section.querySelector("[data-litter-canvas]");
   const stories = [...section.querySelectorAll("[data-litter-story]")];
   const context = canvas?.getContext("2d", { alpha: false, desynchronized: true });
@@ -247,34 +246,11 @@
     }
   };
 
-  const visibleRatioForViewport = () => {
-    const rect = section.getBoundingClientRect();
-    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-    const headerHeight = header?.getBoundingClientRect().height || 0;
-    const topEdge = mobileQuery.matches ? headerHeight : 0;
-    const visibleTop = Math.max(rect.top, topEdge);
-    const visibleBottom = Math.min(rect.bottom, viewportHeight);
-    const visibleHeight = Math.max(0, visibleBottom - visibleTop);
-    const measurableHeight = Math.max(1, Math.min(rect.height, viewportHeight - topEdge));
-
-    return {
-      rect,
-      viewportHeight,
-      headerHeight,
-      ratio: clamp(visibleHeight / measurableHeight, 0, 1),
-    };
-  };
-
   const updateActiveState = () => {
-    const { rect, headerHeight, ratio, viewportHeight } = visibleRatioForViewport();
-    let isActive = rect.top <= viewportHeight * 0.85 && rect.bottom >= viewportHeight * 0.2 && ratio >= 0.08;
-
-    if (mobileQuery.matches) {
-      const activationTop = headerHeight + viewportHeight * 0.7;
-      const sectionEntered = rect.top <= activationTop;
-      isActive = sectionEntered && rect.bottom >= viewportHeight * 0.18 && ratio >= 0.06;
-    }
-
+    const rect = section.getBoundingClientRect();
+    const hasReachedSection = rect.top <= 0;
+    const hasNotPassedSection = rect.bottom >= 0;
+    const isActive = hasReachedSection && hasNotPassedSection;
     document.body.classList.toggle("is-litter-animation-active", isActive);
     return isActive;
   };
@@ -359,9 +335,7 @@
 
   const proximityObserver = new IntersectionObserver(
     (entries) => {
-      const sectionReached = entries.some(
-        (entry) => entry.isIntersecting && entry.intersectionRatio >= (mobileQuery.matches ? 0.06 : 0.08),
-      );
+      const sectionReached = entries.some((entry) => entry.boundingClientRect.top <= 0);
       if (!sectionReached) return;
       fullyActivated = true;
       targetProgress = 0;
@@ -372,7 +346,7 @@
       else scheduleRender();
       proximityObserver.disconnect();
     },
-    { rootMargin: "0px 0px 10% 0px", threshold: [0, 0.06, 0.08] },
+    { rootMargin: "0px 0px -100% 0px", threshold: 0 },
   );
 
   activeStory = -1;
