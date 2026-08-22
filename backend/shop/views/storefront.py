@@ -438,27 +438,30 @@ def store_product_page(request, product_type):
     if not page:
         raise Http404("Product page not found")
 
-    categories = Category.objects.filter(
-        products__is_active=True,
-    ).distinct()
-
-    category = next(
-        (
-            category
-            for category in categories
-            if any(term in category.slug.lower() or term in category.name.lower() for term in page["category_terms"])
-        ),
-        None,
-    )
-
     product = None
-    if category:
-        product = (
-            Product.objects.filter(is_active=True, category=category)
-            .select_related("category")
-            .order_by("-created_at")
-            .first()
+    try:
+        categories = Category.objects.filter(
+            products__is_active=True,
+        ).distinct()
+
+        category = next(
+            (
+                category
+                for category in categories
+                if any(term in category.slug.lower() or term in category.name.lower() for term in page["category_terms"])
+            ),
+            None,
         )
+
+        if category:
+            product = (
+                Product.objects.filter(is_active=True, category=category)
+                .select_related("category")
+                .order_by("-created_at")
+                .first()
+            )
+    except DatabaseError:
+        product = None
 
     return render(
         request,
