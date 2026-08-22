@@ -3242,9 +3242,9 @@ h1 span {
 
   .model-card > img {
     inset: 50% auto auto 50%;
-    width: min(78vw, 460px);
+    width: min(72vw, 420px);
     height: auto;
-    max-height: 410px;
+    max-height: 380px;
     object-fit: contain;
     z-index: 2;
     transform: translate(-50%, -50%) scale(1);
@@ -3273,6 +3273,8 @@ h1 span {
   }
 
   .chip-c {
+    top: auto;
+    right: auto;
     left: 15%;
     bottom: 12%;
   }
@@ -3434,8 +3436,8 @@ h1 span {
   }
 
   .model-card > img {
-    width: clamp(280px, 86vw, 350px);
-    max-height: 340px;
+    width: clamp(250px, 76vw, 315px);
+    max-height: 310px;
   }
 
   .explode-stage {
