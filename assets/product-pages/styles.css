@@ -3171,6 +3171,11 @@ h1 span {
     padding: 88px 20px 104px;
   }
 
+  .detail-feeder .detail-hero,
+  .detail-water .detail-hero {
+    padding-bottom: 56px;
+  }
+
   .detail-copy {
     order: 2;
   }
@@ -3426,6 +3431,11 @@ h1 span {
 
   .detail-hero {
     padding-bottom: 160px;
+  }
+
+  .detail-feeder .detail-hero,
+  .detail-water .detail-hero {
+    padding-bottom: 84px;
   }
 
   .model-card {
