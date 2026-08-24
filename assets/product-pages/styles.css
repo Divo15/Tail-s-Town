@@ -3103,6 +3103,12 @@ h1 span {
     object-position: 58% center;
   }
 
+  .detail-feeder .live-product-scene,
+  .detail-water .live-product-scene {
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+  }
+
   .detail-feeder .live-product-scene video,
   .detail-water .live-product-scene video {
     object-fit: cover;
