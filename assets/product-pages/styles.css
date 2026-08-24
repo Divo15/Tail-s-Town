@@ -3105,7 +3105,7 @@ h1 span {
 
   .detail-feeder .live-product-scene video,
   .detail-water .live-product-scene video {
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
   }
 
