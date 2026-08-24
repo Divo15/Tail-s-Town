@@ -2961,12 +2961,12 @@ h1 span {
 @keyframes explodeCoreHover {
   0%,
   100% {
-    filter: saturate(1.08) contrast(1.05);
-    transform: translateZ(70px) scale(1.04) rotateY(0deg);
+    filter: saturate(1.08) contrast(1.05) drop-shadow(0 34px 38px rgba(47, 59, 57, 0.17));
+    transform: translateY(0) translateZ(70px) scale(1.04) rotateY(0deg);
   }
   50% {
-    filter: saturate(1.1) contrast(1.055);
-    transform: translateZ(76px) scale(1.04) rotateY(-1.2deg);
+    filter: saturate(1.1) contrast(1.055) drop-shadow(0 44px 44px rgba(47, 59, 57, 0.2));
+    transform: translateY(-12px) translateZ(80px) scale(1.04) rotateY(-1.2deg);
   }
 }
 
