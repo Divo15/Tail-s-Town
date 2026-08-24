@@ -229,7 +229,13 @@ if (singleCycleExplodedSections.length) {
     (entries, observer) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
-        entry.target.classList.add("is-exploding");
+        const section = entry.target;
+        const core = section.querySelector(".explode-core");
+        const settleExplosion = () => section.classList.add("is-settled");
+
+        section.classList.add("is-exploding");
+        core?.addEventListener("animationend", settleExplosion, { once: true });
+        window.setTimeout(settleExplosion, 5400);
         observer.unobserve(entry.target);
       });
     },

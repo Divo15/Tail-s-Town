@@ -1378,6 +1378,38 @@ h1 span {
   animation-play-state: running;
 }
 
+.detail-feeder .exploded-product.is-settled .explode-core,
+.detail-water .exploded-product.is-settled .explode-core {
+  animation: explodeCoreHover 7.4s cubic-bezier(0.37, 0, 0.2, 1) infinite;
+}
+
+.detail-feeder .exploded-product.is-settled .explode-layer,
+.detail-water .exploded-product.is-settled .explode-layer {
+  opacity: 1;
+  animation: explodeLayerHover 5.8s cubic-bezier(0.37, 0, 0.2, 1) infinite;
+  filter: drop-shadow(0 16px 18px rgba(47, 59, 57, 0.12));
+  will-change: transform, filter;
+}
+
+.detail-water .exploded-product.is-settled .explode-layer {
+  animation-name: waterExplodeLayerHover;
+}
+
+.detail-feeder .exploded-product.is-settled .layer-two,
+.detail-water .exploded-product.is-settled .layer-two {
+  animation-delay: -1.4s;
+}
+
+.detail-feeder .exploded-product.is-settled .layer-three,
+.detail-water .exploded-product.is-settled .layer-three {
+  animation-delay: -2.8s;
+}
+
+.detail-feeder .exploded-product.is-settled .layer-four,
+.detail-water .exploded-product.is-settled .layer-four {
+  animation-delay: -4.2s;
+}
+
 .detail-feeder .layer-one {
   --x: clamp(-280px, -20vw, -150px);
   --y: clamp(-150px, -15vh, -96px);
@@ -2894,6 +2926,18 @@ h1 span {
   }
 }
 
+@keyframes explodeCoreHover {
+  0%,
+  100% {
+    filter: saturate(1.08) contrast(1.05);
+    transform: translateZ(70px) scale(1.04) rotateY(0deg);
+  }
+  50% {
+    filter: saturate(1.1) contrast(1.055);
+    transform: translateZ(76px) scale(1.04) rotateY(-1.2deg);
+  }
+}
+
 @keyframes litterBoxReveal {
   0% {
     filter: saturate(0.96) contrast(1) drop-shadow(0 28px 34px rgba(47, 59, 57, 0.14));
@@ -2928,6 +2972,18 @@ h1 span {
   }
 }
 
+@keyframes explodeLayerHover {
+  0%,
+  100% {
+    filter: drop-shadow(0 16px 18px rgba(47, 59, 57, 0.12));
+    transform: translate3d(var(--x), var(--y), 130px) scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 24px 24px rgba(47, 59, 57, 0.16));
+    transform: translate3d(var(--x), calc(var(--y) - 9px), 142px) scale(1.018);
+  }
+}
+
 @keyframes waterExplodeLayer {
   0% {
     opacity: 0;
@@ -2944,6 +3000,18 @@ h1 span {
   100% {
     opacity: 1;
     transform: translate3d(var(--x), var(--y), 260px) scale(1);
+  }
+}
+
+@keyframes waterExplodeLayerHover {
+  0%,
+  100% {
+    filter: drop-shadow(0 16px 18px rgba(47, 59, 57, 0.12));
+    transform: translate3d(var(--x), var(--y), 260px) scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 24px 24px rgba(47, 59, 57, 0.16));
+    transform: translate3d(var(--x), calc(var(--y) - 9px), 274px) scale(1.018);
   }
 }
 
