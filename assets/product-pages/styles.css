@@ -3103,6 +3103,12 @@ h1 span {
     object-position: 58% center;
   }
 
+  .detail-feeder .live-product-scene video,
+  .detail-water .live-product-scene video {
+    object-fit: contain;
+    object-position: center;
+  }
+
   .scene-shade {
     background:
       linear-gradient(0deg, rgba(14, 30, 27, 0.76) 0%, rgba(14, 30, 27, 0.3) 42%, rgba(14, 30, 27, 0.04) 100%),
