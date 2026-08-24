@@ -1279,21 +1279,54 @@ h1 span {
   display: inline-flex;
   min-height: 42px;
   align-items: center;
-  border: 1px solid rgba(31, 36, 35, 0.12);
+  gap: 9px;
+  overflow: hidden;
+  border: 0;
   border-radius: 999px;
-  padding: 0 16px;
+  padding: 0 17px 0 14px;
   color: #071816;
-  background: color-mix(in srgb, var(--detail-accent), white 34%);
-  box-shadow: 0 22px 56px rgba(47, 59, 57, 0.16);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.66)),
+    color-mix(in srgb, var(--detail-accent), white 68%);
+  box-shadow:
+    0 18px 34px rgba(47, 59, 57, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(14px) saturate(1.12);
   font-size: clamp(0.72rem, 1vw, 0.9rem);
   font-weight: 1000;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  white-space: nowrap;
   transform: translate3d(0, 0, 0) scale(0.78);
   opacity: 0;
   animation: explodeLayer both linear;
   animation-timeline: view();
   animation-range: entry 12% cover 76%;
+}
+
+.explode-layer::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--detail-accent);
+  box-shadow:
+    0 0 0 5px color-mix(in srgb, var(--detail-accent), transparent 82%),
+    0 0 16px color-mix(in srgb, var(--detail-accent), transparent 42%);
+}
+
+.explode-layer::after {
+  content: "";
+  position: absolute;
+  inset: 1px auto 1px 22%;
+  width: 42%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.48), transparent);
+  opacity: 0.72;
+  pointer-events: none;
+  transform: skewX(-14deg);
 }
 
 .layer-one {
@@ -3595,8 +3628,18 @@ h1 span {
 
   .explode-layer {
     min-height: 34px;
-    padding: 0 12px;
+    gap: 7px;
+    padding: 0 12px 0 10px;
     font-size: 0.62rem;
+    letter-spacing: 0.025em;
+  }
+
+  .explode-layer::before {
+    width: 7px;
+    height: 7px;
+    box-shadow:
+      0 0 0 4px color-mix(in srgb, var(--detail-accent), transparent 84%),
+      0 0 12px color-mix(in srgb, var(--detail-accent), transparent 48%);
   }
 
   .detail-feeder .layer-one,
