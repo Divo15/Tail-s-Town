@@ -235,7 +235,7 @@ if (singleCycleExplodedSections.length) {
 
         section.classList.add("is-exploding");
         core?.addEventListener("animationend", settleExplosion, { once: true });
-        window.setTimeout(settleExplosion, 5400);
+        window.setTimeout(settleExplosion, 5000);
         observer.unobserve(entry.target);
       });
     },

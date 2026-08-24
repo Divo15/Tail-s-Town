@@ -1385,7 +1385,7 @@ h1 span {
 
 .detail-feeder .explode-core,
 .detail-water .explode-core {
-  animation: explodeCore 5.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: explodeCore 4.8s cubic-bezier(0.19, 1, 0.22, 1) both;
   animation-play-state: paused;
   animation-timeline: auto;
   animation-range: normal;
@@ -1393,7 +1393,7 @@ h1 span {
 
 .detail-feeder .explode-layer,
 .detail-water .explode-layer {
-  animation: explodeLayer 5.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: explodeLayer 4.8s cubic-bezier(0.19, 1, 0.22, 1) both;
   animation-play-state: paused;
   animation-timeline: auto;
   animation-range: normal;
@@ -2952,7 +2952,6 @@ h1 span {
     filter: saturate(0.95) contrast(1);
     transform: translateZ(0) scale(0.9) rotateY(-10deg);
   }
-  52%,
   100% {
     filter: saturate(1.08) contrast(1.05);
     transform: translateZ(70px) scale(1.04) rotateY(0deg);
@@ -2989,15 +2988,7 @@ h1 span {
 @keyframes explodeLayer {
   0% {
     opacity: 0;
-    transform: translate3d(0, 0, 0) scale(0.72);
-  }
-  38% {
-    opacity: 0;
-    transform: translate3d(0, 0, 20px) scale(0.82);
-  }
-  76% {
-    opacity: 1;
-    transform: translate3d(var(--x), var(--y), 112px) scale(0.98);
+    transform: translate3d(0, 0, 18px) scale(0.78);
   }
   100% {
     opacity: 1;
@@ -3020,15 +3011,7 @@ h1 span {
 @keyframes waterExplodeLayer {
   0% {
     opacity: 0;
-    transform: translate3d(0, 0, 42px) scale(0.72);
-  }
-  38% {
-    opacity: 0;
-    transform: translate3d(0, 0, 98px) scale(0.82);
-  }
-  76% {
-    opacity: 1;
-    transform: translate3d(var(--x), var(--y), 228px) scale(0.98);
+    transform: translate3d(0, 0, 72px) scale(0.78);
   }
   100% {
     opacity: 1;
