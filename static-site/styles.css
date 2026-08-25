@@ -881,150 +881,6 @@ h1 span {
   margin-top: 26px;
 }
 
-.care-story {
-  position: relative;
-  display: grid;
-  grid-template-columns: minmax(240px, 0.82fr) minmax(280px, 1fr) minmax(280px, 1.1fr);
-  gap: clamp(24px, 4vw, 64px);
-  align-items: start;
-  padding: clamp(58px, 8vw, 104px) clamp(18px, 5vw, 76px);
-  color: var(--detail-ink);
-  background: rgba(255, 255, 255, 0.7);
-  isolation: isolate;
-}
-
-.care-story::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  opacity: 0.42;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 8% 24%, color-mix(in srgb, var(--detail-accent), transparent 72%) 0 7px, transparent 8px),
-    radial-gradient(circle at 16% 78%, rgba(168, 237, 243, 0.56) 0 11px, transparent 12px),
-    radial-gradient(circle at 92% 20%, color-mix(in srgb, var(--detail-accent), transparent 78%) 0 13px, transparent 14px);
-}
-
-.care-story-intro {
-  max-width: 310px;
-}
-
-.care-story-intro .eyebrow {
-  color: var(--detail-accent);
-}
-
-.care-story-intro h2 {
-  max-width: 11ch;
-  margin: 0 0 18px;
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  line-height: 0.96;
-  letter-spacing: -0.03em;
-  text-wrap: balance;
-}
-
-.care-story-intro > p:last-child,
-.care-proof-note {
-  color: var(--detail-muted);
-  line-height: 1.6;
-}
-
-.care-story-details {
-  display: grid;
-  gap: 12px;
-}
-
-.care-story-details details {
-  overflow: hidden;
-  border: 1px solid rgba(31, 36, 35, 0.08);
-  border-radius: 12px;
-  background: rgba(247, 246, 244, 0.9);
-}
-
-.care-story-details summary {
-  min-height: 76px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 0 20px 0 22px;
-  color: var(--detail-ink);
-  font-weight: 900;
-  cursor: pointer;
-  list-style: none;
-}
-
-.care-story-details summary::-webkit-details-marker {
-  display: none;
-}
-
-.care-story-details summary b {
-  display: grid;
-  width: 36px;
-  height: 36px;
-  flex: 0 0 36px;
-  place-items: center;
-  border-radius: 50%;
-  color: var(--detail-ink);
-  background: var(--detail-accent);
-  font-size: 1.45rem;
-  font-weight: 500;
-  line-height: 1;
-  transition: transform 180ms ease;
-}
-
-.care-story-details details[open] summary b {
-  transform: rotate(45deg);
-}
-
-.care-story-details details p {
-  max-width: 42ch;
-  margin: -4px 22px 20px;
-  color: var(--detail-muted);
-  font-size: 0.92rem;
-  line-height: 1.55;
-}
-
-.care-story-proof {
-  padding-top: 2px;
-}
-
-.care-story-proof h3 {
-  margin: 0 0 18px;
-  font-size: clamp(1.35rem, 2.2vw, 1.9rem);
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-}
-
-.care-meter {
-  height: 42px;
-  margin-top: 10px;
-  overflow: hidden;
-  border-radius: 8px;
-  background: rgba(31, 36, 35, 0.08);
-}
-
-.care-meter span {
-  display: flex;
-  width: var(--meter);
-  min-width: max-content;
-  height: 100%;
-  align-items: center;
-  padding: 0 16px;
-  border-radius: inherit;
-  color: var(--detail-ink);
-  background: var(--detail-accent);
-  font-size: 0.75rem;
-  font-weight: 900;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.care-proof-note {
-  margin: 16px 0 0;
-  font-size: 0.78rem;
-}
-
 .ghost-action {
   display: inline-flex;
   min-height: 48px;
@@ -3211,7 +3067,6 @@ h1 span {
   .product-grid,
   .bundle-section,
   .detail-hero,
-  .care-story,
   .exploded-product,
   .video-demo,
   .step-grid,
@@ -3234,20 +3089,6 @@ h1 span {
   .detail-hero {
     min-height: auto;
     padding-top: 104px;
-  }
-
-  .care-story {
-    gap: 34px;
-    padding-top: 68px;
-    padding-bottom: 74px;
-  }
-
-  .care-story-intro {
-    max-width: 560px;
-  }
-
-  .care-story-intro h2 {
-    max-width: 14ch;
   }
 
   .detail-copy h1 {
@@ -3432,22 +3273,6 @@ h1 span {
 
   .step-card {
     min-height: 0;
-  }
-
-  .care-story {
-    padding-right: 16px;
-    padding-left: 16px;
-  }
-
-  .care-story-details summary {
-    min-height: 68px;
-    padding-right: 14px;
-    padding-left: 16px;
-  }
-
-  .care-story-details details p {
-    margin-right: 16px;
-    margin-left: 16px;
   }
 }
 
