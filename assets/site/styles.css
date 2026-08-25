@@ -805,7 +805,8 @@ h1 span {
 .home-feature-banner {
   position: relative;
   overflow: hidden;
-  min-height: clamp(440px, 43vw, 650px);
+  min-height: 0;
+  aspect-ratio: 2.8 / 1;
   display: grid;
   align-items: center;
   isolation: isolate;
@@ -848,7 +849,7 @@ h1 span {
 .home-feature-copy h2 {
   margin: 0;
   max-width: 15ch;
-  font-size: clamp(2.7rem, 4.6vw, 5.4rem);
+  font-size: clamp(2.4rem, 3.2vw, 4rem);
   line-height: 0.98;
   letter-spacing: -0.035em;
   text-wrap: balance;
@@ -1764,7 +1765,8 @@ h1 span {
   }
 
   .home-feature-banner {
-    min-height: 620px;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
     align-items: start;
   }
 
@@ -1787,7 +1789,7 @@ h1 span {
 
   .home-feature-copy h2 {
     max-width: 12ch;
-    font-size: clamp(2.7rem, 8vw, 4.2rem);
+    font-size: clamp(2.45rem, 7vw, 3.8rem);
   }
 
   .primary-action {
@@ -1885,7 +1887,8 @@ h1 span {
   }
 
   .home-feature-banner {
-    min-height: 580px;
+    min-height: 0;
+    aspect-ratio: 4 / 5;
   }
 
   .home-feature-copy {
