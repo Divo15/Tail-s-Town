@@ -8,7 +8,7 @@ const scrollPet = document.querySelector(".scroll-pet");
 const addButtons = [...document.querySelectorAll("[data-product]")];
 const liveVideos = [...document.querySelectorAll("[data-live-video]")];
 const toast = document.querySelector(".cart-toast");
-const signupForm = document.querySelector(".signup-form");
+const signupForm = document.querySelector(".signup-form, .footer-signup");
 
 if (window.location.hash === "#bundles") {
   window.location.replace("/shop/bundles/");
