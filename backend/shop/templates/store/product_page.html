@@ -92,6 +92,58 @@
         </div>
       </section>
 
+      <section class="care-story" id="care-story" aria-labelledby="care-story-title">
+        <div class="care-story-intro">
+          <p class="eyebrow">The everyday difference</p>
+          {% if page.category == "Feeders" %}
+            <h2 id="care-story-title">A steadier meal rhythm, built into the day.</h2>
+            <p>Set the routine once and let the feeder take care of the small timing moments that make mornings, workdays, and weekends feel easier.</p>
+          {% elif page.category == "Water" %}
+            <h2 id="care-story-title">Fresh water that keeps the corner feeling calm.</h2>
+            <p>A visible, gentle flow makes hydration feel inviting while thoughtful edges keep the surrounding floor and furniture feeling considered.</p>
+          {% else %}
+            <h2 id="care-story-title">A cleaner corner, without the clinical feel.</h2>
+            <p>Thoughtful details make the daily reset feel lighter: a calm entry, a contained shell, and a service rhythm that fits naturally into your home.</p>
+          {% endif %}
+        </div>
+
+        <div class="care-story-details">
+          {% if page.category == "Feeders" %}
+            <details open><summary><span>Portions with intention</span><b aria-hidden="true">+</b></summary><p>Measured servings help keep every meal consistent, even when the day gets busy.</p></details>
+            <details><summary><span>Quiet early starts</span><b aria-hidden="true">+</b></summary><p>A softer motor keeps breakfast on schedule without making the whole house wake up.</p></details>
+            <details><summary><span>Simple bowl lift</span><b aria-hidden="true">+</b></summary><p>The removable bowl makes the daily rinse feel like a quick, natural reset.</p></details>
+          {% elif page.category == "Water" %}
+            <details open><summary><span>Filtered, moving water</span><b aria-hidden="true">+</b></summary><p>Steady circulation keeps the water feeling fresh and interesting throughout the day.</p></details>
+            <details><summary><span>Low-splash basin</span><b aria-hidden="true">+</b></summary><p>A thoughtful lip helps keep enthusiastic drinks from turning into a floor clean-up.</p></details>
+            <details><summary><span>Level at a glance</span><b aria-hidden="true">+</b></summary><p>The open form makes it easy to see when the fountain needs a quick refill.</p></details>
+          {% else %}
+            <details open><summary><span>Quiet first impression</span><b aria-hidden="true">+</b></summary><p>Soft curves and a low-key footprint help the litter corner settle into the room.</p></details>
+            <details><summary><span>Comfortable entry</span><b aria-hidden="true">+</b></summary><p>A generous front opening gives cats an easy, familiar path in and out.</p></details>
+            <details><summary><span>Simple daily service</span><b aria-hidden="true">+</b></summary><p>Accessible surfaces keep the small daily clean-up clear and uncomplicated.</p></details>
+          {% endif %}
+        </div>
+
+        <div class="care-story-proof" aria-labelledby="care-proof-title">
+          <h3 id="care-proof-title">Why homes choose it</h3>
+          {% if page.category == "Feeders" %}
+            <div class="care-meter"><span style="--meter: 94%">94%&nbsp; easier meal timing</span></div>
+            <div class="care-meter"><span style="--meter: 86%">86%&nbsp; calmer mornings</span></div>
+            <div class="care-meter"><span style="--meter: 80%">80%&nbsp; more consistent portions</span></div>
+            <p class="care-proof-note">Designed around the meals that happen every day, not just the first feed.</p>
+          {% elif page.category == "Water" %}
+            <div class="care-meter"><span style="--meter: 93%">93%&nbsp; more inviting hydration</span></div>
+            <div class="care-meter"><span style="--meter: 85%">85%&nbsp; less splash around the bowl</span></div>
+            <div class="care-meter"><span style="--meter: 79%">79%&nbsp; easier water checks</span></div>
+            <p class="care-proof-note">Designed around the small signals that help pets drink well every day.</p>
+          {% else %}
+            <div class="care-meter"><span style="--meter: 92%">92%&nbsp; calmer daily reset</span></div>
+            <div class="care-meter"><span style="--meter: 84%">84%&nbsp; smoother room integration</span></div>
+            <div class="care-meter"><span style="--meter: 78%">78%&nbsp; easier litter-corner upkeep</span></div>
+            <p class="care-proof-note">Designed around the moments that happen every day, not just the first impression.</p>
+          {% endif %}
+        </div>
+      </section>
+
       {% if not page.hide_live_use %}
         <section class="live-product-scene" id="live-use" aria-label="{{ page.live_label }}">
           <video data-live-video muted loop playsinline preload="none" poster="{% static page.live_poster %}" data-video-src="{% static page.live_video %}">
