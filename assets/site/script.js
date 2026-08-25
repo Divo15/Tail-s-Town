@@ -1,6 +1,7 @@
 const header = document.querySelector(".site-header");
 const hero = document.querySelector(".hero");
 const heroPhotos = [...document.querySelectorAll(".hero-photo")];
+const heroDots = [...document.querySelectorAll("[data-slide-dot]")];
 const heroContent = document.querySelector(".hero-content");
 const heroTitle = document.querySelector("#hero-title");
 const toast = document.querySelector(".cart-toast");
@@ -102,6 +103,12 @@ const showSlide = (index, options = {}) => {
     photo.classList.toggle("is-active", photoIndex === activeSlide);
   });
 
+  heroDots.forEach((dot, dotIndex) => {
+    const isActive = dotIndex === activeSlide;
+    dot.classList.toggle("is-active", isActive);
+    dot.setAttribute("aria-pressed", isActive ? "true" : "false");
+  });
+
   leaveTimer = window.setTimeout(() => {
     heroPhotos.forEach((photo) => photo.classList.remove("is-leaving"));
   }, IMAGE_FADE_MS);
@@ -168,6 +175,15 @@ if (window.matchMedia("(hover: hover)").matches) {
     });
   });
 }
+
+heroDots.forEach((dot) => {
+  dot.addEventListener("click", () => {
+    const index = Number(dot.dataset.slideDot);
+    if (Number.isNaN(index)) return;
+    showSlide(index);
+    startHeroRotation();
+  });
+});
 
 showSlide(0, { syncText: false });
 startHeroRotation();

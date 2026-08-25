@@ -344,6 +344,42 @@ a {
     linear-gradient(0deg, rgba(14, 30, 27, 0.7), rgba(14, 30, 27, 0.02) 58%);
 }
 
+.hero-dots {
+  position: absolute;
+  z-index: 4;
+  left: 50%;
+  bottom: 38px;
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  transform: translateX(-50%);
+}
+
+.hero-dot {
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+  transition:
+    background-color 180ms ease,
+    transform 180ms ease,
+    opacity 180ms ease;
+}
+
+.hero-dot:hover,
+.hero-dot:focus-visible {
+  background: rgba(255, 255, 255, 0.88);
+  transform: scale(1.08);
+}
+
+.hero-dot.is-active {
+  background: rgba(130, 130, 130, 0.95);
+}
+
 .hero-content {
   position: relative;
   z-index: 3;
@@ -1428,6 +1464,16 @@ h1 span {
     width: min(100%, 520px);
   }
 
+  .hero-dots {
+    bottom: 26px;
+    gap: 14px;
+  }
+
+  .hero-dot {
+    width: 14px;
+    height: 14px;
+  }
+
   h1 {
     max-width: 9ch;
     font-size: clamp(3.25rem, 15vw, 5.5rem);
@@ -1490,6 +1536,16 @@ h1 span {
 }
 
 @media (max-width: 560px) {
+  .hero-dots {
+    bottom: 22px;
+    gap: 12px;
+  }
+
+  .hero-dot {
+    width: 13px;
+    height: 13px;
+  }
+
   .site-header {
     padding-inline: 12px;
   }
