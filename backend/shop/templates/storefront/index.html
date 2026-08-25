@@ -149,67 +149,111 @@
         {% endfor %}
       </section>
 
-      <section class="bundle-section" id="bundles" aria-labelledby="bundle-title">
-        <div class="bundle-living-scene" aria-hidden="true">
-          {% for section in homepage_sections %}
-            <span class="pet-window {% if forloop.counter == 1 %}pet-window-dog{% elif forloop.counter == 2 %}pet-window-cat{% else %}pet-window-both{% endif %}">
-              {% if section.product.image %}
-                {% if section.anchor_id == "feeders" %}
-                  <img src="{% static 'landing/feeder-dispenser-living-room.webp' %}" alt="" />
-                {% elif section.anchor_id == "hydration" %}
-                  <img src="{% static 'landing/water-dispenser-living-room.webp' %}" alt="" />
-                {% else %}
-                  <img src="{% static 'landing/hero-cat-litter-actual.webp' %}" alt="" />
-                {% endif %}
-              {% elif forloop.counter == 1 %}
-                <img src="{% static 'landing/feeder-dispenser-living-room.webp' %}" alt="" />
-              {% elif forloop.counter == 2 %}
-                <img src="{% static 'landing/water-dispenser-living-room.webp' %}" alt="" />
-              {% else %}
-                <img src="{% static 'landing/hero-cat-litter-actual.webp' %}" alt="" />
-              {% endif %}
-            </span>
-            <span class="bundle-product-dot {% if forloop.counter == 1 %}feeder-dot{% elif forloop.counter == 2 %}water-dot{% else %}litter-dot{% endif %}">
-              {% if section.product.image %}
-                {% if section.anchor_id == "feeders" %}
-                  <img src="{% static 'landing/feeder-dispenser-living-room.webp' %}" alt="" />
-                {% elif section.anchor_id == "hydration" %}
-                  <img src="{% static 'landing/water-dispenser-living-room.webp' %}" alt="" />
-                {% else %}
-                  <img src="{% static 'landing/smart-cat-litter-box.jpeg' %}" alt="" />
-                {% endif %}
-              {% elif forloop.counter == 1 %}
-                <img src="{% static 'landing/feeder-dispenser-living-room.webp' %}" alt="" />
-              {% elif forloop.counter == 2 %}
-                <img src="{% static 'landing/water-dispenser-living-room.webp' %}" alt="" />
-              {% else %}
-                <img src="{% static 'landing/smart-cat-litter-box.jpeg' %}" alt="" />
-              {% endif %}
-            </span>
-          {% empty %}
-            <span class="pet-window pet-window-dog">
-              <img src="{% static 'landing/feeder-dispenser-living-room.webp' %}" alt="" />
-            </span>
-            <span class="pet-window pet-window-cat">
-              <img src="{% static 'landing/water-dispenser-living-room.webp' %}" alt="" />
-            </span>
-            <span class="pet-window pet-window-both">
-              <img src="{% static 'landing/hero-both-mudroom-actual.webp' %}" alt="" />
-            </span>
-            <span class="bundle-product-dot feeder-dot">
-              <img src="{% static 'landing/feeder-dispenser-living-room.webp' %}" alt="" />
-            </span>
-            <span class="bundle-product-dot water-dot">
-              <img src="{% static 'landing/water-dispenser-living-room.webp' %}" alt="" />
-            </span>
-            <span class="bundle-product-dot litter-dot">
-              <img src="{% static 'landing/smart-cat-litter-box.jpeg' %}" alt="" />
-            </span>
-          {% endfor %}
+      <section class="top-picks" id="bundles" aria-labelledby="top-picks-title">
+        <div class="top-picks-heading">
+          <h2 id="top-picks-title">Top Picks</h2>
         </div>
-        <div class="bundle-copy">
-          <h2 id="bundle-title">Build a calmer routine with feeding, water, and litter care together.</h2>
-          <a class="primary-action" href="/shop/bundles/">Explore the collection</a>
+
+        <div class="top-picks-rail" aria-label="Tail's Town top product picks">
+          {% for section in homepage_sections %}
+            <a
+              class="top-pick-card"
+              {% if section.anchor_id == "feeders" %}
+                href="{% url 'store:smart_feeder_page' %}"
+              {% elif section.anchor_id == "hydration" %}
+                href="{% url 'store:water_fountain_page' %}"
+              {% else %}
+                href="{% url 'store:litter_box_page' %}"
+              {% endif %}
+            >
+              <span class="top-pick-media">
+                {% if section.anchor_id == "feeders" %}
+                  <img src="{% static 'landing/product-tile-feeder.webp' %}" width="1448" height="1086" alt="Tail's Town Smart Feeder" loading="lazy" decoding="async" />
+                  <span class="top-pick-badge">Pet favorite</span>
+                {% elif section.anchor_id == "hydration" %}
+                  <img src="{% static 'landing/product-tile-water.webp' %}" width="1448" height="1086" alt="Tail's Town Water Fountain" loading="lazy" decoding="async" />
+                  <span class="top-pick-badge">Fresh daily</span>
+                {% else %}
+                  <img src="{% static 'landing/product-tile-litter.webp' %}" width="1448" height="1086" alt="Tail's Town Litter Box" loading="lazy" decoding="async" />
+                  <span class="top-pick-badge">Clean choice</span>
+                {% endif %}
+              </span>
+              <span class="top-pick-details">
+                <strong class="top-pick-name">{{ section.product.name }}</strong>
+                <span class="top-pick-copy">
+                  {% if section.anchor_id == "feeders" %}Quiet, scheduled portions.{% elif section.anchor_id == "hydration" %}Filtered water kept flowing.{% else %}A calmer, cleaner litter corner.{% endif %}
+                </span>
+                <span class="top-pick-footer">
+                  <strong class="top-pick-price">${{ section.product.price|floatformat:0 }}</strong>
+                  <span class="top-pick-link">View product &rarr;</span>
+                </span>
+              </span>
+            </a>
+          {% empty %}
+            <a class="top-pick-card" href="{% url 'store:smart_feeder_page' %}">
+              <span class="top-pick-media">
+                <img src="{% static 'landing/product-tile-feeder.webp' %}" width="1448" height="1086" alt="Tail's Town Smart Feeder" loading="lazy" decoding="async" />
+                <span class="top-pick-badge">Pet favorite</span>
+              </span>
+              <span class="top-pick-details">
+                <strong class="top-pick-name">Smart Feeder</strong>
+                <span class="top-pick-copy">Quiet, scheduled portions.</span>
+                <span class="top-pick-footer"><span class="top-pick-link">View product &rarr;</span></span>
+              </span>
+            </a>
+            <a class="top-pick-card" href="{% url 'store:water_fountain_page' %}">
+              <span class="top-pick-media">
+                <img src="{% static 'landing/product-tile-water.webp' %}" width="1448" height="1086" alt="Tail's Town Water Fountain" loading="lazy" decoding="async" />
+                <span class="top-pick-badge">Fresh daily</span>
+              </span>
+              <span class="top-pick-details">
+                <strong class="top-pick-name">Water Fountain</strong>
+                <span class="top-pick-copy">Filtered water kept flowing.</span>
+                <span class="top-pick-footer"><span class="top-pick-link">View product &rarr;</span></span>
+              </span>
+            </a>
+            <a class="top-pick-card" href="{% url 'store:litter_box_page' %}">
+              <span class="top-pick-media">
+                <img src="{% static 'landing/product-tile-litter.webp' %}" width="1448" height="1086" alt="Tail's Town Litter Box" loading="lazy" decoding="async" />
+                <span class="top-pick-badge">Clean choice</span>
+              </span>
+              <span class="top-pick-details">
+                <strong class="top-pick-name">Litter Box</strong>
+                <span class="top-pick-copy">A calmer, cleaner litter corner.</span>
+                <span class="top-pick-footer"><span class="top-pick-link">View product &rarr;</span></span>
+              </span>
+            </a>
+          {% endfor %}
+
+          <a class="top-pick-card" href="{% url 'cat_ads_bundle' %}">
+            <span class="top-pick-media">
+              <img src="{% static 'landing/cat-living-room-bundle.webp' %}" alt="Tail's Town Cat Care Bundle" loading="lazy" decoding="async" />
+              <span class="top-pick-badge">Save $200</span>
+            </span>
+            <span class="top-pick-details">
+              <strong class="top-pick-name">Cat Care Bundle</strong>
+              <span class="top-pick-copy">Feeding, water, and litter care together.</span>
+              <span class="top-pick-footer">
+                <strong class="top-pick-price">$900</strong>
+                <span class="top-pick-link">View bundle &rarr;</span>
+              </span>
+            </span>
+          </a>
+
+          <a class="top-pick-card" href="{% url 'dog_ads_bundle' %}">
+            <span class="top-pick-media">
+              <img src="{% static 'landing/dog-living-room-main.webp' %}" alt="Tail's Town Dog Care Bundle" loading="lazy" decoding="async" />
+              <span class="top-pick-badge">Save $270</span>
+            </span>
+            <span class="top-pick-details">
+              <strong class="top-pick-name">Dog Care Bundle</strong>
+              <span class="top-pick-copy">Steady meals and fresh water in one set.</span>
+              <span class="top-pick-footer">
+                <strong class="top-pick-price">$630</strong>
+                <span class="top-pick-link">View bundle &rarr;</span>
+              </span>
+            </span>
+          </a>
         </div>
       </section>
     </main>
