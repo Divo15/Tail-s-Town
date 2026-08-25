@@ -227,6 +227,19 @@
 
         </div>
       </section>
+
+      <section class="home-feature-banner" aria-labelledby="home-feature-title">
+        <img
+          src="{% static 'landing/feeder-dispenser-living-room.webp' %}"
+          alt="Tail's Town smart feeder in a calm sunlit living room"
+          loading="lazy"
+          decoding="async"
+        />
+        <div class="home-feature-copy">
+          <h2 id="home-feature-title">Meals ready, right on time.</h2>
+          <a href="{% url 'store:smart_feeder_page' %}">Shop Smart Feeder</a>
+        </div>
+      </section>
     </main>
 
     <aside class="cart-toast" aria-live="polite" aria-atomic="true"></aside>
