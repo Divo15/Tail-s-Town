@@ -624,7 +624,6 @@ h1 span {
   overflow: hidden;
   padding: clamp(48px, 8vw, 104px) clamp(18px, 5vw, 76px);
   padding-bottom: clamp(30px, 5vw, 64px);
-  background: #fff;
 }
 
 .collection-intro::before {
@@ -683,7 +682,6 @@ h1 span {
 
 .top-picks {
   padding: clamp(68px, 7vw, 108px) clamp(18px, 4vw, 64px) clamp(76px, 8vw, 124px);
-  background: #fff;
 }
 
 .top-picks-heading {
@@ -703,9 +701,9 @@ h1 span {
 
 .top-picks-rail {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(14px, 1.55vw, 24px);
-  max-width: 1520px;
+  max-width: 940px;
   margin-inline: auto;
 }
 
