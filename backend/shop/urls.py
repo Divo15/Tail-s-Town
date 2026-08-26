@@ -28,6 +28,7 @@ store_patterns = [
     path("", RedirectView.as_view(pattern_name="home", permanent=False), name="product_list"),
     path("faq/", views.faq_page, name="faq_page"),
     path("about/", views.about_page, name="about_page"),
+    path("terms-of-service/", views.terms_page, name="terms_page"),
     path("track-order/", views.track_order_page, name="track_order_page"),
     path("bundles/", views.bundle_page, name="bundle_page"),
     path("smart-feeder/", views.store_product_page, {"product_type": "smart-feeder"}, name="smart_feeder_page"),

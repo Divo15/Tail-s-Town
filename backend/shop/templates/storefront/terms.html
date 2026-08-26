@@ -1,0 +1,86 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Terms of Service | Tail's Town</title>
+    <link rel="stylesheet" href="{% static 'site/styles.css' %}" />
+  </head>
+  <body class="terms-page-shell">
+    <header class="terms-header">
+      <a class="about-brand" href="/" aria-label="Tail's Town home"><img src="{% static 'brand/logo.png' %}" alt="Tail's Town" /></a>
+      <a class="about-back-link" href="/">Back to shop <span aria-hidden="true">&rarr;</span></a>
+    </header>
+
+    <main class="terms-page" aria-labelledby="terms-title">
+      <section class="terms-intro">
+        <p class="eyebrow">The fine print, made clear</p>
+        <h1 id="terms-title">Terms of Service</h1>
+        <p class="terms-lede">These terms explain the simple rules for using Tail's Town, placing an order, and caring for the products you bring into your home.</p>
+        <p class="terms-date">Last updated: {% now "F j, Y" %}</p>
+      </section>
+
+      <div class="terms-layout">
+        <aside class="terms-index" aria-label="On this page">
+          <p>On this page</p>
+          <a href="#using-tailstown">Using Tail's Town</a>
+          <a href="#accounts-orders">Accounts and orders</a>
+          <a href="#products-delivery">Products and delivery</a>
+          <a href="#content-use">Content and acceptable use</a>
+          <a href="#liability">Disclaimers and liability</a>
+          <a href="#changes">Changes to these terms</a>
+        </aside>
+
+        <article class="terms-copy">
+          <section id="using-tailstown">
+            <span class="terms-section-label">01</span>
+            <h2>Using Tail's Town</h2>
+            <p>By visiting our website or using any of its features, you agree to use Tail's Town lawfully and respectfully. If you do not agree with these terms, please do not use the website.</p>
+            <p>You must be able to enter into a legally binding agreement to place an order. If you use Tail's Town on behalf of another person or organisation, you confirm that you have authority to accept these terms for them.</p>
+          </section>
+
+          <section id="accounts-orders">
+            <span class="terms-section-label">02</span>
+            <h2>Accounts and orders</h2>
+            <p>You are responsible for keeping your account details accurate and for protecting any sign-in information you create. Please tell us promptly if you believe your account has been used without permission.</p>
+            <p>When you submit an order, you are making an offer to buy the selected products. An order is accepted when we confirm it for dispatch. We may decline or cancel an order if an item is unavailable, a price or product detail contains an obvious error, or we reasonably suspect misuse.</p>
+            <p>Prices, promotions, availability, and product details may change. Any applicable taxes, delivery charges, and payment terms will be shown during checkout.</p>
+          </section>
+
+          <section id="products-delivery">
+            <span class="terms-section-label">03</span>
+            <h2>Products and delivery</h2>
+            <p>We work to show our products and colours accurately, but displays and lighting can vary. Product instructions and safety information should be read before use, especially for connected devices used around pets.</p>
+            <p>Delivery estimates are provided in good faith and may be affected by stock, carriers, weather, or events outside our control. Please check your order as soon as it arrives and contact us through the support channel shown on the website if something is missing or damaged.</p>
+            <p>Returns, refunds, and replacement eligibility are handled under the relevant policy published on Tail's Town. Nothing in these terms limits rights that cannot legally be excluded.</p>
+          </section>
+
+          <section id="content-use">
+            <span class="terms-section-label">04</span>
+            <h2>Content and acceptable use</h2>
+            <p>Tail's Town and its licensors own the website, brand assets, product photography, written content, and software. You may view and use them for personal, non-commercial purposes. Do not copy, alter, sell, scrape, or republish them without written permission.</p>
+            <p>You must not interfere with the website, probe its security, upload malicious code, impersonate another person, submit unlawful material, or use automated tools to place orders or collect information.</p>
+            <p>If you send us feedback, reviews, photographs, or other material, you confirm that you have the right to share it and allow us to use it to operate and improve Tail's Town. We will not use your private account or order information as public marketing content.</p>
+          </section>
+
+          <section id="liability">
+            <span class="terms-section-label">05</span>
+            <h2>Disclaimers and liability</h2>
+            <p>Tail's Town is provided on an “as available” basis. We work hard to keep it useful and reliable, but we cannot promise that the website will always be uninterrupted, error-free, or free of harmful code.</p>
+            <p>To the fullest extent allowed by law, Tail's Town will not be responsible for indirect or consequential losses arising from your use of the website or products. Our responsibility for a particular product or order will not exceed the amount paid for that product or order, except where the law requires otherwise.</p>
+          </section>
+
+          <section id="changes">
+            <span class="terms-section-label">06</span>
+            <h2>Changes to these terms</h2>
+            <p>We may update these terms as Tail's Town grows, our services change, or the law requires. The updated version will be posted here with a new date. Continuing to use the website after an update means you accept the revised terms.</p>
+            <p>Questions about these terms can be raised through the support options available on our website. We will aim to explain the next step clearly.</p>
+          </section>
+        </article>
+      </div>
+    </main>
+
+    <footer class="about-footer"><span>&copy; {% now "Y" %} Tail's Town</span><a href="/">Return to the collection <span aria-hidden="true">&rarr;</span></a></footer>
+  </body>
+</html>
