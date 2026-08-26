@@ -1981,8 +1981,8 @@ h1 span {
 
 .footer-social-links a {
   display: grid;
-  width: 38px;
-  height: 38px;
+  width: 27px;
+  height: 27px;
   place-items: center;
   color: var(--ink);
   transition: color 180ms ease, transform 180ms ease;
@@ -1995,25 +1995,35 @@ h1 span {
 }
 
 .footer-social-links svg {
-  width: 22px;
-  height: 22px;
+  width: 27px;
+  height: 27px;
   fill: currentColor;
+  stroke: none;
+}
+
+.footer-social-links a:nth-child(3) svg {
+  fill: none;
   stroke: currentColor;
-  stroke-width: 1.4;
+  stroke-width: 1.8;
+}
+
+.footer-social-links a:nth-child(3) svg circle:last-child {
+  fill: currentColor;
+  stroke: none;
 }
 
 .footer-payments span {
   display: inline-flex;
-  min-width: 50px;
-  min-height: 29px;
+  min-width: 38px;
+  min-height: 24px;
   align-items: center;
   justify-content: center;
-  padding: 0 7px;
+  padding: 0 5px;
   border: 1px solid rgba(24, 33, 31, 0.12);
   border-radius: 3px;
   color: var(--ink);
   background: #fff;
-  font-size: 0.59rem;
+  font-size: 0.48rem;
   font-weight: 850;
   letter-spacing: -0.01em;
 }
@@ -2022,7 +2032,7 @@ h1 span {
   position: absolute;
   top: 12px;
   left: 0;
-  gap: 18px;
+  gap: 20px;
 }
 
 .footer-payments {
@@ -2030,25 +2040,36 @@ h1 span {
   right: 0;
   bottom: 47px;
   justify-content: flex-end;
-  gap: 8px;
+  gap: 7px;
 }
 
 .footer-payments span:nth-child(2),
-.footer-payments span:nth-child(4) {
-  font-size: 0.55rem;
-}
-
-.footer-payments span:nth-child(5) {
-  color: #152c66;
-}
-
+.footer-payments span:nth-child(3),
+.footer-payments span:nth-child(4),
 .footer-payments span:nth-child(6) {
-  color: #174fa8;
-  font-size: 0.68rem;
-  font-style: italic;
+  font-size: 0.43rem;
 }
 
 .footer-payments span:nth-child(7) {
+  color: #152c66;
+}
+
+.footer-payments span:nth-child(8) {
+  color: #174fa8;
+  font-size: 0.56rem;
+  font-style: italic;
+}
+
+.footer-payments span:nth-child(9) {
+  color: #692cf0;
+  font-size: 0.56rem;
+}
+
+.footer-payments span:nth-child(10) {
+  color: #1f75c6;
+}
+
+.footer-payments span:nth-child(11) {
   color: #173d9b;
 }
 
