@@ -117,6 +117,10 @@ a {
   filter: none;
 }
 
+.landing-page .site-header .brand img {
+  height: clamp(72px, 8vw, 112px);
+}
+
 .brand picture {
   display: contents;
 }
@@ -1410,6 +1414,10 @@ h1 span {
     width: 104px;
   }
 
+  .landing-page .site-header .brand img {
+    width: 116px;
+  }
+
   .nav-links {
     grid-column: auto;
     grid-row: auto;
@@ -1562,6 +1570,10 @@ h1 span {
 
   .brand img {
     width: 86px;
+  }
+
+  .landing-page .site-header .brand img {
+    width: 98px;
   }
 
   .auth-link {
