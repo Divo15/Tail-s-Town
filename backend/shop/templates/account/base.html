@@ -70,8 +70,18 @@
         min-height: 88px;
         display: flex;
         align-items: center;
-        justify-content: flex-end;
+        justify-content: space-between;
         gap: 1rem;
+      }
+      .account-brand {
+        display: inline-flex;
+        align-items: center;
+        flex: 0 0 auto;
+      }
+      .account-brand img {
+        width: 86px;
+        height: 70px;
+        object-fit: contain;
       }
       .nav {
         display: flex;
@@ -530,6 +540,7 @@
           padding: 0.65rem 0;
           gap: 0.65rem;
         }
+        .account-brand img { width: 70px; height: 58px; }
         .account-quick-actions {
           flex: 1;
           justify-content: flex-end;
@@ -658,6 +669,9 @@
       </div>
       <header class="header">
         <div class="header-inner">
+          <a class="account-brand" href="/" aria-label="Tail's Town home">
+            <img src="{% static 'product-pages/assets/tails-town-header-logo-full.webp' %}" alt="Tail's Town" />
+          </a>
           <div class="account-quick-actions">
             <nav class="nav">
               <a href="/">Home</a>

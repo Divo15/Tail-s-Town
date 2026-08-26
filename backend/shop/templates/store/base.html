@@ -77,7 +77,7 @@
         justify-content: space-between;
         gap: 1rem;
       }
-      .brand img { width: 132px; }
+      .brand img { width: 86px; height: 70px; object-fit: contain; }
       .header-nav {
         display: flex;
         flex-wrap: wrap;
@@ -955,9 +955,7 @@
           padding: 0.65rem 0;
           gap: 0.65rem;
         }
-        .brand img {
-          width: 96px;
-        }
+        .brand img { width: 70px; height: 58px; }
         .header-nav {
           order: 3;
           width: 100%;
@@ -1098,8 +1096,8 @@
     <div class="top-strip"></div>
     <header class="site-header">
       <div class="header-inner">
-        <a class="brand" href="/" aria-label="PETKIT home">
-          <img src="{% static 'brand/logo.webp' %}" alt="PETKIT" />
+        <a class="brand" href="/" aria-label="Tail's Town home">
+          <img src="{% static 'product-pages/assets/tails-town-header-logo-full.webp' %}" alt="Tail's Town" />
         </a>
         <nav class="header-nav" aria-label="Main navigation">
           <a href="{% url 'customer_account:dashboard' %}">Account</a>
