@@ -369,6 +369,10 @@ def blog_page(request):
     return render(request, "storefront/blog.html")
 
 
+def app_service_page(request):
+    return render(request, "storefront/app_service.html")
+
+
 def track_order_page(request):
     return render(request, "storefront/track_order.html", {"tracking_number": request.GET.get("tracking_number", "")})
 

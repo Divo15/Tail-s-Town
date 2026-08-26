@@ -29,6 +29,7 @@ store_patterns = [
     path("faq/", views.faq_page, name="faq_page"),
     path("about/", views.about_page, name="about_page"),
     path("blog/", views.blog_page, name="blog_page"),
+    path("app-service/", views.app_service_page, name="app_service_page"),
     path("terms-of-service/", views.terms_page, name="terms_page"),
     path("track-order/", views.track_order_page, name="track_order_page"),
     path("bundles/", views.bundle_page, name="bundle_page"),

@@ -1,0 +1,48 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>App Service | Tail's Town</title>
+    <link rel="stylesheet" href="{% static 'site/styles.css' %}" />
+  </head>
+  <body class="app-service-page-shell">
+    <header class="app-service-header">
+      <a class="about-brand" href="/" aria-label="Tail's Town home"><img src="{% static 'brand/logo.png' %}" alt="Tail's Town" /></a>
+      <nav class="app-service-nav" aria-label="App Service sections">
+        <a href="#overview">Overview</a>
+        <a href="#features">What it helps with</a>
+        <a href="#getting-started">Get started</a>
+      </nav>
+      <a class="about-back-link" href="/">Back to shop <span aria-hidden="true">&rarr;</span></a>
+    </header>
+
+    <main class="app-service-page" aria-labelledby="app-service-title">
+      <section class="app-service-hero" id="overview">
+        <div class="app-service-hero-copy"><p class="eyebrow">Tail's Town App Service</p><h1>Care that stays connected.</h1><p>See the essentials, adjust the routine, and feel closer to your pet even when the day takes you away from home.</p><div class="app-service-actions"><a class="app-service-primary" href="#getting-started">See how it works <span aria-hidden="true">&rarr;</span></a><a class="app-service-secondary" href="{% url 'store:faq_page' %}">Visit support <span aria-hidden="true">&rarr;</span></a></div></div>
+        <div class="app-service-hero-media"><img src="{% static 'sections/smart-home.webp' %}" alt="Pet care setup ready to support a daily routine" /></div>
+      </section>
+
+      <section class="app-service-intro"><p class="eyebrow">One calmer view</p><h2>Your pet's routine, without the guesswork.</h2><p>Tail's Town App Service brings your connected care tools into one clear place. It is designed to help you stay informed without turning time with your pet into another task list.</p></section>
+
+      <section class="app-service-features" id="features" aria-labelledby="app-features-title">
+        <div class="app-service-section-heading"><p class="eyebrow">What it helps with</p><h2 id="app-features-title">The useful details, right when you need them.</h2></div>
+        <div class="app-service-feature-grid">
+          <article><span class="app-service-feature-mark" aria-hidden="true">01</span><h3>Feed with confidence</h3><p>Keep feeding times and portions visible so everyday meals stay consistent, even on the busiest days.</p></article>
+          <article><span class="app-service-feature-mark" aria-hidden="true">02</span><h3>Keep water in view</h3><p>Check the fountain routine at a glance and make fresh, filtered hydration easier to maintain.</p></article>
+          <article><span class="app-service-feature-mark" aria-hidden="true">03</span><h3>Notice the pattern</h3><p>Simple activity and care signals help you spot changes early and understand what is normal for your pet.</p></article>
+        </div>
+      </section>
+
+      <section class="app-service-routine" id="getting-started" aria-labelledby="getting-started-title">
+        <div class="app-service-routine-media"><img src="{% static 'hero/eversweet-ultra.webp' %}" alt="Smart pet care fitting naturally into a home" loading="lazy" /></div>
+        <div class="app-service-routine-copy"><p class="eyebrow">Getting started</p><h2>Set it up once. Stay in the loop.</h2><ol><li><span>Connect</span><p>Place your Tail's Town device in the home and pair it with the service.</p></li><li><span>Make it yours</span><p>Choose the routine that fits your pet's meals, water, and everyday care.</p></li><li><span>Stay close</span><p>Check in from one calm view and make adjustments whenever your day changes.</p></li></ol><a class="app-service-primary app-service-primary-dark" href="{% url 'store:product_list' %}">Explore connected care <span aria-hidden="true">&rarr;</span></a></div>
+      </section>
+
+      <section class="app-service-note"><p class="eyebrow">Built for real homes</p><h2>Technology should make care feel more human.</h2><p>The service is here to support your judgement, not replace it. Use the information that helps, ignore the noise, and keep the focus where it belongs: on your pet.</p><a class="app-service-secondary" href="{% url 'store:faq_page' %}">Read common questions <span aria-hidden="true">&rarr;</span></a></section>
+    </main>
+
+    <footer class="about-footer"><span>&copy; {% now "Y" %} Tail's Town</span><a href="/">Return to the collection <span aria-hidden="true">&rarr;</span></a></footer>
+  </body>
+</html>
