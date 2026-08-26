@@ -381,6 +381,10 @@ def subscription_page(request):
     return render(request, "storefront/subscription.html")
 
 
+def price_match_page(request):
+    return render(request, "storefront/price_match.html")
+
+
 def track_order_page(request):
     return render(request, "storefront/track_order.html", {"tracking_number": request.GET.get("tracking_number", "")})
 

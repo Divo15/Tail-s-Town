@@ -1,0 +1,52 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Price Match Policy | Tail's Town</title>
+    <link rel="stylesheet" href="{% static 'site/styles.css' %}" />
+  </head>
+  <body class="policy-page-shell price-match-page-shell">
+    <header class="policy-header">
+      <a class="about-brand" href="/" aria-label="Tail's Town home"><img src="{% static 'brand/logo.png' %}" alt="Tail's Town" /></a>
+      <a class="about-back-link" href="/">Back to shop <span aria-hidden="true">&rarr;</span></a>
+    </header>
+
+    <main class="policy-page" aria-labelledby="price-match-title">
+      <section class="policy-intro">
+        <p class="eyebrow">A fairer way to shop</p>
+        <h1 id="price-match-title">Price Match Policy</h1>
+        <p class="policy-lede">Found the same eligible Tail's Town product at a lower advertised price? Here is how to check whether it qualifies and what to send us.</p>
+        <p class="policy-date">Last updated: {% now "F j, Y" %}</p>
+      </section>
+
+      <div class="policy-highlight" aria-label="Price match at a glance">
+        <div><span>01</span><strong>Same product</strong><p>The brand, model, size, colour, version, and included items must match exactly.</p></div>
+        <div><span>02</span><strong>Visible and available</strong><p>The lower price must be publicly listed and the product must be in stock for purchase.</p></div>
+        <div><span>03</span><strong>Show us the proof</strong><p>Share a link or screenshot with the product, seller, price, date, and availability visible.</p></div>
+      </div>
+
+      <div class="policy-layout">
+        <aside class="policy-index" aria-label="On this page">
+          <p>On this page</p>
+          <a href="#eligibility">Eligibility</a>
+          <a href="#exclusions">What is excluded</a>
+          <a href="#request">How to request a match</a>
+          <a href="#approved">If approved</a>
+          <a href="#limits">Limits and updates</a>
+        </aside>
+
+        <article class="policy-copy">
+          <section id="eligibility"><span class="policy-section-label">01</span><h2>Eligibility</h2><p>We may match a lower publicly advertised price for an identical Tail's Town product from an authorised retailer or official sales channel. The product must be new, genuine, currently available, and ready to purchase at the advertised price.</p><p>The comparison must include the same brand, model, colour, size, version, condition, included accessories, and warranty coverage. Any delivery charge, tax, or required service fee is considered when we compare the final payable price.</p><p>Requests should be submitted within fourteen days of your Tail's Town purchase unless a different period is shown on the relevant offer.</p></section>
+          <section id="exclusions"><span class="policy-section-label">02</span><h2>What is excluded</h2><p>Price matching does not apply to clearance, liquidation, open-box, refurbished, used, damaged, or marketplace listings where the seller cannot be verified as authorised.</p><p>We do not match temporary flash sales, limited-quantity offers, bundle-only prices, buy-one-get-one offers, loyalty or membership pricing, private coupons, cashback, rebates, financing incentives, gift-card offers, pricing errors, or prices that require a code or account-specific access.</p><p>We also do not match a different product, a pre-order, a price that is no longer available, or a price that cannot be verified at the time we review the request.</p></section>
+          <section id="request"><span class="policy-section-label">03</span><h2>How to request a match</h2><p>Send the order details through the support option available on Tail's Town and include the lower-price evidence. A direct product link is best; a clear screenshot is also helpful.</p><p>Please make sure the evidence shows the product name, seller, advertised price, currency, date, availability, and any conditions attached to the offer. We may independently verify the listing before making a decision.</p><p>For a purchase already placed, include your Tail's Town order confirmation so we can confirm the item and purchase timing.</p></section>
+          <section id="approved"><span class="policy-section-label">04</span><h2>If your request is approved</h2><p>We will confirm the approved adjustment and the method used to apply it. If a refund is due, it will normally be returned to the original payment method after approval.</p><p>A price adjustment applies to the eligible product price only. It does not apply to unrelated delivery charges, taxes, fees, or services, and it cannot be combined with another promotion unless we say so.</p></section>
+          <section id="limits"><span class="policy-section-label">05</span><h2>Limits and updates</h2><p>Tail's Town may decline requests that appear inaccurate, abusive, fraudulent, intended for resale, or outside this policy. We may limit the number of requests connected to an order, household, or customer account.</p><p>We may update, pause, or end this policy as our products and sales channels change. The version in effect when you submit a request will guide our review, subject to rights that cannot legally be excluded.</p><p>This policy works alongside our <a href="{% url 'terms_page_root' %}">Terms of Service</a>. For delivery-related questions, see our <a href="{% url 'shipping_page_root' %}">Shipping Policy</a>.</p></section>
+        </article>
+      </div>
+    </main>
+
+    <footer class="about-footer"><span>&copy; {% now "Y" %} Tail's Town</span><a href="/">Return to the collection <span aria-hidden="true">&rarr;</span></a></footer>
+  </body>
+</html>
