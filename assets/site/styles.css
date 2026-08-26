@@ -117,7 +117,7 @@ a {
   filter: none;
 }
 
-.landing-page .site-header .brand img {
+.site-header .brand img {
   height: clamp(72px, 8vw, 112px);
 }
 
@@ -1414,8 +1414,8 @@ h1 span {
     width: 104px;
   }
 
-  .landing-page .site-header .brand img {
-    width: 116px;
+  .site-header .brand img {
+    width: 88px;
   }
 
   .nav-links {
@@ -1572,8 +1572,8 @@ h1 span {
     width: 86px;
   }
 
-  .landing-page .site-header .brand img {
-    width: 98px;
+  .site-header .brand img {
+    width: 72px;
   }
 
   .auth-link {
@@ -2424,9 +2424,9 @@ h1 span {
 }
 
 /* Keep the transparent square brand mark contained in every support-page header. */
-.about-brand img, .faq-brand img, .track-brand img { width: 86px; height: 70px; object-fit: contain; }
+.about-brand img, .faq-brand img, .track-brand img { width: 108px; height: 88px; object-fit: contain; }
 @media (max-width: 720px) {
-  .about-brand img, .faq-brand img, .track-brand img { width: 70px; height: 58px; }
+  .about-brand img, .faq-brand img, .track-brand img { width: 88px; height: 72px; }
 }
 
 /* Final footer polish: stronger grouping, less empty height, and a clearer mobile collapse. */

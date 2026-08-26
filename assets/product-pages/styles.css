@@ -106,7 +106,7 @@ a {
 .brand img {
   display: block;
   width: auto;
-  height: clamp(58px, 7vw, 90px);
+  height: clamp(72px, 8vw, 112px);
 }
 
 .brand picture {
@@ -3153,8 +3153,8 @@ h1 span {
   }
 
   .brand img {
-    width: 44px;
-    height: 44px;
+    width: 64px;
+    height: 64px;
     object-fit: contain;
   }
 
