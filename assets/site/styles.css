@@ -2087,6 +2087,64 @@ h1 span {
   }
 }
 
+.about-page-shell { background: var(--paper); }
+.about-header, .about-page, .about-footer { width: min(1180px, calc(100% - 36px)); margin: 0 auto; }
+.about-header { display: flex; align-items: center; justify-content: space-between; min-height: 88px; border-bottom: 1px solid var(--line); }
+.about-brand img { width: 118px; }
+.about-back-link, .about-shop-link, .about-footer a { color: var(--teal-dark); font-size: .88rem; font-weight: 850; }
+.about-back-link span, .about-shop-link span, .about-footer a span { margin-left: 8px; transition: margin 180ms ease; }
+.about-back-link:hover span, .about-back-link:focus-visible span, .about-shop-link:hover span, .about-shop-link:focus-visible span, .about-footer a:hover span, .about-footer a:focus-visible span { margin-left: 12px; }
+.about-page { padding: clamp(46px, 6vw, 82px) 0 104px; }
+.about-hero { position: relative; min-height: min(62vw, 650px); overflow: hidden; background: var(--teal-dark); }
+.about-hero img { width: 100%; height: 100%; min-height: inherit; object-fit: cover; }
+.about-hero::after { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(9, 46, 43, .72), rgba(9, 46, 43, .08) 72%); content: ""; }
+.about-hero-copy { position: absolute; z-index: 1; bottom: clamp(28px, 6vw, 76px); left: clamp(24px, 6vw, 76px); max-width: 600px; color: #fff; }
+.about-hero-copy .eyebrow { color: rgba(255,255,255,.78); }
+.about-hero-copy h1 { max-width: 9ch; margin: 14px 0 0; color: #fff; font-size: clamp(3.2rem, 7vw, 6.4rem); line-height: .9; letter-spacing: -.04em; text-wrap: balance; }
+.about-principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; padding: clamp(46px, 6vw, 78px) 0 clamp(72px, 9vw, 120px); }
+.about-principles div { display: grid; gap: 9px; align-content: start; }
+.about-principles span { color: var(--maple); font-size: .76rem; font-weight: 850; }
+.about-principles strong { color: var(--ink); font-size: 1.1rem; }
+.about-principles p { max-width: 29ch; margin: 0; color: var(--muted); font-size: .92rem; line-height: 1.6; }
+.about-story { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 6vw, 84px); align-items: center; padding: clamp(42px, 7vw, 92px) 0; border-top: 1px solid var(--line); }
+.about-story-reverse .about-story-media { order: 2; }
+.about-story-reverse .about-story-copy { order: 1; }
+.about-story-media { aspect-ratio: 1.12; overflow: hidden; background: var(--snow); }
+.about-story-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 500ms ease; }
+.about-story:hover .about-story-media img { transform: scale(1.03); }
+.about-story-copy { max-width: 470px; }
+.about-story-copy h2 { margin: 14px 0 20px; color: var(--ink); font-size: clamp(2.2rem, 4vw, 4.2rem); line-height: .94; letter-spacing: -.04em; text-wrap: balance; }
+.about-story-copy p:not(.eyebrow) { color: var(--muted); font-size: 1rem; line-height: 1.7; }
+.about-shop-link { display: inline-flex; margin-top: 12px; }
+.about-products { padding: clamp(76px, 10vw, 132px) 0 0; }
+.about-products-heading { display: flex; justify-content: space-between; align-items: end; gap: 30px; padding-bottom: 28px; }
+.about-products-heading h2 { max-width: 12ch; margin: 0; color: var(--ink); font-size: clamp(2.2rem, 4.5vw, 4.3rem); line-height: .92; letter-spacing: -.04em; text-wrap: balance; }
+.about-product-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.about-product-list a { position: relative; display: block; min-height: 340px; overflow: hidden; background: var(--teal-dark); }
+.about-product-list img { width: 100%; height: 100%; min-height: 340px; object-fit: cover; transition: transform 450ms ease; }
+.about-product-list a::after { position: absolute; inset: 35% 0 0; background: linear-gradient(transparent, rgba(9,46,43,.82)); content: ""; }
+.about-product-list a:hover img { transform: scale(1.04); }
+.about-product-list span { position: absolute; z-index: 1; right: 20px; bottom: 20px; left: 20px; display: flex; justify-content: space-between; color: #fff; font-size: 1rem; font-weight: 850; }
+.about-product-list b { color: rgba(255,255,255,.76); font-size: 1.25rem; }
+.about-footer { display: flex; justify-content: space-between; gap: 16px; padding: 18px 0 28px; border-top: 1px solid var(--line); color: var(--muted); font-size: .74rem; letter-spacing: .03em; }
+@media (max-width: 720px) {
+  .about-header, .about-page, .about-footer { width: min(100% - 28px, 620px); }
+  .about-header { min-height: 72px; }
+  .about-brand img { width: 94px; }
+  .about-page { padding-block: 28px 70px; }
+  .about-hero { min-height: 610px; }
+  .about-hero-copy h1 { font-size: clamp(3rem, 15vw, 5rem); }
+  .about-principles, .about-story, .about-product-list { grid-template-columns: 1fr; }
+  .about-principles { gap: 26px; padding-block: 48px 70px; }
+  .about-principles p { max-width: 46ch; }
+  .about-story { gap: 28px; padding-block: 48px; }
+  .about-story-reverse .about-story-media, .about-story-reverse .about-story-copy { order: initial; }
+  .about-products-heading { display: block; }
+  .about-products-heading h2 { margin-top: 14px; }
+  .about-product-list a, .about-product-list img { min-height: 280px; }
+  .about-footer { flex-direction: column; }
+}
+
 /* Final footer polish: stronger grouping, less empty height, and a clearer mobile collapse. */
 .site-footer {
   padding: clamp(48px, 6vw, 72px) clamp(18px, 5vw, 72px) 26px;

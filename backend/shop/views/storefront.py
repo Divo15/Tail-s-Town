@@ -357,6 +357,10 @@ def faq_page(request):
     return render(request, "storefront/faq.html")
 
 
+def about_page(request):
+    return render(request, "storefront/about.html")
+
+
 def track_order_page(request):
     return render(request, "storefront/track_order.html", {"tracking_number": request.GET.get("tracking_number", "")})
 

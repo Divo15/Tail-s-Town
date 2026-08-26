@@ -12,10 +12,11 @@ from .account import (
 )
 from .cart import cart_add, cart_detail, cart_remove, cart_update
 from .checkout import checkout, order_success
-from .storefront import ad_bundle_page, bundle_page, faq_page, home, store_product_detail, store_product_page, track_order_page
+from .storefront import about_page, ad_bundle_page, bundle_page, faq_page, home, store_product_detail, store_product_page, track_order_page
 
 __all__ = [
     "account_dashboard",
+    "about_page",
     "account_login",
     "account_logout",
     "account_register",

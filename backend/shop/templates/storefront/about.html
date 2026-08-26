@@ -1,0 +1,50 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About Tail's Town</title>
+    <link rel="stylesheet" href="{% static 'site/styles.css' %}" />
+  </head>
+  <body class="about-page-shell">
+    <header class="about-header">
+      <a class="about-brand" href="/" aria-label="Tail's Town home"><img src="{% static 'brand/logo.png' %}" alt="Tail's Town" /></a>
+      <a class="about-back-link" href="/">Back to shop <span aria-hidden="true">&rarr;</span></a>
+    </header>
+
+    <main class="about-page" aria-labelledby="about-title">
+      <section class="about-hero">
+        <img src="{% static 'landing/smart-home.webp' %}" alt="A calm pet corner with smart everyday care tools" />
+        <div class="about-hero-copy"><p class="eyebrow">The Tail's Town approach</p><h1 id="about-title">Technology that gives the routine back to you.</h1></div>
+      </section>
+
+      <section class="about-principles" aria-label="Tail's Town principles">
+        <div><span>01</span><strong>Useful by default</strong><p>Automation should remove a small daily task, not add another screen to manage.</p></div>
+        <div><span>02</span><strong>Calm in the home</strong><p>Thoughtful forms and quieter moments belong in the spaces pets and people share.</p></div>
+        <div><span>03</span><strong>Built around trust</strong><p>Clear feedback helps you know that feeding, hydration, and litter care are on track.</p></div>
+      </section>
+
+      <section class="about-story">
+        <div class="about-story-media"><img src="{% static 'landing/dog-feeder-living-room-bundle.webp' %}" alt="Dog relaxing near a Tail's Town feeder in a living room" loading="lazy" /></div>
+        <div class="about-story-copy"><p class="eyebrow">Where we begin</p><h2>Small routines carry a lot of love.</h2><p>Tail's Town started with a simple observation: the moments that keep pets well are often the ones repeated every day. Meals, fresh water, and a clean corner do not need to feel like chores that compete with the rest of life.</p><p>We make smart pet-care tools that are easy to understand, gentle in the home, and dependable when your day gets full.</p></div>
+      </section>
+
+      <section class="about-story about-story-reverse">
+        <div class="about-story-media"><img src="{% static 'landing/cat-living-room-bundle.webp' %}" alt="Cat resting beside a Tail's Town water fountain" loading="lazy" /></div>
+        <div class="about-story-copy"><p class="eyebrow">Care, connected</p><h2>Less checking. More being there.</h2><p>Our feeder, fountain, and litter box are designed to fit into real homes and real schedules. They help make the essentials more consistent while leaving the important part untouched: the time you spend with your pet.</p><a class="about-shop-link" href="{% url 'store:product_list' %}">Explore the collection <span aria-hidden="true">&rarr;</span></a></div>
+      </section>
+
+      <section class="about-products" aria-labelledby="about-products-title">
+        <div class="about-products-heading"><p class="eyebrow">Everyday essentials</p><h2 id="about-products-title">One calmer system for the whole pet home.</h2></div>
+        <div class="about-product-list">
+          <a href="{% url 'store:smart_feeder_page' %}"><img src="{% static 'products/smart-feeder.webp' %}" alt="Tail's Town Smart Feeder" loading="lazy" /><span>Feed with confidence <b>&rarr;</b></span></a>
+          <a href="{% url 'store:water_fountain_page' %}"><img src="{% static 'products/smart-water-fountain.webp' %}" alt="Tail's Town Water Fountain" loading="lazy" /><span>Keep water moving <b>&rarr;</b></span></a>
+          <a href="{% url 'store:litter_box_page' %}"><img src="{% static 'products/self-cleaning-litter-box.webp' %}" alt="Tail's Town Litter Box" loading="lazy" /><span>Clear the corner <b>&rarr;</b></span></a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="about-footer"><span>&copy; {% now "Y" %} Tail's Town</span><a href="/">Return to the collection <span aria-hidden="true">&rarr;</span></a></footer>
+  </body>
+</html>
