@@ -35,6 +35,7 @@ urlpatterns = [
     path('about/', shop_views.about_page, name='about_page_root'),
     path('about-us/', shop_views.about_page, name='about_us_page'),
     path('terms-of-service/', shop_views.terms_page, name='terms_page_root'),
+    path('pages/terms-of-service/', shop_views.terms_page, name='terms_page_legacy'),
     path('shop/', include((shop_urls.store_patterns, 'store'), namespace='store')),
     path('admin-panel/', RedirectView.as_view(url='/admin/', permanent=False)),
     path('admin-panel/<path:unused>', RedirectView.as_view(url='/admin/', permanent=False)),
