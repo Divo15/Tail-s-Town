@@ -42,6 +42,8 @@ urlpatterns = [
     path('pages/app-service/', shop_views.app_service_page, name='app_service_page_reference'),
     path('shipping-policy/', shop_views.shipping_page, name='shipping_page_root'),
     path('pages/shipping-policy/', shop_views.shipping_page, name='shipping_page_reference'),
+    path('subscription-policy/', shop_views.subscription_page, name='subscription_page_root'),
+    path('pages/subscription-policy/', shop_views.subscription_page, name='subscription_page_reference'),
     path('shop/', include((shop_urls.store_patterns, 'store'), namespace='store')),
     path('admin-panel/', RedirectView.as_view(url='/admin/', permanent=False)),
     path('admin-panel/<path:unused>', RedirectView.as_view(url='/admin/', permanent=False)),

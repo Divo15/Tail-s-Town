@@ -1,0 +1,54 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Subscription Policy | Tail's Town</title>
+    <link rel="stylesheet" href="{% static 'site/styles.css' %}" />
+  </head>
+  <body class="policy-page-shell subscription-page-shell">
+    <header class="policy-header">
+      <a class="about-brand" href="/" aria-label="Tail's Town home"><img src="{% static 'brand/logo.png' %}" alt="Tail's Town" /></a>
+      <a class="about-back-link" href="/">Back to shop <span aria-hidden="true">&rarr;</span></a>
+    </header>
+
+    <main class="policy-page" aria-labelledby="subscription-title">
+      <section class="policy-intro subscription-intro">
+        <p class="eyebrow">A flexible way to stay stocked</p>
+        <h1 id="subscription-title">Subscription Policy</h1>
+        <p class="policy-lede">If recurring delivery is available for a Tail's Town product, this page explains what you agree to, how to manage it, and when changes take effect.</p>
+        <p class="policy-date">Last updated: {% now "F j, Y" %}</p>
+      </section>
+
+      <div class="policy-highlight subscription-highlight" aria-label="Subscription at a glance">
+        <div><span>01</span><strong>See the full terms first</strong><p>The price, delivery interval, and any delivery charges are shown before you confirm a recurring order.</p></div>
+        <div><span>02</span><strong>Stay in control</strong><p>Eligible subscriptions can be changed or cancelled through the management option provided with your order.</p></div>
+        <div><span>03</span><strong>Watch the timing</strong><p>Changes made after a billing or fulfilment cut-off may apply from the following cycle.</p></div>
+      </div>
+
+      <div class="policy-layout">
+        <aside class="policy-index" aria-label="On this page">
+          <p>On this page</p>
+          <a href="#how-it-works">How it works</a>
+          <a href="#billing">Billing and delivery</a>
+          <a href="#managing">Managing a subscription</a>
+          <a href="#cancellation">Cancellation</a>
+          <a href="#payment">Payment and pricing</a>
+          <a href="#returns">Returns and changes</a>
+        </aside>
+
+        <article class="policy-copy">
+          <section id="how-it-works"><span class="policy-section-label">01</span><h2>How it works</h2><p>Subscription options are available only for eligible Tail's Town products and destinations. When an option is available, the product page and checkout will show the delivery frequency, recurring price, and any applicable charges.</p><p>By confirming a subscription, you authorise recurring orders at the terms shown at checkout until you cancel. A subscription does not change the care or use instructions for the product itself.</p></section>
+          <section id="billing"><span class="policy-section-label">02</span><h2>Billing and delivery</h2><p>Your selected payment method is charged for each recurring order according to the schedule shown at checkout. We will provide order and shipping updates using the information associated with your account.</p><p>Each recurring shipment is subject to our <a href="{% url 'shipping_page_root' %}">Shipping Policy</a>. Estimated delivery timing, availability, and shipping charges can vary by product and destination.</p><p>If a subscription item is temporarily unavailable, we will show the available next step when possible. A recurring order may be delayed or cancelled if it cannot be fulfilled.</p></section>
+          <section id="managing"><span class="policy-section-label">03</span><h2>Managing a subscription</h2><p>Where subscription management is available, use the management link or account area provided with your order. Depending on the plan, you may be able to skip a shipment, change the interval, update your delivery details, or update your payment method.</p><p>Submit changes before the next billing or processing cut-off. Changes made after an order has been billed, prepared, or shipped may apply only to a later cycle.</p></section>
+          <section id="cancellation"><span class="policy-section-label">04</span><h2>Cancellation</h2><p>You can cancel an eligible subscription using the management option provided with your order. Cancellation takes effect when the request is successfully submitted, subject to the next-order cut-off shown in your subscription details.</p><p>Cancellation does not automatically cancel an order that has already been billed or entered fulfilment. That order remains subject to the applicable return and refund rules.</p><p>After cancellation, we will not create new recurring orders for that subscription. Any benefits connected to an already-paid order continue only for that order.</p></section>
+          <section id="payment"><span class="policy-section-label">05</span><h2>Payment and pricing</h2><p>If a recurring payment fails, we may pause the next shipment and ask you to update your payment method. We will not treat an unsuccessful payment as a completed order.</p><p>Subscription prices and delivery charges are shown before each commitment. We may change the price for future cycles, with notice where required. You can cancel before a new price takes effect.</p><p>Promotional pricing applies only for the period and products stated at checkout. It does not guarantee the same price for later cycles unless explicitly stated.</p></section>
+          <section id="returns"><span class="policy-section-label">06</span><h2>Returns and changes</h2><p>Products delivered through a subscription follow the same product, return, and refund rules that apply to the equivalent one-time purchase. See our <a href="#footer">Return &amp; Refund Policy</a> when that policy is available.</p><p>To change a delivery address, update it before the next order is processed. If an order has already shipped, please use our <a href="{% url 'store:track_order_page' %}">Track Order</a> page and review the <a href="{% url 'shipping_page_root' %}">Shipping Policy</a> for next steps.</p><p>These terms work alongside our <a href="{% url 'terms_page_root' %}">Terms of Service</a>. If the subscription option is unavailable at checkout, no recurring commitment is created.</p></section>
+        </article>
+      </div>
+    </main>
+
+    <footer class="about-footer" id="footer"><span>&copy; {% now "Y" %} Tail's Town</span><a href="/">Return to the collection <span aria-hidden="true">&rarr;</span></a></footer>
+  </body>
+</html>
