@@ -1,0 +1,123 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FAQs | Tail's Town</title>
+    <link rel="stylesheet" href="{% static 'site/styles.css' %}" />
+  </head>
+  <body class="faq-page-shell">
+    <header class="faq-header">
+      <a class="faq-brand" href="/" aria-label="Tail's Town home">
+        <img src="{% static 'brand/logo.png' %}" alt="Tail's Town" />
+      </a>
+      <a class="faq-back-link" href="/">Back to shop <span aria-hidden="true">&rarr;</span></a>
+    </header>
+
+    <main class="faq-page" aria-labelledby="faq-title">
+      <div class="faq-intro">
+        <p class="eyebrow">Help, without the hunt</p>
+        <h1 id="faq-title">Questions about calmer pet care?</h1>
+        <p>Start here for clear guidance on setting up and looking after your Tail's Town feeder, fountain, and litter box.</p>
+      </div>
+
+      <div class="faq-layout">
+        <aside class="faq-aside" aria-label="FAQ categories">
+          <span>Browse by product</span>
+          <a href="#getting-started">Getting started</a>
+          <a href="#feeder">Smart Feeder</a>
+          <a href="#fountain">Water Fountain</a>
+          <a href="#litter">Litter Box</a>
+          <a href="#orders">Orders &amp; care</a>
+        </aside>
+
+        <div class="faq-groups">
+          <section class="faq-group" id="getting-started" aria-labelledby="faq-start-title">
+            <div class="faq-group-heading">
+              <span>01</span>
+              <h2 id="faq-start-title">Getting started</h2>
+            </div>
+            <details class="faq-item" open>
+              <summary>How do I set up a Tail's Town product?</summary>
+              <p>Place the product on a stable, easy-to-reach surface, remove all packaging, and follow the setup steps included with your product. Give your pet a little time to investigate it before making it part of the daily routine.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Can I use Tail's Town products without the app?</summary>
+              <p>Core everyday functions are designed to remain simple at the product itself. App features and connected controls depend on the specific product, so check its setup guide for the functions available to you.</p>
+            </details>
+          </section>
+
+          <section class="faq-group" id="feeder" aria-labelledby="faq-feeder-title">
+            <div class="faq-group-heading">
+              <span>02</span>
+              <h2 id="faq-feeder-title">Smart Feeder</h2>
+            </div>
+            <details class="faq-item">
+              <summary>Why is the feeder dispensing a different amount?</summary>
+              <p>Food shape, size, and moisture can change how portions move through the hopper. Keep the hopper and bowl seated correctly, use food suited to the feeder opening, and compare a few dispenses before adjusting the schedule.</p>
+            </details>
+            <details class="faq-item">
+              <summary>What should I do if food gets stuck?</summary>
+              <p>Pause the feeder, empty the bowl, and check the food path for clumps or foreign objects. Clean and dry the removable parts before trying again. Never force the motor while the feeder is powered.</p>
+            </details>
+            <details class="faq-item">
+              <summary>How can I help my pet accept the feeder?</summary>
+              <p>Start with the feeder beside the usual bowl and keep the first portions small and familiar. Once your pet is comfortable with its sound and shape, gradually move it into the place where you want the daily routine to happen.</p>
+            </details>
+          </section>
+
+          <section class="faq-group" id="fountain" aria-labelledby="faq-fountain-title">
+            <div class="faq-group-heading">
+              <span>03</span>
+              <h2 id="faq-fountain-title">Water Fountain</h2>
+            </div>
+            <details class="faq-item">
+              <summary>How often should I clean the fountain?</summary>
+              <p>Refresh the water regularly and clean the bowl and pump whenever you see buildup, hair, or a change in flow. Rinse the filter and replace it according to the product guide or sooner if it looks blocked.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Why has the fountain become noisy or stopped flowing?</summary>
+              <p>Low water, trapped air, hair, or buildup around the pump can affect the sound and flow. Unplug the fountain, top it up, clean the pump area, and reseat the filter before testing it again.</p>
+            </details>
+          </section>
+
+          <section class="faq-group" id="litter" aria-labelledby="faq-litter-title">
+            <div class="faq-group-heading">
+              <span>04</span>
+              <h2 id="faq-litter-title">Litter Box</h2>
+            </div>
+            <details class="faq-item">
+              <summary>How do I introduce my cat to the Litter Box?</summary>
+              <p>Place it near the current litter area and use the same familiar litter at first. Keep the space calm, leave the entrance clear, and move the box gradually only after your cat is using it comfortably.</p>
+            </details>
+            <details class="faq-item">
+              <summary>What is the best way to keep it fresh?</summary>
+              <p>Remove waste on a regular schedule, wipe the areas your cat touches, and follow the product guide for deeper cleaning. Let every washable part dry fully before putting the box back into use.</p>
+            </details>
+          </section>
+
+          <section class="faq-group" id="orders" aria-labelledby="faq-orders-title">
+            <div class="faq-group-heading">
+              <span>05</span>
+              <h2 id="faq-orders-title">Orders &amp; care</h2>
+            </div>
+            <details class="faq-item">
+              <summary>Where can I find order, shipping, and return information?</summary>
+              <p>Those details will live in the Support links in the footer as each page is added. Keep your order confirmation handy so our team can help you quickly with a delivery or return question.</p>
+            </details>
+            <details class="faq-item">
+              <summary>What if these steps do not solve the problem?</summary>
+              <p>Stop using the product if it is damaged or behaves unexpectedly. Note the product, the issue, and what you have already tried, then contact Tail's Town support with your order details for the next step.</p>
+            </details>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <footer class="faq-footer">
+      <span>&copy; {% now "Y" %} Tail's Town</span>
+      <a href="/">Return to the collection <span aria-hidden="true">&rarr;</span></a>
+    </footer>
+  </body>
+</html>

@@ -353,6 +353,10 @@ def bundle_page(request):
     return render(request, "storefront/bundles.html")
 
 
+def faq_page(request):
+    return render(request, "storefront/faq.html")
+
+
 def ad_bundle_page(request, bundle_type):
     bundle = AD_BUNDLE_DATA.get(bundle_type)
     if not bundle:
