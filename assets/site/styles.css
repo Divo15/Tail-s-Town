@@ -1640,6 +1640,108 @@ h1 span {
   }
 }
 
+/* Final footer polish: stronger grouping, less empty height, and a clearer mobile collapse. */
+.site-footer {
+  padding: clamp(48px, 6vw, 72px) clamp(18px, 5vw, 72px) 26px;
+  background: #fff;
+}
+
+.footer-grid {
+  grid-template-columns: minmax(220px, 1.1fr) repeat(2, minmax(140px, 0.72fr)) minmax(250px, 1.05fr);
+  gap: clamp(28px, 4vw, 64px);
+  max-width: 1440px;
+}
+
+.footer-column,
+.footer-newsletter {
+  gap: 10px;
+}
+
+.footer-column h2,
+.footer-newsletter h2 {
+  margin-bottom: 12px;
+  font-size: 0.86rem;
+  letter-spacing: 0.02em;
+}
+
+.footer-column a {
+  font-size: 0.92rem;
+  line-height: 1.35;
+}
+
+.footer-newsletter h2 {
+  max-width: 12ch;
+  margin-bottom: 14px;
+  font-size: clamp(1.65rem, 2.5vw, 2.25rem);
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+}
+
+.footer-signup {
+  min-height: 58px;
+  max-width: 340px;
+  padding-left: 18px;
+  border-color: rgba(24, 33, 31, 0.2);
+  border-radius: 6px;
+}
+
+.footer-signup input::placeholder {
+  color: #5f6f69;
+  opacity: 1;
+}
+
+.footer-signup button {
+  color: #fff;
+  background: var(--teal-dark);
+}
+
+.footer-signup button:hover,
+.footer-signup button:focus-visible {
+  background: var(--maple);
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 1440px;
+  margin: 42px auto 0;
+  padding-top: 16px;
+  border-top: 1px solid rgba(24, 33, 31, 0.1);
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 900px) {
+  .footer-grid {
+    gap: 34px 28px;
+  }
+
+  .footer-newsletter {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 560px) {
+  .site-footer {
+    padding: 44px 20px 24px;
+  }
+
+  .footer-grid {
+    gap: 30px 20px;
+  }
+
+  .footer-newsletter {
+    grid-column: auto;
+  }
+
+  .footer-bottom {
+    margin-top: 34px;
+    line-height: 1.5;
+  }
+}
+
 /* Mobile storefront: one calm app bar, reachable actions, and lighter motion. */
 @media (max-width: 900px) {
   .site-header {

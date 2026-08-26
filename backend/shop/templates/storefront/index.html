@@ -318,13 +318,16 @@
 
         <div class="footer-newsletter">
           <h2>Sign up for updates,<br />news &amp; more.</h2>
-          <form class="footer-signup" action="#footer" method="post">
-            {% csrf_token %}
+          <form class="footer-signup" action="{% url 'store:product_list' %}" method="get">
             <label class="sr-only" for="footer-email">Email address</label>
             <input id="footer-email" type="email" name="email" placeholder="E-mail" autocomplete="email" required />
-            <button type="submit" aria-label="Subscribe to Tail's Town updates">&rsaquo;</button>
+            <button type="submit" aria-label="Continue to the Tail's Town collection">&rsaquo;</button>
           </form>
         </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; {% now "Y" %} Tail's Town</span>
+        <span>Made for calmer pet homes.</span>
       </div>
     </footer>
 
