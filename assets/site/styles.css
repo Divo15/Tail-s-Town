@@ -2356,6 +2356,60 @@ h1 span {
   .app-service-hero-media img, .app-service-nav a, .app-service-primary span, .app-service-secondary span { transition: none; }
 }
 
+.policy-page-shell { background: var(--paper); }
+.policy-header, .policy-page { width: min(1180px, calc(100% - 36px)); margin: 0 auto; }
+.policy-header { display: flex; align-items: center; justify-content: space-between; min-height: 88px; border-bottom: 1px solid var(--line); }
+.policy-header .about-brand img { width: 118px; }
+.policy-page { padding: clamp(58px, 8vw, 108px) 0 100px; }
+.policy-intro { max-width: 740px; padding-bottom: clamp(48px, 6vw, 76px); }
+.policy-intro h1 { max-width: 9ch; margin: 16px 0 22px; color: var(--ink); font-size: clamp(3.6rem, 8vw, 7.4rem); line-height: .86; letter-spacing: -.04em; text-wrap: balance; }
+.policy-lede { max-width: 55ch; margin: 0; color: var(--muted); font-size: clamp(1.05rem, 1.8vw, 1.3rem); line-height: 1.55; }
+.policy-date { margin: 28px 0 0; color: var(--teal-dark); font-size: .76rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.policy-highlight { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; padding: 1px; background: var(--line); }
+.policy-highlight > div { min-height: 190px; padding: 24px; background: var(--snow); }
+.policy-highlight span { display: block; margin-bottom: 38px; color: var(--maple); font-size: .76rem; font-weight: 850; letter-spacing: .08em; }
+.policy-highlight strong { display: block; margin-bottom: 10px; color: var(--ink); font-size: 1.1rem; }
+.policy-highlight p { max-width: 29ch; margin: 0; color: var(--muted); font-size: .9rem; line-height: 1.55; }
+.policy-layout { display: grid; grid-template-columns: minmax(170px, .32fr) minmax(0, 1fr); gap: clamp(38px, 8vw, 126px); align-items: start; padding-top: clamp(64px, 8vw, 104px); }
+.policy-index { position: sticky; top: 28px; display: grid; gap: 8px; align-content: start; }
+.policy-index p { margin: 0 0 12px; color: var(--ink); font-size: .78rem; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
+.policy-index a { width: fit-content; color: var(--muted); font-size: .88rem; line-height: 1.35; transition: color 180ms ease, transform 180ms ease; }
+.policy-index a:hover, .policy-index a:focus-visible { color: var(--maple); transform: translateX(4px); }
+.policy-copy { max-width: 700px; }
+.policy-copy section { scroll-margin-top: 28px; padding: 0 0 58px; }
+.policy-copy section + section { border-top: 1px solid var(--line); padding-top: 48px; }
+.policy-section-label { display: block; margin-bottom: 14px; color: var(--maple); font-size: .76rem; font-weight: 850; letter-spacing: .08em; }
+.policy-copy h2 { margin: 0 0 18px; color: var(--ink); font-size: clamp(1.65rem, 3vw, 2.55rem); line-height: 1; letter-spacing: -.03em; text-wrap: balance; }
+.policy-copy p { max-width: 68ch; margin: 0 0 16px; color: var(--muted); font-size: 1rem; line-height: 1.72; text-wrap: pretty; }
+.policy-copy p:last-child { margin-bottom: 0; }
+.policy-copy a { color: var(--teal-dark); font-weight: 850; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.policy-copy details { border-top: 1px solid var(--line); }
+.policy-copy details:last-child { border-bottom: 1px solid var(--line); }
+.policy-copy summary { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 62px; color: var(--ink); cursor: pointer; font-weight: 850; list-style: none; }
+.policy-copy summary::-webkit-details-marker { display: none; }
+.policy-copy summary::after { flex: 0 0 auto; color: var(--maple); content: "+"; font-size: 1.35rem; font-weight: 500; }
+.policy-copy details[open] summary::after { content: "−"; }
+.policy-copy details p { padding: 0 40px 18px 0; font-size: .94rem; }
+@media (max-width: 720px) {
+  .policy-header, .policy-page { width: min(100% - 28px, 620px); }
+  .policy-header { min-height: 72px; }
+  .policy-header .about-brand img { width: 94px; }
+  .policy-page { padding-block: 52px 70px; }
+  .policy-intro { padding-bottom: 50px; }
+  .policy-intro h1 { font-size: clamp(3.5rem, 16vw, 5.7rem); }
+  .policy-highlight { grid-template-columns: 1fr; }
+  .policy-highlight > div { min-height: 0; padding: 22px; }
+  .policy-highlight span { margin-bottom: 24px; }
+  .policy-layout { grid-template-columns: 1fr; gap: 46px; padding-top: 64px; }
+  .policy-index { position: static; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 18px; }
+  .policy-index p { grid-column: 1 / -1; margin-bottom: 4px; }
+  .policy-copy section { padding-bottom: 46px; }
+  .policy-copy section + section { padding-top: 38px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .policy-index a, .policy-copy summary { transition: none; }
+}
+
 /* Final footer polish: stronger grouping, less empty height, and a clearer mobile collapse. */
 .site-footer {
   padding: clamp(48px, 6vw, 72px) clamp(18px, 5vw, 72px) 26px;

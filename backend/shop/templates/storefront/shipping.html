@@ -1,0 +1,54 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shipping Policy | Tail's Town</title>
+    <link rel="stylesheet" href="{% static 'site/styles.css' %}" />
+  </head>
+  <body class="policy-page-shell">
+    <header class="policy-header">
+      <a class="about-brand" href="/" aria-label="Tail's Town home"><img src="{% static 'brand/logo.png' %}" alt="Tail's Town" /></a>
+      <a class="about-back-link" href="/">Back to shop <span aria-hidden="true">&rarr;</span></a>
+    </header>
+
+    <main class="policy-page" aria-labelledby="shipping-title">
+      <section class="policy-intro">
+        <p class="eyebrow">Delivery, without the mystery</p>
+        <h1 id="shipping-title">Shipping Policy</h1>
+        <p class="policy-lede">Here is what to expect from checkout to doorstep when you order Tail's Town care products.</p>
+        <p class="policy-date">Last updated: {% now "F j, Y" %}</p>
+      </section>
+
+      <div class="policy-highlight" aria-label="Shipping at a glance">
+        <div><span>01</span><strong>Check your estimate</strong><p>Delivery options, charges, and an estimated arrival date are shown for your address at checkout.</p></div>
+        <div><span>02</span><strong>Watch your inbox</strong><p>We send an order confirmation first, followed by tracking details when your parcel leaves us.</p></div>
+        <div><span>03</span><strong>Need a hand?</strong><p>Our FAQ and Track Order pages are the quickest places to find an update or next step.</p></div>
+      </div>
+
+      <div class="policy-layout">
+        <aside class="policy-index" aria-label="On this page">
+          <p>On this page</p>
+          <a href="#where-we-ship">Where we ship</a>
+          <a href="#processing">Processing and delivery</a>
+          <a href="#charges">Charges and split parcels</a>
+          <a href="#changes">Address changes</a>
+          <a href="#delays">Delays and missing parcels</a>
+          <a href="#questions">Common questions</a>
+        </aside>
+
+        <article class="policy-copy">
+          <section id="where-we-ship"><span class="policy-section-label">01</span><h2>Where we ship</h2><p>Tail's Town delivers to the locations available for selection at checkout. Availability can vary by product, destination, and carrier service.</p><p>If your address is not accepted at checkout, please do not place the order with a different address unless it is the address where the parcel can safely be received.</p></section>
+          <section id="processing"><span class="policy-section-label">02</span><h2>Processing and delivery</h2><p>After payment is confirmed, we prepare your order for dispatch. The estimated processing and delivery window shown at checkout is the best guide for your order and destination.</p><p>Orders may not move on weekends, public holidays, or during periods of unusually high demand. Pre-order or temporarily unavailable items follow the timing stated on their product page.</p><p>When your order ships, we will send tracking details where the carrier provides them. You can use our <a href="{% url 'store:track_order_page' %}">Track Order</a> page to follow the delivery.</p></section>
+          <section id="charges"><span class="policy-section-label">03</span><h2>Charges and split parcels</h2><p>Any shipping charge is shown before you complete payment. Promotions such as free delivery apply only when the stated checkout conditions are met.</p><p>One order may arrive in more than one parcel if products are packed or dispatched separately. You will not be charged an additional delivery fee solely because we split an order.</p></section>
+          <section id="changes"><span class="policy-section-label">04</span><h2>Address changes</h2><p>Please review your delivery address carefully before placing an order. We can try to help with a correction, but changes are not guaranteed once the order has entered processing or been handed to a carrier.</p><p>If a parcel has already shipped to the address provided at checkout, carrier redirection or re-delivery charges may apply. Any return or refund will follow the applicable policy.</p></section>
+          <section id="delays"><span class="policy-section-label">05</span><h2>Delays and missing parcels</h2><p>Carrier scans can pause while a parcel moves between facilities. If tracking has not changed for several business days, check the delivery estimate first and then contact support with your order number.</p><p>If tracking says delivered but you cannot find the parcel, check the delivery area, mailbox, building reception, parcel locker, and with household members or neighbours. If it is still missing, contact us so we can help with the next available investigation step.</p><p>Weather, service interruptions, incorrect addresses, and events outside our control can affect delivery times. We will share any information available to us and help where we can.</p></section>
+          <section id="questions"><span class="policy-section-label">06</span><h2>Common questions</h2><details><summary>When will I receive tracking?</summary><p>Tracking is sent when your order is handed to the delivery carrier. It may take a short time for the first scan to appear.</p></details><details><summary>Can I change my delivery address?</summary><p>Contact support as soon as possible. We will try to help before dispatch, but an address change cannot be guaranteed after processing begins.</p></details><details><summary>What if my order arrives damaged?</summary><p>Keep the packaging and take a few clear photos. Contact support promptly with your order details so we can advise on the appropriate resolution.</p></details></section>
+        </article>
+      </div>
+    </main>
+
+    <footer class="about-footer"><span>&copy; {% now "Y" %} Tail's Town</span><a href="/">Return to the collection <span aria-hidden="true">&rarr;</span></a></footer>
+  </body>
+</html>

@@ -40,6 +40,8 @@ urlpatterns = [
     path('blogs/blog/', shop_views.blog_page, name='blog_page_reference'),
     path('app-service/', shop_views.app_service_page, name='app_service_page_root'),
     path('pages/app-service/', shop_views.app_service_page, name='app_service_page_reference'),
+    path('shipping-policy/', shop_views.shipping_page, name='shipping_page_root'),
+    path('pages/shipping-policy/', shop_views.shipping_page, name='shipping_page_reference'),
     path('shop/', include((shop_urls.store_patterns, 'store'), namespace='store')),
     path('admin-panel/', RedirectView.as_view(url='/admin/', permanent=False)),
     path('admin-panel/<path:unused>', RedirectView.as_view(url='/admin/', permanent=False)),
