@@ -46,6 +46,8 @@ urlpatterns = [
     path('pages/subscription-policy/', shop_views.subscription_page, name='subscription_page_reference'),
     path('price-match-policy/', shop_views.price_match_page, name='price_match_page_root'),
     path('pages/price-match-policy/', shop_views.price_match_page, name='price_match_page_reference'),
+    path('warranty-policy/', shop_views.warranty_page, name='warranty_page_root'),
+    path('pages/warranty-policy/', shop_views.warranty_page, name='warranty_page_reference'),
     path('shop/', include((shop_urls.store_patterns, 'store'), namespace='store')),
     path('admin-panel/', RedirectView.as_view(url='/admin/', permanent=False)),
     path('admin-panel/<path:unused>', RedirectView.as_view(url='/admin/', permanent=False)),

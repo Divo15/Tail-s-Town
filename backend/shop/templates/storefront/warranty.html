@@ -1,0 +1,52 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Warranty Policy | Tail's Town</title>
+    <link rel="stylesheet" href="{% static 'site/styles.css' %}" />
+  </head>
+  <body class="policy-page-shell warranty-page-shell">
+    <header class="policy-header">
+      <a class="about-brand" href="/" aria-label="Tail's Town home"><img src="{% static 'brand/logo.png' %}" alt="Tail's Town" /></a>
+      <a class="about-back-link" href="/">Back to shop <span aria-hidden="true">&rarr;</span></a>
+    </header>
+
+    <main class="policy-page" aria-labelledby="warranty-title">
+      <section class="policy-intro">
+        <p class="eyebrow">Support for the things you rely on</p>
+        <h1 id="warranty-title">Warranty Policy</h1>
+        <p class="policy-lede">We want your Tail's Town products to keep doing their job. This page explains how warranty support works when a product has a manufacturing or workmanship issue.</p>
+        <p class="policy-date">Last updated: {% now "F j, Y" %}</p>
+      </section>
+
+      <div class="policy-highlight" aria-label="Warranty at a glance">
+        <div><span>01</span><strong>Keep your proof</strong><p>Have your order confirmation or receipt ready so we can verify the product and purchase date.</p></div>
+        <div><span>02</span><strong>Show us the issue</strong><p>A clear description, photo, or short video helps us understand the problem faster.</p></div>
+        <div><span>03</span><strong>We review the next step</strong><p>Depending on the issue and product, we may offer troubleshooting, a part, a replacement, or another remedy.</p></div>
+      </div>
+
+      <div class="policy-layout">
+        <aside class="policy-index" aria-label="On this page">
+          <p>On this page</p>
+          <a href="#coverage">Coverage</a>
+          <a href="#claim">Making a claim</a>
+          <a href="#solutions">Possible solutions</a>
+          <a href="#exclusions">What is not covered</a>
+          <a href="#purchases">Purchases and updates</a>
+        </aside>
+
+        <article class="policy-copy">
+          <section id="coverage"><span class="policy-section-label">01</span><h2>What the warranty covers</h2><p>Tail's Town warranty coverage applies to eligible products for the period stated on the product page, order confirmation, or documentation supplied with the purchase.</p><p>During that period, we may help when a product has a defect in materials or workmanship under normal household use and has been used according to its instructions.</p><p>Coverage begins from the purchase or delivery date shown in your order records, unless a different start date is stated with the product.</p></section>
+          <section id="claim"><span class="policy-section-label">02</span><h2>Making a warranty claim</h2><p>Start by using the support option available on the Tail's Town website. Include your order number, product name, approximate purchase date, and a clear description of what is happening.</p><p>Photos or a short video of the issue can help. We may also ask for the product serial number, device details, troubleshooting steps already tried, or other reasonable information needed to assess the claim.</p><p>Please do not send a product back without receiving return instructions first. Unsolicited returns can delay the review and may be sent to the wrong location.</p></section>
+          <section id="solutions"><span class="policy-section-label">03</span><h2>Possible solutions</h2><p>After reviewing the claim, Tail's Town may provide troubleshooting guidance, replacement parts, a repair where available, a replacement product of comparable value, or a refund where appropriate.</p><p>The solution depends on the nature of the issue, product availability, and applicable law. A replacement or repaired product does not automatically restart the original warranty period unless we confirm otherwise.</p><p>If a return is approved, we will explain the packing, shipping, and inspection steps before the item is sent.</p></section>
+          <section id="exclusions"><span class="policy-section-label">04</span><h2>What is not covered</h2><p>Warranty support does not cover ordinary wear, cosmetic changes that do not affect function, consumable parts, accidental damage, misuse, neglect, unauthorised modification, or use outside the product instructions.</p><p>It also does not cover damage caused by unsuitable accessories, incorrect installation, power or network conditions outside the product requirements, water exposure where the product is not designed for it, or an event outside reasonable product use.</p><p>Lost or stolen products, products without verifiable proof of purchase, and products bought from unauthorised sellers may not qualify for Tail's Town warranty support. Other legal rights may still apply.</p></section>
+          <section id="purchases"><span class="policy-section-label">05</span><h2>Purchases and policy updates</h2><p>If you bought a Tail's Town product through an authorised retail partner, start with the seller when their warranty process is the applicable one. We will help clarify the next step where we can.</p><p>This policy works alongside our <a href="{% url 'terms_page_root' %}">Terms of Service</a>, <a href="{% url 'shipping_page_root' %}">Shipping Policy</a>, and return or refund terms. Nothing here limits rights that cannot legally be excluded.</p><p>We may update this policy as our product range and support process change. The version available at the time of your purchase will guide our review, subject to applicable law.</p></section>
+        </article>
+      </div>
+    </main>
+
+    <footer class="about-footer"><span>&copy; {% now "Y" %} Tail's Town</span><a href="/">Return to the collection <span aria-hidden="true">&rarr;</span></a></footer>
+  </body>
+</html>

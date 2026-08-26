@@ -33,6 +33,7 @@ store_patterns = [
     path("shipping-policy/", views.shipping_page, name="shipping_page"),
     path("subscription-policy/", views.subscription_page, name="subscription_page"),
     path("price-match-policy/", views.price_match_page, name="price_match_page"),
+    path("warranty-policy/", views.warranty_page, name="warranty_page"),
     path("terms-of-service/", views.terms_page, name="terms_page"),
     path("track-order/", views.track_order_page, name="track_order_page"),
     path("bundles/", views.bundle_page, name="bundle_page"),
