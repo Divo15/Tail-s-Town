@@ -357,6 +357,10 @@ def faq_page(request):
     return render(request, "storefront/faq.html")
 
 
+def track_order_page(request):
+    return render(request, "storefront/track_order.html", {"tracking_number": request.GET.get("tracking_number", "")})
+
+
 def ad_bundle_page(request, bundle_type):
     bundle = AD_BUNDLE_DATA.get(bundle_type)
     if not bundle:

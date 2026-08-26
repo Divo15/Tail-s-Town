@@ -1,0 +1,81 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Track Your Order | Tail's Town</title>
+    <link rel="stylesheet" href="{% static 'site/styles.css' %}" />
+  </head>
+  <body class="track-page-shell">
+    <header class="track-header">
+      <a class="track-brand" href="/" aria-label="Tail's Town home">
+        <img src="{% static 'brand/logo.png' %}" alt="Tail's Town" />
+      </a>
+      <a class="track-back-link" href="/">Back to shop <span aria-hidden="true">&rarr;</span></a>
+    </header>
+
+    <main class="track-page" aria-labelledby="track-title">
+      <section class="track-intro">
+        <p class="eyebrow">Order support</p>
+        <h1 id="track-title">See where your order is.</h1>
+        <p>Enter the tracking number from your shipping confirmation and we'll show the latest carrier updates.</p>
+      </section>
+
+      <section class="track-panel" aria-labelledby="track-form-title">
+        <div class="track-panel-heading">
+          <span class="track-panel-number">01</span>
+          <div>
+            <h2 id="track-form-title">Track a shipment</h2>
+            <p>Tracking numbers are usually included in your dispatch email.</p>
+          </div>
+        </div>
+        <form class="track-form" id="track-form" action="" method="get">
+          <label for="tracking-number">Tracking number</label>
+          <div class="track-input-row">
+            <input id="tracking-number" name="tracking_number" type="text" value="{{ tracking_number }}" maxlength="50" placeholder="Enter your tracking number" autocomplete="off" required />
+            <button type="submit">Track order <span aria-hidden="true">&rarr;</span></button>
+          </div>
+        </form>
+        <p class="track-note">If your order was dispatched recently, carrier updates may take a little time to appear.</p>
+      </section>
+
+      {% if tracking_number %}
+        <section class="track-result" id="tracking-result" aria-live="polite" aria-label="Tracking result">
+          <div class="track-result-heading">
+            <span class="track-panel-number">02</span>
+            <h2>Latest shipment updates</h2>
+          </div>
+          <div id="tracking-container" data-tracking-number="{{ tracking_number|escape }}"></div>
+        </section>
+      {% endif %}
+
+      <div class="track-help">
+        <p>Can't find your tracking number?</p>
+        <a href="{% url 'store:faq_page' %}">Read the FAQs <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </main>
+
+    <footer class="track-footer">
+      <span>&copy; {% now "Y" %} Tail's Town</span>
+      <a href="/">Return to the collection <span aria-hidden="true">&rarr;</span></a>
+    </footer>
+
+    {% if tracking_number %}
+      <script src="https://www.17track.net/externalcall.js"></script>
+      <script>
+        window.addEventListener("load", function () {
+          if (window.YQV5) {
+            window.YQV5.trackSingle({
+              YQ_ContainerId: "tracking-container",
+              YQ_Height: 420,
+              YQ_Fc: "0",
+              YQ_Lang: "en",
+              YQ_Num: document.getElementById("tracking-container").dataset.trackingNumber
+            });
+          }
+        });
+      </script>
+    {% endif %}
+  </body>
+</html>
