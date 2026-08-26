@@ -1960,17 +1960,15 @@ h1 span {
 }
 
 .footer-lower {
+  position: relative;
+  min-height: 178px;
   max-width: 1440px;
-  margin: 42px auto 0;
+  margin: 38px auto 0;
   border-top: 1px solid rgba(24, 33, 31, 0.1);
 }
 
 .footer-lower-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 22px 0 18px;
+  display: contents;
 }
 
 .footer-social-links,
@@ -1983,48 +1981,31 @@ h1 span {
 
 .footer-social-links a {
   display: grid;
-  width: 34px;
-  height: 34px;
+  width: 38px;
+  height: 38px;
   place-items: center;
   color: var(--ink);
-  border-radius: 50%;
-  transition: color 180ms ease, background 180ms ease, transform 180ms ease;
+  transition: color 180ms ease, transform 180ms ease;
 }
 
 .footer-social-links a:hover,
 .footer-social-links a:focus-visible {
-  color: #fff;
-  background: var(--teal-dark);
+  color: var(--teal-dark);
   transform: translateY(-2px);
 }
 
-.footer-social-links span {
-  font-size: 1.2rem;
-  font-weight: 900;
-  line-height: 1;
-}
-
-.footer-social-links a:nth-child(3) span {
-  font-size: 1.55rem;
-  font-weight: 500;
-}
-
-.footer-social-links a:nth-child(4) span {
-  font-size: 0.8rem;
-}
-
-.footer-social-links a:nth-child(5) span {
-  font-size: 1.45rem;
-}
-
-.footer-social-links a:nth-child(6) span {
-  font-size: 0.95rem;
+.footer-social-links svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 1.4;
 }
 
 .footer-payments span {
   display: inline-flex;
-  min-width: 54px;
-  min-height: 28px;
+  min-width: 50px;
+  min-height: 29px;
   align-items: center;
   justify-content: center;
   padding: 0 7px;
@@ -2035,6 +2016,21 @@ h1 span {
   font-size: 0.59rem;
   font-weight: 850;
   letter-spacing: -0.01em;
+}
+
+.footer-social-links {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  gap: 18px;
+}
+
+.footer-payments {
+  position: absolute;
+  right: 0;
+  bottom: 47px;
+  justify-content: flex-end;
+  gap: 8px;
 }
 
 .footer-payments span:nth-child(2),
@@ -2057,8 +2053,14 @@ h1 span {
 }
 
 .footer-bottom {
+  position: absolute;
+  right: auto;
+  bottom: 5px;
+  left: 0;
+  width: 100%;
   margin-top: 0;
-  padding: 14px 0 22px;
+  padding: 0;
+  border-top: 0;
 }
 
 @media (max-width: 900px) {
@@ -2090,13 +2092,25 @@ h1 span {
   }
 
   .footer-lower-top {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 18px;
+    display: block;
   }
 
   .footer-payments {
+    right: auto;
+    bottom: 50px;
+    left: 0;
     gap: 7px;
+  }
+
+  .footer-social-links {
+    top: 12px;
+    left: 0;
+    gap: 8px;
+  }
+
+  .footer-bottom {
+    position: absolute;
+    bottom: 5px;
   }
 }
 
