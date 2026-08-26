@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Shipping Policy | Tail's Town</title>
     <link rel="stylesheet" href="{% static 'site/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'site/support-widget.css' %}" />
   </head>
   <body class="policy-page-shell">
     <header class="policy-header">
@@ -50,5 +51,7 @@
     </main>
 
     <footer class="about-footer"><span>&copy; {% now "Y" %} Tail's Town</span><a href="/">Return to the collection <span aria-hidden="true">&rarr;</span></a></footer>
+    {% include "storefront/partials/support_widget.html" %}
+    <script src="{% static 'site/support-widget.js' %}"></script>
   </body>
 </html>

@@ -1,0 +1,295 @@
+@font-face {
+  font-family: "Gatchina";
+  src: url("fonts/Gatchina-Regular.ttf") format("truetype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Gatchina";
+  src: url("fonts/Gatchina-Bold.ttf") format("truetype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.support-launcher,
+.support-panel {
+  --support-orange: #ff681f;
+  --support-orange-dark: #d94308;
+  --support-ink: #17211f;
+  --support-muted: #53605c;
+  --support-line: #d8dedb;
+  --support-surface: #ffffff;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+}
+
+.support-launcher {
+  position: fixed;
+  z-index: 60;
+  right: max(24px, env(safe-area-inset-right));
+  bottom: max(24px, env(safe-area-inset-bottom));
+  display: inline-flex;
+  align-items: center;
+  width: 64px;
+  height: 64px;
+  padding: 0 20px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 999px;
+  color: #fff;
+  background: var(--support-orange);
+  box-shadow: 0 6px 8px rgba(125, 42, 9, 0.22);
+  cursor: pointer;
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.support-launcher:hover,
+.support-launcher:focus-visible,
+.support-launcher[aria-expanded="true"] {
+  background: var(--support-orange-dark);
+}
+
+.support-launcher:active {
+  transform: translateY(2px);
+}
+
+.support-launcher svg {
+  flex: 0 0 24px;
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.2;
+}
+
+.support-panel[hidden] {
+  display: none;
+}
+
+.support-panel {
+  position: fixed;
+  z-index: 70;
+  right: max(24px, env(safe-area-inset-right));
+  bottom: max(100px, calc(88px + env(safe-area-inset-bottom)));
+  width: min(380px, calc(100vw - 32px));
+  overflow: hidden;
+  border-radius: 14px;
+  color: var(--support-ink);
+  background: var(--support-surface);
+  box-shadow: 0 12px 32px rgba(23, 33, 31, 0.2);
+  opacity: 0;
+  transform: translateY(12px) scale(0.98);
+  transform-origin: bottom right;
+  transition: opacity 160ms ease, transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.support-panel.is-open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.support-panel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 20px 20px 18px;
+  color: #fff;
+  background: var(--support-orange);
+}
+
+.support-panel-heading {
+  min-width: 0;
+}
+
+.support-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 6px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.support-status i {
+  width: 8px;
+  height: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.72);
+  border-radius: 50%;
+  background: #fff;
+}
+
+.support-panel h2 {
+  margin: 0;
+  color: inherit;
+  font-family: "Gatchina", Georgia, serif;
+  font-size: clamp(1.35rem, 4vw, 1.65rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.support-close {
+  display: grid;
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(108, 28, 0, 0.18);
+  cursor: pointer;
+  transition: background-color 150ms ease, transform 150ms ease;
+}
+
+.support-close:hover {
+  background: rgba(108, 28, 0, 0.3);
+  transform: rotate(4deg);
+}
+
+.support-close svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 1.8;
+}
+
+.support-panel-body {
+  padding: 20px;
+}
+
+.support-intro {
+  max-width: 34ch;
+  margin: 0 0 18px;
+  color: var(--support-muted);
+  font-size: 0.96rem;
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+.support-form {
+  display: grid;
+  gap: 8px;
+}
+
+.support-form label {
+  margin-top: 4px;
+  color: var(--support-ink);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.support-form input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1px solid var(--support-line);
+  border-radius: 10px;
+  color: var(--support-ink);
+  background: #fff;
+  font: inherit;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.support-form input::placeholder {
+  color: #66736f;
+  opacity: 1;
+}
+
+.support-form input:focus {
+  border-color: var(--support-orange-dark);
+  box-shadow: 0 0 0 3px rgba(255, 104, 31, 0.18);
+}
+
+.support-form button[type="submit"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 50px;
+  margin-top: 10px;
+  padding: 0 17px;
+  border: 0;
+  border-radius: 10px;
+  color: #fff;
+  background: var(--support-orange);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 150ms ease, transform 150ms ease;
+}
+
+.support-form button[type="submit"]:hover {
+  background: var(--support-orange-dark);
+  transform: translateY(-1px);
+}
+
+.support-form-status {
+  min-height: 1.3em;
+  margin: 2px 0 0;
+  color: var(--support-muted);
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+.support-form-status:empty {
+  min-height: 0;
+}
+
+.support-form-status.is-preview {
+  color: #9b360c;
+  font-weight: 700;
+}
+
+.support-privacy {
+  margin: 14px 0 0;
+  color: #66736f;
+  font-size: 0.74rem;
+  line-height: 1.45;
+}
+
+@media (max-width: 520px) {
+  .support-launcher {
+    right: max(14px, env(safe-area-inset-right));
+    bottom: max(14px, env(safe-area-inset-bottom));
+    width: 58px;
+    height: 58px;
+    padding: 0 17px;
+  }
+
+  .support-panel {
+    right: 12px;
+    bottom: max(82px, calc(72px + env(safe-area-inset-bottom)));
+    width: calc(100vw - 24px);
+    max-height: calc(100dvh - 102px);
+    overflow-y: auto;
+  }
+
+  .support-panel-header,
+  .support-panel-body {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .support-launcher,
+  .support-panel,
+  .support-close,
+  .support-form input,
+  .support-form button[type="submit"] {
+    transition-duration: 0.01ms;
+  }
+}

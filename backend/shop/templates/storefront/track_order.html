@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Track Your Order | Tail's Town</title>
     <link rel="stylesheet" href="{% static 'site/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'site/support-widget.css' %}" />
   </head>
   <body class="track-page-shell">
     <header class="track-header">
@@ -77,5 +78,7 @@
         });
       </script>
     {% endif %}
+    {% include "storefront/partials/support_widget.html" %}
+    <script src="{% static 'site/support-widget.js' %}"></script>
   </body>
 </html>

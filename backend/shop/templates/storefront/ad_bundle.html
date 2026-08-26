@@ -11,6 +11,7 @@
     <link rel="apple-touch-icon" href="{% static 'brand/apple-touch-icon.png' %}" />
     <link rel="preload" as="image" href="{% static bundle.hero_image %}" fetchpriority="high" />
     <link rel="stylesheet" href="{% static 'site/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'site/support-widget.css' %}" />
     <link rel="stylesheet" href="{% static 'site/ads.css' %}" />
   </head>
   <body class="ads-bundle-page ads-bundle-{{ bundle.accent }}">
@@ -307,5 +308,7 @@
         }
       })();
     </script>
-  </body>
+  {% include "storefront/partials/support_widget.html" %}
+  <script src="{% static 'site/support-widget.js' %}"></script>
+</body>
 </html>

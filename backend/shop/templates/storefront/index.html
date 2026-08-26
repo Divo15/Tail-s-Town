@@ -10,6 +10,7 @@
     <link rel="apple-touch-icon" href="{% static 'brand/apple-touch-icon.png' %}" />
     <link rel="preload" as="image" href="{% static 'landing/hero-dogs-feeder-actual.webp' %}" type="image/webp" fetchpriority="high" />
     <link rel="stylesheet" href="{% static 'site/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'site/support-widget.css' %}" />
   </head>
   <body>
     <a class="skip-link" href="#products">Skip to products</a>
@@ -358,6 +359,8 @@
 
     <aside class="cart-toast" aria-live="polite" aria-atomic="true"></aside>
 
+    {% include "storefront/partials/support_widget.html" %}
     <script src="{% static 'site/script.js' %}"></script>
+    <script src="{% static 'site/support-widget.js' %}"></script>
   </body>
 </html>

@@ -14,6 +14,7 @@
     <link rel="apple-touch-icon" href="{% static 'brand/apple-touch-icon.png' %}" />
     <link rel="preload" as="image" href="{% static 'bundles/collection.jpeg' %}" fetchpriority="high" />
     <link rel="stylesheet" href="{% static 'site/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'site/support-widget.css' %}" />
     <link rel="stylesheet" href="{% static 'site/bundles.css' %}" />
   </head>
   <body class="bundle-page">
@@ -156,6 +157,8 @@
       </section>
     </main>
 
+    {% include "storefront/partials/support_widget.html" %}
     <script src="{% static 'site/script.js' %}"></script>
+    <script src="{% static 'site/support-widget.js' %}"></script>
   </body>
 </html>
