@@ -1,0 +1,64 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Journal | Tail's Town</title>
+    <link rel="stylesheet" href="{% static 'site/styles.css' %}" />
+  </head>
+  <body class="blog-page-shell">
+    <header class="blog-header">
+      <a class="about-brand" href="/" aria-label="Tail's Town home"><img src="{% static 'brand/logo.png' %}" alt="Tail's Town" /></a>
+      <nav class="blog-nav" aria-label="Blog categories">
+        <a href="#featured">Featured</a>
+        <a href="#guides">Care guides</a>
+        <a href="#home">Pet home</a>
+      </nav>
+      <a class="about-back-link" href="/">Back to shop <span aria-hidden="true">&rarr;</span></a>
+    </header>
+
+    <main class="blog-page" aria-labelledby="blog-title">
+      <section class="blog-intro" id="featured">
+        <div>
+          <p class="eyebrow">The Tail's Town journal</p>
+          <h1 id="blog-title">Better days with the pets you love.</h1>
+        </div>
+        <p>Practical ideas for feeding, hydration, enrichment, and the small home rituals that help pets feel their best.</p>
+      </section>
+
+      <article class="blog-featured">
+        <div class="blog-featured-media"><img src="{% static 'hero/dog-sunlight-poster.png' %}" alt="Dog resting in a sunlit home" /></div>
+        <div class="blog-featured-copy">
+          <p class="blog-meta"><span>Care guide</span> &middot; 6 min read</p>
+          <h2>A calmer pet routine starts with the basics.</h2>
+          <p>Consistent meals, fresh water, and a comfortable space do more than keep a schedule tidy. They give pets the dependable cues that make a home feel safe.</p>
+          <a class="blog-featured-link" href="#guides">Explore care guides <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </article>
+
+      <section class="blog-section" id="guides" aria-labelledby="guides-title">
+        <div class="blog-section-heading"><p class="eyebrow">Worth knowing</p><h2 id="guides-title">Care guides for real routines.</h2></div>
+        <div class="blog-grid">
+          <article class="blog-card"><div class="blog-card-media"><img src="{% static 'hero/cat-window-poster.png' %}" alt="Cat looking out from a bright window" loading="lazy" /></div><div class="blog-card-copy"><p class="blog-meta"><span>Hydration</span> &middot; 5 min read</p><h3>How to help a cat drink more water</h3><p>Simple changes to placement, freshness, and daily rhythm that can make drinking feel more natural.</p></div></article>
+          <article class="blog-card"><div class="blog-card-media"><img src="{% static 'hero/water-fountain.jpg' %}" alt="Pet water fountain in a home" loading="lazy" /></div><div class="blog-card-copy"><p class="blog-meta"><span>Home setup</span> &middot; 4 min read</p><h3>Where a water fountain works best</h3><p>A quick guide to choosing a calm, accessible spot that pets will actually want to visit.</p></div></article>
+          <article class="blog-card"><div class="blog-card-media"><img src="{% static 'hero/puppies-poster.jpg' %}" alt="Puppies relaxing together" loading="lazy" /></div><div class="blog-card-copy"><p class="blog-meta"><span>Everyday care</span> &middot; 7 min read</p><h3>The small signals behind a happy routine</h3><p>Notice the patterns that show your pet is comfortable, engaged, and getting what they need.</p></div></article>
+        </div>
+      </section>
+
+      <section class="blog-section blog-home-section" id="home" aria-labelledby="home-title">
+        <div class="blog-section-heading"><p class="eyebrow">Around the home</p><h2 id="home-title">Good care should fit the room.</h2></div>
+        <div class="blog-home-grid">
+          <div class="blog-home-image"><img src="{% static 'hero/eversweet-ultra.jpg' %}" alt="Water fountain ready in a quiet pet corner" loading="lazy" /></div>
+          <div class="blog-home-copy"><p>Our homes are shared spaces. The best pet-care setup is one that is easy to reach, simple to maintain, and quiet enough to disappear into the rhythm of the day.</p><p>Start with one improvement your pet can feel: cleaner water, a more dependable mealtime, or a corner that stays comfortable while you are away.</p><a class="blog-featured-link" href="{% url 'about_page_root' %}">Why we build this way <span aria-hidden="true">&rarr;</span></a></div>
+        </div>
+      </section>
+
+      <section class="blog-note" id="blog-signup" aria-label="Tail's Town newsletter">
+        <p class="eyebrow">A little help, occasionally</p><h2>Keep the good habits going.</h2><p>Follow along for useful pet-care notes, new product stories, and ideas that make everyday care feel lighter.</p><a class="blog-note-link" href="/#footer">Join the conversation <span aria-hidden="true">&rarr;</span></a>
+      </section>
+    </main>
+
+    <footer class="about-footer"><span>&copy; {% now "Y" %} Tail's Town</span><a href="/">Return to the collection <span aria-hidden="true">&rarr;</span></a></footer>
+  </body>
+</html>

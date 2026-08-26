@@ -365,6 +365,10 @@ def terms_page(request):
     return render(request, "storefront/terms.html")
 
 
+def blog_page(request):
+    return render(request, "storefront/blog.html")
+
+
 def track_order_page(request):
     return render(request, "storefront/track_order.html", {"tracking_number": request.GET.get("tracking_number", "")})
 
