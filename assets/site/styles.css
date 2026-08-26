@@ -2318,8 +2318,9 @@ h1 span {
 .app-service-routine-copy { max-width: 455px; }
 .app-service-routine-copy h2 { max-width: 10ch; margin: 14px 0 28px; color: var(--ink); font-size: clamp(2.4rem, 4vw, 4.2rem); line-height: .9; letter-spacing: -.04em; text-wrap: balance; }
 .app-service-routine-copy ol { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; counter-reset: routine; }
-.app-service-routine-copy li { display: grid; grid-template-columns: 32px 1fr; gap: 12px; padding: 16px 0; border-top: 1px solid var(--line); counter-increment: routine; }
-.app-service-routine-copy li::before { content: counter(routine, decimal-leading-zero); color: var(--maple); font-size: .72rem; font-weight: 850; }
+.app-service-routine-copy li { display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 12px; padding: 16px 0; border-top: 1px solid var(--line); counter-increment: routine; }
+.app-service-routine-copy li::before { grid-column: 1; grid-row: 1 / span 2; content: counter(routine, decimal-leading-zero); color: var(--maple); font-size: .72rem; font-weight: 850; }
+.app-service-routine-copy li span, .app-service-routine-copy li p { grid-column: 2; }
 .app-service-routine-copy li span { color: var(--ink); font-weight: 850; }
 .app-service-routine-copy li p { margin: 4px 0 0; color: var(--muted); font-size: .9rem; line-height: 1.5; }
 .app-service-primary-dark { margin-top: 22px; color: #fff; background: var(--teal-dark); }
