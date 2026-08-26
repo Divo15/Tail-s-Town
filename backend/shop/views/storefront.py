@@ -357,6 +357,10 @@ def faq_page(request):
     return render(request, "storefront/faq.html")
 
 
+def contact_page(request):
+    return render(request, "storefront/contact.html", {"contact_submitted": request.method == "POST"})
+
+
 def ad_bundle_page(request, bundle_type):
     bundle = AD_BUNDLE_DATA.get(bundle_type)
     if not bundle:
