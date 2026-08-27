@@ -17,9 +17,9 @@
 .support-launcher,
 .support-panel {
   --support-brand: #e8b8a8;
-  --support-brand-hover: #d8a898;
   --support-brand-strong: #986858;
   --support-on-brand: #3f251f;
+  --support-metallic: linear-gradient(115deg, #c48b79 0%, #f7ddd4 22%, #d5a08e 43%, #fff0ea 58%, #c48b79 100%);
   --support-ink: #17211f;
   --support-muted: #53605c;
   --support-line: #d8dedb;
@@ -41,16 +41,19 @@
   border: 0;
   border-radius: 999px;
   color: var(--support-on-brand);
-  background: var(--support-brand);
-  box-shadow: 0 6px 8px rgba(75, 42, 34, 0.22);
+  background-color: var(--support-brand);
+  background-image: var(--support-metallic);
+  background-position: 0 50%;
+  background-size: 180% 100%;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72), inset 0 -1px 0 rgba(92, 48, 38, 0.18), 0 6px 8px rgba(75, 42, 34, 0.22);
   cursor: pointer;
-  transition: background-color 160ms ease, transform 160ms ease;
+  transition: background-position 420ms cubic-bezier(0.16, 1, 0.3, 1), transform 160ms ease;
 }
 
 .support-launcher:hover,
 .support-launcher:focus-visible,
 .support-launcher[aria-expanded="true"] {
-  background: var(--support-brand-hover);
+  background-position: 100% 50%;
 }
 
 .support-launcher:active {
@@ -101,7 +104,11 @@
   gap: 18px;
   padding: 20px 20px 18px;
   color: var(--support-on-brand);
-  background: var(--support-brand);
+  background-color: var(--support-brand);
+  background-image: var(--support-metallic);
+  background-position: 36% 50%;
+  background-size: 150% 100%;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72), inset 0 -1px 0 rgba(92, 48, 38, 0.16);
 }
 
 .support-panel-heading {
@@ -225,16 +232,20 @@
   border: 0;
   border-radius: 10px;
   color: var(--support-on-brand);
-  background: var(--support-brand);
+  background-color: var(--support-brand);
+  background-image: var(--support-metallic);
+  background-position: 0 50%;
+  background-size: 180% 100%;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72), inset 0 -1px 0 rgba(92, 48, 38, 0.18);
   font: inherit;
   font-size: 0.95rem;
   font-weight: 700;
   cursor: pointer;
-  transition: background-color 150ms ease, transform 150ms ease;
+  transition: background-position 420ms cubic-bezier(0.16, 1, 0.3, 1), transform 150ms ease;
 }
 
 .support-form button[type="submit"]:hover {
-  background: var(--support-brand-hover);
+  background-position: 100% 50%;
   transform: translateY(-1px);
 }
 
