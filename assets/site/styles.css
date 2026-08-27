@@ -3679,3 +3679,24 @@ h1 span {
     grid-column: auto;
   }
 }
+
+/* Keep the primary account action stable across every header and scroll state. */
+.site-header .header-actions .auth-link.auth-link-secondary,
+.site-header .header-actions .auth-link.auth-link-secondary:hover,
+.site-header .header-actions .auth-link.auth-link-secondary:focus-visible,
+.site-header.is-solid .header-actions .auth-link.auth-link-secondary,
+.site-header.is-solid .header-actions .auth-link.auth-link-secondary:hover,
+.site-header.is-solid .header-actions .auth-link.auth-link-secondary:focus-visible {
+  min-width: 84px;
+  min-height: 32px;
+  padding: 0 18px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: #fff;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.22), transparent),
+    var(--maple);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 8px 18px rgba(201, 52, 58, 0.22);
+}
