@@ -1,5 +1,5 @@
 const header = document.querySelector(".site-header");
-const hero = document.querySelector(".hero");
+const hero = document.querySelector(".hero, .bundle-hero");
 const heroPhotos = [...document.querySelectorAll(".hero-photo")];
 const heroDots = [...document.querySelectorAll("[data-slide-dot]")];
 const heroContent = document.querySelector(".hero-content");
@@ -67,6 +67,9 @@ const hydratePhoto = (photo) => {
 
 const setHeaderState = () => {
   header?.classList.toggle("is-solid", window.scrollY > 24);
+  const isPastHero = Boolean(hero) && hero.getBoundingClientRect().bottom <= 0;
+  header?.classList.toggle("is-past-hero", isPastHero);
+  header?.toggleAttribute("inert", isPastHero);
 };
 
 const updateHeroText = (slide) => {
@@ -156,6 +159,7 @@ window.addEventListener(
   { passive: true },
 );
 setHeaderState();
+window.addEventListener("resize", setHeaderState);
 
 heroDots.forEach((dot) => {
   dot.addEventListener("click", () => {

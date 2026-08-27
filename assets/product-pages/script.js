@@ -1,5 +1,5 @@
 const header = document.querySelector(".site-header");
-const hero = document.querySelector(".hero");
+const hero = document.querySelector(".hero, .detail-hero");
 const heroPhotos = [...document.querySelectorAll(".hero-photo")];
 const heroButtons = [...document.querySelectorAll("[data-slide-target]")];
 const heroContent = document.querySelector(".hero-content");
@@ -49,9 +49,9 @@ const ROTATION_INTERVAL = 9200;
 
 const setHeaderState = () => {
   header?.classList.toggle("is-solid", window.scrollY > 24);
-  const isRollupProductPage = document.body.matches(".detail-feeder, .detail-water");
-  const isAtPageBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 8;
-  header?.classList.toggle("is-rolled-up", isRollupProductPage && isAtPageBottom);
+  const isPastHero = Boolean(hero) && hero.getBoundingClientRect().bottom <= 0;
+  header?.classList.toggle("is-past-hero", isPastHero);
+  header?.toggleAttribute("inert", isPastHero);
 };
 
 const syncHeaderHeight = () => {

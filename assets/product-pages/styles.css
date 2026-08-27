@@ -77,8 +77,8 @@ a {
     box-shadow 220ms ease;
 }
 
-.detail-feeder .site-header.is-rolled-up,
-.detail-water .site-header.is-rolled-up {
+.site-header.is-past-hero {
+  visibility: hidden;
   transform: translateY(calc(-100% - 8px));
   pointer-events: none;
 }
