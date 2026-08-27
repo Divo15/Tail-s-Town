@@ -2416,9 +2416,21 @@ h1 span {
   width: 100%;
   margin-inline: 0;
   padding: 6px clamp(14px, 3vw, 34px);
+  border-bottom: 0;
 }
 
 .about-brand img, .faq-brand img, .track-brand img { width: 112px; height: 112px; object-fit: contain; }
+
+.track-page,
+.faq-page,
+.about-page,
+.terms-page,
+.blog-page,
+.app-service-page,
+.policy-page {
+  padding-top: clamp(28px, 4vw, 48px);
+}
+
 @media (max-width: 720px) {
   .track-header,
   .faq-header,
