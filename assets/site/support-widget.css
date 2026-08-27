@@ -16,8 +16,10 @@
 
 .support-launcher,
 .support-panel {
-  --support-brand: #986858;
-  --support-brand-dark: #75473e;
+  --support-brand: #e8b8a8;
+  --support-brand-hover: #d8a898;
+  --support-brand-strong: #986858;
+  --support-on-brand: #3f251f;
   --support-ink: #17211f;
   --support-muted: #53605c;
   --support-line: #d8dedb;
@@ -38,7 +40,7 @@
   overflow: hidden;
   border: 0;
   border-radius: 999px;
-  color: #fff;
+  color: var(--support-on-brand);
   background: var(--support-brand);
   box-shadow: 0 6px 8px rgba(75, 42, 34, 0.22);
   cursor: pointer;
@@ -48,7 +50,7 @@
 .support-launcher:hover,
 .support-launcher:focus-visible,
 .support-launcher[aria-expanded="true"] {
-  background: var(--support-brand-dark);
+  background: var(--support-brand-hover);
 }
 
 .support-launcher:active {
@@ -98,7 +100,7 @@
   justify-content: space-between;
   gap: 18px;
   padding: 20px 20px 18px;
-  color: #fff;
+  color: var(--support-on-brand);
   background: var(--support-brand);
 }
 
@@ -119,9 +121,9 @@
 .support-status i {
   width: 8px;
   height: 8px;
-  border: 2px solid rgba(255, 255, 255, 0.72);
+  border: 2px solid rgba(63, 37, 31, 0.4);
   border-radius: 50%;
-  background: #fff;
+  background: var(--support-on-brand);
 }
 
 .support-panel h2 {
@@ -144,7 +146,7 @@
   padding: 0;
   border: 0;
   border-radius: 50%;
-  color: #fff;
+  color: var(--support-on-brand);
   background: rgba(63, 31, 25, 0.2);
   cursor: pointer;
   transition: background-color 150ms ease, transform 150ms ease;
@@ -209,7 +211,7 @@
 }
 
 .support-form input:focus {
-  border-color: var(--support-brand-dark);
+  border-color: var(--support-brand-strong);
   box-shadow: 0 0 0 3px rgba(152, 104, 88, 0.2);
 }
 
@@ -222,7 +224,7 @@
   padding: 0 17px;
   border: 0;
   border-radius: 10px;
-  color: #fff;
+  color: var(--support-on-brand);
   background: var(--support-brand);
   font: inherit;
   font-size: 0.95rem;
@@ -232,7 +234,7 @@
 }
 
 .support-form button[type="submit"]:hover {
-  background: var(--support-brand-dark);
+  background: var(--support-brand-hover);
   transform: translateY(-1px);
 }
 
@@ -249,7 +251,7 @@
 }
 
 .support-form-status.is-preview {
-  color: var(--support-brand-dark);
+  color: var(--support-brand-strong);
   font-weight: 700;
 }
 
