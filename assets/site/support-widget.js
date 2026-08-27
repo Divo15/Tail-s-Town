@@ -6,7 +6,6 @@
   var closeButton = document.querySelector(".support-close");
   var form = document.querySelector("[data-support-form]");
   var status = document.querySelector("[data-support-status]");
-  var revealBoundary = document.querySelector("[data-support-reveal-boundary]");
   var closeTimer;
   if (!launcher || !panel || !closeButton || !form || !status) return;
 
@@ -36,17 +35,18 @@
   });
 
   function updateLauncherVisibility() {
-    var shouldShow = !revealBoundary || revealBoundary.getBoundingClientRect().bottom <= 0;
+    var pageBottom = document.documentElement.scrollHeight;
+    var viewportBottom = window.scrollY + window.innerHeight;
+    var shouldShow = viewportBottom >= pageBottom - 24;
     if (!shouldShow && launcher.getAttribute("aria-expanded") === "true") {
       setOpen(false, false);
     }
     launcher.hidden = !shouldShow;
   }
 
-  if (revealBoundary) {
-    window.addEventListener("scroll", updateLauncherVisibility, { passive: true });
-    window.addEventListener("resize", updateLauncherVisibility);
-  }
+  window.addEventListener("scroll", updateLauncherVisibility, { passive: true });
+  window.addEventListener("resize", updateLauncherVisibility);
+  window.addEventListener("load", updateLauncherVisibility);
   updateLauncherVisibility();
 
   form.addEventListener("submit", function (event) {
