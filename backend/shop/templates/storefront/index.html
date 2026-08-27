@@ -170,13 +170,10 @@
               <span class="top-pick-media">
                 {% if section.anchor_id == "feeders" %}
                   <img src="{% static 'landing/product-tile-feeder.webp' %}" width="1448" height="1086" alt="Tail's Town Smart Feeder" loading="lazy" decoding="async" />
-                  <span class="top-pick-badge">Pet favorite</span>
                 {% elif section.anchor_id == "hydration" %}
                   <img src="{% static 'landing/product-tile-water.webp' %}" width="1448" height="1086" alt="Tail's Town Water Fountain" loading="lazy" decoding="async" />
-                  <span class="top-pick-badge">Fresh daily</span>
                 {% else %}
                   <img src="{% static 'landing/product-tile-litter.webp' %}" width="1448" height="1086" alt="Tail's Town Litter Box" loading="lazy" decoding="async" />
-                  <span class="top-pick-badge">Clean choice</span>
                 {% endif %}
               </span>
               <span class="top-pick-details">
@@ -194,7 +191,6 @@
             <a class="top-pick-card" href="{% url 'store:smart_feeder_page' %}">
               <span class="top-pick-media">
                 <img src="{% static 'landing/product-tile-feeder.webp' %}" width="1448" height="1086" alt="Tail's Town Smart Feeder" loading="lazy" decoding="async" />
-                <span class="top-pick-badge">Pet favorite</span>
               </span>
               <span class="top-pick-details">
                 <strong class="top-pick-name">Smart Feeder</strong>
@@ -205,7 +201,6 @@
             <a class="top-pick-card" href="{% url 'store:water_fountain_page' %}">
               <span class="top-pick-media">
                 <img src="{% static 'landing/product-tile-water.webp' %}" width="1448" height="1086" alt="Tail's Town Water Fountain" loading="lazy" decoding="async" />
-                <span class="top-pick-badge">Fresh daily</span>
               </span>
               <span class="top-pick-details">
                 <strong class="top-pick-name">Water Fountain</strong>
@@ -216,7 +211,6 @@
             <a class="top-pick-card" href="{% url 'store:litter_box_page' %}">
               <span class="top-pick-media">
                 <img src="{% static 'landing/product-tile-litter.webp' %}" width="1448" height="1086" alt="Tail's Town Litter Box" loading="lazy" decoding="async" />
-                <span class="top-pick-badge">Clean choice</span>
               </span>
               <span class="top-pick-details">
                 <strong class="top-pick-name">Litter Box</strong>

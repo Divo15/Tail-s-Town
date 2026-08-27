@@ -753,22 +753,6 @@ h1 span {
   border-radius: 12px;
 }
 
-.top-pick-badge {
-  position: absolute;
-  top: 0;
-  right: 0;
-  min-height: 36px;
-  display: inline-flex;
-  align-items: center;
-  border-radius: 0 12px 0 8px;
-  padding: 0 12px;
-  color: #fff;
-  background: var(--teal);
-  font-size: 0.78rem;
-  font-weight: 850;
-  line-height: 1;
-}
-
 .top-pick-details {
   flex: 1;
   display: flex;
