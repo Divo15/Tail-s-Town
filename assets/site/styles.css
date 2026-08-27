@@ -2423,10 +2423,32 @@ h1 span {
   .policy-index a, .policy-copy summary { transition: none; }
 }
 
-/* Keep the transparent square brand mark contained in every support-page header. */
-.about-brand img, .faq-brand img, .track-brand img { width: 108px; height: 88px; object-fit: contain; }
+/* Match every standalone page header to the storefront's viewport-aligned brand position. */
+.track-header,
+.faq-header,
+.about-header,
+.terms-header,
+.blog-header,
+.app-service-header,
+.policy-header {
+  width: 100%;
+  margin-inline: 0;
+  padding: 6px clamp(14px, 3vw, 34px);
+}
+
+.about-brand img, .faq-brand img, .track-brand img { width: 112px; height: 112px; object-fit: contain; }
 @media (max-width: 720px) {
-  .about-brand img, .faq-brand img, .track-brand img { width: 88px; height: 72px; }
+  .track-header,
+  .faq-header,
+  .about-header,
+  .terms-header,
+  .blog-header,
+  .app-service-header,
+  .policy-header {
+    padding: 10px 14px;
+  }
+
+  .about-brand img, .faq-brand img, .track-brand img { width: 72px; height: 72px; }
 }
 
 /* Final footer polish: stronger grouping, less empty height, and a clearer mobile collapse. */

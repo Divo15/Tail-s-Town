@@ -69,15 +69,16 @@
         border-bottom: 1px solid var(--line);
       }
       .header-inner {
-        width: min(1280px, calc(100% - 32px));
-        margin: 0 auto;
+        width: 100%;
+        margin: 0;
         min-height: 88px;
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 1rem;
+        padding: 6px clamp(14px, 3vw, 34px);
       }
-      .brand img { width: 108px; height: 88px; object-fit: contain; }
+      .brand img { width: 112px; height: 112px; object-fit: contain; }
       .header-nav {
         display: flex;
         flex-wrap: wrap;
@@ -950,12 +951,13 @@
           width: min(100%, calc(100% - 24px));
         }
         .header-inner {
+          width: 100%;
           min-height: auto;
           flex-wrap: wrap;
-          padding: 0.65rem 0;
+          padding: 0.65rem 14px;
           gap: 0.65rem;
         }
-        .brand img { width: 88px; height: 72px; }
+        .brand img { width: 72px; height: 72px; }
         .header-nav {
           order: 3;
           width: 100%;

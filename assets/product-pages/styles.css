@@ -3115,13 +3115,13 @@ h1 span {
 
 @media (max-width: 900px) {
   .site-header {
-    min-height: 52px;
+    min-height: 72px;
     grid-template-columns: auto 1fr;
     gap: 12px;
     top: 0;
     left: 0;
     right: 0;
-    padding: max(4px, env(safe-area-inset-top)) 12px 4px;
+    padding: max(10px, env(safe-area-inset-top)) 14px 10px;
     border-radius: 0;
     color: var(--ink);
     background:
@@ -3153,8 +3153,8 @@ h1 span {
   }
 
   .brand img {
-    width: 64px;
-    height: 64px;
+    width: 72px;
+    height: 72px;
     object-fit: contain;
   }
 
@@ -3184,7 +3184,7 @@ h1 span {
   .hero {
     min-height: 100svh;
     height: 100svh;
-    padding-top: 82px;
+    padding-top: 102px;
     padding-bottom: 18px;
   }
 

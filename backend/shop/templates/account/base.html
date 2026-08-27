@@ -65,13 +65,14 @@
         border-bottom: 1px solid var(--line);
       }
       .header-inner {
-        width: min(1280px, calc(100% - 32px));
-        margin: 0 auto;
+        width: 100%;
+        margin: 0;
         min-height: 88px;
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 1rem;
+        padding: 6px clamp(14px, 3vw, 34px);
       }
       .account-brand {
         display: inline-flex;
@@ -79,8 +80,8 @@
         flex: 0 0 auto;
       }
       .account-brand img {
-        width: 108px;
-        height: 88px;
+        width: 112px;
+        height: 112px;
         object-fit: contain;
       }
       .nav {
@@ -534,13 +535,13 @@
           align-items: flex-start;
         }
         .header-inner {
-          width: min(100%, calc(100% - 24px));
+          width: 100%;
           min-height: auto;
           flex-wrap: wrap;
-          padding: 0.65rem 0;
+          padding: 0.65rem 14px;
           gap: 0.65rem;
         }
-        .account-brand img { width: 88px; height: 72px; }
+        .account-brand img { width: 72px; height: 72px; }
         .account-quick-actions {
           flex: 1;
           justify-content: flex-end;
