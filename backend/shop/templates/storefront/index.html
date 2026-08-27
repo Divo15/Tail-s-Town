@@ -224,12 +224,18 @@
       </section>
 
       <section class="home-feature-banner" aria-labelledby="home-feature-title">
-        <img
-          src="{% static 'landing/feeder-dispenser-living-room.webp' %}"
-          alt="Tail's Town smart feeder in a calm sunlit living room"
-          loading="lazy"
-          decoding="async"
-        />
+        <picture>
+          <source media="(max-width: 560px)" srcset="{% static 'landing/all-products-hall-mobile.webp' %}" />
+          <source media="(max-width: 900px)" srcset="{% static 'landing/all-products-hall-tablet.webp' %}" />
+          <img
+            src="{% static 'landing/all-products-hall-desktop.webp' %}"
+            width="2240"
+            height="800"
+            alt="A cat drinks from a Tail's Town fountain beside the smart feeder and self-cleaning litter box in a Canadian home"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
         <div class="home-feature-copy">
           <h2 id="home-feature-title">Meals ready, right on time.</h2>
           <a href="{% url 'store:smart_feeder_page' %}">Shop Smart Feeder</a>
