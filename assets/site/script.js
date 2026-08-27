@@ -4,7 +4,6 @@ const heroPhotos = [...document.querySelectorAll(".hero-photo")];
 const heroDots = [...document.querySelectorAll("[data-slide-dot]")];
 const heroContent = document.querySelector(".hero-content");
 const heroTitle = document.querySelector("#hero-title");
-const toast = document.querySelector(".cart-toast");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const saveData = navigator.connection?.saveData === true;
 
@@ -144,16 +143,6 @@ const startHeroRotation = () => {
   }, ROTATION_INTERVAL);
 };
 
-const showToast = (message) => {
-  if (!toast) return;
-  toast.textContent = message;
-  toast.classList.add("is-visible");
-  window.clearTimeout(showToast.timer);
-  showToast.timer = window.setTimeout(() => {
-    toast.classList.remove("is-visible");
-  }, 2200);
-};
-
 let scrollFrame;
 window.addEventListener(
   "scroll",
@@ -167,14 +156,6 @@ window.addEventListener(
   { passive: true },
 );
 setHeaderState();
-
-if (window.matchMedia("(hover: hover)").matches) {
-  document.querySelectorAll(".product-tile").forEach((tile) => {
-    tile.addEventListener("mouseenter", () => {
-      showToast("Open products to browse this item.");
-    });
-  });
-}
 
 heroDots.forEach((dot) => {
   dot.addEventListener("click", () => {
