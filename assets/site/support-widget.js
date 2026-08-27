@@ -6,46 +6,9 @@
   var closeButton = document.querySelector(".support-close");
   var form = document.querySelector("[data-support-form]");
   var status = document.querySelector("[data-support-status]");
+  var revealBoundary = document.querySelector("[data-support-reveal-boundary]");
   var closeTimer;
-  var autoOpenTimer;
-  var activeStartedAt;
-  var fallbackStorage = {};
-  var autoOpenDelay = 15000;
-  var autoShownKey = "tailsTownSupportAutoShown";
-  var activeTimeKey = "tailsTownSupportActiveMs";
   if (!launcher || !panel || !closeButton || !form || !status) return;
-
-  function readSessionValue(key) {
-    try {
-      return window.sessionStorage.getItem(key);
-    } catch (error) {
-      return fallbackStorage[key] || null;
-    }
-  }
-
-  function writeSessionValue(key, value) {
-    try {
-      window.sessionStorage.setItem(key, value);
-    } catch (error) {
-      fallbackStorage[key] = value;
-    }
-  }
-
-  function getActiveTime() {
-    return Math.max(0, Number(readSessionValue(activeTimeKey)) || 0);
-  }
-
-  function persistActiveTime() {
-    if (typeof activeStartedAt !== "number") return;
-    writeSessionValue(activeTimeKey, String(getActiveTime() + (Date.now() - activeStartedAt)));
-    activeStartedAt = undefined;
-  }
-
-  function markAutoPromptShown() {
-    window.clearTimeout(autoOpenTimer);
-    persistActiveTime();
-    writeSessionValue(autoShownKey, "true");
-  }
 
   function setOpen(open, moveFocus) {
     window.clearTimeout(closeTimer);
@@ -59,45 +22,32 @@
     } else {
       panel.classList.remove("is-open");
       closeTimer = window.setTimeout(function () { panel.hidden = true; }, 180);
-      launcher.focus();
+      if (moveFocus && !launcher.hidden) launcher.focus();
     }
   }
 
   launcher.addEventListener("click", function () {
     var shouldOpen = launcher.getAttribute("aria-expanded") !== "true";
-    if (shouldOpen) markAutoPromptShown();
     setOpen(shouldOpen, shouldOpen);
   });
-  closeButton.addEventListener("click", function () { setOpen(false, false); });
+  closeButton.addEventListener("click", function () { setOpen(false, true); });
   document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape" && !panel.hidden) setOpen(false, false);
+    if (event.key === "Escape" && !panel.hidden) setOpen(false, true);
   });
 
-  function openAutomaticPrompt() {
-    if (readSessionValue(autoShownKey) === "true") return;
-    markAutoPromptShown();
-    setOpen(true, false);
-  }
-
-  function scheduleAutomaticPrompt() {
-    window.clearTimeout(autoOpenTimer);
-    if (readSessionValue(autoShownKey) === "true" || document.visibilityState !== "visible") return;
-
-    activeStartedAt = Date.now();
-    var remainingTime = Math.max(0, autoOpenDelay - getActiveTime());
-    autoOpenTimer = window.setTimeout(openAutomaticPrompt, remainingTime);
-  }
-
-  document.addEventListener("visibilitychange", function () {
-    if (document.visibilityState === "visible") {
-      scheduleAutomaticPrompt();
-    } else {
-      window.clearTimeout(autoOpenTimer);
-      persistActiveTime();
+  function updateLauncherVisibility() {
+    var shouldShow = !revealBoundary || revealBoundary.getBoundingClientRect().bottom <= 0;
+    if (!shouldShow && launcher.getAttribute("aria-expanded") === "true") {
+      setOpen(false, false);
     }
-  });
-  window.addEventListener("pagehide", persistActiveTime);
-  scheduleAutomaticPrompt();
+    launcher.hidden = !shouldShow;
+  }
+
+  if (revealBoundary) {
+    window.addEventListener("scroll", updateLauncherVisibility, { passive: true });
+    window.addEventListener("resize", updateLauncherVisibility);
+  }
+  updateLauncherVisibility();
 
   form.addEventListener("submit", function (event) {
     event.preventDefault();

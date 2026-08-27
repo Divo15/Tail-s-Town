@@ -50,6 +50,10 @@
   transition: background-position 420ms cubic-bezier(0.16, 1, 0.3, 1), transform 160ms ease;
 }
 
+.support-launcher[hidden] {
+  display: none;
+}
+
 .support-launcher:hover,
 .support-launcher:focus-visible,
 .support-launcher[aria-expanded="true"] {
