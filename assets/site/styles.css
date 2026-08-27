@@ -2577,6 +2577,7 @@ h1 span {
   height: 24px;
   flex: 0 0 auto;
   object-fit: contain;
+  clip-path: inset(1px round 2px);
 }
 
 .footer-social-links {
