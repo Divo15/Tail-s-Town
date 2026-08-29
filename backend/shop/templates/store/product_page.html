@@ -27,6 +27,7 @@
       <link rel="stylesheet" href="{% static 'product-pages/litter-animation.css' %}" />
     {% endif %}
     <link rel="stylesheet" href="{% static 'product-pages/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'site/support-widget.css' %}" />
   </head>
   <body id="page-top" class="detail-body {{ page.body_class }}">
     <header class="site-header" aria-label="Main navigation">
@@ -179,6 +180,8 @@
     {% if page.frame_sequence %}
       <script src="{% static 'product-pages/litter-animation.js' %}"></script>
     {% endif %}
+    {% include "storefront/partials/support_widget.html" %}
+    <script src="{% static 'site/support-widget.js' %}"></script>
     {% include "storefront/partials/vercel_analytics.html" %}
   </body>
 </html>
