@@ -33,8 +33,7 @@
             <a class="auth-link" href="{% url 'customer_account:dashboard' %}">Account</a>
             <a class="auth-link auth-link-secondary" href="{% url 'customer_account:logout' %}">Sign out</a>
           {% else %}
-            <a class="auth-prompt" href="{% url 'customer_account:login' %}">Don't have an account?</a>
-            <a class="auth-link auth-link-secondary" href="{% url 'customer_account:register' %}">Sign Up</a>
+            <a class="auth-link auth-link-secondary" href="{% url 'customer_account:login' %}">Sign in</a>
           {% endif %}
         </div>
         <a class="mobile-shop-action" href="#products">Shop</a>
@@ -114,14 +113,14 @@
             {% endif %}
             <h2>
               {% if section.anchor_id == "feeders" %}
-                <span>Smart</span>
-                <span>Feeder</span>
+                <span>SMART</span>
+                <span>FEEDING</span>
               {% elif section.anchor_id == "hydration" %}
-                <span>Water</span>
-                <span>Fountain</span>
+                <span>FRESH</span>
+                <span>HYDRATION</span>
               {% else %}
-                <span>Litter</span>
-                <span>Box</span>
+                <span>CLEANER</span>
+                <span>LITTER</span>
               {% endif %}
             </h2>
           </a>
@@ -129,22 +128,22 @@
           <a class="product-tile" id="feeders" href="{% url 'store:smart_feeder_page' %}" aria-label="Open Smart Feeder product page">
             <img src="{% static 'landing/product-tile-feeder.webp' %}" alt="Smart automatic pet feeder on a warm shelf" loading="lazy" decoding="async" />
             <h2>
-              <span>Smart</span>
-              <span>Feeder</span>
+              <span>SMART</span>
+              <span>FEEDING</span>
             </h2>
           </a>
           <a class="product-tile accent" id="hydration" href="{% url 'store:water_fountain_page' %}" aria-label="Open Water Fountain product page">
             <img src="{% static 'landing/product-tile-water.webp' %}" alt="Modern pet water fountain on a warm shelf" loading="lazy" decoding="async" />
             <h2>
-              <span>Water</span>
-              <span>Fountain</span>
+              <span>FRESH</span>
+              <span>HYDRATION</span>
             </h2>
           </a>
           <a class="product-tile" id="litter" href="{% url 'store:litter_box_page' %}" aria-label="Open Litter Box product page">
             <img src="{% static 'landing/product-tile-litter.webp' %}" alt="Smart litter box on a warm shelf" loading="lazy" decoding="async" />
             <h2>
-              <span>Litter</span>
-              <span>Box</span>
+              <span>CLEANER</span>
+              <span>LITTER</span>
             </h2>
           </a>
         {% endfor %}
@@ -223,8 +222,8 @@
         </div>
       </section>
 
-      <section class="home-feature-banner" aria-labelledby="home-feature-title">
-        <picture>
+      <section class="home-feature-banner" aria-labelledby="home-feature-title" data-feature-showcase data-active-product="litter">
+        <picture class="home-feature-shot is-active" data-feature-shot="litter" aria-hidden="true">
           <source media="(max-width: 560px)" srcset="{% static 'landing/all-products-hall-mobile.webp' %}" />
           <source media="(max-width: 900px)" srcset="{% static 'landing/all-products-hall-tablet.webp' %}" />
           <img
@@ -236,9 +235,23 @@
             decoding="async"
           />
         </picture>
+        <picture class="home-feature-shot" data-feature-shot="feeder" aria-hidden="true">
+          <source media="(max-width: 560px)" srcset="{% static 'landing/all-products-hall-mobile.webp' %}" />
+          <source media="(max-width: 900px)" srcset="{% static 'landing/all-products-hall-tablet.webp' %}" />
+          <img src="{% static 'landing/all-products-hall-desktop.webp' %}" width="2240" height="800" alt="" loading="lazy" decoding="async" />
+        </picture>
+        <picture class="home-feature-shot" data-feature-shot="water" aria-hidden="true">
+          <source media="(max-width: 560px)" srcset="{% static 'landing/all-products-hall-mobile.webp' %}" />
+          <source media="(max-width: 900px)" srcset="{% static 'landing/all-products-hall-tablet.webp' %}" />
+          <img src="{% static 'landing/all-products-hall-desktop.webp' %}" width="2240" height="800" alt="" loading="lazy" decoding="async" />
+        </picture>
+        <div class="home-feature-scene-shade" aria-hidden="true"></div>
         <div class="home-feature-copy">
-          <h2 id="home-feature-title">Meals ready, right on time.</h2>
-          <a href="{% url 'store:smart_feeder_page' %}">Shop Smart Feeder</a>
+          <h2 id="home-feature-title">
+            <span class="home-feature-title-line home-feature-title-accent" data-feature-title-accent>Cleaner litter,</span>
+            <span class="home-feature-title-line" data-feature-title-rest>less effort.</span>
+          </h2>
+          <a href="{% url 'store:litter_box_page' %}" data-feature-cta>Explore Litter Box</a>
         </div>
       </section>
 

@@ -116,12 +116,46 @@ a {
   justify-self: start;
   display: inline-flex;
   align-items: center;
+  position: relative;
+  padding: 0;
+}
+
+.brand::before {
+  content: none;
+}
+
+.brand::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(105deg, transparent 35%, rgba(255, 244, 217, 0.68) 48%, rgba(255, 255, 255, 0.44) 52%, transparent 65%);
+  background-size: 240% 100%;
+  background-position: 145% 0;
+  -webkit-mask: url("/static/product-pages/assets/tails-town-header-logo-full.webp") center / contain no-repeat;
+  mask: url("/static/product-pages/assets/tails-town-header-logo-full.webp") center / contain no-repeat;
+  mix-blend-mode: soft-light;
+  animation: brandSatinSweep 7.5s ease-in-out infinite;
 }
 
 .brand img {
   width: auto;
   height: clamp(58px, 7vw, 90px);
   filter: none;
+  position: relative;
+  z-index: 0;
+  transition: transform 240ms ease;
+}
+
+.brand:hover img,
+.brand:focus-visible img {
+  transform: scale(1.025);
+}
+
+.brand:hover::after,
+.brand:focus-visible::after {
+  animation: brandSatinSweepHover 900ms ease-out 1;
 }
 
 .site-header .brand img {
@@ -242,6 +276,155 @@ a {
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.28),
     0 8px 18px rgba(201, 52, 58, 0.22);
+}
+
+/* Final responsive compositions for the dissolve-based product showcase. */
+@media (max-width: 900px) {
+  .home-feature-banner > .home-feature-shot[data-feature-shot="litter"] img {
+    object-position: 39% 48%;
+    transform: scale(1.2);
+  }
+
+  .home-feature-banner > .home-feature-shot[data-feature-shot="feeder"] img {
+    object-position: 74% 56%;
+    transform: scale(1.2);
+  }
+
+  .home-feature-banner > .home-feature-shot[data-feature-shot="water"] img {
+    object-position: 28% 74%;
+    transform: scale(1.18);
+  }
+
+  .home-feature-banner[data-active-product] .home-feature-copy {
+    top: 50%;
+    right: 18px;
+    left: auto;
+    width: min(38%, 270px);
+    transform: translateY(-50%);
+  }
+}
+
+@media (max-width: 560px) {
+  .home-feature-banner > .home-feature-shot[data-feature-shot="litter"] img {
+    object-position: 42% 43%;
+    transform: scale(1.15);
+  }
+
+  .home-feature-banner > .home-feature-shot[data-feature-shot="feeder"] img {
+    object-position: 72% 56%;
+    transform: scale(1.14);
+  }
+
+  .home-feature-banner > .home-feature-shot[data-feature-shot="water"] img {
+    object-position: 30% 75%;
+    transform: scale(1.13);
+  }
+
+  .home-feature-banner[data-active-product] .home-feature-scene-shade {
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 58%;
+    opacity: 0.68;
+    background: linear-gradient(180deg, rgba(14, 30, 27, 0) 0%, rgba(14, 30, 27, 0.05) 30%, rgba(14, 30, 27, 0.2) 58%, rgba(14, 30, 27, 0.54) 100%);
+  }
+
+  .home-feature-banner[data-active-product] .home-feature-copy {
+    top: auto;
+    right: 16px;
+    bottom: 18px;
+    left: 16px;
+    width: auto;
+    transform: none;
+  }
+
+  .home-feature-product-meta {
+    font-size: 0.6rem;
+  }
+
+  .home-feature-copy h2 {
+    max-width: 11ch;
+    font-size: clamp(1.45rem, 7vw, 2rem);
+  }
+
+  .home-feature-nav {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand::after {
+    animation: none;
+    opacity: 0;
+  }
+
+  .home-feature-banner > .home-feature-shot {
+    transition-duration: 200ms;
+  }
+}
+
+/* Keep the active device natural while gently lowering the surrounding scene. */
+.home-feature-banner > .home-feature-shot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: rgba(8, 18, 16, 0.34);
+}
+
+.home-feature-banner > .home-feature-shot[data-feature-shot="litter"]::after {
+  -webkit-mask-image: radial-gradient(ellipse 19% 40% at 43% 43%, transparent 0 55%, rgba(0, 0, 0, 0.14) 72%, #000 100%);
+  mask-image: radial-gradient(ellipse 19% 40% at 43% 43%, transparent 0 55%, rgba(0, 0, 0, 0.14) 72%, #000 100%);
+}
+
+.home-feature-banner > .home-feature-shot[data-feature-shot="feeder"]::after {
+  -webkit-mask-image: radial-gradient(ellipse 17% 43% at 78% 56%, transparent 0 55%, rgba(0, 0, 0, 0.14) 72%, #000 100%);
+  mask-image: radial-gradient(ellipse 17% 43% at 78% 56%, transparent 0 55%, rgba(0, 0, 0, 0.14) 72%, #000 100%);
+}
+
+.home-feature-banner > .home-feature-shot[data-feature-shot="water"]::after {
+  -webkit-mask-image: radial-gradient(ellipse 15% 30% at 29% 74%, transparent 0 55%, rgba(0, 0, 0, 0.14) 72%, #000 100%);
+  mask-image: radial-gradient(ellipse 15% 30% at 29% 74%, transparent 0 55%, rgba(0, 0, 0, 0.14) 72%, #000 100%);
+}
+
+@media (min-width: 561px) {
+  .home-feature-banner[data-active-product] .home-feature-copy {
+    width: min(48%, 540px);
+    gap: 10px;
+  }
+
+  .home-feature-banner[data-active-product="litter"] .home-feature-copy,
+  .home-feature-banner[data-active-product="water"] .home-feature-copy {
+    top: 16%;
+    right: clamp(24px, 4vw, 52px);
+    left: auto;
+    transform: none;
+  }
+
+  .home-feature-banner[data-active-product="feeder"] .home-feature-copy {
+    top: 16%;
+    left: clamp(24px, 4vw, 52px);
+    right: auto;
+    transform: none;
+  }
+
+  .home-feature-copy h2,
+  .home-feature-description,
+  .home-feature-copy a {
+    max-width: none;
+    white-space: nowrap;
+  }
+
+  .home-feature-copy h2 {
+    font-size: clamp(1.55rem, 2.45vw, 2.75rem);
+    line-height: 1;
+  }
+
+  .home-feature-description {
+    font-size: clamp(0.76rem, 1.1vw, 0.92rem);
+  }
 }
 
 .nav-links a {
@@ -517,7 +700,7 @@ h1 span {
   padding: clamp(28px, 4vw, 56px);
   background: var(--ink);
   display: grid;
-  align-content: end;
+  align-content: start;
   cursor: pointer;
   isolation: isolate;
 }
@@ -527,7 +710,7 @@ h1 span {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: transparent;
+  background: linear-gradient(145deg, rgba(14, 30, 27, 0.48) 0%, rgba(14, 30, 27, 0.22) 26%, rgba(14, 30, 27, 0) 58%);
   pointer-events: none;
 }
 
@@ -555,7 +738,7 @@ h1 span {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: 62% center;
   animation: none;
   transform: scale(1.01);
 }
@@ -565,13 +748,13 @@ h1 span {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: 58% center;
   animation: none;
   transform: scale(1.01);
 }
 
 #litter > img {
-  object-position: 68% 54%;
+  object-position: 64% 54%;
   animation-duration: 15s;
 }
 
@@ -593,7 +776,7 @@ h1 span {
 }
 
 .product-tile:hover::before {
-  background: transparent;
+  background: linear-gradient(145deg, rgba(14, 30, 27, 0.5) 0%, rgba(14, 30, 27, 0.18) 28%, rgba(14, 30, 27, 0) 60%);
 }
 
 .product-tile h2 {
@@ -602,12 +785,13 @@ h1 span {
   display: grid;
   gap: 0.02em;
   margin: 0;
-  max-width: 8ch;
+  max-width: 7.4ch;
   color: #fff;
-  font-size: clamp(3rem, 5.3vw, 6.6rem);
-  line-height: 0.88;
+  font-size: clamp(2.2rem, 4vw, 4.8rem);
+  line-height: 0.92;
   letter-spacing: 0;
   transition: transform 500ms ease;
+  text-shadow: 0 3px 18px rgba(0, 0, 0, 0.22);
 }
 
 .product-tile:hover h2 {
@@ -805,23 +989,13 @@ h1 span {
   display: grid;
   align-items: center;
   isolation: isolate;
-  background: var(--ink);
-}
-
-.home-feature-banner::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background:
-    linear-gradient(90deg, rgba(14, 30, 27, 0.04) 24%, rgba(14, 30, 27, 0.22) 54%, rgba(14, 30, 27, 0.66) 100%),
-    linear-gradient(0deg, rgba(14, 30, 27, 0.28), transparent 42%);
+  background: #0f1b19;
+  padding: 0;
 }
 
 .home-feature-banner > picture {
   position: absolute;
-  inset: 0;
+  inset: -10%;
   display: block;
 }
 
@@ -830,58 +1004,366 @@ h1 span {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 68%;
+  object-position: 50% 60%;
+  transition:
+    transform 1.55s cubic-bezier(0.22, 0.8, 0.22, 1),
+    object-position 1.55s cubic-bezier(0.22, 0.8, 0.22, 1);
+  transform: scale(1.1) translate3d(0, 0, 0);
+}
+
+.home-feature-banner[data-active-product="litter"] > picture img {
+  transform: scale(1.16) translate3d(-10.5%, -5.5%, 0);
+  object-position: 38% 46%;
+}
+
+.home-feature-banner[data-active-product="feeder"] > picture img {
+  transform: scale(1.18) translate3d(10%, -3%, 0);
+  object-position: 72% 52%;
+}
+
+.home-feature-banner[data-active-product="water"] > picture img {
+  transform: scale(1.15) translate3d(-12.5%, 8.5%, 0);
+  object-position: 29% 78%;
+}
+
+.home-feature-scene-shade {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  width: min(43%, 520px);
+  height: 72%;
+  opacity: 0.95;
+  transition:
+    top 1.25s cubic-bezier(0.22, 0.8, 0.22, 1),
+    right 1.25s cubic-bezier(0.22, 0.8, 0.22, 1),
+    left 1.25s cubic-bezier(0.22, 0.8, 0.22, 1),
+    width 1.25s cubic-bezier(0.22, 0.8, 0.22, 1),
+    height 1.25s cubic-bezier(0.22, 0.8, 0.22, 1),
+    opacity 520ms ease;
+}
+
+.home-feature-banner[data-active-product="litter"] .home-feature-scene-shade {
+  top: 14%;
+  right: 0;
+  left: auto;
+  background: linear-gradient(90deg, rgba(14, 30, 27, 0) 0%, rgba(14, 30, 27, 0.18) 30%, rgba(14, 30, 27, 0.46) 100%);
+}
+
+.home-feature-banner[data-active-product="feeder"] .home-feature-scene-shade {
+  top: 17%;
+  left: 0;
+  right: auto;
+  background: linear-gradient(90deg, rgba(14, 30, 27, 0.46) 0%, rgba(14, 30, 27, 0.18) 68%, rgba(14, 30, 27, 0) 100%);
+}
+
+.home-feature-banner[data-active-product="water"] .home-feature-scene-shade {
+  top: 4%;
+  right: 0;
+  left: auto;
+  width: min(41%, 500px);
+  height: 62%;
+  background: linear-gradient(90deg, rgba(14, 30, 27, 0) 0%, rgba(14, 30, 27, 0.16) 30%, rgba(14, 30, 27, 0.42) 100%);
+}
+
+.home-feature-id {
+  position: absolute;
+  z-index: 3;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+  opacity: 1;
+  transition:
+    top 1.25s cubic-bezier(0.22, 0.8, 0.22, 1),
+    right 1.25s cubic-bezier(0.22, 0.8, 0.22, 1),
+    left 1.25s cubic-bezier(0.22, 0.8, 0.22, 1),
+    opacity 520ms ease,
+    transform 520ms ease;
+}
+
+.home-feature-id span:first-child {
+  color: rgba(255, 248, 238, 0.64);
+  font-size: 0.6rem;
+}
+
+.home-feature-banner[data-active-product="litter"] .home-feature-id {
+  top: 28%;
+  left: 42%;
+}
+
+.home-feature-banner[data-active-product="feeder"] .home-feature-id {
+  top: 70%;
+  left: 64%;
+}
+
+.home-feature-banner[data-active-product="water"] .home-feature-id {
+  top: 73%;
+  left: 29%;
 }
 
 .home-feature-copy {
-  position: relative;
-  z-index: 2;
-  width: min(48%, 760px);
-  justify-self: end;
+  position: absolute;
+  z-index: 4;
+  width: min(33%, 380px);
   display: grid;
-  justify-items: center;
-  gap: 28px;
-  padding: 48px clamp(36px, 7vw, 120px) 48px 24px;
+  justify-items: start;
+  gap: 14px;
+  padding: 0;
   color: #fff;
-  text-align: center;
+  text-align: left;
+  transition:
+    top 1.25s cubic-bezier(0.22, 0.8, 0.22, 1),
+    right 1.25s cubic-bezier(0.22, 0.8, 0.22, 1),
+    left 1.25s cubic-bezier(0.22, 0.8, 0.22, 1),
+    width 1.25s cubic-bezier(0.22, 0.8, 0.22, 1),
+    transform 1.25s cubic-bezier(0.22, 0.8, 0.22, 1);
+}
+
+.home-feature-banner[data-active-product="litter"] .home-feature-copy {
+  top: 50%;
+  right: clamp(28px, 5vw, 64px);
+  left: auto;
+  transform: translateY(-50%);
+}
+
+.home-feature-banner[data-active-product="feeder"] .home-feature-copy {
+  top: 56%;
+  left: clamp(28px, 5vw, 60px);
+  right: auto;
+  transform: translateY(-50%);
+}
+
+.home-feature-banner[data-active-product="water"] .home-feature-copy {
+  top: 18%;
+  right: clamp(30px, 5vw, 64px);
+  left: auto;
+  width: min(31%, 360px);
+  transform: none;
+}
+
+.home-feature-kicker {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.home-feature-product-meta {
+  margin: -4px 0 0;
+  color: rgba(255, 248, 238, 0.72);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.home-feature-product-meta span {
+  margin-right: 8px;
+  color: rgba(255, 248, 238, 0.52);
 }
 
 .home-feature-copy h2 {
   margin: 0;
-  max-width: 15ch;
-  font-size: clamp(2.4rem, 3.2vw, 4rem);
-  line-height: 0.98;
-  letter-spacing: -0.035em;
+  max-width: 8.2ch;
+  font-size: clamp(2rem, 3vw, 3.35rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
   text-wrap: balance;
   text-shadow: 0 3px 20px rgba(0, 0, 0, 0.24);
+  transition:
+    opacity 520ms ease,
+    transform 520ms ease;
+}
+
+.home-feature-description {
+  max-width: 25ch;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.9rem;
+  line-height: 1.42;
+  text-wrap: pretty;
+  transition:
+    opacity 520ms ease,
+    transform 520ms ease;
 }
 
 .home-feature-copy a {
-  min-height: 54px;
+  min-height: 36px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid rgba(255, 255, 255, 0.92);
-  border-radius: 6px;
-  padding: 0 24px;
-  font-size: 1rem;
-  font-weight: 850;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  padding: 0 14px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   transition:
     color 180ms ease,
     background-color 180ms ease,
-    transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+    transform 180ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 520ms ease,
+    border-color 180ms ease;
 }
 
 .home-feature-copy a:hover,
 .home-feature-copy a:focus-visible {
   color: var(--ink);
   background: #fff;
+  border-color: #fff;
   transform: translateY(-2px);
 }
 
 .home-feature-copy a:focus-visible {
   outline: 3px solid #fff;
   outline-offset: 4px;
+}
+
+.home-feature-nav {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  gap: 8px;
+  max-width: 100%;
+}
+
+.home-feature-nav-button {
+  min-height: 30px;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.74);
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 0.72rem;
+  font-weight: 650;
+  white-space: nowrap;
+  transition:
+    color 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease,
+    opacity 420ms ease;
+}
+
+.home-feature-nav-button:hover,
+.home-feature-nav-button:focus-visible {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.42);
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+}
+
+.home-feature-nav-button[aria-pressed="true"] {
+  color: var(--ink);
+  border-color: transparent;
+  background: rgba(255, 248, 238, 0.94);
+}
+
+.home-feature-copy.is-updating h2,
+.home-feature-copy.is-updating .home-feature-product-meta,
+.home-feature-copy.is-updating .home-feature-description,
+.home-feature-copy.is-updating [data-feature-cta],
+.home-feature-copy.is-updating .home-feature-nav {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.home-feature-banner.is-feature-updating .home-feature-id {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+/* Three fixed art-directed crops dissolve between products. */
+.home-feature-banner > .home-feature-shot {
+  position: absolute;
+  inset: 0;
+  display: block;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+  will-change: opacity;
+}
+
+.home-feature-banner > .home-feature-shot.is-active {
+  opacity: 1;
+}
+
+.home-feature-banner > .home-feature-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: none;
+}
+
+.home-feature-banner > .home-feature-shot[data-feature-shot="litter"] img {
+  object-position: 39% 50%;
+  transform: scale(1.22);
+}
+
+.home-feature-banner > .home-feature-shot[data-feature-shot="feeder"] img {
+  object-position: 73% 57%;
+  transform: scale(1.2);
+}
+
+.home-feature-banner > .home-feature-shot[data-feature-shot="water"] img {
+  object-position: 28% 72%;
+  transform: scale(1.2);
+}
+
+.home-feature-scene-shade {
+  width: min(46%, 560px);
+  height: 82%;
+  opacity: 0.72;
+  transition: opacity 500ms ease;
+}
+
+.home-feature-banner[data-active-product] .home-feature-scene-shade {
+  top: 9%;
+  right: 0;
+  left: auto;
+  width: min(46%, 560px);
+  height: 82%;
+  background: linear-gradient(90deg, rgba(14, 30, 27, 0) 0%, rgba(14, 30, 27, 0.12) 34%, rgba(14, 30, 27, 0.38) 100%);
+}
+
+.home-feature-banner[data-active-product] .home-feature-copy {
+  top: 50%;
+  right: clamp(28px, 5vw, 64px);
+  left: auto;
+  width: min(34%, 390px);
+  transform: translateY(-50%);
+}
+
+.home-feature-product-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+}
+
+.home-feature-product-meta span {
+  margin: 0;
+}
+
+@keyframes brandSatinSweep {
+  0%, 68% { background-position: 145% 0; opacity: 0; }
+  74% { opacity: 0.72; }
+  86% { background-position: -45% 0; opacity: 0.5; }
+  100% { background-position: -45% 0; opacity: 0; }
+}
+
+@keyframes brandSatinSweepHover {
+  0% { background-position: 145% 0; opacity: 0; }
+  35% { opacity: 0.78; }
+  100% { background-position: -45% 0; opacity: 0; }
 }
 
 .home-faq {
@@ -1260,6 +1742,18 @@ h1 span {
   }
 }
 
+@keyframes brandBacklightBreath {
+  0%,
+  100% {
+    opacity: 0.74;
+    transform: scale(0.985);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.02);
+  }
+}
+
 @keyframes tileProductDrift {
   from {
     transform: scale(1.04) translate3d(-1.4%, 0, 0);
@@ -1506,12 +2000,12 @@ h1 span {
 
   .product-tile > img {
     animation: none;
-    transform: scale(1.02);
+    transform: scale(1.04);
   }
 
   .product-tile h2 {
     max-width: 9ch;
-    font-size: clamp(2.7rem, 15vw, 4.7rem);
+    font-size: clamp(2.25rem, 12vw, 3.8rem);
   }
 
   .pet-window {
@@ -2869,29 +3363,99 @@ h1 span {
   .home-feature-banner {
     min-height: 0;
     aspect-ratio: 16 / 9;
-    align-items: start;
-  }
-
-  .home-feature-banner::after {
-    background:
-      linear-gradient(180deg, rgba(14, 30, 27, 0.68) 0%, rgba(14, 30, 27, 0.28) 35%, transparent 64%),
-      linear-gradient(0deg, rgba(14, 30, 27, 0.22), transparent 40%);
+    align-items: center;
   }
 
   .home-feature-banner > picture img {
-    object-position: 38% center;
+    object-position: 50% 58%;
+  }
+
+  .home-feature-banner[data-active-product="litter"] > picture img {
+    transform: scale(1.16) translate3d(-11%, -4.5%, 0);
+    object-position: 38% 45%;
+  }
+
+  .home-feature-banner[data-active-product="feeder"] > picture img {
+    transform: scale(1.18) translate3d(10.25%, -2.5%, 0);
+    object-position: 72% 52%;
+  }
+
+  .home-feature-banner[data-active-product="water"] > picture img {
+    transform: scale(1.16) translate3d(-11%, 8.25%, 0);
+    object-position: 30% 78%;
   }
 
   .home-feature-copy {
-    width: min(100%, 620px);
-    justify-self: center;
-    gap: 20px;
-    padding: 66px 20px 32px;
+    width: min(38%, 260px);
+    gap: 12px;
+  }
+
+  .home-feature-banner[data-active-product="litter"] .home-feature-copy {
+    top: 51%;
+    right: 18px;
+    left: auto;
+    transform: translateY(-50%);
+  }
+
+  .home-feature-banner[data-active-product="feeder"] .home-feature-copy {
+    top: 58%;
+    left: 18px;
+    right: auto;
+    transform: translateY(-50%);
+  }
+
+  .home-feature-banner[data-active-product="water"] .home-feature-copy {
+    top: 15%;
+    right: 18px;
+    left: auto;
+    width: min(36%, 244px);
+    transform: none;
+  }
+
+  .home-feature-id {
+    font-size: 0.6rem;
+  }
+
+  .home-feature-banner[data-active-product="litter"] .home-feature-id {
+    top: 27%;
+    left: 39%;
+  }
+
+  .home-feature-banner[data-active-product="feeder"] .home-feature-id {
+    top: 71%;
+    left: 61%;
+  }
+
+  .home-feature-banner[data-active-product="water"] .home-feature-id {
+    top: 72%;
+    left: 27%;
   }
 
   .home-feature-copy h2 {
-    max-width: 12ch;
-    font-size: clamp(2.45rem, 7vw, 3.8rem);
+    max-width: 7ch;
+    font-size: clamp(1.55rem, 5.6vw, 2.5rem);
+  }
+
+  .home-feature-description {
+    max-width: 22ch;
+    font-size: 0.82rem;
+    line-height: 1.38;
+  }
+
+  .home-feature-copy a {
+    min-height: 34px;
+    padding-inline: 12px;
+    font-size: 0.78rem;
+  }
+
+  .home-feature-nav {
+    gap: 6px;
+  }
+
+  .home-feature-nav-button {
+    min-height: 26px;
+    padding-inline: 9px;
+    font-size: 0.7rem;
   }
 
   .home-faq-inner {
@@ -3000,20 +3564,164 @@ h1 span {
   .home-feature-banner {
     min-height: 0;
     aspect-ratio: 4 / 5;
+    align-items: end;
+  }
+
+  .home-feature-banner > picture img {
+    object-position: 50% 54%;
+  }
+
+  .home-feature-banner[data-active-product="litter"] > picture img {
+    transform: scale(1.18) translate3d(-14%, -3%, 0);
+    object-position: 36% 42%;
+  }
+
+  .home-feature-banner[data-active-product="feeder"] > picture img {
+    transform: scale(1.19) translate3d(12%, 2%, 0);
+    object-position: 73% 55%;
+  }
+
+  .home-feature-banner[data-active-product="water"] > picture img {
+    transform: scale(1.17) translate3d(-9%, 10%, 0);
+    object-position: 29% 78%;
   }
 
   .home-feature-copy {
-    padding-top: 58px;
+    width: min(50%, 230px);
+    gap: 8px;
+    padding: 0;
+    justify-items: start;
+    background: transparent;
+  }
+
+  .home-feature-banner[data-active-product="litter"] .home-feature-copy {
+    top: 14%;
+    left: auto;
+    right: 14px;
+    width: min(48%, 220px);
+    transform: none;
+  }
+
+  .home-feature-banner[data-active-product="feeder"] .home-feature-copy {
+    top: 19%;
+    left: 14px;
+    right: auto;
+    width: min(46%, 212px);
+    transform: none;
+  }
+
+  .home-feature-banner[data-active-product="water"] .home-feature-copy {
+    top: 9%;
+    left: auto;
+    right: 14px;
+    width: min(47%, 216px);
+    transform: none;
+  }
+
+  .home-feature-banner[data-active-product="litter"] .home-feature-scene-shade {
+    top: 5%;
+    right: 0;
+    left: auto;
+    width: 58%;
+    height: 42%;
+    background: linear-gradient(90deg, rgba(14, 30, 27, 0) 0%, rgba(14, 30, 27, 0.2) 34%, rgba(14, 30, 27, 0.48) 100%);
+  }
+
+  .home-feature-banner[data-active-product="feeder"] .home-feature-scene-shade {
+    top: 9%;
+    left: 0;
+    right: auto;
+    width: 58%;
+    height: 46%;
+    background: linear-gradient(90deg, rgba(14, 30, 27, 0.48) 0%, rgba(14, 30, 27, 0.18) 66%, rgba(14, 30, 27, 0) 100%);
+  }
+
+  .home-feature-banner[data-active-product="water"] .home-feature-scene-shade {
+    top: 2%;
+    right: 0;
+    left: auto;
+    width: 58%;
+    height: 44%;
+    background: linear-gradient(90deg, rgba(14, 30, 27, 0) 0%, rgba(14, 30, 27, 0.18) 34%, rgba(14, 30, 27, 0.46) 100%);
+  }
+
+  .home-feature-kicker {
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
   }
 
   .home-feature-copy h2 {
-    font-size: 2.65rem;
+    max-width: 8.6ch;
+    font-size: clamp(1.34rem, 5.2vw, 1.76rem);
+    line-height: 1;
+    text-shadow: 0 3px 18px rgba(0, 0, 0, 0.18);
+  }
+
+  .home-feature-id {
+    display: inline-flex;
+    max-width: 46%;
+    gap: 6px;
+    font-size: 0.52rem;
+  }
+
+  .home-feature-id span:first-child {
+    font-size: 0.5rem;
+  }
+
+  .home-feature-banner[data-active-product="litter"] .home-feature-id {
+    top: 58%;
+    left: 41%;
+  }
+
+  .home-feature-banner[data-active-product="feeder"] .home-feature-id {
+    top: 69%;
+    left: 57%;
+  }
+
+  .home-feature-banner[data-active-product="water"] .home-feature-id {
+    top: 61%;
+    left: 22%;
+  }
+
+  .home-feature-description {
+    max-width: 24ch;
+    font-size: 0.68rem;
+    line-height: 1.32;
+    color: rgba(255, 255, 255, 0.9);
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
   }
 
   .home-feature-copy a {
-    min-height: 50px;
-    padding-inline: 20px;
-    font-size: 0.94rem;
+    min-height: 28px;
+    padding-inline: 9px;
+    font-size: 0.66rem;
+    border-color: rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .home-feature-nav {
+    width: min(100%, 220px);
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .home-feature-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .home-feature-nav-button {
+    min-height: 26px;
+    flex: 0 0 auto;
+    padding-inline: 8px;
+    font-size: 0.62rem;
   }
 
   .home-faq {
@@ -3043,8 +3751,9 @@ h1 span {
   }
 
   .product-tile h2 {
-    font-size: clamp(2.8rem, 15vw, 4rem);
-    letter-spacing: -0.025em;
+    max-width: 7.4ch;
+    font-size: clamp(2rem, 10vw, 3.2rem);
+    letter-spacing: 0;
   }
 
   .pet-window,
@@ -3276,8 +3985,8 @@ h1 span {
   }
 
   .product-tile h2 {
-    max-width: 8ch;
-    font-size: clamp(2.8rem, 15vw, 4.4rem);
+    max-width: 7.4ch;
+    font-size: clamp(2rem, 10vw, 3.2rem);
     line-height: 0.92;
   }
 
@@ -3475,6 +4184,16 @@ h1 span {
     grid-row: 1;
     justify-self: end;
     align-self: center;
+    gap: 0;
+  }
+
+  .site-header .brand img {
+    width: 68px;
+    height: 68px;
+  }
+
+  .brand {
+    padding: 4px;
   }
 
   .hero {
@@ -3486,6 +4205,15 @@ h1 span {
   .site-header,
   .site-header.is-solid {
     min-height: 68px;
+  }
+
+  .site-header .brand img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .brand {
+    padding: 3px;
   }
 
   .hero {
@@ -3651,4 +4379,281 @@ h1 span {
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.28),
     0 8px 18px rgba(201, 52, 58, 0.22);
+}
+
+/* Final showcase sizing must follow all legacy responsive rules above. */
+@media (min-width: 561px) {
+  .home-feature-banner[data-active-product] .home-feature-copy {
+    width: min(52%, 560px);
+    gap: 9px;
+  }
+
+  .home-feature-banner[data-active-product="litter"] .home-feature-copy,
+  .home-feature-banner[data-active-product="water"] .home-feature-copy {
+    top: 14%;
+    right: clamp(22px, 3vw, 44px);
+    left: auto;
+    transform: none;
+  }
+
+  .home-feature-banner[data-active-product="feeder"] .home-feature-copy {
+    top: 14%;
+    left: clamp(22px, 3vw, 44px);
+    right: auto;
+    transform: none;
+  }
+
+  .home-feature-copy h2,
+  .home-feature-description,
+  .home-feature-copy a {
+    max-width: none;
+    white-space: nowrap;
+  }
+
+  .home-feature-copy h2 {
+    font-size: clamp(1.35rem, 2.2vw, 2.35rem);
+    line-height: 1;
+  }
+
+  .home-feature-description {
+    font-size: clamp(0.72rem, 1vw, 0.88rem);
+  }
+}
+
+.home-feature-banner > .home-feature-shot[data-feature-shot="litter"]::after {
+  -webkit-mask-image: radial-gradient(ellipse 18% 40% at 35% 46%, transparent 0 55%, rgba(0, 0, 0, 0.14) 72%, #000 100%);
+  mask-image: radial-gradient(ellipse 18% 40% at 35% 46%, transparent 0 55%, rgba(0, 0, 0, 0.14) 72%, #000 100%);
+}
+
+.home-feature-banner > .home-feature-shot[data-feature-shot="feeder"]::after {
+  -webkit-mask-image: radial-gradient(ellipse 17% 43% at 66% 58%, transparent 0 55%, rgba(0, 0, 0, 0.14) 72%, #000 100%);
+  mask-image: radial-gradient(ellipse 17% 43% at 66% 58%, transparent 0 55%, rgba(0, 0, 0, 0.14) 72%, #000 100%);
+}
+
+.home-feature-banner > .home-feature-shot[data-feature-shot="water"]::after {
+  -webkit-mask-image: radial-gradient(ellipse 15% 31% at 27% 76%, transparent 0 55%, rgba(0, 0, 0, 0.14) 72%, #000 100%);
+  mask-image: radial-gradient(ellipse 15% 31% at 27% 76%, transparent 0 55%, rgba(0, 0, 0, 0.14) 72%, #000 100%);
+}
+
+@media (max-width: 900px) {
+  .home-feature-banner > .home-feature-shot[data-feature-shot="litter"]::after {
+    -webkit-mask-image: radial-gradient(ellipse 20% 38% at 49% 40%, transparent 0 55%, rgba(0, 0, 0, 0.14) 72%, #000 100%);
+    mask-image: radial-gradient(ellipse 20% 38% at 49% 40%, transparent 0 55%, rgba(0, 0, 0, 0.14) 72%, #000 100%);
+  }
+
+  .home-feature-banner > .home-feature-shot[data-feature-shot="feeder"]::after {
+    -webkit-mask-image: radial-gradient(ellipse 18% 43% at 82% 55%, transparent 0 55%, rgba(0, 0, 0, 0.14) 72%, #000 100%);
+    mask-image: radial-gradient(ellipse 18% 43% at 82% 55%, transparent 0 55%, rgba(0, 0, 0, 0.14) 72%, #000 100%);
+  }
+
+  .home-feature-banner > .home-feature-shot[data-feature-shot="water"]::after {
+    -webkit-mask-image: radial-gradient(ellipse 17% 31% at 35% 73%, transparent 0 55%, rgba(0, 0, 0, 0.14) 72%, #000 100%);
+    mask-image: radial-gradient(ellipse 17% 31% at 35% 73%, transparent 0 55%, rgba(0, 0, 0, 0.14) 72%, #000 100%);
+  }
+}
+
+.home-feature-banner > .home-feature-shot::after {
+  background: rgba(7, 16, 14, 0.6);
+}
+
+.home-feature-banner > .home-feature-shot.is-active img {
+  filter: brightness(1.06) saturate(1.02);
+}
+
+.brand::before {
+  content: "";
+  position: absolute;
+  inset: -4% -16% 2%;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.62) 36%, rgba(255, 255, 255, 0.22) 64%, transparent 88%);
+  filter: blur(13px);
+  opacity: 0.9;
+}
+
+.brand img {
+  z-index: 1;
+}
+
+.brand::after {
+  z-index: 2;
+}
+
+@media (max-width: 560px) {
+  .site-header .brand img {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+@media (max-width: 420px) {
+  .site-header .brand img {
+    width: 66px;
+    height: 66px;
+  }
+}
+
+/* Simplified two-line spotlight typography. */
+.home-feature-copy {
+  gap: clamp(18px, 2vw, 26px);
+}
+
+.home-feature-copy h2 {
+  max-width: none;
+  font-size: clamp(2.35rem, 4vw, 4.75rem);
+  line-height: 1.02;
+  letter-spacing: 0;
+}
+
+.home-feature-title-line {
+  display: block;
+  white-space: nowrap;
+}
+
+.home-feature-title-accent {
+  margin-bottom: 0.12em;
+  color: #ff746b;
+}
+
+.home-feature-copy a {
+  min-height: 38px;
+  padding-inline: 16px;
+}
+
+@media (max-width: 560px) {
+  .home-feature-copy {
+    gap: 16px;
+  }
+
+  .home-feature-copy h2 {
+    max-width: none;
+    font-size: clamp(2rem, 9vw, 2.85rem);
+    line-height: 1.02;
+  }
+}
+
+/* Product-specific color system and unobstructed category labels. */
+.home-feature-banner[data-active-product="feeder"] .home-feature-title-accent,
+#feeders h2 span:first-child {
+  color: #ffad55;
+}
+
+.home-feature-banner[data-active-product="water"] .home-feature-title-accent,
+#hydration h2 span:first-child {
+  color: #a8edf3;
+}
+
+.home-feature-banner[data-active-product="litter"] .home-feature-title-accent,
+#litter h2 span:first-child {
+  color: #b7f2d4;
+}
+
+.product-tile {
+  align-content: end;
+}
+
+.product-tile::before,
+.product-tile:hover::before {
+  inset: auto auto 0 0;
+  width: 76%;
+  height: 58%;
+  background: linear-gradient(32deg, rgba(48, 30, 24, 0.78) 0%, rgba(48, 30, 24, 0.48) 38%, rgba(48, 30, 24, 0.12) 68%, transparent 86%);
+}
+
+.product-tile h2 {
+  max-width: none;
+  gap: 0.04em;
+  font-size: clamp(2.2rem, 4.35vw, 4.15rem);
+  line-height: 0.88;
+  text-transform: uppercase;
+}
+
+#feeders > img {
+  object-position: 24% center;
+}
+
+#hydration > img {
+  object-position: 22% center;
+}
+
+#litter > img {
+  object-position: 22% 54%;
+}
+
+@media (max-width: 560px) {
+  .product-tile::before,
+  .product-tile:hover::before {
+    width: 72%;
+    height: 52%;
+  }
+
+  .product-tile h2 {
+    font-size: clamp(2.35rem, 11vw, 3.25rem);
+  }
+}
+
+/* Keep each category as one continuous photograph with a quiet in-image label. */
+.product-tile {
+  min-height: 380px;
+  padding: 0 clamp(24px, 3vw, 36px) clamp(26px, 3vw, 34px);
+  background: #7f6858;
+}
+
+.product-tile.accent {
+  background: #7f6858;
+}
+
+#feeders > img,
+#hydration > img,
+#litter > img {
+  height: 100%;
+  transform: scale(1.01);
+}
+
+#feeders > img {
+  object-position: 62% center;
+}
+
+#hydration > img {
+  object-position: 58% center;
+}
+
+#litter > img {
+  object-position: 64% 54%;
+}
+
+.product-tile::before,
+.product-tile:hover::before {
+  width: 70%;
+  height: 42%;
+  background: linear-gradient(28deg, rgba(39, 25, 21, 0.58) 0%, rgba(39, 25, 21, 0.32) 36%, rgba(39, 25, 21, 0.1) 60%, transparent 82%);
+}
+
+.product-tile h2 {
+  gap: 0.08em;
+  font-size: clamp(1.45rem, 2.15vw, 2rem);
+  line-height: 0.9;
+}
+
+#feeders:hover > img,
+#hydration:hover > img,
+#litter:hover > img {
+  transform: scale(1.01);
+}
+
+@media (max-width: 560px) {
+  .product-tile {
+    padding: 0 24px 26px;
+  }
+
+  .product-tile::before,
+  .product-tile:hover::before {
+    width: 74%;
+    height: 40%;
+  }
+
+  .product-tile h2 {
+    font-size: clamp(1.55rem, 7vw, 2.1rem);
+  }
 }

@@ -4,6 +4,19 @@ const heroPhotos = [...document.querySelectorAll(".hero-photo")];
 const heroDots = [...document.querySelectorAll("[data-slide-dot]")];
 const heroContent = document.querySelector(".hero-content");
 const heroTitle = document.querySelector("#hero-title");
+const featureShowcase = document.querySelector("[data-feature-showcase]");
+const featureCopy = featureShowcase?.querySelector(".home-feature-copy");
+const featureTitle = featureShowcase?.querySelector("#home-feature-title");
+const featureTitleAccent = featureShowcase?.querySelector("[data-feature-title-accent]");
+const featureTitleRest = featureShowcase?.querySelector("[data-feature-title-rest]");
+const featureDescription = featureShowcase?.querySelector(".home-feature-description");
+const featureCta = featureShowcase?.querySelector("[data-feature-cta]");
+const featureIdNumber = featureShowcase?.querySelector("[data-feature-id-number]");
+const featureIdName = featureShowcase?.querySelector("[data-feature-id-name]");
+const featureCopyNumber = featureShowcase?.querySelector("[data-feature-copy-number]");
+const featureProductMeta = featureShowcase?.querySelector(".home-feature-product-meta");
+const featureShots = [...(featureShowcase?.querySelectorAll("[data-feature-shot]") || [])];
+const featureControls = [...document.querySelectorAll("[data-feature-product]")];
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const saveData = navigator.connection?.saveData === true;
 
@@ -39,14 +52,52 @@ const slides = [
   },
 ];
 
+const featureProducts = [
+  {
+    id: "litter",
+    number: "02",
+    name: "Smart Litter Box",
+    titleAccent: "Cleaner litter,",
+    titleRest: "less effort.",
+    description: "A calmer, cleaner routine for shared spaces.",
+    ctaLabel: "Explore Litter Box",
+    ctaHref: "/shop/litter-box/",
+  },
+  {
+    id: "feeder",
+    number: "01",
+    name: "Smart Feeder",
+    titleAccent: "Meals ready,",
+    titleRest: "right on time.",
+    description: "Quiet portions, ready on schedule.",
+    ctaLabel: "Explore Smart Feeder",
+    ctaHref: "/shop/smart-feeder/",
+  },
+  {
+    id: "water",
+    number: "03",
+    name: "Water Fountain",
+    titleAccent: "Fresh water,",
+    titleRest: "always ready.",
+    description: "Filtered flow for everyday hydration.",
+    ctaLabel: "Explore Water Fountain",
+    ctaHref: "/shop/water-fountain/",
+  },
+];
+
 let activeSlide = 0;
+let activeFeatureIndex = 0;
 let slideTimer;
+let featureTimer;
 let textTimer;
+let featureTextTimer;
 let leaveTimer;
 
 const IMAGE_FADE_MS = 850;
 const TEXT_SWAP_DELAY = 425;
 const ROTATION_INTERVAL = 9200;
+const FEATURE_ROTATION_INTERVAL = 6400;
+const FEATURE_TEXT_SWAP_DELAY = 620;
 
 const hydratePhoto = (photo) => {
   if (!photo || photo.dataset.hydrated === "true") return;
@@ -76,6 +127,22 @@ const updateHeroText = (slide) => {
   if (heroTitle) {
     heroTitle.dataset.tone = slide.tone;
     heroTitle.innerHTML = `<span class="hero-accent">${slide.accent}</span><span>${slide.rest}</span>`;
+  }
+};
+
+const updateFeatureContent = (product) => {
+  if (featureIdNumber) featureIdNumber.textContent = product.number;
+  if (featureIdName) featureIdName.textContent = product.name;
+  if (featureCopyNumber) featureCopyNumber.textContent = product.number;
+  if (featureProductMeta) {
+    featureProductMeta.lastChild.textContent = ` ${product.name}`;
+  }
+  if (featureTitleAccent) featureTitleAccent.textContent = product.titleAccent;
+  if (featureTitleRest) featureTitleRest.textContent = product.titleRest;
+  if (featureDescription) featureDescription.textContent = product.description;
+  if (featureCta) {
+    featureCta.textContent = product.ctaLabel;
+    featureCta.href = product.ctaHref;
   }
 };
 
@@ -146,6 +213,47 @@ const startHeroRotation = () => {
   }, ROTATION_INTERVAL);
 };
 
+const showFeatureProduct = (index, options = {}) => {
+  if (!featureShowcase) return;
+
+  const { syncText = true } = options;
+  activeFeatureIndex = (index + featureProducts.length) % featureProducts.length;
+  const product = featureProducts[activeFeatureIndex];
+
+  featureShowcase.dataset.activeProduct = product.id;
+  featureShots.forEach((shot) => {
+    shot.classList.toggle("is-active", shot.dataset.featureShot === product.id);
+  });
+  featureControls.forEach((control) => {
+    const isActive = control.dataset.featureProduct === product.id;
+    control.setAttribute("aria-pressed", isActive ? "true" : "false");
+  });
+
+  window.clearTimeout(featureTextTimer);
+
+  if (!syncText || !featureCopy) {
+    updateFeatureContent(product);
+    return;
+  }
+
+  featureShowcase.classList.add("is-feature-updating");
+  featureCopy.classList.add("is-updating");
+  featureTextTimer = window.setTimeout(() => {
+    updateFeatureContent(product);
+    featureShowcase.classList.remove("is-feature-updating");
+    featureCopy.classList.remove("is-updating");
+  }, FEATURE_TEXT_SWAP_DELAY);
+};
+
+const startFeatureRotation = () => {
+  window.clearInterval(featureTimer);
+  if (!featureShowcase || reducedMotion.matches || saveData) return;
+
+  featureTimer = window.setInterval(() => {
+    showFeatureProduct(activeFeatureIndex + 1);
+  }, FEATURE_ROTATION_INTERVAL);
+};
+
 let scrollFrame;
 window.addEventListener(
   "scroll",
@@ -170,14 +278,27 @@ heroDots.forEach((dot) => {
   });
 });
 
+featureControls.forEach((control) => {
+  control.addEventListener("click", () => {
+    const nextIndex = featureProducts.findIndex((product) => product.id === control.dataset.featureProduct);
+    if (nextIndex === -1) return;
+    showFeatureProduct(nextIndex);
+    startFeatureRotation();
+  });
+});
+
 showSlide(0, { syncText: false });
 startHeroRotation();
+showFeatureProduct(0, { syncText: false });
+startFeatureRotation();
 
 document.addEventListener("visibilitychange", () => {
   if (document.hidden) {
     window.clearInterval(slideTimer);
+    window.clearInterval(featureTimer);
   } else {
     startHeroRotation();
+    startFeatureRotation();
   }
 });
 
