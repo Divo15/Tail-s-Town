@@ -97,7 +97,7 @@ const IMAGE_FADE_MS = 850;
 const TEXT_SWAP_DELAY = 425;
 const ROTATION_INTERVAL = 9200;
 const FEATURE_ROTATION_INTERVAL = 6400;
-const FEATURE_TEXT_SWAP_DELAY = 620;
+const FEATURE_TEXT_SWAP_DELAY = 500;
 
 const hydratePhoto = (photo) => {
   if (!photo || photo.dataset.hydrated === "true") return;
@@ -220,7 +220,6 @@ const showFeatureProduct = (index, options = {}) => {
   activeFeatureIndex = (index + featureProducts.length) % featureProducts.length;
   const product = featureProducts[activeFeatureIndex];
 
-  featureShowcase.dataset.activeProduct = product.id;
   featureShots.forEach((shot) => {
     shot.classList.toggle("is-active", shot.dataset.featureShot === product.id);
   });
@@ -232,6 +231,7 @@ const showFeatureProduct = (index, options = {}) => {
   window.clearTimeout(featureTextTimer);
 
   if (!syncText || !featureCopy) {
+    featureShowcase.dataset.activeProduct = product.id;
     updateFeatureContent(product);
     return;
   }
@@ -239,6 +239,7 @@ const showFeatureProduct = (index, options = {}) => {
   featureShowcase.classList.add("is-feature-updating");
   featureCopy.classList.add("is-updating");
   featureTextTimer = window.setTimeout(() => {
+    featureShowcase.dataset.activeProduct = product.id;
     updateFeatureContent(product);
     featureShowcase.classList.remove("is-feature-updating");
     featureCopy.classList.remove("is-updating");

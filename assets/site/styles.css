@@ -1177,9 +1177,7 @@ h1 span {
   letter-spacing: -0.02em;
   text-wrap: balance;
   text-shadow: 0 3px 20px rgba(0, 0, 0, 0.24);
-  transition:
-    opacity 520ms ease,
-    transform 520ms ease;
+  transition: opacity 380ms ease-in-out;
 }
 
 .home-feature-description {
@@ -1211,7 +1209,7 @@ h1 span {
     color 180ms ease,
     background-color 180ms ease,
     transform 180ms cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 520ms ease,
+    opacity 380ms ease-in-out,
     border-color 180ms ease;
 }
 
@@ -1274,7 +1272,6 @@ h1 span {
 .home-feature-copy.is-updating [data-feature-cta],
 .home-feature-copy.is-updating .home-feature-nav {
   opacity: 0;
-  transform: translateY(12px);
 }
 
 .home-feature-banner.is-feature-updating .home-feature-id {
@@ -4655,5 +4652,161 @@ h1 span {
 
   .product-tile h2 {
     font-size: clamp(1.55rem, 7vw, 2.1rem);
+  }
+}
+
+/* Natural product photography: labels sit on the image without a dark panel. */
+.product-tile::before,
+.product-tile:hover::before {
+  background: none;
+}
+
+.product-tile h2 {
+  text-shadow: 0 2px 10px rgba(51, 34, 27, 0.16);
+}
+
+/* Portrait showcase composition is intentionally independent from desktop. */
+@media (max-width: 560px), (max-width: 900px) and (orientation: portrait) {
+  .home-feature-banner {
+    width: 100%;
+    max-width: 100%;
+    height: clamp(540px, 145vw, 680px);
+    min-height: 0;
+    aspect-ratio: auto;
+    background: #b79c86;
+  }
+
+  .home-feature-banner > .home-feature-shot {
+    inset: 0;
+  }
+
+  .home-feature-banner > .home-feature-shot img,
+  .home-feature-banner[data-active-product="litter"] > .home-feature-shot img,
+  .home-feature-banner[data-active-product="feeder"] > .home-feature-shot img,
+  .home-feature-banner[data-active-product="water"] > .home-feature-shot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: none;
+    filter: none;
+  }
+
+  .home-feature-banner > .home-feature-shot[data-feature-shot="litter"] img {
+    object-position: 52% 50%;
+  }
+
+  .home-feature-banner > .home-feature-shot[data-feature-shot="feeder"] img {
+    object-position: 76% 54%;
+  }
+
+  .home-feature-banner > .home-feature-shot[data-feature-shot="water"] img {
+    object-position: 24% 68%;
+  }
+
+  .home-feature-banner > .home-feature-shot {
+    opacity: 1;
+    transition: none;
+    will-change: auto;
+  }
+
+  .home-feature-banner > .home-feature-shot:not([data-feature-shot="litter"]) img {
+    visibility: hidden;
+  }
+
+  .home-feature-banner > .home-feature-shot::after {
+    display: block;
+    background: rgba(8, 18, 16, 0.47);
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+    will-change: opacity;
+  }
+
+  .home-feature-banner > .home-feature-shot.is-active::after {
+    opacity: 1;
+  }
+
+  .home-feature-banner > .home-feature-shot[data-feature-shot="litter"]::after {
+    -webkit-mask-image: radial-gradient(ellipse 35% 35% at 47% 47%, transparent 0 38%, rgba(0, 0, 0, 0.06) 55%, rgba(0, 0, 0, 0.3) 74%, #000 100%);
+    mask-image: radial-gradient(ellipse 35% 35% at 47% 47%, transparent 0 38%, rgba(0, 0, 0, 0.06) 55%, rgba(0, 0, 0, 0.3) 74%, #000 100%);
+    -webkit-mask-composite: initial;
+    mask-composite: initial;
+  }
+
+  .home-feature-banner > .home-feature-shot[data-feature-shot="feeder"]::after {
+    -webkit-mask-image: radial-gradient(ellipse 36% 38% at 78% 60%, transparent 0 38%, rgba(0, 0, 0, 0.06) 55%, rgba(0, 0, 0, 0.3) 74%, #000 100%);
+    mask-image: radial-gradient(ellipse 36% 38% at 78% 60%, transparent 0 38%, rgba(0, 0, 0, 0.06) 55%, rgba(0, 0, 0, 0.3) 74%, #000 100%);
+    -webkit-mask-composite: initial;
+    mask-composite: initial;
+  }
+
+  .home-feature-banner > .home-feature-shot[data-feature-shot="water"]::after {
+    -webkit-mask-image: radial-gradient(ellipse 32% 32% at 35% 70%, transparent 0 38%, rgba(0, 0, 0, 0.06) 55%, rgba(0, 0, 0, 0.3) 74%, #000 100%);
+    mask-image: radial-gradient(ellipse 32% 32% at 35% 70%, transparent 0 38%, rgba(0, 0, 0, 0.06) 55%, rgba(0, 0, 0, 0.3) 74%, #000 100%);
+    -webkit-mask-composite: initial;
+    mask-composite: initial;
+  }
+
+  .home-feature-scene-shade {
+    display: none;
+  }
+
+  .home-feature-banner[data-active-product] .home-feature-copy {
+    top: 7%;
+    bottom: auto;
+    width: min(62%, 248px);
+    gap: 13px;
+    padding: 0;
+    transform: none;
+    background: transparent;
+    transition: none;
+  }
+
+  .home-feature-banner[data-active-product="litter"] .home-feature-copy,
+  .home-feature-banner[data-active-product="water"] .home-feature-copy {
+    right: 18px;
+    left: auto;
+  }
+
+  .home-feature-banner[data-active-product="feeder"] .home-feature-copy {
+    right: auto;
+    left: 18px;
+  }
+
+  .home-feature-copy h2 {
+    max-width: none;
+    font-size: clamp(1.8rem, 8vw, 2.5rem);
+    line-height: 1.02;
+    text-shadow: 0 2px 14px rgba(22, 18, 16, 0.22);
+  }
+
+  .home-feature-title-line {
+    white-space: normal;
+  }
+
+  .home-feature-copy a {
+    min-height: 36px;
+    max-width: 100%;
+    padding-inline: 14px;
+    border-color: rgba(255, 255, 255, 0.48);
+    background: rgba(53, 42, 36, 0.12);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    font-size: 0.78rem;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 380px) {
+  .home-feature-banner {
+    height: clamp(510px, 145vw, 550px);
+  }
+
+  .home-feature-banner[data-active-product] .home-feature-copy {
+    width: min(66%, 224px);
+    top: 6%;
+  }
+
+  .home-feature-copy h2 {
+    font-size: clamp(1.65rem, 8vw, 2rem);
   }
 }

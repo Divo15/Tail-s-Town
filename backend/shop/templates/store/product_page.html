@@ -49,7 +49,7 @@
           <a class="auth-link auth-link-secondary" href="{% url 'customer_account:logout' %}">Sign out</a>
         {% else %}
           <a class="auth-prompt" href="{% url 'customer_account:login' %}">Don't have an account?</a>
-          <a class="auth-link auth-link-secondary" href="{% url 'customer_account:register' %}">Sign Up</a>
+          <a class="auth-link auth-link-secondary" href="{% url 'customer_account:login' %}">Sign in</a>
         {% endif %}
       </div>
     </header>
