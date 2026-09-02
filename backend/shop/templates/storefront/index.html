@@ -303,7 +303,7 @@
           <a href="{% url 'about_page_root' %}">About Us</a>
           <a href="{% url 'blog_page_root' %}">Blog</a>
           <a href="{% url 'customer_account:dashboard' %}">Profile</a>
-          <a href="#footer">Privacy Policy</a>
+          <a href="{% url 'privacy_page_root' %}">Privacy Policy</a>
           <a href="{% url 'terms_page_root' %}">Terms of Service</a>
         </div>
 
@@ -317,7 +317,7 @@
           <a href="{% url 'warranty_page_root' %}">Warranty Policy</a>
           <a href="{% url 'subscription_page_root' %}">Subscription Policy</a>
           <a href="{% url 'price_match_page_root' %}">Price Match Policy</a>
-          <a href="#footer">Return &amp; Refund Policy</a>
+          <a href="{% url 'return_refund_page_root' %}">Return &amp; Refund Policy</a>
           <a href="#footer">How to Transition Litter Box</a>
         </div>
 
@@ -370,7 +370,7 @@
     </footer>
 
     {% include "storefront/partials/support_widget.html" %}
-    <script src="{% static 'site/script.js' %}"></script>
+    <script src="{% static 'site/script.js' %}?v=20260902-4s"></script>
     <script src="{% static 'site/support-widget.js' %}"></script>
     {% include "storefront/partials/vercel_analytics.html" %}
   </body>

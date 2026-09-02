@@ -12,7 +12,7 @@ from .account import (
 )
 from .cart import cart_add, cart_detail, cart_remove, cart_update
 from .checkout import checkout, order_success
-from .storefront import about_page, ad_bundle_page, app_service_page, blog_page, bundle_page, faq_page, home, price_match_page, shipping_page, store_product_detail, store_product_page, subscription_page, terms_page, track_order_page, warranty_page
+from .storefront import about_page, ad_bundle_page, app_service_page, blog_page, bundle_page, faq_page, home, price_match_page, privacy_page, return_refund_page, shipping_page, store_product_detail, store_product_page, subscription_page, terms_page, track_order_page, warranty_page
 
 __all__ = [
     "account_dashboard",
@@ -22,6 +22,8 @@ __all__ = [
     "shipping_page",
     "subscription_page",
     "price_match_page",
+    "privacy_page",
+    "return_refund_page",
     "warranty_page",
     "terms_page",
     "account_login",

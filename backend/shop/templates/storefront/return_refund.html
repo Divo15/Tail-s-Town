@@ -1,0 +1,63 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Return &amp; Refund Policy | Tail's Town</title>
+    <link rel="stylesheet" href="{% static 'site/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'site/support-widget.css' %}" />
+  </head>
+  <body class="policy-page-shell privacy-page-shell return-policy-page-shell">
+    {% include "storefront/partials/site_header.html" %}
+
+    <main class="policy-page" aria-labelledby="return-refund-title">
+      <section class="policy-intro privacy-intro return-policy-intro" style="--return-hero-image: url('{% static 'hero/return-refund-support.webp' %}')">
+        <p class="eyebrow">Support</p>
+        <h1 id="return-refund-title">Return &amp; Refund Policy</h1>
+        <p class="policy-lede">A straightforward guide to return requests, product conditions, and refund steps for Tail's Town orders.</p>
+        <p class="policy-date">Last updated: {{ last_updated|date:"F j, Y" }}</p>
+      </section>
+
+      <details class="privacy-mobile-index">
+        <summary>On this page</summary>
+        <nav aria-label="Return and refund policy sections">
+          <a href="#order-cancellation">01 Order Cancellation</a><a href="#return-eligibility">02 Return Eligibility</a>
+          <a href="#request-return">03 How to Request a Return</a><a href="#return-conditions">04 Return Conditions</a>
+          <a href="#non-returnable">05 Non-Returnable Items</a><a href="#return-shipping">06 Return Shipping &amp; Costs</a>
+          <a href="#damaged-products">07 Damaged or Defective Products</a><a href="#refund-processing">08 Refund Processing</a>
+          <a href="#third-party-purchases">09 Third-Party Purchases</a><a href="#contact">10 Contact Us</a>
+        </nav>
+      </details>
+
+      <div class="policy-layout privacy-layout">
+        <aside class="policy-index privacy-desktop-index" aria-label="On this page">
+          <p>On this page</p>
+          <a href="#order-cancellation">Order Cancellation</a><a href="#return-eligibility">Return Eligibility</a>
+          <a href="#request-return">How to Request a Return</a><a href="#return-conditions">Return Conditions</a>
+          <a href="#non-returnable">Non-Returnable Items</a><a href="#return-shipping">Return Shipping &amp; Costs</a>
+          <a href="#damaged-products">Damaged or Defective Products</a><a href="#refund-processing">Refund Processing</a>
+          <a href="#third-party-purchases">Third-Party Purchases</a><a href="#contact">Contact Us</a>
+        </aside>
+
+        <article class="policy-copy privacy-copy">
+          <section id="order-cancellation"><span class="policy-section-label">01</span><h2>Order Cancellation</h2><p>If you need to cancel an order, contact Tail's Town support as soon as possible. We will check whether the order can still be stopped before it enters fulfilment or is handed to the carrier.</p><p>A cancellation is not guaranteed once processing has begun. If the order has already shipped, it cannot be cancelled and must follow the approved return process described below.</p></section>
+          <section id="return-eligibility"><span class="policy-section-label">02</span><h2>Return Eligibility</h2><p>Eligible products purchased directly from the Tail's Town website may be returned within [RETURN WINDOW] from delivery. To be considered, the return must meet the conditions in this policy and be accompanied by valid proof of purchase.</p><p>Eligibility depends on the product's condition, how it was used, whether all included parts are present, and whether the item is hygiene-sensitive. A return request does not become approved until Tail's Town confirms it in writing.</p></section>
+          <section id="request-return"><span class="policy-section-label">03</span><h2>How to Request a Return</h2><p>To request a return:</p><ul><li>Contact Tail's Town support within the applicable return window.</li><li>Provide your order number, product name, reason for the return, and any other information reasonably needed to review the request.</li><li>Wait for written approval and the correct packing and shipping instructions.</li><li>Ship only the approved product to the return address provided in those instructions.</li></ul><p>Do not send a product back before receiving return approval and instructions. An unapproved return or a package sent to the wrong address may be delayed, refused, or returned to the sender.</p></section>
+          <section id="return-conditions"><span class="policy-section-label">04</span><h2>Return Conditions</h2><p>Unless the return concerns a verified damaged, defective, or incorrect product, returned items should be in their original condition and include all accessories, components, manuals, and packaging where applicable.</p><p>Because Tail's Town products are used in pet-care environments, products must be emptied, cleaned, and reasonably sanitized before they are shipped. Items that arrive with pet food, litter, waste, liquid, excessive hair, odour, or other unsanitary material may be unsafe to inspect and may not qualify for a return.</p><p>Pack the product carefully and follow the instructions provided with the approval. Tail's Town may assess the returned product and its included components before confirming refund eligibility.</p></section>
+          <section id="non-returnable"><span class="policy-section-label">05</span><h2>Non-Returnable Items</h2><p>For health, hygiene, and safety reasons, opened, used, or unsealed hygiene-sensitive consumables and accessories may not be returnable. These items may be eligible only when unused, unopened, and in their original sealed packaging, where applicable.</p><p>Other items may be ineligible when they were not purchased directly from Tail's Town, fall outside [RETURN WINDOW], are missing essential components, have been altered or misused, or cannot be handled safely due to their condition. This does not limit any rights that cannot be excluded under applicable law.</p></section>
+          <section id="return-shipping"><span class="policy-section-label">06</span><h2>Return Shipping &amp; Costs</h2><p>For an eligible return based on preference or another reason not caused by Tail's Town, the customer is responsible for arranging and paying for return shipping in accordance with the approved instructions.</p><p>If Tail's Town verifies that a product was damaged in delivery, defective, or incorrect, we will provide the appropriate return-shipping instructions and cover reasonable approved return-shipping costs. Do not purchase expedited services or send a collect-on-delivery package unless support has approved that method in writing.</p><p>Keep your shipping receipt and tracking information until the return is complete. Tail's Town cannot confirm receipt of a return that cannot be tracked or was not sent according to the provided instructions.</p></section>
+          <section id="damaged-products"><span class="policy-section-label">07</span><h2>Damaged or Defective Products</h2><p>Contact Tail's Town support promptly if your delivery is damaged, contains the wrong product, is missing expected components, appears defective, or develops a product malfunction.</p><p>To understand and resolve the issue, we may reasonably request:</p><ul><li>Your order number, product name, and product or device identifier.</li><li>A description of the problem and when it occurred.</li><li>Clear photos or a short video showing damage, an incorrect item, or the reported behaviour.</li><li>Relevant app, diagnostic, or troubleshooting information.</li><li>Confirmation of reasonable troubleshooting steps provided by support.</li></ul><p>Once the issue has been reviewed, we will explain the available next step. This may include further troubleshooting, replacement support, or an approved return and refund, depending on the circumstances and applicable warranty rights.</p></section>
+          <section id="refund-processing"><span class="policy-section-label">08</span><h2>Refund Processing</h2><p>After an approved return is received, Tail's Town will inspect the product and confirm whether the return meets this policy. If approved, the refund will be issued to the original payment method within [REFUND PROCESSING TIME].</p><p>Your bank, card issuer, or payment provider may need additional time to post the refund after Tail's Town has issued it. We will provide confirmation when the refund has been processed.</p></section>
+          <section id="third-party-purchases"><span class="policy-section-label">09</span><h2>Third-Party Purchases</h2><p>If you purchased a Tail's Town product from another retailer, distributor, marketplace, or third-party seller, the purchase may be governed by that seller's return and refund policy. Contact the original seller first for return authorization and refund assistance.</p><p>Tail's Town may still be able to help with product information or eligible warranty support, but we cannot issue a refund for a payment collected by another seller.</p></section>
+          <section id="contact"><span class="policy-section-label">10</span><h2>Contact Us</h2><div class="return-support"><h3>Need help with a return?</h3><p>For cancellations, returns, refunds, damaged products or product issues, our support team is here to help.</p><p class="return-support-email">Email us at:<br /><a href="mailto:{{ support_email }}">{{ support_email }}</a></p><p>When contacting us, please include:</p><ul><li>Your name</li><li>Order number</li><li>Product name</li><li>A short description of the issue</li></ul><a class="return-support-cta" href="mailto:{{ support_email }}">Contact Support</a></div></section>
+        </article>
+      </div>
+    </main>
+
+    {% include "storefront/partials/site_footer.html" %}
+    {% include "storefront/partials/support_widget.html" %}
+    <script src="{% static 'site/support-widget.js' %}"></script>
+    {% include "storefront/partials/vercel_analytics.html" %}
+  </body>
+</html>

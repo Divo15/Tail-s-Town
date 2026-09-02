@@ -1,4 +1,6 @@
 from django.core.exceptions import ValidationError
+from datetime import date
+
 from django.core.validators import validate_email
 from django.db import DatabaseError, ProgrammingError
 from django.http import Http404
@@ -11,6 +13,16 @@ from ..services.bundle_sheets import (
     send_bundle_enquiry_to_sheet,
     send_bundle_enquiry_values_to_sheet,
 )
+
+
+POLICY_LAST_UPDATED = {
+    "privacy": date(2026, 9, 1),
+    "returns": date(2026, 9, 1),
+    "shipping": date(2026, 9, 1),
+    "subscription": date(2026, 9, 1),
+    "price_match": date(2026, 9, 1),
+    "warranty": date(2026, 9, 1),
+}
 
 
 PRODUCT_PAGE_DATA = {
@@ -365,6 +377,14 @@ def terms_page(request):
     return render(request, "storefront/terms.html")
 
 
+def privacy_page(request):
+    return render(request, "storefront/privacy.html", {"last_updated": POLICY_LAST_UPDATED["privacy"]})
+
+
+def return_refund_page(request):
+    return render(request, "storefront/return_refund.html", {"last_updated": POLICY_LAST_UPDATED["returns"]})
+
+
 def blog_page(request):
     return render(request, "storefront/blog.html")
 
@@ -374,19 +394,19 @@ def app_service_page(request):
 
 
 def shipping_page(request):
-    return render(request, "storefront/shipping.html")
+    return render(request, "storefront/shipping.html", {"last_updated": POLICY_LAST_UPDATED["shipping"]})
 
 
 def subscription_page(request):
-    return render(request, "storefront/subscription.html")
+    return render(request, "storefront/subscription.html", {"last_updated": POLICY_LAST_UPDATED["subscription"]})
 
 
 def price_match_page(request):
-    return render(request, "storefront/price_match.html")
+    return render(request, "storefront/price_match.html", {"last_updated": POLICY_LAST_UPDATED["price_match"]})
 
 
 def warranty_page(request):
-    return render(request, "storefront/warranty.html")
+    return render(request, "storefront/warranty.html", {"last_updated": POLICY_LAST_UPDATED["warranty"]})
 
 
 def track_order_page(request):

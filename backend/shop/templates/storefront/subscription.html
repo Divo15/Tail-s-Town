@@ -9,17 +9,14 @@
     <link rel="stylesheet" href="{% static 'site/support-widget.css' %}" />
   </head>
   <body class="policy-page-shell subscription-page-shell">
-    <header class="policy-header">
-      <a class="about-brand" href="/" aria-label="Tail's Town home"><img src="{% static 'product-pages/assets/tails-town-header-logo-full.webp' %}" alt="Tail's Town" /></a>
-      <a class="about-back-link" href="/">Back to shop <span aria-hidden="true">&rarr;</span></a>
-    </header>
+    {% include "storefront/partials/site_header.html" %}
 
     <main class="policy-page" aria-labelledby="subscription-title">
       <section class="policy-intro subscription-intro">
         <p class="eyebrow">A flexible way to stay stocked</p>
         <h1 id="subscription-title">Subscription Policy</h1>
         <p class="policy-lede">If recurring delivery is available for a Tail's Town product, this page explains what you agree to, how to manage it, and when changes take effect.</p>
-        <p class="policy-date">Last updated: {% now "F j, Y" %}</p>
+        <p class="policy-date">Last updated: {{ last_updated|date:"F j, Y" }}</p>
       </section>
 
       <div class="policy-highlight subscription-highlight" aria-label="Subscription at a glance">
@@ -50,7 +47,7 @@
       </div>
     </main>
 
-    <footer class="about-footer" id="footer"><span>&copy; {% now "Y" %} Tail's Town</span><a href="/">Return to the collection <span aria-hidden="true">&rarr;</span></a></footer>
+    {% include "storefront/partials/site_footer.html" %}
     {% include "storefront/partials/support_widget.html" %}
     <script src="{% static 'site/support-widget.js' %}"></script>
     {% include "storefront/partials/vercel_analytics.html" %}

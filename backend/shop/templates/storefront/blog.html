@@ -9,15 +9,7 @@
     <link rel="stylesheet" href="{% static 'site/support-widget.css' %}" />
   </head>
   <body class="blog-page-shell">
-    <header class="blog-header">
-      <a class="about-brand" href="/" aria-label="Tail's Town home"><img src="{% static 'product-pages/assets/tails-town-header-logo-full.webp' %}" alt="Tail's Town" /></a>
-      <nav class="blog-nav" aria-label="Blog categories">
-        <a href="#featured">Featured</a>
-        <a href="#guides">Care guides</a>
-        <a href="#home">Pet home</a>
-      </nav>
-      <a class="about-back-link" href="/">Back to shop <span aria-hidden="true">&rarr;</span></a>
-    </header>
+    {% include "storefront/partials/site_header.html" %}
 
     <main class="blog-page" aria-labelledby="blog-title">
       <section class="blog-intro" id="featured">
@@ -60,7 +52,7 @@
       </section>
     </main>
 
-    <footer class="about-footer"><span>&copy; {% now "Y" %} Tail's Town</span><a href="/">Return to the collection <span aria-hidden="true">&rarr;</span></a></footer>
+    {% include "storefront/partials/site_footer.html" %}
     {% include "storefront/partials/support_widget.html" %}
     <script src="{% static 'site/support-widget.js' %}"></script>
     {% include "storefront/partials/vercel_analytics.html" %}

@@ -9,14 +9,13 @@
     <link rel="stylesheet" href="{% static 'site/support-widget.css' %}" />
   </head>
   <body class="about-page-shell">
-    <header class="about-header">
-      <a class="about-brand" href="/" aria-label="Tail's Town home"><img src="{% static 'product-pages/assets/tails-town-header-logo-full.webp' %}" alt="Tail's Town" /></a>
-      <a class="about-back-link" href="/">Back to shop <span aria-hidden="true">&rarr;</span></a>
-    </header>
+    {% include "storefront/partials/site_header.html" %}
 
     <main class="about-page" aria-labelledby="about-title">
       <section class="about-hero">
-        <img src="{% static 'landing/smart-home.webp' %}" alt="A calm pet corner with smart everyday care tools" />
+        <picture>
+          <img src="{% static 'landing/about-products-room.webp' %}" alt="Tail's Town litter box, smart feeder, and water fountain in a warm living room" />
+        </picture>
         <div class="about-hero-copy"><p class="eyebrow">The Tail's Town approach</p><h1 id="about-title">Technology that gives the routine back to you.</h1></div>
       </section>
 
@@ -39,14 +38,14 @@
       <section class="about-products" aria-labelledby="about-products-title">
         <div class="about-products-heading"><p class="eyebrow">Everyday essentials</p><h2 id="about-products-title">One calmer system for the whole pet home.</h2></div>
         <div class="about-product-list">
-          <a href="{% url 'store:smart_feeder_page' %}"><img src="{% static 'products/smart-feeder.webp' %}" alt="Tail's Town Smart Feeder" loading="lazy" /><span>Feed with confidence <b>&rarr;</b></span></a>
-          <a href="{% url 'store:water_fountain_page' %}"><img src="{% static 'products/smart-water-fountain.webp' %}" alt="Tail's Town Water Fountain" loading="lazy" /><span>Keep water moving <b>&rarr;</b></span></a>
-          <a href="{% url 'store:litter_box_page' %}"><img src="{% static 'products/self-cleaning-litter-box.webp' %}" alt="Tail's Town Litter Box" loading="lazy" /><span>Clear the corner <b>&rarr;</b></span></a>
+          <a href="{% url 'store:smart_feeder_page' %}"><img src="{% static 'landing/about-feeder.webp' %}" alt="Tail's Town Smart Feeder in a warm living room" loading="lazy" /><span>Feed with confidence <b>&rarr;</b></span></a>
+          <a href="{% url 'store:water_fountain_page' %}"><img src="{% static 'landing/about-fountain.webp' %}" alt="Tail's Town Water Fountain in a warm living room" loading="lazy" /><span>Keep water moving <b>&rarr;</b></span></a>
+          <a href="{% url 'store:litter_box_page' %}"><img src="{% static 'landing/about-litter.webp' %}" alt="Tail's Town Litter Box beside a cat in a warm living room" loading="lazy" /><span>Clear the corner <b>&rarr;</b></span></a>
         </div>
       </section>
     </main>
 
-    <footer class="about-footer"><span>&copy; {% now "Y" %} Tail's Town</span><a href="/">Return to the collection <span aria-hidden="true">&rarr;</span></a></footer>
+    {% include "storefront/partials/site_footer.html" %}
     {% include "storefront/partials/support_widget.html" %}
     <script src="{% static 'site/support-widget.js' %}"></script>
     {% include "storefront/partials/vercel_analytics.html" %}

@@ -1,0 +1,26 @@
+{% load static %}
+<header class="site-header is-solid inner-site-header" aria-label="Main navigation">
+  <a class="brand" href="{% url 'home' %}" aria-label="Tail's Town home">
+    <picture>
+      <source media="(max-width: 900px)" srcset="{% static 'product-pages/assets/tails-town-header-logo-full.webp' %}" />
+      <img src="{% static 'product-pages/assets/tails-town-header-logo-full.webp' %}" width="1408" height="1429" alt="Tail's Town" decoding="async" />
+    </picture>
+  </a>
+  <div class="header-controls">
+    <nav class="nav-links" aria-label="Product navigation">
+      <a href="{% url 'store:smart_feeder_page' %}">Feeders</a>
+      <a href="{% url 'store:water_fountain_page' %}">Water</a>
+      <a href="{% url 'store:litter_box_page' %}">Litter</a>
+      <a href="{% url 'store:bundle_page' %}">Bundle</a>
+    </nav>
+    <div class="header-actions">
+      {% if request.user.is_authenticated %}
+        <a class="auth-link" href="{% url 'customer_account:dashboard' %}">Account</a>
+        <a class="auth-link auth-link-secondary" href="{% url 'customer_account:logout' %}">Sign out</a>
+      {% else %}
+        <a class="auth-link auth-link-secondary" href="{% url 'customer_account:login' %}">Sign in</a>
+      {% endif %}
+    </div>
+    <a class="mobile-shop-action" href="{% url 'home' %}#products">Shop</a>
+  </div>
+</header>

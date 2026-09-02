@@ -80,6 +80,7 @@ DEBUG = env_bool("DJANGO_DEBUG", default=True)
 
 ALLOWED_HOSTS = include_www_variants(env_list("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost"))
 RAILWAY_PUBLIC_DOMAIN = env_str("RAILWAY_PUBLIC_DOMAIN")
+SUPPORT_EMAIL = env_str("SUPPORT_EMAIL", "support@tailstown.ca")
 if RAILWAY_PUBLIC_DOMAIN:
     ALLOWED_HOSTS = include_www_variants([*ALLOWED_HOSTS, RAILWAY_PUBLIC_DOMAIN])
 

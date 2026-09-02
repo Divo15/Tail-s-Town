@@ -96,7 +96,7 @@ let leaveTimer;
 const IMAGE_FADE_MS = 850;
 const TEXT_SWAP_DELAY = 425;
 const ROTATION_INTERVAL = 9200;
-const FEATURE_ROTATION_INTERVAL = 6400;
+const FEATURE_ROTATION_INTERVAL = 4000;
 const FEATURE_TEXT_SWAP_DELAY = 500;
 
 const hydratePhoto = (photo) => {

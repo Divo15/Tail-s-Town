@@ -9,15 +9,7 @@
     <link rel="stylesheet" href="{% static 'site/support-widget.css' %}" />
   </head>
   <body class="app-service-page-shell">
-    <header class="app-service-header">
-      <a class="about-brand" href="/" aria-label="Tail's Town home"><img src="{% static 'product-pages/assets/tails-town-header-logo-full.webp' %}" alt="Tail's Town" /></a>
-      <nav class="app-service-nav" aria-label="App Service sections">
-        <a href="#overview">Overview</a>
-        <a href="#features">What it helps with</a>
-        <a href="#getting-started">Get started</a>
-      </nav>
-      <a class="about-back-link" href="/">Back to shop <span aria-hidden="true">&rarr;</span></a>
-    </header>
+    {% include "storefront/partials/site_header.html" %}
 
     <main class="app-service-page" aria-labelledby="app-service-title">
       <section class="app-service-hero" id="overview">
@@ -44,7 +36,7 @@
       <section class="app-service-note"><p class="eyebrow">Built for real homes</p><h2>Technology should make care feel more human.</h2><p>The service is here to support your judgement, not replace it. Use the information that helps, ignore the noise, and keep the focus where it belongs: on your pet.</p><a class="app-service-secondary" href="{% url 'store:faq_page' %}">Read common questions <span aria-hidden="true">&rarr;</span></a></section>
     </main>
 
-    <footer class="about-footer"><span>&copy; {% now "Y" %} Tail's Town</span><a href="/">Return to the collection <span aria-hidden="true">&rarr;</span></a></footer>
+    {% include "storefront/partials/site_footer.html" %}
     {% include "storefront/partials/support_widget.html" %}
     <script src="{% static 'site/support-widget.js' %}"></script>
     {% include "storefront/partials/vercel_analytics.html" %}

@@ -1,0 +1,67 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Privacy Policy | Tail's Town</title>
+    <link rel="stylesheet" href="{% static 'site/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'site/support-widget.css' %}" />
+  </head>
+  <body class="policy-page-shell privacy-page-shell">
+    {% include "storefront/partials/site_header.html" %}
+
+    <main class="policy-page" aria-labelledby="privacy-title">
+      <section class="policy-intro privacy-intro">
+        <p class="eyebrow">Legal</p>
+        <h1 id="privacy-title">Privacy Policy</h1>
+        <p class="policy-lede">This policy explains how Tail's Town handles personal information when you visit our website, shop with us, contact support, or use connected products and related digital services.</p>
+        <p class="policy-date">Last updated: {{ last_updated|date:"F j, Y" }}</p>
+      </section>
+
+      <details class="privacy-mobile-index">
+        <summary>On this page</summary>
+        <nav aria-label="Privacy policy sections">
+          <a href="#introduction">01 Introduction</a><a href="#information-we-collect">02 Information We Collect</a>
+          <a href="#how-we-use-information">03 How We Use Information</a><a href="#cookies">04 Cookies</a>
+          <a href="#connected-products">05 Connected Products &amp; App Data</a><a href="#sharing">06 How We Share Information</a>
+          <a href="#retention">07 Data Retention</a><a href="#security">08 Data Security</a>
+          <a href="#rights">09 Your Privacy Rights</a><a href="#children">10 Children's Privacy</a>
+          <a href="#changes">11 Changes to This Policy</a><a href="#contact">12 Contact Us</a>
+        </nav>
+      </details>
+
+      <div class="policy-layout privacy-layout">
+        <aside class="policy-index privacy-desktop-index" aria-label="On this page">
+          <p>On this page</p>
+          <a href="#introduction">Introduction</a><a href="#information-we-collect">Information We Collect</a>
+          <a href="#how-we-use-information">How We Use Information</a><a href="#cookies">Cookies</a>
+          <a href="#connected-products">Connected Products &amp; App Data</a><a href="#sharing">How We Share Information</a>
+          <a href="#retention">Data Retention</a><a href="#security">Data Security</a>
+          <a href="#rights">Your Privacy Rights</a><a href="#children">Children's Privacy</a>
+          <a href="#changes">Changes to This Policy</a><a href="#contact">Contact Us</a>
+        </aside>
+
+        <article class="policy-copy privacy-copy">
+          <section id="introduction"><span class="policy-section-label">01</span><h2>Introduction</h2><p>This Privacy Policy describes how Tail's Town collects, uses, discloses, retains, and protects personal information. It applies when you visit our website or online shop, create an account, register a product, contact us, or use a Tail's Town connected product, app, or related digital service.</p><p>We collect and use personal information for the purposes described below and obtain consent where required by applicable law. A third-party website or service linked from our services may have its own privacy practices, which are not covered by this policy.</p></section>
+          <section id="information-we-collect"><span class="policy-section-label">02</span><h2>Information We Collect</h2><p>The information we collect depends on how you interact with Tail's Town. You may provide:</p><ul><li>Your name, email address, phone number, account credentials, and communication preferences.</li><li>Shipping and billing details, order history, transaction details, and information needed to process returns or refunds. Payment card information may be collected directly by our payment processor.</li><li>Product registration, warranty, and connected-device details.</li><li>Messages, attachments, and other information you share when contacting customer support or responding to a survey.</li></ul><p>When you use our website or digital services, we may automatically receive technical information such as your IP address, browser and device type, operating system, referring page, pages viewed, interaction times, cookie identifiers, and an approximate location derived from your IP address. We collect this information only where applicable to the service you use.</p></section>
+          <section id="how-we-use-information"><span class="policy-section-label">03</span><h2>How We Use Information</h2><p>We use personal information to operate Tail's Town and provide the products and services you request. This includes:</p><ul><li>Processing payments, fulfilling and delivering orders, and handling returns or refunds.</li><li>Creating and managing accounts, product registrations, warranties, and support requests.</li><li>Providing connected-product features, applying settings and schedules, and sending service messages.</li><li>Diagnosing problems, maintaining our services, and improving products and customer support.</li><li>Understanding website and service performance through analytics.</li><li>Preventing fraud, protecting accounts and transactions, and meeting legal obligations.</li><li>Sending marketing communications when you have consented to receive them.</li></ul><p>You can unsubscribe from marketing messages using the link in an email or by contacting us. You may still receive non-promotional messages about orders, accounts, safety, or services you use.</p></section>
+          <section id="cookies"><span class="policy-section-label">04</span><h2>Cookies</h2><p>Cookies and similar technologies help our website remember information and work as expected. Depending on the features available, we may use:</p><ul><li><strong>Essential cookies</strong> for checkout, account security, and core website functions.</li><li><strong>Functional cookies</strong> to remember choices and provide requested features.</li><li><strong>Analytics cookies</strong> to understand how visitors use the website and where we can improve it.</li><li><strong>Marketing cookies</strong> to measure campaigns or tailor advertising, where you have provided any consent required by law.</li></ul><p>You can manage non-essential cookies through available consent controls or your browser settings. Blocking some cookies may affect how certain website features work.</p></section>
+          <section id="connected-products"><span class="policy-section-label">05</span><h2>Connected Products &amp; App Data</h2><p>When you connect a Smart Pet Feeder, Smart Water Fountain, Smart Litter Box, or another supported product to a Tail's Town app or digital service, the product may generate information needed to provide and support its connected features. Depending on the product and settings, this may include:</p><ul><li>Device identifiers, model and firmware information, connectivity details, and device status.</li><li>Product settings, feeding schedules, and preferences you configure.</li><li>Usage and activity information, such as dispensing cycles, refill or maintenance status, and feature interactions.</li><li>Diagnostic information, error logs, and app interactions used to identify and resolve technical issues.</li><li>The association between a device and your Tail's Town account.</li></ul><p>We use this information to deliver the features you request, keep products working, provide support, and improve reliability. This policy does not state that Tail's Town collects camera footage, microphone recordings, audio, or video. If a future feature requires additional categories of information, we will explain that collection and request consent where required before or when the feature is enabled.</p></section>
+          <section id="sharing"><span class="policy-section-label">06</span><h2>How We Share Information</h2><p>We may share personal information when reasonably necessary to operate our business and provide our services. Recipients may include payment processors, shipping and fulfilment partners, hosting and technology providers, customer-support services, communications providers, analytics and security providers, and professional advisers.</p><p>These providers may use information only to perform services for us or as otherwise permitted by law. We may also disclose information when required by law, to protect customers or our services, to investigate fraud or security concerns, or as part of a proposed or completed business transaction subject to appropriate protections.</p><p>Tail's Town does not sell customer personal information.</p></section>
+          <section id="retention"><span class="policy-section-label">07</span><h2>Data Retention</h2><p>We keep personal information only for as long as reasonably necessary for the purposes for which it was collected. Retention periods depend on the type of information and may reflect the time needed to provide services, complete transactions, support connected products, administer warranties, answer support requests, maintain security, resolve disputes, and meet tax, accounting, or other legal obligations.</p><p>When information is no longer required, we take reasonable steps to delete or anonymize it. Some information may remain for a limited period in backups or where continued retention is required or permitted by law.</p></section>
+          <section id="security"><span class="policy-section-label">08</span><h2>Data Security</h2><p>We use reasonable administrative, technical, and organizational safeguards appropriate to the sensitivity of the information we handle. These may include access controls, secure transmission and storage practices where appropriate, system monitoring, service-provider reviews, and procedures for responding to security incidents.</p><p>No website, connected product, or storage system can be guaranteed to be completely secure. You can help protect your information by using a strong, unique password, keeping account credentials private, and contacting us if you suspect unauthorized access.</p></section>
+          <section id="rights"><span class="policy-section-label">09</span><h2>Your Privacy Rights</h2><p>Subject to applicable Canadian privacy law, you may have the right to:</p><ul><li>Request access to personal information we hold about you and information about how it has been used or disclosed.</li><li>Ask us to correct personal information that is inaccurate or incomplete.</li><li>Withdraw consent to certain uses of your information, where consent is the basis for processing and subject to legal or contractual restrictions and reasonable notice.</li><li>Request deletion of personal information where applicable, subject to information we must retain for legal, transaction, security, or other permitted purposes.</li><li>Opt out of marketing communications at any time.</li><li>Ask a privacy question or raise a complaint about our practices.</li></ul><p>We may need to verify your identity before completing a request. If we cannot fulfil all or part of a request, we will explain why where required by law. Privacy rights and complaint options may vary by province or territory, and you may contact the appropriate Canadian privacy regulator if a concern is not resolved.</p></section>
+          <section id="children"><span class="policy-section-label">10</span><h2>Children's Privacy</h2><p>Tail's Town services are intended for adults who purchase or manage pet-care products. They are not intentionally directed to children, and we do not knowingly collect personal information from children through these services.</p><p>If you are a parent or guardian and believe a child has provided personal information to us, please use the contact details below. We will review the request and take appropriate steps, including deletion where required.</p></section>
+          <section id="changes"><span class="policy-section-label">11</span><h2>Changes to This Policy</h2><p>We may update this Privacy Policy when our products, services, practices, or legal obligations change. The revised policy will be posted on this page and the date at the top will show when it was last updated.</p><p>If a change is material, we may also provide notice through our website, by email, or within a connected service, as appropriate. We encourage you to review this policy periodically.</p></section>
+          <section id="contact"><span class="policy-section-label">12</span><h2>Contact Us</h2><p>To ask a privacy question, request access or correction, withdraw consent where applicable, request deletion where applicable, or submit a complaint, contact:</p><ul><li><strong>Privacy contact or responsible team:</strong> [Privacy contact or responsible team]</li><li><strong>Email:</strong> [Privacy contact email]</li><li><strong>Mailing address:</strong> [Mailing address]</li></ul><p>Please describe your request and provide enough information for us to respond. Do not send passwords or full payment card details by email.</p></section>
+        </article>
+      </div>
+    </main>
+
+    {% include "storefront/partials/site_footer.html" %}
+    {% include "storefront/partials/support_widget.html" %}
+    <script src="{% static 'site/support-widget.js' %}"></script>
+    {% include "storefront/partials/vercel_analytics.html" %}
+  </body>
+</html>

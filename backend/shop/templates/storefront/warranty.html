@@ -9,17 +9,14 @@
     <link rel="stylesheet" href="{% static 'site/support-widget.css' %}" />
   </head>
   <body class="policy-page-shell warranty-page-shell">
-    <header class="policy-header">
-      <a class="about-brand" href="/" aria-label="Tail's Town home"><img src="{% static 'product-pages/assets/tails-town-header-logo-full.webp' %}" alt="Tail's Town" /></a>
-      <a class="about-back-link" href="/">Back to shop <span aria-hidden="true">&rarr;</span></a>
-    </header>
+    {% include "storefront/partials/site_header.html" %}
 
     <main class="policy-page" aria-labelledby="warranty-title">
       <section class="policy-intro">
         <p class="eyebrow">Support for the things you rely on</p>
         <h1 id="warranty-title">Warranty Policy</h1>
         <p class="policy-lede">We want your Tail's Town products to keep doing their job. This page explains how warranty support works when a product has a manufacturing or workmanship issue.</p>
-        <p class="policy-date">Last updated: {% now "F j, Y" %}</p>
+        <p class="policy-date">Last updated: {{ last_updated|date:"F j, Y" }}</p>
       </section>
 
       <div class="policy-highlight" aria-label="Warranty at a glance">
@@ -48,7 +45,7 @@
       </div>
     </main>
 
-    <footer class="about-footer"><span>&copy; {% now "Y" %} Tail's Town</span><a href="/">Return to the collection <span aria-hidden="true">&rarr;</span></a></footer>
+    {% include "storefront/partials/site_footer.html" %}
     {% include "storefront/partials/support_widget.html" %}
     <script src="{% static 'site/support-widget.js' %}"></script>
     {% include "storefront/partials/vercel_analytics.html" %}
