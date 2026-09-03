@@ -6,6 +6,11 @@
   var revealOffset = 240;
   if (!launcher) return;
 
+  var canonical = document.querySelector('link[rel="canonical"]');
+  var pageUrl = canonical ? canonical.href : window.location.href.split("#")[0];
+  var message = "Hello,\nI have a question about\n" + pageUrl;
+  launcher.href = "https://wa.me/919999554069?text=" + encodeURIComponent(message);
+
   function updateLauncherVisibility() {
     if (hero) {
       var heroBottom = hero.offsetTop + hero.offsetHeight;

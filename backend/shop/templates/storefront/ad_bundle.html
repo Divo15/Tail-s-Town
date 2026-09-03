@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="{{ bundle.meta_description }}" />
     <title>{{ bundle.title }} | Tail's Town</title>
+    {% include "storefront/partials/social_preview.html" with preview_title=bundle.title preview_description=bundle.meta_description preview_image=bundle.hero_image %}
     <link rel="icon" href="{% static 'brand/favicon.ico' %}" sizes="any" />
     <link rel="icon" type="image/png" sizes="512x512" href="{% static 'brand/favicon.png' %}" />
     <link rel="apple-touch-icon" href="{% static 'brand/apple-touch-icon.png' %}" />
