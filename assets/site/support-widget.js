@@ -8,6 +8,7 @@
 
   var canonical = document.querySelector('link[rel="canonical"]');
   var pageUrl = canonical ? canonical.href : window.location.href.split("#")[0];
+  pageUrl += (pageUrl.indexOf("?") === -1 ? "?" : "&") + "utm_source=whatsapp&utm_medium=support_widget";
   var message = "Hello,\nI have a question about\n" + pageUrl;
   launcher.href = "https://wa.me/919999554069?text=" + encodeURIComponent(message);
 
