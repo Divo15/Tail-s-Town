@@ -3,15 +3,17 @@
   z-index: 60;
   right: max(24px, env(safe-area-inset-right));
   bottom: max(24px, env(safe-area-inset-bottom));
-  display: grid;
-  width: 64px;
-  height: 64px;
-  place-items: center;
-  border-radius: 50%;
-  color: #fff;
-  background: #25d366;
-  box-shadow: 0 6px 8px rgba(18, 91, 48, 0.28);
-  transition: background-color 160ms ease, transform 160ms ease;
+  display: flex;
+  min-height: 68px;
+  align-items: center;
+  gap: 11px;
+  padding: 7px 8px 7px 7px;
+  border-radius: 999px;
+  color: #17211f;
+  text-decoration: none;
+  background: linear-gradient(105deg, rgba(255, 255, 255, 0.97), rgba(252, 241, 236, 0.98));
+  box-shadow: 0 6px 8px rgba(78, 49, 43, 0.18);
+  transition: box-shadow 180ms ease, transform 180ms ease;
 }
 
 .support-launcher[hidden] {
@@ -19,8 +21,8 @@
 }
 
 .support-launcher:hover {
-  background: #1fbd5b;
   transform: translateY(-2px);
+  box-shadow: 0 8px 8px rgba(78, 49, 43, 0.22);
 }
 
 .support-launcher:focus-visible {
@@ -32,9 +34,57 @@
   transform: translateY(1px);
 }
 
-.support-launcher svg {
-  width: 34px;
-  height: 34px;
+.support-launcher__brand {
+  display: grid;
+  width: 54px;
+  height: 54px;
+  flex: 0 0 54px;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 50%;
+  background: radial-gradient(circle at 33% 22%, #fff9f5 0 18%, #f5d4c8 52%, #d8a493 100%);
+}
+
+.support-launcher__brand img {
+  display: block;
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+}
+
+.support-launcher__copy {
+  display: grid;
+  min-width: 128px;
+  gap: 1px;
+  line-height: 1.2;
+}
+
+.support-launcher__copy strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.support-launcher__copy span {
+  color: #6e615c;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.support-launcher__whatsapp {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff;
+  background: #25d366;
+}
+
+.support-launcher__whatsapp svg {
+  width: 20px;
+  height: 20px;
   fill: currentColor;
 }
 
@@ -42,13 +92,27 @@
   .support-launcher {
     right: max(14px, env(safe-area-inset-right));
     bottom: max(14px, env(safe-area-inset-bottom));
-    width: 58px;
-    height: 58px;
+    min-height: 0;
+    gap: 0;
+    padding: 6px;
   }
 
-  .support-launcher svg {
-    width: 31px;
-    height: 31px;
+  .support-launcher__copy {
+    display: none;
+  }
+
+  .support-launcher__whatsapp {
+    position: absolute;
+    right: -2px;
+    bottom: -2px;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #fffaf7;
+  }
+
+  .support-launcher__whatsapp svg {
+    width: 13px;
+    height: 13px;
   }
 }
 
