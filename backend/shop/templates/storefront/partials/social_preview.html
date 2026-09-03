@@ -1,13 +1,14 @@
 {% load static %}
-{% static "brand/tails-town-header-logo.png" as social_image_url %}
+{% static "brand/apple-touch-icon.png" as social_image_url %}
 <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}" />
 <meta property="og:site_name" content="Tail's Town" />
 <meta property="og:type" content="{{ preview_type|default:'website' }}" />
 <meta property="og:title" content="{{ preview_title|default:"Tail's Town | Smart Pet Care" }}" />
 <meta property="og:description" content="{{ preview_description|default:"Thoughtful smart pet care for calmer routines at home." }}" />
 <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}" />
-<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ social_image_url }}" />
+<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ social_image_url }}?v=2" />
+<meta property="og:image:secure_url" content="https://{{ request.get_host }}{{ social_image_url }}?v=2" />
 <meta property="og:image:type" content="image/png" />
-<meta property="og:image:width" content="1408" />
-<meta property="og:image:height" content="1429" />
+<meta property="og:image:width" content="512" />
+<meta property="og:image:height" content="512" />
 <meta property="og:image:alt" content="Tail's Town logo" />
