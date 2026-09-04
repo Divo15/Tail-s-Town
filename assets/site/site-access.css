@@ -155,12 +155,12 @@ h1 {
 
 .access-submit {
   display: flex;
-  width: 100%;
-  min-height: 54px;
+  width: 156px;
+  min-height: 48px;
   align-items: center;
-  justify-content: space-between;
-  margin-top: 12px;
-  padding: 0 18px;
+  justify-content: center;
+  margin: 14px auto 0;
+  padding: 0 24px;
   border: 0;
   border-radius: 10px;
   color: #fff;
@@ -175,10 +175,6 @@ h1 {
 
 .access-submit:active {
   transform: translateY(1px);
-}
-
-.access-submit span {
-  font-size: 1.2rem;
 }
 
 .access-error {
