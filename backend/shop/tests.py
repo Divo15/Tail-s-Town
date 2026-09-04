@@ -12,6 +12,61 @@ from .models import Customer
 User = get_user_model()
 
 
+@override_settings(
+    SITE_ACCESS_PASSWORD="Strong preview password",
+    SITE_ACCESS_COOKIE_NAME="test_preview_access",
+    SITE_ACCESS_COOKIE_AGE=3600,
+)
+class SiteAccessGateTests(TestCase):
+    def test_protected_page_redirects_to_access_form(self):
+        response = self.client.get("/")
+
+        self.assertRedirects(response, "/site-access/?next=%2F", fetch_redirect_response=False)
+
+    def test_incorrect_password_shows_error(self):
+        response = self.client.post(
+            reverse("site_access"),
+            {"password": "wrong", "next": "/shop/"},
+        )
+
+        self.assertEqual(response.status_code, 401)
+        self.assertContains(response, "That password is not correct", status_code=401)
+
+    def test_correct_password_unlocks_protected_pages(self):
+        response = self.client.post(
+            reverse("site_access"),
+            {"password": "Strong preview password", "next": "/"},
+        )
+
+        self.assertRedirects(response, "/", fetch_redirect_response=False)
+        self.assertIn("test_preview_access", response.cookies)
+
+        unlocked_response = self.client.get("/")
+        self.assertEqual(unlocked_response.status_code, 200)
+
+    def test_external_redirect_is_rejected(self):
+        response = self.client.post(
+            reverse("site_access"),
+            {
+                "password": "Strong preview password",
+                "next": "https://example.com/phishing",
+            },
+        )
+
+        self.assertEqual(response["Location"], "/")
+
+    def test_static_assets_are_not_redirected_to_access_form(self):
+        response = self.client.get("/static/site/site-access.css")
+
+        self.assertNotEqual(response.status_code, 302)
+
+    @override_settings(SITE_ACCESS_PASSWORD="")
+    def test_gate_is_disabled_without_environment_password(self):
+        response = self.client.get("/")
+
+        self.assertEqual(response.status_code, 200)
+
+
 class AccountFlowTests(TestCase):
     def test_register_verify_login_logout_dashboard_and_password_reset(self):
         register_response = self.client.post(

@@ -24,6 +24,7 @@ from shop import views as shop_views
 from shop import urls as shop_urls
 
 urlpatterns = [
+    path('site-access/', shop_views.site_access, name='site_access'),
     path('', shop_views.home, name='home'),
     path('ads', RedirectView.as_view(url='/ads/cat-bundle/', permanent=False), name='ads_landing_no_slash'),
     path('ads/', RedirectView.as_view(url='/ads/cat-bundle/', permanent=False), name='ads_landing'),

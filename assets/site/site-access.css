@@ -1,0 +1,290 @@
+:root {
+  --access-ink: #17211f;
+  --access-muted: #52635e;
+  --access-teal: #0f766e;
+  --access-teal-dark: #0a4f4b;
+  --access-error: #a82c31;
+  --access-surface: #fbfaf5;
+  --access-line: rgba(23, 33, 31, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--access-ink);
+  background: var(--access-surface);
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.access-shell {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  grid-template-columns: minmax(380px, 0.82fr) minmax(0, 1.18fr);
+}
+
+.access-panel {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(32px, 7vw, 112px);
+  background: var(--access-surface);
+}
+
+.access-brand {
+  position: absolute;
+  top: clamp(22px, 4vw, 48px);
+  left: clamp(28px, 7vw, 112px);
+  display: inline-flex;
+}
+
+.access-brand img {
+  width: auto;
+  height: clamp(72px, 8vw, 108px);
+  object-fit: contain;
+}
+
+.access-copy {
+  max-width: 570px;
+}
+
+.access-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 24px;
+  color: var(--access-teal-dark);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.access-status span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--access-teal);
+  box-shadow: 0 0 0 5px rgba(15, 118, 110, 0.12);
+}
+
+h1 {
+  max-width: 9ch;
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.7rem, 5.2vw, 5.4rem);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.access-copy > p:last-child {
+  max-width: 52ch;
+  margin: 26px 0 0;
+  color: var(--access-muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  text-wrap: pretty;
+}
+
+.access-form {
+  width: min(100%, 570px);
+  margin-top: clamp(36px, 6vh, 64px);
+}
+
+.access-form label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 0.92rem;
+  font-weight: 800;
+}
+
+.access-control {
+  display: flex;
+  min-height: 58px;
+  background: #fff;
+  border: 1px solid var(--access-line);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.access-control:focus-within {
+  border-color: var(--access-teal);
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.14);
+}
+
+.access-control input {
+  min-width: 0;
+  flex: 1;
+  padding: 0 18px;
+  border: 0;
+  color: var(--access-ink);
+  background: transparent;
+  outline: 0;
+}
+
+.access-control button {
+  min-width: 142px;
+  padding: 0 20px;
+  border: 0;
+  color: #fff;
+  background: var(--access-teal-dark);
+  font-weight: 800;
+  cursor: pointer;
+  transition: background-color 180ms ease, transform 180ms ease;
+}
+
+.access-control button:hover {
+  background: var(--access-teal);
+}
+
+.access-control button:active {
+  transform: translateY(1px);
+}
+
+.access-control button:focus-visible,
+.access-control input:focus-visible {
+  outline: 3px solid #f4c34e;
+  outline-offset: -4px;
+}
+
+.access-hint,
+.access-error {
+  margin: 12px 0 0;
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.access-hint {
+  color: var(--access-muted);
+}
+
+.access-error {
+  color: var(--access-error);
+  font-weight: 700;
+}
+
+.access-visual {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow: hidden;
+  background: #d9d5cd;
+}
+
+.access-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 20px 0 34px rgba(23, 33, 31, 0.08);
+}
+
+.access-visual img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (max-width: 860px) {
+  .access-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .access-panel {
+    min-height: 68svh;
+    padding: 152px clamp(24px, 8vw, 72px) 58px;
+  }
+
+  .access-brand {
+    left: clamp(24px, 8vw, 72px);
+  }
+
+  h1 {
+    max-width: 11ch;
+  }
+
+  .access-visual {
+    min-height: 32svh;
+  }
+
+  .access-visual::after {
+    box-shadow: inset 0 18px 26px rgba(23, 33, 31, 0.08);
+  }
+}
+
+@media (max-width: 520px) {
+  .access-panel {
+    min-height: 72svh;
+    padding: 130px 20px 42px;
+  }
+
+  .access-brand {
+    top: 18px;
+    left: 20px;
+  }
+
+  .access-brand img {
+    height: 82px;
+  }
+
+  h1 {
+    font-size: clamp(2.6rem, 14vw, 4rem);
+  }
+
+  .access-copy > p:last-child {
+    margin-top: 20px;
+    font-size: 0.98rem;
+  }
+
+  .access-form {
+    margin-top: 30px;
+  }
+
+  .access-control {
+    display: grid;
+    min-height: 0;
+    border: 0;
+    border-radius: 0;
+    overflow: visible;
+    background: transparent;
+  }
+
+  .access-control input {
+    min-height: 54px;
+    border: 1px solid var(--access-line);
+    border-radius: 10px;
+    background: #fff;
+  }
+
+  .access-control button {
+    min-height: 52px;
+    margin-top: 10px;
+    border-radius: 10px;
+  }
+
+  .access-visual {
+    min-height: 28svh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .access-control button {
+    transition-duration: 0.01ms;
+  }
+}

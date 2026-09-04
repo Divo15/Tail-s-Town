@@ -81,6 +81,9 @@ DEBUG = env_bool("DJANGO_DEBUG", default=True)
 ALLOWED_HOSTS = include_www_variants(env_list("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost"))
 RAILWAY_PUBLIC_DOMAIN = env_str("RAILWAY_PUBLIC_DOMAIN")
 SUPPORT_EMAIL = env_str("SUPPORT_EMAIL", "support@tailstown.ca")
+SITE_ACCESS_PASSWORD = env_str("SITE_ACCESS_PASSWORD")
+SITE_ACCESS_COOKIE_NAME = env_str("SITE_ACCESS_COOKIE_NAME", "tails_town_preview")
+SITE_ACCESS_COOKIE_AGE = int(env_str("SITE_ACCESS_COOKIE_AGE", "604800"))
 if RAILWAY_PUBLIC_DOMAIN:
     ALLOWED_HOSTS = include_www_variants([*ALLOWED_HOSTS, RAILWAY_PUBLIC_DOMAIN])
 
@@ -115,6 +118,7 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'shop.middleware.SiteAccessMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
