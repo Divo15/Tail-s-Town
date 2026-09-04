@@ -22,56 +22,48 @@
           >
         </a>
 
-        <div class="access-copy">
-          <p class="access-status">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7 10V8a5 5 0 0 1 10 0v2m-11 0h12v10H6V10Z" />
-            </svg>
-            Development preview
-          </p>
-          <h1 id="access-title">Tail's Town is almost ready.</h1>
-          <p>We're preparing a smarter way to care for pets at home. Enter the shared password to review the latest build.</p>
-        </div>
-
-        <form class="access-form" method="post" action="{% url 'site_access' %}">
-          {% csrf_token %}
-          <input type="hidden" name="next" value="{{ next }}">
-          <label for="site-password">Password</label>
-          <div class="password-control">
-            <input
-              id="site-password"
-              name="password"
-              type="password"
-              autocomplete="current-password"
-              required
-              autofocus
-              aria-describedby="{% if error %}access-error{% else %}access-hint{% endif %}"
-            >
-            <button
-              class="password-toggle"
-              type="button"
-              data-password-toggle
-              aria-label="Show password"
-              aria-pressed="false"
-            >
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z" />
-                <circle cx="12" cy="12" r="2.75" />
-              </svg>
-            </button>
+        <div class="access-content">
+          <div class="access-copy">
+            <h1 id="access-title">Private preview</h1>
+            <p>Enter the password to continue.</p>
           </div>
-          <button class="access-submit" type="submit">
-            Enter preview
-            <span aria-hidden="true">&rarr;</span>
-          </button>
-          {% if error %}
-            <p class="access-error" id="access-error" role="alert">{{ error }}</p>
-          {% else %}
-            <p class="access-hint" id="access-hint">Access stays unlocked for 7 days on this browser.</p>
-          {% endif %}
-        </form>
 
-        <p class="access-footnote">For the Tail's Town team and invited reviewers.</p>
+          <form class="access-form" method="post" action="{% url 'site_access' %}">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}">
+            <label for="site-password">Password</label>
+            <div class="password-control">
+              <input
+                id="site-password"
+                name="password"
+                type="password"
+                autocomplete="current-password"
+                required
+                autofocus
+                {% if error %}aria-describedby="access-error"{% endif %}
+              >
+              <button
+                class="password-toggle"
+                type="button"
+                data-password-toggle
+                aria-label="Show password"
+                aria-pressed="false"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z" />
+                  <circle cx="12" cy="12" r="2.75" />
+                </svg>
+              </button>
+            </div>
+            <button class="access-submit" type="submit">
+              Continue
+              <span aria-hidden="true">&rarr;</span>
+            </button>
+            {% if error %}
+              <p class="access-error" id="access-error" role="alert">{{ error }}</p>
+            {% endif %}
+          </form>
+        </div>
       </section>
 
       <picture class="access-visual">
@@ -83,7 +75,6 @@
           width="2800"
           height="1000"
         >
-        <span class="visual-caption">Smarter routines. Calmer homes.</span>
       </picture>
     </main>
   </body>
